@@ -45,6 +45,7 @@ something better to do - studying for a final, going out with friends,
 spending all night refreshing Twitter & Reddit or working on getting
 your dream job doing what you love - you dedicate yourself to it without
 worrying if your forgot to pay this or that.
+* Incentivizing goodness: get recognized for being an amazing roomie.
 
 ## Core features
 * Expense management & sharing
@@ -71,6 +72,13 @@ worrying if your forgot to pay this or that.
     * Bills
     * Personal loans
   * Incoming / Ongoing Events
+
+## "If we have time" Features
+* Game system:
+	* Point system based on what each person does
+	* Achievement badges for certain point levels
+* Finding roomies
+	* Filtering search by location, age, gender, Roomies achievement badges
 
 ## Technologies
 
