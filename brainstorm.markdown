@@ -80,7 +80,7 @@ worrying if your forgot to pay this or that.
 * Finding roomies
 	* Filtering search by location, age, gender, Roomies achievement badges
 * Uploading iCal files to personal calendar
-* Syncing with Google Calendars
+* Syncing with Google Calendars (Google API: http://code.google.com/apis/calendar/data/2.0/developers_guide_protocol.html)
 
 ## Technologies
 
