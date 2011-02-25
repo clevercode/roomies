@@ -147,5 +147,19 @@ We will not deploy either the development, staging or production builds of the
 application to Full Sail's server as they do not support the technology
 we will use.
 
+### Mobile
+Although Mobile would be an interesting use case for such an application,
+a great majority of the uses will be made from a home which will contain
+either a laptop or a desktop computer or at work/school.
 
+The task management features of Roomies lend themselves well to a mobile
+application since they would allow users to (without
+the use of notifications) take a look at their current tasks.
+
+Limiting the scope of the project, we can imagine optimizing the Roomies
+website for mobile use to a certain extent while keeping in mind that it
+would not compare with the main interface for the application.
+
+A case could be made for tablet computers as a more adequate interface
+than either laptops or desktops in the near future.
 
