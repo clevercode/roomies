@@ -79,6 +79,8 @@ worrying if your forgot to pay this or that.
 	* Achievement badges for certain point levels
 * Finding roomies
 	* Filtering search by location, age, gender, Roomies achievement badges
+* Uploading iCal files to personal calendar
+* Syncing with Google Calendars
 
 ## Technologies
 
