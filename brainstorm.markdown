@@ -109,4 +109,21 @@ a local company specializing in Ruby development. He will not be allowed
 to code on the project but his advice will be seeked for code reviews
 that involve Ruby and Rails.
 
+### Hosting
+1. Source code: GitHub
+The development of the application will be done inside of a private Git
+repository on GitHub (which will be accessible by instructors) since we
+plan on monetizing the application after graduation and the staging and
+production servers will be hosted at Heroku.
+
+2. Deployment: Heroku
+The staging server where Roomies will be tested prior to public deployment 
+will remain untouched once the project is completed and will stay available
+as long as Full Sail University sees fit since there will be no hosting costs.
+
+We will not deploy either the development, staging or production builds of the
+application to Full Sail's server as they do not support the technology
+we will use.
+
+
 
