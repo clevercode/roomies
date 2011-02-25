@@ -109,6 +109,28 @@ a local company specializing in Ruby development. He will not be allowed
 to code on the project but his advice will be seeked for code reviews
 that involve Ruby and Rails.
 
+### Client-side
+Since it requires a lot of user input and data manipulation, Roomies
+would benefit greatly from modern in-browser technologies like
+localStorage in order to reduce calls to a database as much as possible.
+
+At the same time, several users are likely to be manipulating the same
+data sets at the same time, which could provoke collisions (ex: one
+roomie splits an expense 40/60 while another splits the same expense
+30/70). We will have to develop a way to lock data that is currently
+manipulated by a user by flagging it in the database.
+
+1. jQuery: an obvious choice knowing the ambition to create a dynamic
+   interface for the application. jQuery 1.5's AJAX promises in
+particular would be a boon to data syncing concerns.
+
+2. Backbone: unless we devise our own MVC architecture for the
+   JavaScript framework powering the Roomies interface Backbone.js,
+knowing how well it integrates with jQuery would be a great way to keep
+our client-side code lean and extensible.
+
+
+
 ### Hosting
 1. Source code: GitHub
 The development of the application will be done inside of a private Git
