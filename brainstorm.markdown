@@ -109,6 +109,17 @@ a local company specializing in Ruby development. He will not be allowed
 to code on the project but his advice will be seeked for code reviews
 that involve Ruby and Rails.
 
+#### CRON Jobs
+The notifications require that we use a specific server-side feature
+called CRON jobs, basically it means our server-side code will register
+a time and date to have a specific script executed in order to notify
+users of a task or a due expense.
+
+Thankfully we might find a solution that does not involve using our own
+server for this (as we suspect Heroku might be starting to charge for
+such a feature) and instead use a remote service that would either send
+the email notifications on its own, or call our API periodically 
+
 ### Client-side
 Since it requires a lot of user input and data manipulation, Roomies
 would benefit greatly from modern in-browser technologies like
