@@ -51,32 +51,32 @@ worrying if your forgot to pay this or that.
 * Task management & sharing
 * Notifications & reminders
 
-# Expenses
+### Expenses
 * Add rent/split rent
 * Add utilities/split utilities
 * Add internet/cable bills & split them
 * Add personal loans
 
-# Tasks
+### Tasks
 * Add recurring house chores
 * Add special events (parties, birthdays, exams, vacation)
 * Add groceries runs
 * Add airport/train station pickups
 
-# Notifications
+### Notifications
 * Notify roomies of:
-  * Incoming|Due|Past Due:
+  * Incoming / Due / Past Due:
     * Rent
     * Utilities
     * Bills
     * Personal loans
-  * Incoming|Ongoing Events
+  * Incoming / Ongoing Events
 
 ## Technologies
 
-# Server-side
+### Server-side
 Since the scope of this project extends beyond its Full Sail University
-context we intend on using Ruby on Rails to power the application.
+context we intend on using Ruby on Rails to power the application. 
 
 1. We have used the technology in the past for our projects at
    cleverCode and would like to become comfortable enough to seek
