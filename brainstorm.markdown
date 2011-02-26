@@ -101,7 +101,7 @@ product we have in mind.
 
 3. The deployment platform we want to use - Heroku - allows us, as
    students to deploy at no cost in an industry-standard environment.
-This means we Roomies will be fully usable once our final project is
+This means Roomies will be fully usable once our final project is
 complete. It also means we will have a lot of flexibility to clone the
 source code for the application and evolve it without damaging the
 integrity of the final project we turned in for presentation.
@@ -184,3 +184,22 @@ would not compare with the main interface for the application.
 A case could be made for tablet computers as a more adequate interface
 than either laptops or desktops in the near future.
 
+## Pricing
+How do we charge our users?
+Email is the one feature that will have the most significant impact to
+our resources, which means charge more than twice as much to provide
+notifications makes a lot of sense for us while still keeping the
+application extremely affordable monthly.
+
+It's basically a premium for peace of mind.
+
+### Free month trial with all features
+We DO NOT require a credit card, because we're not trapping you.
+If you want to use all of these services, then buy our premium plan.
+If you don't think you need to be reminded via email, 
+
+### $3 - The Cheapo Neato
+All features, except email notifications.
+
+### $7 - Ultra Super Duper Pro Premium plan, UUUSDPPPUHH
+All features with email notifications & more...
