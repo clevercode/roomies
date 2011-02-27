@@ -1,4 +1,5 @@
 # Roomies
+Making living together easier.
 
 ## Who needs it
 * College students like us
