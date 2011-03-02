@@ -50,3 +50,20 @@ Gregg quickly started discussing a job opportunity for him after his
 graduation.
 10. After receiving an offer from Amazon, Andrew joined Envy Labs in
     June 2010.
+
+## Pitch
+
+### Why are we using libraries, frameworks and other people's code?
+1. Reinventing the wheel (stock photo of a rusty wheel)
+We're not the best programmers around, but we do have ideas. Great
+people have paved the way of web development so we don't have to get
+bogged down in cross-browser issues, server issues, database issues and
+other time consuming problems that would affect the scope of our project
+in the timeframe we are given.
+
+2. Getting shit done
+We want to finish this project because it matters to us.
+
+3. Learning marketable skills
+Web firms use a variety of libraries on their projects, being familiar
+with them give us a headstart on candidates with similar skills.
