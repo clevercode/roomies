@@ -1,4 +1,5 @@
 # Ideas
+* Users should be able to mark a task or expense as important.
 
 ## Roommates.com
 * Do they have a spiffy little API we could tie into?
