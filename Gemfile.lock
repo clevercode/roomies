@@ -29,15 +29,36 @@ GEM
       activesupport (= 3.0.5)
     activesupport (3.0.5)
     arel (2.0.9)
+    bcrypt-ruby (2.1.4)
     builder (2.1.2)
+    compass (0.10.6)
+      haml (>= 3.0.4)
     configuration (1.2.0)
+    devise (1.1.8)
+      bcrypt-ruby (~> 2.1.2)
+      warden (~> 1.0.2)
     diff-lcs (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    formtastic (1.2.3)
+      actionpack (>= 2.3.7)
+      activesupport (>= 2.3.7)
+      i18n (~> 0.4)
+    haml (3.0.25)
+    haml-rails (0.3.4)
+      actionpack (~> 3.0)
+      activesupport (~> 3.0)
+      haml (~> 3.0)
+      railties (~> 3.0)
     heroku (1.18.3)
       launchy (~> 0.3.2)
       rest-client (>= 1.4.0, < 1.7.0)
+    html5-boilerplate (0.3.2)
+      compass (>= 0.10.0)
     i18n (0.5.0)
+    jquery-rails (0.2.7)
+      rails (~> 3.0)
+      thor (~> 0.14.4)
     launchy (0.3.7)
       configuration (>= 0.0.5)
       rake (>= 0.8.1)
@@ -88,12 +109,21 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.25)
+    warden (1.0.3)
+      rack (>= 1.0.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  compass
+  devise
+  formtastic
+  haml
+  haml-rails
   heroku
+  html5-boilerplate
+  jquery-rails
   railroady
   rails (= 3.0.5)
   rspec
