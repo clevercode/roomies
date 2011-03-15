@@ -74,7 +74,6 @@ GEM
       rack (>= 1.0.0)
     rack-test (0.5.7)
       rack (>= 1.0)
-    railroady (1.0.2)
     rails (3.0.5)
       actionmailer (= 3.0.5)
       actionpack (= 3.0.5)
@@ -124,7 +123,6 @@ DEPENDENCIES
   heroku
   html5-boilerplate
   jquery-rails
-  railroady
   rails (= 3.0.5)
   rspec
   rspec-rails

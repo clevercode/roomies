@@ -37,5 +37,4 @@ group :development, :test do
   gem 'heroku'
   gem 'rspec-rails'
   gem 'rspec'
-  gem 'railroady'
 end
