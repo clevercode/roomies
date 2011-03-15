@@ -2,6 +2,12 @@
 
 Impactful presentation of you, why should I care about you?
 
+## General tips
+
+* Collect Quotes & Ideas
+* Be spontaneous
+* your structure matters, not every single sentence in your talk
+
 ## Main Body
 Talk about problems but don't dwell on them.
 
