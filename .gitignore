@@ -9,3 +9,7 @@ doc/app
 *.swp
 *.~
 .DS_Store
+
+/public/stylesheets/handheld.css
+/public/stylesheets/style.css
+/.sass-cache/
