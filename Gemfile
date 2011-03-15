@@ -8,7 +8,7 @@ gem 'rails', '3.0.5'
 gem 'sqlite3'
 gem 'haml'
 gem 'haml-rails'
-gem 'compass'
+gem "compass", ">= 0.10.6"
 gem 'html5-boilerplate'
 gem 'jquery-rails'
 gem 'formtastic'

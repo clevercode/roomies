@@ -116,7 +116,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  compass
+  compass (>= 0.10.6)
   devise
   formtastic
   haml
