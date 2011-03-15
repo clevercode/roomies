@@ -1,4 +1,12 @@
 Roomies::Application.routes.draw do
+  get "pages/home"
+
+  get "pages/about"
+
+  get "pages/terms"
+
+  get "pages/privacy"
+
   devise_for :users
 
   # The priority is based upon order of creation:
