@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @achievement.name
+%p
+  %b Value:
+  = @achievement.value
+%p
+  %b Badge:
+  = @achievement.badge
+
+= link_to 'Edit', edit_achievement_path(@achievement)
+\|
+= link_to 'Back', achievements_path
