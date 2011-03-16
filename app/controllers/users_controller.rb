@@ -23,7 +23,11 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    respond_with(@user)
+    if @user.save
+      respond_with(@user)
+    else
+      render :new
+    end
   end
 
   def update
