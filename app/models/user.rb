@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_many :tasks
   has_many :expenses
-  
+  has_one :house 
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
