@@ -1,5 +1,7 @@
 Roomies::Application.routes.draw do
   
+  resources :houses
+
   root :to => "users#index"
   resources :users
   resources :achievements
