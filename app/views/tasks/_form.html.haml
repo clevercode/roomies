@@ -1,0 +1,15 @@
+= semantic_form_for @task do |f|
+  -if @task.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@task.errors.count, "error")} prohibited this task from being saved:"
+      %ul
+        - @task.errors.full_messages.each do |msg|
+          %li= msg
+
+  = f.inputs do
+    = f.input :purpose
+    = f.input :due_date, :as => :date
+    = f.input :user_id, :as => :select, :collection => @users, :label => 'Assignee'
+  = f.buttons
+
+

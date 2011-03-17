@@ -12,7 +12,7 @@
 :javascript
   !window.jQuery && document.write(unescape('%3Cscript src="/javascripts/jquery.min.js"%3E%3C/script%3E'))
   
-= javascript_include_tag 'rails', 'plugins', 'application'
+= javascript_include_tag 'rails', 'plugins'
 
 -# Fix any <img> or .png_bg bg-images. Also, please read goo.gl/mZiyb
 /[if lt IE 7 ]
@@ -22,6 +22,9 @@
     
 -#  Append your own using content_for :javascripts
 = yield :javascripts
+
+-# Including the coffeescript compiled to JS
+= javascript_include_tag :defaults, 'jquery.noisy.min'
 
 -# asynchronous google analytics: mathiasbynens.be/notes/async-analytics-snippet
 -# Looks for google_account_id first in ENV['GOOGLE_ACCOUNT_ID'] then in config/google.yml
@@ -35,3 +38,20 @@
       g.src = ('https:' == location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
       s.parentNode.insertBefore(g, s);
     })(document, 'script');
+
+:javascript
+  var clicky = { log: function(){ return; }, goal: function(){ return; }};
+  var clicky_site_id = 66393877;
+  (function() {
+    var s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.async = true;
+    s.src = ( document.location.protocol == 'https:' ? 'https://static.getclicky.com/js' : 'http://static.getclicky.com/js' );
+    ( document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] ).appendChild( s );
+  })();
+  
+= link_to '', 'http://getclicky.com/66393877', :title => 'Real Time Web Analytics'
+
+%noscript
+  %p
+    %img{ :alt => 'Clicky', :width => '1', :height => '1', :src => 'http://in.getclicky.com/66393877ns.gif' }

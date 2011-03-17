@@ -14,6 +14,9 @@ gem 'jquery-rails'
 gem 'formtastic'
 gem 'devise'
 
+gem 'barista', '~> 1.0'
+gem 'barista_growl', :git => 'http://github.com/TrevorBurnham/barista_growl.git'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 

@@ -1,0 +1,5 @@
+%h1 All roomies
+%ul
+  - @users.each do |user|
+    %li= user.email
+= link_to 'New roomie', new_user_path

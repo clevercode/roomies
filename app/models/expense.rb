@@ -1,3 +1,2 @@
-class Expense < ActiveRecord::Base
-  belongs_to :user
+class Expense < Task
 end
