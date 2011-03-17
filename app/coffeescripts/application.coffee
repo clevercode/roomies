@@ -10,3 +10,12 @@ $('body').noisy(
   fallback: 'fallback.png',
   monochrome: true
 )
+
+$body   = $('body')
+$footer = $('footer')
+
+if $body.outerHeight(true) >= ($(window).height - $footer.outerHeight(true))
+  $footer.css position:'static'
+else
+  width = $(window).width() - ($body.outerWidth(true) - $body.outerWidth())
+  $footer.css width:width

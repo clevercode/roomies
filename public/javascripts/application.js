@@ -1,9 +1,9 @@
-/* DO NOT MODIFY. This file was compiled Thu, 17 Mar 2011 06:04:25 GMT from
- * /Users/olivier/Sites/fullsail/roomies/app/coffeescripts/application.coffee
+/* DO NOT MODIFY. This file was compiled Thu, 17 Mar 2011 15:02:34 GMT from
+ * /Users/zachary/Documents/Full Sail/Current Classes/WPP/roomies/app/coffeescripts/application.coffee
  */
 
 (function() {
-  var $;
+  var $, $body, $footer, width;
   $ = jQuery;
   $('body').noisy({
     intensity: 0.4,
@@ -12,4 +12,16 @@
     fallback: 'fallback.png',
     monochrome: true
   });
+  $body = $('body');
+  $footer = $('footer');
+  if ($body.outerHeight(true) >= ($(window).height - $footer.outerHeight(true))) {
+    $footer.css({
+      position: 'static'
+    });
+  } else {
+    width = $(window).width() - ($body.outerWidth(true) - $body.outerWidth());
+    $footer.css({
+      width: width
+    });
+  }
 }).call(this);
