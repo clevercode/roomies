@@ -1,0 +1,23 @@
+%h1 Listing chores
+
+%table
+  %tr
+    %th Purpose
+    %th Due date
+    %th Assignee
+    %th
+    %th
+    %th
+
+  - @chores.each do |chore|
+    %tr
+      %td= chore.purpose
+      %td= chore.due_date
+      %td= chore.user
+      %td= link_to 'Show', chore
+      %td= link_to 'Edit', edit_chore_path(chore)
+      %td= link_to 'Destroy', chore, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Task', new_chore_path
