@@ -4,6 +4,7 @@
   %tr
     %th Purpose
     %th Due date
+    %th Assignee
     %th
     %th
     %th
@@ -12,6 +13,7 @@
     %tr
       %td= task.purpose
       %td= task.due_date
+      %td= task.user
       %td= link_to 'Show', task
       %td= link_to 'Edit', edit_task_path(task)
       %td= link_to 'Destroy', task, :confirm => 'Are you sure?', :method => :delete
