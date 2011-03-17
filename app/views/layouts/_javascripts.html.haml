@@ -22,6 +22,8 @@
     
 -#  Append your own using content_for :javascripts
 = yield :javascripts
+
+-# Including the coffeescript compiled to JS
 = javascript_include_tag 'app.js'
 
 -# asynchronous google analytics: mathiasbynens.be/notes/async-analytics-snippet
