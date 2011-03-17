@@ -9,8 +9,8 @@
 #  updated_at :datetime
 #
 
-class House < ActiveRecord::Base
-  has_many :users, :through => :tasks
-  has_many :chores
-  has_many :expenses
+class House  
+  # has_many :users, :through => :tasks
+  # has_many :chores
+  # has_many :expenses
 end

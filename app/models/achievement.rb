@@ -11,6 +11,6 @@
 #  updated_at :datetime
 #
 
-class Achievement < ActiveRecord::Base
-  belongs_to :user
+class Achievement  
+  # belongs_to :user
 end

@@ -13,9 +13,9 @@
 #  house_id   :integer
 #
 
-class Expense < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :house
+class Expense
+  # belongs_to :user
+  # belongs_to :house
 
-  validates :user_id, :presence => true
+  # validates :user_id, :presence => true
 end
