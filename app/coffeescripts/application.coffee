@@ -10,3 +10,14 @@ $('body').noisy(
   fallback: 'fallback.png',
   monochrome: true
 )
+
+$body   = $('body')
+$footer = $('footer')
+
+if $('#main').outerHeight(true) >= ($(window).height() - $footer.outerHeight(true) - $('header').outerHeight(true))
+  $footer.css position:'static'
+else
+  width = $(window).width() - ($body.outerWidth(true) - $body.outerWidth())
+  $footer.css width:width
+  
+$("input:password").nakedPassword({path: "/images/naked/"})

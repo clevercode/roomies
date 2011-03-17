@@ -49,13 +49,31 @@ input:invalid, textarea:invalid
 
 body
   :margin 2em
+  :overflow hidden
 
 #container
 
 header
+  h1
+    a
+      :width 195px
+      :height 75px
+      :display block
+      :text-indent -9999px
+      :background url('../images/logo.png') no-repeat
 
 #main
+  ul
+    :list-style none
+  form
+    input
+      :padding 4px
+      :line-height 15px
 
 footer
+  :bottom 0
+  :padding 10px 0
+  :position fixed
+  :text-align center
 
 @import header
