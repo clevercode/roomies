@@ -1,6 +1,2 @@
-class Expense < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :house
-
-  validates :user_id, :presence => true
+class Expense < Task
 end
