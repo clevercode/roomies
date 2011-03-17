@@ -1,4 +1,8 @@
 class TasksController < ApplicationController
+  
+  # returning a list of all users for these actions only
+  before_filter :user_list, :only => [:new, :create, :edit, :update]
+
   # GET /tasks
   # GET /tasks.xml
   def index
@@ -25,6 +29,7 @@ class TasksController < ApplicationController
   # GET /tasks/new.xml
   def new
     @task = Task.new
+    @users = User.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -79,5 +84,14 @@ class TasksController < ApplicationController
       format.html { redirect_to(tasks_url) }
       format.xml  { head :ok }
     end
+  end
+
+  private
+  # making the user list accessible not only to new and edit
+  # but also to create and update in case errors arise
+  # (if declared inside an action, the instance variable was
+  # not accessible to others and broke the user select).
+  def user_list 
+    @users = User.all
   end
 end

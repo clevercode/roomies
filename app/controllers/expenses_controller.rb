@@ -1,4 +1,8 @@
 class ExpensesController < ApplicationController
+ 
+  # returning a list of all users for these actions only
+  before_filter :user_list, :only => [:new, :create, :edit, :update]
+ 
   # GET /expenses
   # GET /expenses.xml
   def index
@@ -79,5 +83,14 @@ class ExpensesController < ApplicationController
       format.html { redirect_to(expenses_url) }
       format.xml  { head :ok }
     end
+  end
+
+  private
+  # making the user list accessible not only to new and edit
+  # but also to create and update in case errors arise
+  # (if declared inside an action, the instance variable was
+  # not accessible to others and broke the user select).
+  def user_list 
+    @users = User.all
   end
 end
