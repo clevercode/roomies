@@ -16,6 +16,8 @@ gem 'devise'
 
 gem 'barista', '~> 1.0'
 gem 'barista_growl', :git => 'http://github.com/TrevorBurnham/barista_growl.git'
+gem "mongoid", "2.0.0.rc.6"
+gem "bson_ext", "~> 1.2"
 
 # Use unicorn as the web server
 # gem 'unicorn'
