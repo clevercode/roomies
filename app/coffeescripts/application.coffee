@@ -4,9 +4,9 @@
 $ = jQuery
 
 $('body').noisy(
-  intensity: 0.9, 
+  intensity: 0.4, 
   size: 200, 
-  opacity: 0.08,
+  opacity: 0.06,
   fallback: 'fallback.png',
-  monochrome: false
+  monochrome: true
 )

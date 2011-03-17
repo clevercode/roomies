@@ -1,4 +1,4 @@
-/* DO NOT MODIFY. This file was compiled Thu, 17 Mar 2011 05:25:27 GMT from
+/* DO NOT MODIFY. This file was compiled Thu, 17 Mar 2011 06:04:25 GMT from
  * /Users/olivier/Sites/fullsail/roomies/app/coffeescripts/application.coffee
  */
 
@@ -6,10 +6,10 @@
   var $;
   $ = jQuery;
   $('body').noisy({
-    intensity: 0.9,
+    intensity: 0.4,
     size: 200,
-    opacity: 0.08,
+    opacity: 0.06,
     fallback: 'fallback.png',
-    monochrome: false
+    monochrome: true
   });
 }).call(this);
