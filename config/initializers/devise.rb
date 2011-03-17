@@ -12,7 +12,10 @@ Devise.setup do |config|
   # Load and configure the ORM. Supports :active_record (default) and
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
   # available as additional gems.
-  require 'devise/orm/active_record'
+  
+  # bye bye active_record, mongo ftw
+  # require 'devise/orm/active_record'
+  require 'devise/orm/mongoid'
 
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating an user. By default is
@@ -43,10 +46,10 @@ Devise.setup do |config|
   # from others authentication tools as :clearance_sha1, :authlogic_sha512 (then
   # you should set stretches above to 20 for default behavior) and :restful_authentication_sha1
   # (then you should set stretches to 10, and copy REST_AUTH_SITE_KEY to pepper)
-  config.encryptor = :bcrypt
+  # config.encryptor = :bcrypt
 
   # Setup a pepper to generate the encrypted password.
-  config.pepper = "5fa33b3522b6b7de2283202f24a7fe365eb5589700ff86c7481ff8c6a91909813b6af54bbe8cf90a73f2fe577369de8dfb8cdce77590e72b1cd3e99d2531a214"
+  # config.pepper = "5fa33b3522b6b7de2283202f24a7fe365eb5589700ff86c7481ff8c6a91909813b6af54bbe8cf90a73f2fe577369de8dfb8cdce77590e72b1cd3e99d2531a214"
 
   # ==> Configuration for :confirmable
   # The time you want to give your user to confirm his account. During this time
