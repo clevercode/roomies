@@ -9,6 +9,7 @@
   = f.inputs do
     = f.input :purpose
     = f.input :due_date, :as => :date
+    = f.input :user_id, :as => :select, :collection => @users, :label => 'Assignee'
   = f.buttons
 
 
