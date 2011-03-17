@@ -1,18 +1,18 @@
 require 'spec_helper'
 
-describe "tasks/index.html.haml" do
+describe "chores/index.html.haml" do
   before(:each) do
-    assign(:tasks, [
-      stub_model(Task,
+    assign(:chores, [
+      stub_model(Chore,
         :purpose => "Purpose"
       ),
-      stub_model(Task,
+      stub_model(Chore,
         :purpose => "Purpose"
       )
     ])
   end
 
-  it "renders a list of tasks" do
+  it "renders a list of chores" do
     render
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     assert_select "tr>td", :text => "Purpose".to_s, :count => 2

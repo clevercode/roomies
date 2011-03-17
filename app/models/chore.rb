@@ -1,19 +1,18 @@
 # == Schema Information
-# Schema version: 20110316231937
+# Schema version: 20110317140030
 #
-# Table name: expenses
+# Table name: chores
 #
 #  id         :integer         not null, primary key
 #  purpose    :string(255)
 #  due_date   :datetime
-#  cost       :float
 #  created_at :datetime
 #  updated_at :datetime
 #  user_id    :integer
 #  house_id   :integer
 #
 
-class Expense < ActiveRecord::Base
+class Chore < ActiveRecord::Base
   belongs_to :user
   belongs_to :house
 

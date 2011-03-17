@@ -36,6 +36,7 @@ GEM
       activemodel (= 3.0.5)
       activesupport (= 3.0.5)
     activesupport (3.0.5)
+    annotate-models (1.0.4)
     arel (2.0.9)
     barista (1.0.0)
       coffee-script (~> 2.1.1)
@@ -129,6 +130,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate-models
   barista (~> 1.0)
   barista_growl!
   compass (>= 0.10.6)

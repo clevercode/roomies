@@ -1,9 +1,9 @@
-= semantic_form_for @task do |f|
-  -if @task.errors.any?
+= semantic_form_for @chore do |f|
+  -if @chore.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@task.errors.count, "error")} prohibited this task from being saved:"
+      %h2= "#{pluralize(@chore.errors.count, "error")} prohibited this chore from being saved:"
       %ul
-        - @task.errors.full_messages.each do |msg|
+        - @chore.errors.full_messages.each do |msg|
           %li= msg
 
   = f.inputs do

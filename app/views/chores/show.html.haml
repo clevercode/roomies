@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Purpose:
+  = @chore.purpose
+%p
+  %b Due date:
+  = @chore.due_date
+
+= link_to 'Edit', edit_chore_path(@chore)
+\|
+= link_to 'Back', chores_path
