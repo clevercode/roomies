@@ -14,7 +14,7 @@ $('body').noisy(
 $body   = $('body')
 $footer = $('footer')
 
-if $body.outerHeight(true) >= ($(window).height - $footer.outerHeight(true))
+if $('#main').outerHeight(true) >= ($(window).height() - $footer.outerHeight(true) - $('header').outerHeight(true))
   $footer.css position:'static'
 else
   width = $(window).width() - ($body.outerWidth(true) - $body.outerWidth())

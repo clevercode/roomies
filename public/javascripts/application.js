@@ -1,4 +1,4 @@
-/* DO NOT MODIFY. This file was compiled Thu, 17 Mar 2011 15:08:36 GMT from
+/* DO NOT MODIFY. This file was compiled Thu, 17 Mar 2011 15:24:16 GMT from
  * /Users/zachary/Documents/Full Sail/Current Classes/WPP/roomies/app/coffeescripts/application.coffee
  */
 
@@ -14,7 +14,7 @@
   });
   $body = $('body');
   $footer = $('footer');
-  if ($body.outerHeight(true) >= ($(window).height - $footer.outerHeight(true))) {
+  if ($('#main').outerHeight(true) >= ($(window).height() - $footer.outerHeight(true) - $('header').outerHeight(true))) {
     $footer.css({
       position: 'static'
     });
