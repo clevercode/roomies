@@ -1,5 +1,5 @@
-/* DO NOT MODIFY. This file was compiled Thu, 17 Mar 2011 04:51:04 GMT from
- * /Users/olivier/Sites/fullsail/roomies/app/coffeescripts/app.coffee
+/* DO NOT MODIFY. This file was compiled Thu, 17 Mar 2011 04:59:06 GMT from
+ * /Users/olivier/Sites/fullsail/roomies/app/coffeescripts/application.coffee
  */
 
 (function() {
