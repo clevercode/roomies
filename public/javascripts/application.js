@@ -1,4 +1,4 @@
-/* DO NOT MODIFY. This file was compiled Thu, 17 Mar 2011 15:27:48 GMT from
+/* DO NOT MODIFY. This file was compiled Thu, 17 Mar 2011 15:57:12 GMT from
  * /Users/zachary/Documents/Full Sail/Current Classes/WPP/roomies/app/coffeescripts/application.coffee
  */
 
@@ -24,4 +24,7 @@
       width: width
     });
   }
+  $("input:password").nakedPassword({
+    path: "/images/naked/"
+  });
 }).call(this);

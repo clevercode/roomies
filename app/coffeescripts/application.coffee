@@ -19,3 +19,5 @@ if $('#main').outerHeight(true) >= ($(window).height() - $footer.outerHeight(tru
 else
   width = $(window).width() - ($body.outerWidth(true) - $body.outerWidth())
   $footer.css width:width
+  
+$("input:password").nakedPassword({path: "/images/naked/"})
