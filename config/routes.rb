@@ -1,14 +1,14 @@
 Roomies::Application.routes.draw do
   
-  resources :houses
-
   root :to => "users#index"
-  resources :users
-  resources :achievements
-  resources :expenses
-  resources :tasks
 
   devise_for :users
+  resources :users
+  # resources :achievements
+  # resources :expenses
+  # resources :tasks
+  # resources :houses
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
