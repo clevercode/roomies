@@ -1,10 +1,18 @@
 defaults: &defaults
-  host: localhost
-  # slaves:
-  #   - host: slave1.local
-  #     port: 27018
-  #   - host: slave2.local
-  #     port: 27019
+  allow_dynamic_fields: true
+  parameterize_keys: true
+  persist_in_safe_mode: true
+  raise_not_found_error: true
+  reconnect_time: 3
+  use_object_ids: true
+
+# defaults: &defaults
+#   host: localhost
+#   # slaves:
+#   #   - host: slave1.local
+#   #     port: 27018
+#   #   - host: slave2.local
+#   #     port: 27019
 
 development:
   <<: *defaults
@@ -16,6 +24,7 @@ test:
 
 # set these environment variables on your prod server
 production:
+  uri: <%= ENV['MONGOID_URL'] %>
   host: <%= ENV['MONGOID_HOST'] %>
   port: <%= ENV['MONGOID_PORT'] %>
   username: <%= ENV['MONGOID_USERNAME'] %>
