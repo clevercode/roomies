@@ -3,13 +3,13 @@
 
 $ = jQuery
 
-$('body').noisy(
-  intensity: 0.4, 
-  size: 200, 
-  opacity: 0.06,
-  fallback: 'fallback.png',
-  monochrome: true
-)
+# $('body').noisy(
+#   intensity: 0.4, 
+#   size: 200, 
+#   opacity: 0.06,
+#   fallback: 'fallback.png',
+#   monochrome: true
+# )
 
 $body   = $('body')
 $footer = $('footer')
