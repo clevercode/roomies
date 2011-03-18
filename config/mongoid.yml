@@ -1,4 +1,5 @@
 defaults: &defaults
+  uri: 'mongodb://clevercode:jfM2QzkGXkcp6i@flame.mongohq.com:27028/roomies'
   allow_dynamic_fields: true
   parameterize_keys: true
   persist_in_safe_mode: true
@@ -8,7 +9,7 @@ defaults: &defaults
 
 # set these environment variables on your prod server
 production:
-  uri: <%= ENV['MONGOID_URL'] %>
+  uri: 'mongodb://clevercode:jfM2QzkGXkcp6i@flame.mongohq.com:27028/roomies'
 
 development:
   <<: *defaults
