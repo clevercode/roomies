@@ -6,13 +6,9 @@ defaults: &defaults
   reconnect_time: 3
   use_object_ids: true
 
-# defaults: &defaults
-#   host: localhost
-#   # slaves:
-#   #   - host: slave1.local
-#   #     port: 27018
-#   #   - host: slave2.local
-#   #     port: 27019
+# set these environment variables on your prod server
+production:
+  uri: <%= ENV['MONGOID_URL'] %>
 
 development:
   <<: *defaults
@@ -20,8 +16,4 @@ development:
 
 test:
   <<: *defaults
-  database: roomies_test
-
-# set these environment variables on your prod server
-production:
-  uri: <%= ENV['MONGOID_URL'] %>
+  database: roomies_test>
