@@ -13,9 +13,7 @@ gem 'html5-boilerplate'
 gem 'jquery-rails'
 gem 'formtastic'
 gem 'devise', '>= 1.2.rc'
-
 gem 'barista', '~> 1.0'
-gem 'barista_growl', :git => 'http://github.com/TrevorBurnham/barista_growl.git'
 gem 'mongoid', '>= 2.0.0.rc.7'
 gem 'bson_ext', '>= 1.2.4'
 
@@ -44,4 +42,5 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rspec'
   gem 'annotate-models'
+  gem 'barista_growl', :git => 'http://github.com/TrevorBurnham/barista_growl.git'
 end
