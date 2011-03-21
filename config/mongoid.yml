@@ -12,9 +12,9 @@ production:
   uri: 'mongodb://clevercode:jfM2QzkGXkcp6i@flame.mongohq.com:27028/roomies'
 
 development:
-  <<: *defaults
+  host: localhost
   database: roomies_development
 
 test:
-  <<: *defaults
+  host: localhost
   database: roomies_test>
