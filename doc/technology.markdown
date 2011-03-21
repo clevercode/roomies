@@ -8,6 +8,7 @@
   4. Formtastic (lots of forms, helps with Internationalization)
   5. Devise (we'll test our own system in Rails Tutorial, but we need
      something solid for production)
+  7. OmniAuth for Facebook, Twitter authentication.
 
 ## Client-side
 ### JavaScript
