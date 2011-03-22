@@ -9,6 +9,7 @@
   5. Devise (we'll test our own system in Rails Tutorial, but we need
      something solid for production)
   7. OmniAuth for Facebook, Twitter authentication.
+  8. [MongoDB](http://www.mongodb.org/) with [Mongoid ODM](http://mongoid.org/docs/installation/) & [rspec integration](https://github.com/evansagge/mongoid-rspec)
 
 ## Client-side
 ### JavaScript
