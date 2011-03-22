@@ -10,7 +10,7 @@ Roomies::Application.routes.draw do
 
   match '/auth/:provider/callback' => 'authentications#create'
   
-  root :to => 'authentications#index'
+  root :to => 'users#index'
 
 
   # The priority is based upon order of creation:
