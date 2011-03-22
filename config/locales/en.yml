@@ -7,6 +7,6 @@ en:
   auth_success: 'Authentication successful.'
   auth_fail: 'Authentication failed.'
   auth_destroy: 'Successfully destroyed authentication.'
-  welcome: 'Bienvenido'
+  welcome: 'Welcome.'
 
 
