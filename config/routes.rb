@@ -13,7 +13,7 @@ Roomies::Application.routes.draw do
   match '/auth/:provider/callback' => 'authentications#create'
   match '/registrations' => 'registrations#email'
   
-  root :to => 'users#index'
+  root :to => 'home#index'
 
 
   # The priority is based upon order of creation:
