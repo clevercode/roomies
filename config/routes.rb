@@ -9,6 +9,7 @@ Roomies::Application.routes.draw do
   # resources :houses
 
   match '/auth/:provider/callback' => 'authentications#create'
+  match '/registrations' => 'registrations#email'
   
   root :to => 'users#index'
 
