@@ -1,13 +1,19 @@
 Roomies::Application.routes.draw do
-  
-  root :to => "users#index"
+
+  get "home/index"
 
   devise_for :users
   resources :users
+  resources :authentications
   # resources :achievements
   # resources :expenses
   # resources :tasks
   # resources :houses
+
+  match '/auth/:provider/callback' => 'authentications#create'
+  match '/registrations' => 'registrations#email'
+  
+  root :to => 'home#index'
 
 
   # The priority is based upon order of creation:

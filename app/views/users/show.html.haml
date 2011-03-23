@@ -1,3 +1,11 @@
 %h1 Roomie
-%p Email: #{@user.email}
+%ul
+  %li Name: #{@user.name}
+  %li Email: #{@user.email} 
+  - unless @user.authentications.empty?
+    %li
+      Authentications:
+      %ul
+        - @user.authentications.each do |auth|
+          %li #{auth.provider.titleize}
 = link_to 'Back to all Roomies', users_path

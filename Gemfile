@@ -7,17 +7,16 @@ gem 'rails', '3.0.5'
 
 gem 'sqlite3'
 gem 'haml'
-gem 'haml-rails'
 gem "compass", ">= 0.10.6"
 gem 'html5-boilerplate'
-gem 'jquery-rails'
 gem 'formtastic'
 gem 'devise', '>= 1.2.rc'
 gem 'omniauth'
 gem 'barista', '~> 1.0'
 gem 'mongoid', '>= 2.0.0.rc.7'
 gem 'bson_ext', '>= 1.2.4'
-
+gem 'jquery-rails'
+gem 'haml-rails'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -42,6 +41,8 @@ group :development, :test do
   gem 'heroku'
   gem 'rspec-rails'
   gem 'rspec'
-  gem 'annotate-models'
+  gem 'database_cleaner'
+  gem 'mongoid-rspec'
+  gem 'factory_girl_rails'
   gem 'barista_growl', :git => 'http://github.com/TrevorBurnham/barista_growl.git'
 end

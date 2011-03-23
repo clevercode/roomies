@@ -1,7 +1,7 @@
 class Authentication
   include Mongoid::Document
 
-  embeds_one :user
+  referenced_in :user
 
   field :user_id, :type => Integer
   field :provider, :type => String

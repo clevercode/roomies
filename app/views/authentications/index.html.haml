@@ -1,23 +1,19 @@
-%h1 Listing authentications
+%h1 Sign In
 
-%table
-  %tr
-    %th User
-    %th Provider
-    %th Uid
-    %th
-    %th
-    %th
+- if @authentications
+  - unless @authentications.empty?
+    %p You can sign in to this account using:
+    #authentications
+    - for authentication in @authentications
+      #authentication
+        = image_tag "authbuttons/#{authentication.provider}_32.png", :size => "32x32"
+        .provider #{authentication.provider.titleize}
+        .uid #{authentication.uid}
+        = link_to "X", authentication, :confirm => "Are you sure you want to remove this authentication option?", :method => :delete, :class => "remove"
+- else
+%p Sign in using one of these services  
 
-  - @authentications.each do |authentication|
-    %tr
-      %td= authentication.user_id
-      %td= authentication.provider
-      %td= authentication.uid
-      %td= link_to 'Show', authentication
-      %td= link_to 'Edit', edit_authentication_path(authentication)
-      %td= link_to 'Destroy', authentication, :confirm => 'Are you sure?', :method => :delete
-
-%br
-
-= link_to 'New Authentication', new_authentication_path
+%ul
+  %li= link_to image_tag( 'authbuttons/twitter_64.png', :size => "64x64", :alt => "Twitter"), 'auth/twitter'
+  %li= link_to image_tag( 'authbuttons/facebook_64.png', :size => "64x64", :alt => "Facebook"), 'auth/facebook'
+  %li= link_to image_tag( 'authbuttons/google_64.png', :size => "64x64", :alt => "Google"), 'auth/google'

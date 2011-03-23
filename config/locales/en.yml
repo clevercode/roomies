@@ -2,4 +2,11 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  hello: 'Hello world'
+  signed_in: 'Sign in successfully.'
+  auth_success: 'Authentication successful.'
+  auth_fail: 'Authentication failed.'
+  auth_destroy: 'Successfully destroyed authentication.'
+  welcome: 'Welcome.'
+
+

@@ -1,85 +1,61 @@
 class AuthenticationsController < ApplicationController
-  # GET /authentications
-  # GET /authentications.xml
   def index
     @authentications = current_user.authentications if current_user
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @authentications }
-    end
+    @u = current_user ||= "none"
   end
 
-  # GET /authentications/1
-  # GET /authentications/1.xml
-  def show
-    @authentication = Authentication.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @authentication }
-    end
-  end
-
-  # GET /authentications/new
-  # GET /authentications/new.xml
-  def new
-    @authentication = Authentication.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @authentication }
-    end
-  end
-
-  # GET /authentications/1/edit
-  def edit
-    @authentication = Authentication.find(params[:id])
-  end
-
-  # POST /authentications
-  # POST /authentications.xml
   def create
 
-    auth = request.env['omniauth.auth']
-    @authentication = Authentication.create(:provider => auth['provider'], :uid => auth['uid'], :user_id => current_user.id)
+    omniauth = request.env['omniauth.auth']
+    authentication = Authentication.where(:provider => omniauth['provider'], :uid => omniauth['uid']).first
+  
+    if authentication
+      # Just sign in an existing user with omniauth
+      # The user have already used this external account
+      flash[:notice] = t(:signed_in)
+      sign_in_and_redirect(:user, authentication.user)
 
-    respond_to do |format|
-      if @authentication.save
-        format.html { redirect_to(@authentication, :notice => 'Authentication was successfully created.') }
-        format.xml  { render :xml => @authentication, :status => :created, :location => @authentication }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @authentication.errors, :status => :unprocessable_entity }
-      end
+    elsif current_user
+      # Add authentication to signed in user
+      # User is logged in      
+      current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
+      flash[:notice] = t(:auth_success)
+      redirect_to authentications_url
+    
+    elsif omniauth['provider'] != 'twitter' && omniauth['provider'] != 'linked_in' && user = create_new_omniauth_user(omniauth)
+      user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
+      # Create a new User through omniauth
+      # Register the new user + create new authentication
+      flash[:notice] = t(:welcome)
+      sign_in_and_redirect(:user, user)
+   
+    elsif (omniauth['provider'] == 'twitter' || omniauth['provider'] == 'linked_in') && 
+      omniauth['uid'] && (omniauth['user_info']['name'] || omniauth['user_info']['nickname'] || 
+      (omniauth['user_info']['first_name'] && omniauth['user_info']['last_name']))
+      session[:omniauth] = omniauth.except('extra');
+      redirect_to(:controller => 'registrations', :action => 'email')
+    
+    else
+      # New user data not valid, try again
+      flash[:alert] = t(:auth_fail)
+      redirect_to new_user_registration_url
     end
   end
 
-  # PUT /authentications/1
-  # PUT /authentications/1.xml
-  def update
-    @authentication = Authentication.find(params[:id])
-
-    respond_to do |format|
-      if @authentication.update_attributes(params[:authentication])
-        format.html { redirect_to(@authentication, :notice => 'Authentication was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @authentication.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /authentications/1
-  # DELETE /authentications/1.xml
   def destroy
-    @authentication = Authentication.find(params[:id])
+    @authentication = current_user.authentications.find(params[:id])
     @authentication.destroy
+    flash[:notice] = t(:auth_destroy)
+    redirect_to authentications_url
+  end
 
-    respond_to do |format|
-      format.html { redirect_to(authentications_url) }
-      format.xml  { head :ok }
+  def create_new_omniauth_user(omniauth)
+    user = User.new
+    user.apply_omniauth(omniauth, true)
+    if user.save
+      user
+    else
+      nil
     end
   end
 end

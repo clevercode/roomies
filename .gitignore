@@ -9,6 +9,7 @@ doc/app
 *.swp
 *.~
 .DS_Store
+*.bex
 
 /public/stylesheets/handheld.css
 /public/stylesheets/style.css
