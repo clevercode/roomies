@@ -15,6 +15,8 @@ gem 'omniauth'
 gem 'barista', '~> 1.0'
 gem 'mongoid', '>= 2.0.0.rc.7'
 gem 'bson_ext', '>= 1.2.4'
+gem 'jquery-rails'
+gem 'haml-rails'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -43,6 +45,4 @@ group :development, :test do
   gem 'mongoid-rspec'
   gem 'factory_girl_rails'
   gem 'barista_growl', :git => 'http://github.com/TrevorBurnham/barista_growl.git'
-  gem 'haml-rails'
-  gem 'jquery-rails'
 end
