@@ -6,4 +6,5 @@ class Assignable
   field :recurring, :type => Boolean
 
   references_many :assignees
+  references_one :house, :dependent => :delete
 end

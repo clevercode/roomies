@@ -1,16 +1,10 @@
-# == Schema Information
-# Schema version: 20110317062640
-#
-# Table name: houses
-#
-#  id         :integer         not null, primary key
-#  name       :string(255)
-#  created_at :datetime
-#  updated_at :datetime
-#
+class House
+  include Mongoid::Document
+  
+  # Fields
+  field :name, :type => String
 
-class House  
-  # has_many :users, :through => :tasks
-  # has_many :chores
-  # has_many :expenses
+  # Associations
+  references_many :users, :dependent => :delete
+  referenced_in :assignable
 end
