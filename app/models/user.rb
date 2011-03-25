@@ -1,17 +1,17 @@
 class User 
   include Mongoid::Document
+  field :name, :type => String
+  referenced_in :assignee
+  references_many :authentications, :dependent => :delete
 
   # has_many :chores
   # has_many :expenses
   # has_one :house
-  references_many :authentications, :dependent => :delete
-
+ 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
   devise :database_authenticatable, :registerable,
         :recoverable, :rememberable, :trackable, :validatable
-
-  field :name
 
   validates :name,  :presence => true
   validates :email, :presence => true,
