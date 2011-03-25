@@ -24,4 +24,7 @@
 5. [AmplifyJS](http://amplifyjs.com/api/store/) could be a perfect cross-platform solution even without
    HTML localStorage http://amplifyjs.com/api/store/
 6. [YepNope](https://github.com/SlexAxton/yepnope.js) client-side conditional loader
-
+7. [Close Pixelate](http://desandro.com/resources/close-pixelate/)
+   Converts an image into a pixelated (custom) canvas element, only
+works on HTML5 compatible browsers. Would be used on non-acquired
+achievement badges, with fallback to default placeholder image.
