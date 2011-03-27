@@ -11,9 +11,12 @@
 
   - @chores.each do |chore|
     %tr
-      %td= chore.purpose
+      %td= link_to chore.purpose, chore_path(chore)
       %td= chore.due_date
-      %td= chore.user
+      %td
+        %ul
+          - chore.assignees.each do |assignee|
+            %li= assignee.user.name
       %td= link_to 'Show', chore
       %td= link_to 'Edit', edit_chore_path(chore)
       %td= link_to 'Destroy', chore, :confirm => 'Are you sure?', :method => :delete
