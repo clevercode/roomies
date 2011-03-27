@@ -1,4 +1,4 @@
-= semantic_form_for @chore do |f|
+= form_for @chore do |f|
   -if @chore.errors.any?
     #error_explanation
       %h2= "#{pluralize(@chore.errors.count, "error")} prohibited this chore from being saved:"
@@ -6,10 +6,15 @@
         - @chore.errors.full_messages.each do |msg|
           %li= msg
 
-  = f.inputs do
-    = f.input :purpose
-    = f.input :due_date, :as => :date
-    = f.input :user_id, :as => :select, :collection => @users, :label => 'Assignee'
-  = f.buttons
-
+  .fields
+    = f.label :purpose
+    = f.text_field :purpose
+  .fields
+    = f.label :due_date
+    = f.datetime_select :due_date
+  .fields
+    = f.label :assignees
+    = f.select :assignees, User.all.map { |u| [u, u._id] } 
+  .actions
+    = f.submit 'Save'
 
