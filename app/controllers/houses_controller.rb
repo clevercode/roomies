@@ -57,6 +57,10 @@ class HousesController < ApplicationController
   # PUT /houses/1.xml
   def update
     @house = House.find(params[:id])
+    user = User.find( params[:house].delete(:users) )
+    user.house_id = @house.id
+    user.save
+
 
     respond_to do |format|
       if @house.update_attributes(params[:house])
