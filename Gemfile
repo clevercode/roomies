@@ -13,11 +13,10 @@ gem 'formtastic'
 gem 'devise', '>= 1.2.rc'
 gem 'omniauth'
 gem 'barista', '~> 1.0'
-gem 'mongoid', '>= 2.0.0.rc.7'
+gem 'mongoid', '>= 2.0.0.rc.8'
 gem 'bson_ext', '>= 1.2.4'
 gem 'jquery-rails'
 gem 'haml-rails'
-gem 'vanity'
 
 # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
 # gem 'ruby-debug'
