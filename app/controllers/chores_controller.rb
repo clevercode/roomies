@@ -46,6 +46,11 @@ class ChoresController < ApplicationController
   # POST /chores.xml
   def create
     @chore = Chore.new(params[:chore])
+    user = User.find( params[:chore].delete(:assignees) )
+    assignee = Assignee.new
+    assignee.user = user
+    assignee.assignable = @chore
+    assignee.save
 
     respond_to do |format|
       if @chore.save
