@@ -9,5 +9,16 @@
   .field
     = f.label :name
     = f.text_field :name
+
+  .field
+    %ul
+      - @house.users.each do |user|
+        %li= user.name
+    - if @house.users.empty?
+      %p= "Tough shit"
+
+  .field
+    = f.label :users
+    = f.select :users, User.all.map { |u| [u, u._id] }
   .actions
     = f.submit 'Save'
