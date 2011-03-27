@@ -5,6 +5,6 @@ class House
   field :name, :type => String
 
   # Associations
-  references_many :users, :dependent => :delete
-  referenced_in :assignable
+  has_many :users
+    
 end

@@ -5,6 +5,6 @@ class Assignee
   field :cut, :type => Integer
   
   # Associations
-  references_one :user
-  referenced_in :assignable
+  belongs_to :user
+  belongs_to :assignable
 end

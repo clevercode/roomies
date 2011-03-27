@@ -7,6 +7,6 @@ class Achievement
   field :badge, :type => String
 
   # Associations
-  references_many :users
+  has_one :user
   
 end
