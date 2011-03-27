@@ -5,10 +5,10 @@ Roomies::Application.routes.draw do
   devise_for :users
   resources :users
   resources :authentications
-  # resources :achievements
-  # resources :expenses
-  # resources :tasks
-  # resources :houses
+  resources :achievements
+  resources :expenses
+  resources :chores
+  resources :houses
 
   match '/auth/:provider/callback' => 'authentications#create'
   match '/registrations' => 'registrations#email'
