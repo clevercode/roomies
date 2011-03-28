@@ -11,7 +11,10 @@
     = f.text_field :purpose
   .fields
     = f.label :due_date
-    = f.datetime_select :due_date
+    = f.text_field :due_date, :class => 'superdate'
+  #picker
+  #popol
+    =# f.datetime_select :due_date
   .fields
     = f.label :assignees
     = f.select :assignees, User.all.map { |u| [u, u._id] } 

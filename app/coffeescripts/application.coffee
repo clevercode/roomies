@@ -20,4 +20,30 @@ else
   width = $(window).width() - ($body.outerWidth(true) - $body.outerWidth())
   $footer.css width:width
   
-$("input:password").nakedPassword({path: "/images/naked/"})
+$('input:password').nakedPassword({path: '/images/naked/'})
+
+superdate = $('.superdate')
+superdate.live 'keyup', (event) ->
+  val = $(this).val()
+  console.log('got a value')
+  if val?
+    console.log('val after existence check: ', val)
+    date = Date.parse( val )
+    console.log('date after DateJS parsing: ', date)
+    date = date.toString('MMMM d, yyyy')
+    console.log('date after toString: ', date)
+    $('#popol').html(date)
+    d = new Date(val)
+    console.log('d after instantiation with val', d)
+    if d.getMonth() is not NaN
+      # check for invalid date
+      month : d.getMonth()+1,
+      day : d.getDate(),
+      year : d.getFullYear()
+    else
+      false
+
+    $('#picker').datepicker( "setDate" , date )
+  
+$('#picker').datepicker()
+
