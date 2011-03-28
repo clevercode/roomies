@@ -1,8 +1,8 @@
 %h1 
   =link_to 'Roomies', root_path
 %nav
-  %ul
-    - if user_signed_in?
+  - if user_signed_in?
+    %ul
       %li
         Signed in as #{current_user}
       -# %li
@@ -11,6 +11,10 @@
         -# = link_to 'Created an expense', new_expense_path
       %li
         = link_to 'Sign out', destroy_user_session_path
-    - else
-      %li
-        = link_to 'Sign in', new_user_session_path
+  - else
+    - semantic_form_for(@user, :as => :user, :url => session_path(:user)) do |f|
+      - f.inputs do
+        = f.input :email, :label => false, :input_html => { :value => "email" }
+        = f.input :password, :label => false, :input_html => { :value => "password" }
+      - f.buttons do
+        = f.commit_button :label => 'sign in'
