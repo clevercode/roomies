@@ -1,5 +1,30 @@
-%h1 Home
-%p Here are your roomies:
-%ul
-  - @users.each do |user|
-    %li <strong><a href='#{user_path(user)}'>#{user.name}</a></strong> – #{user.email}
+.widtherize
+  %p making
+  %p living
+  %p together
+  %p easier
+  
+#signup
+  - semantic_form_for(@user, :as => :user, :url => registration_path(:user)) do |f|
+    - f.inputs do
+      = f.input :email, :label => false, :input_html => { :value => "example@domain.com" }
+    - f.buttons do
+      = f.commit_button :label => 'sign up'
+  %p
+    or sign in with
+    =link_to 'twitter,', '/authentications/auth/twitter'
+    =link_to 'facebook,', '/authentications/auth/facebook'
+    or
+    =link_to 'google', '/authentications/auth/google'
+    
+.benfit
+  %h2 benefit
+  %p Intrinsicly utilize out-of-the-box resources whereas inexpensive products. Objectively foster impactful collaboration.
+  
+.benfit
+  %h2 benefit
+  %p Intrinsicly utilize out-of-the-box resources whereas inexpensive products. Objectively foster impactful collaboration.
+  
+.benfit
+  %h2 benefit
+  %p Intrinsicly utilize out-of-the-box resources whereas inexpensive products. Objectively foster impactful collaboration.
