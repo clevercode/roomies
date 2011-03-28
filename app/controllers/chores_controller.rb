@@ -67,6 +67,11 @@ class ChoresController < ApplicationController
   # PUT /chores/1.xml
   def update
     @chore = Chore.find(params[:id])
+    user = User.find( params[:chore].delete(:assignees) )
+    assignee = Assignee.new
+    assignee.user = user
+    # assignee.assignable = @chore
+    assignee.save
 
     respond_to do |format|
       if @chore.update_attributes(params[:task])
