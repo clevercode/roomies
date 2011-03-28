@@ -1,4 +1,7 @@
 class HousesController < ApplicationController
+
+  respond_to :html, :json
+
   # GET /houses
   # GET /houses.xml
   def index
@@ -58,7 +61,7 @@ class HousesController < ApplicationController
   def update
     @house = House.find(params[:id])
     user = User.find( params[:house].delete(:users) )
-    user.house_id = @house.id
+    user.house = @house
     user.save
 
 
@@ -83,5 +86,14 @@ class HousesController < ApplicationController
       format.html { redirect_to(houses_url) }
       format.xml  { head :ok }
     end
+  end
+
+  def destroy_roomie
+    user = User.find( params[:id] )
+    user.house_id = nil
+    user.save
+
+    house = House.find( params[:house_id] )
+    redirect_to house
   end
 end
