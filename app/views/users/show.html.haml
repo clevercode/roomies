@@ -8,4 +8,5 @@
       %ul
         - @user.authentications.each do |auth|
           %li #{auth.provider.titleize}
-= link_to 'Back to all Roomies', users_path
+%p= link_to 'Edit', edit_user_path if current_user == @user
+%p= link_to 'Back to all Roomies', users_path
