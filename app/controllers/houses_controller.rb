@@ -44,6 +44,11 @@ class HousesController < ApplicationController
   # POST /houses.xml
   def create
     @house = House.new(params[:house])
+    unless params[:house][:users].blank?
+      user = User.find(params[:house].delete(:users))
+      user.house = @house
+      user.save
+    end
 
     respond_to do |format|
       if @house.save
@@ -60,9 +65,11 @@ class HousesController < ApplicationController
   # PUT /houses/1.xml
   def update
     @house = House.find(params[:id])
-    user = User.find( params[:house].delete(:users) )
-    user.house = @house
-    user.save
+    unless params[:house][:users].blank?
+      user = User.find( params[:house].delete(:users) )
+      user.house = @house
+      user.save
+    end
 
 
     respond_to do |format|
