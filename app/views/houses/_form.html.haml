@@ -13,12 +13,14 @@
   .field
     %ul
       - @house.users.each do |user|
-        %li= user.name
+        %li
+          = user.name
+          = link_to 'x', homeless_url(:id => user.id, :house_id => @house)
     - if @house.users.empty?
-      %p= "Tough shit"
+      %p= "Oh noes, you're all alone!"
 
   .field
     = f.label :users
-    = f.select :users, User.all.map { |u| [u, u._id] }
+    = f.select :users, User.all.map { |u| [u, u.id]  }, { :include_blank => 'Select a Roomie...' }
   .actions
     = f.submit 'Save'
