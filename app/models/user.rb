@@ -1,5 +1,6 @@
 class User 
   include Mongoid::Document
+  require 'digest/md5'
 
   # Fields
   field :name, :type => String
@@ -88,5 +89,11 @@ class User
 
   def to_s
     self.name || self.email
+  end
+  
+  def gravatar
+    email_address = self.email.downcase
+    hash = Digest::MD5.hexdigest(email_address)
+    image_src = "http://www.gravatar.com/avatar/#{hash}?s=150"
   end
 end
