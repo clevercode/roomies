@@ -83,7 +83,25 @@ body
   #signup
     p
       :font-size 18px
-      :margin-left 10px
+    form.formtastic
+      :margin-top 40px
+      fieldset.inputs
+        :width 70%
+      fieldset.buttons
+        :width 27%
+        :float right
+      fieldset.inputs, fieldset.buttons
+        li
+          :margin 0
+          :width 100%
+          input
+            :width 100%
+            :font-size 48px
+            :margin-bottom 10px
+            :padding 6px 10px 8px
+            &[type=submit]
+              :width 100%
+              :padding 6px 40px 8px
   .benefit
     :float left
     :width 260px
@@ -95,17 +113,6 @@ body
       :line-height 20px
   ul
     list-style: none
-  form.formtastic
-    :margin-top 40px
-    fieldset.inputs, fieldset.buttons
-      input
-        :width 630px
-        :font-size 48px
-        :margin-bottom 10px
-        :padding 6px 10px 8px
-        &[type=submit]
-          :width auto
-          :padding 6px 40px 8px
 
 footer
   :clear both
