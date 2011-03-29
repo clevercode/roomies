@@ -12,13 +12,13 @@ Mongoid.master.collections.reject { |c| c.name =~ /^system/}.each(&:drop)
 
 puts 'SETTING UP DEFAULT USER LOGIN'
 
-user = User.create! {[
+user = User.create([
   { :name => 'Azimuth', :email => 'azimuth@clevercode.net', :password => 'evilone', :password_confirmation => 'evilone' },
   { :name => 'Olivier', :email => 'oli@clevercode.net', :password => 'smidge', :password_confirmation => 'smidge' },
   { :name => 'Zach', :email => 'zach@clevercode.net', :password => 'smidge', :password_confirmation => 'smidge' },
   { :name => 'Andrew', :email => 'andrew@clevercode.net', :password => 'smidge', :password_confirmation => 'smidge' }
-]}
+])
 
 user.each do |u|
-  puts 'New user created: ' << u.name
+  puts 'New user created: ' << user.name
 end
