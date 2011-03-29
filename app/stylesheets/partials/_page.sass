@@ -1,4 +1,7 @@
 @import compass/css3
+@import colors
+@import fonts
+@import forms
 
 //-----------------------------------------------
 // The following html5-boilerplate styles should
@@ -51,6 +54,8 @@ body
   :margin 0 2em
   :overflow hidden
   :font-family "Gill Sans"
+  form
+    @include input
   form.formtastic
     :margin-top 20px
     :overflow hidden
@@ -63,13 +68,8 @@ body
           :float left
           :overflow hidden
           :margin 0 0 0 10px
-          input
-            :border none
-            :color #404040
-            :font-size 18px
-            :padding 3px 5px 4px
-            &[type=submit]
-              :padding 3px 20px 4px
+          @include input
+@import header
 
 #container
   :width 960px
@@ -114,5 +114,3 @@ footer
   :background #808080
   p
     :float left
-
-@import header
