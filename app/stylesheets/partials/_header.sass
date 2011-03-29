@@ -3,7 +3,7 @@ body
     :margin 0
     :padding 30px
     :overflow hidden
-    :background-color #808080
+    :background-color $light-grey
     h1
       :float left
       :font-size 2em
@@ -21,4 +21,22 @@ body
             :width 150px
             &[type=submit]
               :width auto
+      ul
+        li.graphic
+          :text-indent -9999px
+          :background #fff url('../images/47.png') no-repeat 50% 50%
+        li.profile  
+          :background #fff url('../images/243.png') no-repeat 50% 50%
+        li
+          :float left
+          :min-width 50px
+          :min-height 50px
+          :background #fff
+          :margin 0 0 0 10px
+          a
+            :width 100%
+            :display block
+            :line-height 50px
+            :color $dark-grey
+            :text-align center
 
