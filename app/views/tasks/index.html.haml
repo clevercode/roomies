@@ -1,0 +1,26 @@
+%h1 Listing tasks
+
+%table
+  %tr
+    %th Purpose
+    %th Due date
+    %th Assignee
+    %th
+    %th
+    %th
+
+  - @tasks.each do |task|
+    %tr
+      %td= link_to task.purpose, task_path(task)
+      %td= task.due_date
+      %td
+        %ul
+          - task.assignees.each do |assignee|
+            %li= assignee.user.name
+      %td= link_to 'Show', task
+      %td= link_to 'Edit', edit_task_path(task)
+      %td= link_to 'Destroy', task, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Task', new_task_path

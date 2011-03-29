@@ -1,9 +1,9 @@
-= form_for @chore do |f|
-  -if @chore.errors.any?
+= form_for @task do |f|
+  -if @task.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@chore.errors.count, "error")} prohibited this chore from being saved:"
+      %h2= "#{pluralize(@task.errors.count, "error")} prohibited this task from being saved:"
       %ul
-        - @chore.errors.full_messages.each do |msg|
+        - @task.errors.full_messages.each do |msg|
           %li= msg
 
   .fields

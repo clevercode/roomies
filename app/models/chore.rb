@@ -1,3 +1,0 @@
-class Chore < Assignable
-  
-end

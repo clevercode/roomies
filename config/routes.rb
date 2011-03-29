@@ -7,7 +7,7 @@ Roomies::Application.routes.draw do
   resources :authentications
   resources :achievements
   resources :expenses
-  resources :chores
+  resources :tasks
   resources :houses
 
   match '/auth/:provider/callback' => 'authentications#create'

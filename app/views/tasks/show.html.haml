@@ -1,0 +1,15 @@
+%p
+  %b Purpose:
+  = @task.purpose
+%p
+  %b Due date:
+  = @task.due_date
+%p
+  %b Assignees:
+%ul
+  - @task.assignees.each do |assignee|
+    %li= assignee.user.name
+
+= link_to 'Edit', edit_task_path(@task)
+\|
+= link_to 'Back', tasks_path
