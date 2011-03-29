@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe "chores/show.html.haml" do
+describe "tasks/show.html.haml" do
   before(:each) do
-    @chore = assign(:chore, stub_model(Chore,
+    @task = assign(:task, stub_model(Task,
       :purpose => "Purpose"
     ))
   end
