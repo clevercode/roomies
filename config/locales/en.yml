@@ -8,5 +8,7 @@ en:
   auth_fail: 'Authentication failed.'
   auth_destroy: 'Successfully destroyed authentication.'
   welcome: 'Welcome.'
+  formtastic:
+    submit: "Submit"
 
 
