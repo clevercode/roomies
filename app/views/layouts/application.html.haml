@@ -6,7 +6,7 @@
     #container
       %header#header
         = render :partial => 'layouts/header'
-      #main{ :role => 'main' }
+      #main{ :role => 'main', :class => @main_class }
         = render :partial => 'layouts/flashes'
         = yield
       %footer#footer
