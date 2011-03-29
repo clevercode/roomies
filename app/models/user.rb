@@ -94,6 +94,6 @@ class User
   def gravatar
     email_address = self.email.downcase
     hash = Digest::MD5.hexdigest(email_address)
-    image_src = "http://www.gravatar.com/avatar/#{hash}?s=150"
+    image_src = "http://www.gravatar.com/avatar/#{hash}?s=130"
   end
 end
