@@ -1,0 +1,74 @@
+#main.profile
+  :padding 1px 0
+  div
+    :padding 30px
+    :overflow hidden
+    &#flash
+      :padding 0
+    &.header_bar
+      :padding 5px 30px
+      :background $light-grey
+      h1
+        :font-size 24px
+    &.content
+      :padding 30px
+    &#profile_overview
+    &#about_you
+      h2, p
+        :width 720px
+        :float right
+      h2
+        :font-size 24px
+      p
+        :font-size 16px
+        :line-height 1.5em
+      img
+        :float left
+        :border 10px solid #fff
+    &#badges  
+      :padding 20px 30px
+      #image
+        :padding 0
+        :float left
+        :width 100px
+        :height 100px
+        :margin 15px
+        :border-radius 100px
+        :background $light-grey
+        :border 10px solid #fff
+        &.faded
+          :opacity 0.3
+    &.content
+      table
+        :width 100%
+        :font-size 24px
+        tr
+          th
+            :font-size 18px
+            :text-align left
+            :font-weight normal
+            :border-bottom 1px solid #fff
+          td  
+            :height 40px
+            :line-height 40px
+          td.progress_bar
+            :width 625px
+            .bars
+              :padding 0
+              :width 625px
+              :height 40px
+              :position relative
+              .bar_bg, .bar
+                :top 5px
+                :padding 0
+                :height 30px
+                :width 625px
+                :position absolute
+                :background $light-grey
+              .bar
+                :width 77%
+                :z-index 10
+                :background #fff
+          td.percentage, td.level
+            :width 75px
+            :text-align right

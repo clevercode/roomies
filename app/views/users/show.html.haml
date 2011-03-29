@@ -1,12 +1,99 @@
-%h1 Roomie
-%ul
-  %li Name: #{@user.name}
-  %li Email: #{@user.email} 
+- @main_class = 'profile'
+
+#profile_overview.header_bar
+  %h1 hi there, #{@user.name}
+#about_you.content
+  %img{ :src => "#{@user.gravatar}", :alt => "profile picture" }
+  %h2 but about you
+  %p Intrinsicly utilize out-of-the-box resources whereas inexpensive products. Objectively foster impactful collaboration and idea-sharing through business niches. Competently reintermediate intermandated web-readiness through stand-alone relationships.
   - unless @user.authentications.empty?
     %li
       Authentications:
       %ul
         - @user.authentications.each do |auth|
           %li #{auth.provider.titleize}
-%p= link_to 'Edit', edit_user_path if current_user == @user
-%p= link_to 'Back to all Roomies', users_path
+-# %p= link_to 'Edit', edit_user_path if current_user == @user
+-# %p= link_to 'Back to all Roomies', users_path
+#achievements.header_bar
+  %h1 achievements
+#badges.content
+  #image
+  #image
+  #image
+  #image.faded
+  #image.faded
+  #image.faded
+  #image.faded
+  #image.faded
+  #image.faded
+  #image.faded
+  #image.faded
+  #image.faded
+#progress.header_bar
+  %h1 progress
+.content
+  %table
+    %tr
+      %td awesomeness
+      %td.progress_bar
+        .bars
+          .bar
+          .bar_bg
+      %td.percentage 77%
+    %tr
+      %td reliability
+      %td.progress_bar
+        .bars
+          .bar
+          .bar_bg
+      %td.percentage 77%
+    %tr
+      %td helpfullness
+      %td.progress_bar
+        .bars
+          .bar
+          .bar_bg
+      %td.percentage 77%
+    %tr
+      %td cooking master
+      %td.progress_bar
+        .bars
+          .bar
+          .bar_bg
+      %td.percentage 77%
+#batte.header_bar
+  %h1 roomie battle!!!
+.content
+  %table
+    %tr
+      %th name
+      %th progress to next "amazing roomie" badge
+      %th next level
+    %tr
+      %td zachary nicoll
+      %td.progress_bar
+        .bars
+          .bar
+          .bar_bg
+      %td.level 4
+    %tr
+      %td andrew smith
+      %td.progress_bar
+        .bars
+          .bar
+          .bar_bg
+      %td.level 1
+    %tr
+      %td alyssa nicoll
+      %td.progress_bar
+        .bars
+          .bar
+          .bar_bg
+      %td.level 1
+    %tr
+      %td olivier lacan
+      %td.progress_bar
+        .bars
+          .bar
+          .bar_bg
+      %td.level 1
