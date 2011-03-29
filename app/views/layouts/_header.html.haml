@@ -12,9 +12,10 @@
       %li
         = link_to 'Sign out', destroy_user_session_path
   - else
-    - semantic_form_for(@user, :as => :user, :url => session_path(:user)) do |f|
-      - f.inputs do
+    = semantic_form_for(@user, :as => :user, :url => session_path(:user)) do |f|
+      = f.inputs do
         = f.input :email, :label => false, :input_html => { :value => "email" }
         = f.input :password, :label => false, :input_html => { :value => "password" }
-      - f.buttons do
+      = f.buttons do
         = f.commit_button :label => 'sign in'
+
