@@ -1,6 +1,10 @@
-class Expense < Assignable
+class Expense
+  include Mongoid::Document
 
-  # Fields
-  field :cost, :type => Float
+  include Trait::Completable
+  include Trait::Commissionable
+  include Trait::Assignable
+  include Trait::Schedulable
+  include Trait::Payable
 end
 
