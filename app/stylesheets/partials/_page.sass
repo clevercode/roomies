@@ -67,7 +67,7 @@ body
           :padding 0
           :float left
           :overflow hidden
-          :margin 0 0 0 10px
+          :margin 0 10px 0 0
           @include input
 @import header
 
@@ -78,12 +78,34 @@ body
 
 #main  
   :padding 30px
+  ul
+    list-style: none
+  form.formtastic
+    :width 450px
+    fieldset.inputs, fieldset.buttons
+      label
+        :padding 0
+        :width 100%
+        :margin 10px 0 0
+      input
+        :width 200px
+        &[type=checkbox]
+          :width auto
+        &[type=submit]
+          :width auto
+          :margin 10px 0
+  h2
+    :font-size 30px
+  #error_explanation
+    h2
+      :font-size 18px
   .widtherize
     :width 350px
   #signup
     p
       :font-size 18px
     form.formtastic
+      :width 100%
       :margin-top 40px
       fieldset.inputs
         :width 70%
@@ -100,6 +122,7 @@ body
             :margin-bottom 10px
             :padding 6px 10px 8px
             &[type=submit]
+              :margin 0
               :width 100%
               :padding 6px 40px 8px
   .benefit
@@ -111,8 +134,6 @@ body
     p
       :font-size 14px
       :line-height 20px
-  ul
-    list-style: none
 
 footer
   :clear both
