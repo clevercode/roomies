@@ -1,7 +1,11 @@
 body
   header
-    :margin 0 0 1em 0
+    :margin 0
+    :padding 30px
+    :overflow hidden
+    :background-color #808080
     h1
+      :float left
       :font-size 2em
       a
         :width 195px
@@ -11,8 +15,10 @@ body
         :background url('../images/logo.png') no-repeat
     nav
       :float right
-      li
-        :float left
-        :padding 0 1em
-
+      form.formtastic
+        fieldset.inputs, fieldset.buttons
+          input
+            :width 150px
+            &[type=submit]
+              :width auto
 

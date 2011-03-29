@@ -1,6 +1,8 @@
 class House
   include Mongoid::Document
   
+  validates_uniqueness_of :name, :message => "Sorry! House already exists!"
+  
   # Fields
   field :name, :type => String
 

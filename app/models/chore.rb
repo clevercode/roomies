@@ -1,3 +1,3 @@
-class Chore < Assignable
-  
+class Chore < Task
+  include Trait::Repeatable
 end

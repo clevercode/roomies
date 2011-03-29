@@ -1,6 +1,12 @@
 %p
   %b Name:
   = @house.name
+  - unless @house.users.empty?
+    %p 
+      Roomies:
+      %ul
+      - @house.users.each do |user|
+        %li= user.name
 
 = link_to 'Edit', edit_house_path(@house)
 \|

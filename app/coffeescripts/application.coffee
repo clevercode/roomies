@@ -10,15 +10,6 @@ $ = jQuery
 #   fallback: 'fallback.png',
 #   monochrome: true
 # )
-
-$body   = $('body')
-$footer = $('footer')
-
-if $('#main').outerHeight(true) >= ($(window).height() - $footer.outerHeight(true) - $('header').outerHeight(true))
-  $footer.css position:'static'
-else
-  width = $(window).width() - ($body.outerWidth(true) - $body.outerWidth())
-  $footer.css width:width
   
 $('input:password').nakedPassword({path: '/images/naked/'})
 
@@ -47,3 +38,18 @@ superdate.live 'keyup', (event) ->
   
 $('#picker').datepicker()
 
+textWidth = $('.widtherize').innerWidth()
+$(".widtherize p").widtherize( {'width': textWidth } )
+                                                                             
+$('input').bind 'focus', (event) ->        
+	$this = $(this)
+	if $this.attr('value') == 'email' || $this.attr('value') == 'password'
+		$this.attr('value','')
+
+$('input').bind 'blur', (event) ->
+	$this = $(this)
+	if $this.attr('value') == ''
+		if $this.attr('type') == 'text'
+			$this.attr('value','email')
+		else if $this.attr('type') == 'password'
+		    $this.attr('value','password')
