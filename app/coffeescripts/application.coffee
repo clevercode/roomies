@@ -60,3 +60,8 @@ $('p.edit_profile a').bind 'click', (event) ->
     $('#darknessification').show()
     $('#modal').show()
   return false
+
+  $('.cancel').bind 'click', (event) ->
+    $('#darknessification').hide()
+    $('#modal').hide()
+    return false
