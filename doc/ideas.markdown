@@ -39,3 +39,7 @@ can also be projected on some spots around campus.
 * Talk to people who have actually found a great roommate on Roomies
 * Give out physical badges for the people who already reached
   achievements
+
+## Future
+### Billing
+* When we add roommate searching functionality, we should also add some amazing apartment searching. Something with distance from your school or workplace, floorplans, pricing, everything nice to know about apartments before you move in. The search results would be exclusive to apartment complexes who have agreed to pay for the roomies service for people we refer to them.
