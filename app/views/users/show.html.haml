@@ -6,6 +6,7 @@
   %img{ :src => "#{@user.gravatar}", :alt => "profile picture" }
   %h2 but about you
   %p Intrinsicly utilize out-of-the-box resources whereas inexpensive products. Objectively foster impactful collaboration and idea-sharing through business niches. Competently reintermediate intermandated web-readiness through stand-alone relationships.
+  %p.edit_profile= link_to 'edit profile', edit_user_path(@user)
   - unless @user.authentications.empty?
     %li
       Authentications:
@@ -97,3 +98,5 @@
           .bar
           .bar_bg
       %td.level 1
+#modal
+#darknessification
