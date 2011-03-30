@@ -99,6 +99,36 @@ body
   #error_explanation
     h2
       :font-size 18px
+  #darknessification
+    :top 0
+    :left 0
+    :right 0
+    :bottom 0
+    :z-index 20
+    :display none
+    :position fixed
+    :background rgba(0,0,0,0.75)
+  #modal
+    :padding 0
+    :top 130px
+    :left 450px
+    :z-index 30
+    :display none
+    :position fixed
+    :background $dark-grey
+    :border 10px solid #fff
+    h1
+      :font-size 24px
+    form
+      :margin 0
+      fieldset.inputs
+        li
+          :width 100%
+          input
+            :width 100%
+    a
+      :float right
+      :display block
 @import home
 @import profile
 
