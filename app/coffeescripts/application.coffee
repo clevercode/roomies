@@ -56,12 +56,13 @@ $('input').bind 'blur', (event) ->
 
 $('p.edit_profile a').bind 'click', (event) ->
   $.ajax url: $(this).attr('href'), success: (data) -> 
+    $('#modal').empty()
     $(data).find('#main').appendTo('#modal')
     $('#darknessification').show()
     $('#modal').show()
   return false
 
-  $('.cancel').bind 'click', (event) ->
-    $('#darknessification').hide()
-    $('#modal').hide()
-    return false
+$('#darknessification, .cancel a').live 'click', (event) ->
+  $('#darknessification').hide()
+  $('#modal').hide()
+  return false
