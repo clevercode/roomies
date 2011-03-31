@@ -12,7 +12,38 @@
         :font-size 24px
     &.content
       :padding 30px
-      p.congrats
+      p.info
         :font-size 18px
         :text-align center
-        
+    &#calendar
+      p.info
+        :margin-bottom 20px
+      .day
+        :padding 0
+        :margin 1px
+        :float left
+        :width 126px
+        :background $light-grey
+        p
+          :font-size 48px
+          :min-height 75px
+          :line-height 75px
+          :text-align center
+        #todo
+          :padding 0
+          :background #bfbfbf
+          :border-top 1px solid #fff
+          a
+            :width 63px
+            :float left
+            :display block
+            :font-size 14px
+            :min-height 30px
+            :line-height 30px
+            :color $dark-grey
+            :text-align center
+            :text-decoration none
+            &.tasks
+              :width 62px
+              :background #e6e6e6
+              :border-right 1px solid #fff
