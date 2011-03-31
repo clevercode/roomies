@@ -1,1 +1,20 @@
-%h1 corkboard FTW!!!
+- @main_class = 'corkboard'
+
+.header_bar
+  %h1 urgent tasks &amp; expenses
+#urgent.content
+  %p.info Congratulations! You have no urgent tasks or expenses.
+.header_bar
+  %h1 my upcoming tasks &amp; expenses
+#upcoming.content
+  %p.info You have no upcoming tasks or expenses. Not the best way to earn awesome achievements, now is it?
+.header_bar
+  %h1 this month
+#calendar.content
+  %p.info Click on the number of tasks or expenses for any given day to see more information about them.
+  - @user.calendar.map do |i|
+    .day
+      %p= i
+      #todo
+        =link_to '3', '#', :class => "tasks"
+        =link_to '2', '#', :class => "expenses"
