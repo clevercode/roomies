@@ -100,4 +100,10 @@ class User
       image_src = "http://www.gravatar.com/avatar/#{hash}?s=130"
     end
   end
+
+  def calendar
+    (0..34).map do |i|
+      (Date.today + i.days).day
+    end
+  end
 end
