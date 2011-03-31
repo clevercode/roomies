@@ -35,8 +35,6 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update_attributes(params[:user])
-    @user.save
-    
     render :show
   end
 
