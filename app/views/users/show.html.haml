@@ -6,7 +6,7 @@
   %img{ :src => "#{@user.gravatar}", :alt => "profile picture" }
   %h2 but about you
   %p Intrinsicly utilize out-of-the-box resources whereas inexpensive products. Objectively foster impactful collaboration and idea-sharing through business niches. Competently reintermediate intermandated web-readiness through stand-alone relationships.
-  %p.edit_profile= link_to 'edit profile', edit_user_path(@user)
+  %p.edit_profile= link_to 'edit profile', edit_user_path(@user) if current_user
   - unless @user.authentications.empty?
     %li
       Authentications:
@@ -30,73 +30,74 @@
   #image.faded
   #image.faded
   #image.faded
-#progress.header_bar
-  %h1 progress
-.content
-  %table
-    %tr
-      %td awesomeness
-      %td.progress_bar
-        .bars
-          .bar
-          .bar_bg
-      %td.percentage 77%
-    %tr
-      %td reliability
-      %td.progress_bar
-        .bars
-          .bar
-          .bar_bg
-      %td.percentage 77%
-    %tr
-      %td helpfullness
-      %td.progress_bar
-        .bars
-          .bar
-          .bar_bg
-      %td.percentage 77%
-    %tr
-      %td cooking master
-      %td.progress_bar
-        .bars
-          .bar
-          .bar_bg
-      %td.percentage 77%
-#batte.header_bar
-  %h1 roomie battle!!!
-.content
-  %table
-    %tr
-      %th name
-      %th progress to next "amazing roomie" badge
-      %th next level
-    %tr
-      %td zachary nicoll
-      %td.progress_bar
-        .bars
-          .bar
-          .bar_bg
-      %td.level 4
-    %tr
-      %td andrew smith
-      %td.progress_bar
-        .bars
-          .bar
-          .bar_bg
-      %td.level 1
-    %tr
-      %td alyssa nicoll
-      %td.progress_bar
-        .bars
-          .bar
-          .bar_bg
-      %td.level 1
-    %tr
-      %td olivier lacan
-      %td.progress_bar
-        .bars
-          .bar
-          .bar_bg
-      %td.level 1
-#modal
-#darknessification
+- if current_user
+  #progress.header_bar
+    %h1 progress 
+  .content
+    %table
+      %tr
+        %td awesomeness
+        %td.progress_bar
+          .bars
+            .bar
+            .bar_bg
+        %td.percentage 77%
+      %tr
+        %td reliability
+        %td.progress_bar
+          .bars
+            .bar
+            .bar_bg
+        %td.percentage 77%
+      %tr
+        %td helpfullness
+        %td.progress_bar
+          .bars
+            .bar
+            .bar_bg
+        %td.percentage 77%
+      %tr
+        %td cooking master
+        %td.progress_bar
+          .bars
+            .bar
+            .bar_bg
+        %td.percentage 77%
+  #batte.header_bar
+    %h1 roomie battle!!!
+  .content
+    %table
+      %tr
+        %th name
+        %th progress to next "amazing roomie" badge
+        %th next level
+      %tr
+        %td zachary nicoll
+        %td.progress_bar
+          .bars
+            .bar
+            .bar_bg
+        %td.level 4
+      %tr
+        %td andrew smith
+        %td.progress_bar
+          .bars
+            .bar
+            .bar_bg
+        %td.level 1
+      %tr
+        %td alyssa nicoll
+        %td.progress_bar
+          .bars
+            .bar
+            .bar_bg
+        %td.level 1
+      %tr
+        %td olivier lacan
+        %td.progress_bar
+          .bars
+            .bar
+            .bar_bg
+        %td.level 1
+  #modal
+  #darknessification
