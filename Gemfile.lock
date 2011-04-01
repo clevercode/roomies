@@ -97,7 +97,7 @@ GEM
     mime-types (1.16)
     mongo (1.2.4)
       bson (>= 1.2.4)
-    mongoid (2.0.0.rc.8)
+    mongoid (2.0.0)
       activemodel (~> 3.0)
       mongo (~> 1.2)
       tzinfo (~> 0.3.22)
@@ -218,7 +218,7 @@ DEPENDENCIES
   heroku
   html5-boilerplate
   jquery-rails
-  mongoid (>= 2.0.0.rc.8)
+  mongoid (>= 2.0.0)
   mongoid-rspec
   omniauth
   rails (= 3.0.5)
