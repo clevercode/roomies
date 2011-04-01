@@ -1,0 +1,39 @@
+- @main_class = 'corkboard'
+
+.header_bar
+  %h1 urgent tasks &amp; expenses
+#urgent.content
+  %p.info Congratulations! You have no urgent tasks or expenses.
+.header_bar
+  %h1 my upcoming tasks &amp; expenses
+#upcoming.content
+  -# %p.info You have no upcoming tasks or expenses. Not the best way to earn awesome achievements, now is it?
+  .upcoming
+    %h2 today
+    %ul
+      %li.expense Buy new cat litter for Ninja
+      %li.task Fix the power supply on the garden sprinkler system
+      %li.expense Buy eggs, milk, granola, mac &amp; cheese and skirt steak at Publix
+      %li.task Rake &amp; trash leaves
+  .upcoming
+    %h2 tomorrow
+    %ul
+      %li.expense Pay Brighthouse Internet bill
+      %li.task Renew Driver’s License
+      %li.expense Collect Andrew’s check and send rent to landlord
+  .upcoming.last
+    %h2= (Date::DAYNAMES[Date.tomorrow.next_day.wday.to_i]).downcase
+    %ul
+      %li.expense Buy Sunpass
+      %li.task Empty dishwasher
+      %li.expense Pay last Full Sail tuition fees
+.header_bar
+  %h1 this month
+#calendar.content
+  %p.info Click on the number of tasks or expenses for any given day to see more information about them.
+  - @user.calendar.map do |i|
+    .day
+      %p= i
+      #todo
+        =link_to '3', '#', :class => "tasks"
+        =link_to '2', '#', :class => "expenses"

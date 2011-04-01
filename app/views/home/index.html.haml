@@ -7,10 +7,10 @@
   %p easier
   
 #signup
-  - semantic_form_for(@user, :as => :user, :url => registration_path(:user)) do |f|
-    - f.inputs do
+  = semantic_form_for(@user, :as => :user, :url => registration_path(:user)) do |f|
+    = f.inputs do
       = f.input :email, :label => false, :input_html => { :value => "example@domain.com" }
-    - f.buttons do
+    = f.buttons do
       = f.commit_button :label => 'sign up'
   %p
     or sign in with

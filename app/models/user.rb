@@ -91,9 +91,19 @@ class User
     self.name || self.email
   end
   
-  def gravatar
+  def gravatar(size = 'large')
     email_address = self.email.downcase
     hash = Digest::MD5.hexdigest(email_address)
-    image_src = "http://www.gravatar.com/avatar/#{hash}?s=130"
+    if size == 'small'
+      image_src = "http://www.gravatar.com/avatar/#{hash}?s=34"
+    else
+      image_src = "http://www.gravatar.com/avatar/#{hash}?s=130"
+    end
+  end
+
+  def calendar
+    (0..34).map do |i|
+      (Date.today + i.days).day
+    end
   end
 end
