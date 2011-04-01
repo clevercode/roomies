@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  # before_filter :authenticate_user!
+  before_filter :authenticate_user!
 
   respond_to :html, :json
 
@@ -33,9 +33,12 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
-    @user.update_attributes(params[:user])
-    render :show
+    @user = User.where(:email => params[:user][:email]).first
+    if @user.update_attributes(params[:user])
+      respond_with(@user)
+    else
+      render :edit
+    end
   end
 
   def destroy
