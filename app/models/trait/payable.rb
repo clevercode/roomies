@@ -4,6 +4,7 @@ module Trait
 
     included do
       field :cost, :type => Float
+      field :payed_at, :type => DateTime
     end
   end
 end
