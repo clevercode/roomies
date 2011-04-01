@@ -15,6 +15,9 @@ Roomies::Application.routes.draw do
   match '/user/:id/homeless/:house_id' => 'houses#destroy_roomie', :as => :homeless
   
   root :to => 'home#index'
+  namespace :user do
+    root :to => 'corkboard#index'
+  end
 
 
   # The priority is based upon order of creation:
