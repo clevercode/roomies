@@ -5,7 +5,8 @@ module Trait
     extend ActiveSupport::Concern
 
     included do
-      belongs_to :validator
+      field :validated_at, :type => DateTime
+      belongs_to :validator, :class_name => "User"
     end
   end
 end
