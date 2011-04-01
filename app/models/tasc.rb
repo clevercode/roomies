@@ -1,4 +1,4 @@
-class Task
+class Tasc
   include Mongoid::Document
 
   include Trait::Completable
