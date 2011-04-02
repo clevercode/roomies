@@ -1,3 +1,2 @@
-class Freebie
-  include Mongoid::Document
+class Freebie < Assignment
 end
