@@ -1,5 +1,4 @@
 class Bill < Expense
 
-  # differs from an expense because it is repeatable
-  include Trait::Repeatable
+  include Trait::Repeatable # frequency [integer]
 end
