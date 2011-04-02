@@ -1,8 +1,6 @@
-class Tasc
-  include Mongoid::Document
-
-  include Trait::Completable
-  include Trait::Assignable
-  include Trait::Commissionable
-  include Trait::Schedulable
+class Tasc < Assignment
+  
+  include Trait::Assignable # assignees
+  include Trait::Commissionable # comissioner
+  include Trait::Schedulable # due_at [datetime]
 end
