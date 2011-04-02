@@ -6,6 +6,7 @@ module Trait
 
     included do
       belongs_to :commissioner, :class_name => "User"
+      field :commissioned_at, :type => DateTime
     end
   end
 end
