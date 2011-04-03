@@ -3,7 +3,7 @@ module Trait
     extend ActiveSupport::Concern
 
     included do
-      field :completed, :type => Boolean
+      field :completed_at, :type => DateTime
 
       # stores one and only one house_id 
       belongs_to :house, :dependent => :delete

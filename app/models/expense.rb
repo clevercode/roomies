@@ -1,10 +1,5 @@
-class Expense
-  include Mongoid::Document
-
-  include Trait::Completable
-  include Trait::Commissionable
-  include Trait::Assignable
-  include Trait::Schedulable
-  include Trait::Payable
+class Expense < Tasc
+  # An expense is a task with an associated cost
+  include Trait::Payable # cost [float]
 end
 

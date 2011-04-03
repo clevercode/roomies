@@ -1,21 +1,23 @@
 Roomies::Application.routes.draw do
 
-  get "home/index"
-
   devise_for :users
+
   resources :users
   resources :authentications
   resources :achievements
   resources :expenses
   resources :tasks
   resources :houses
+  resources :corkboard
 
   match '/auth/:provider/callback' => 'authentications#create'
   match '/registrations' => 'registrations#email'
   match '/user/:id/homeless/:house_id' => 'houses#destroy_roomie', :as => :homeless
-  match '/corkboard' => 'corkboard#index'
   
   root :to => 'home#index'
+  namespace :user do
+    root :to => 'corkboard#index'
+  end
 
 
   # The priority is based upon order of creation:

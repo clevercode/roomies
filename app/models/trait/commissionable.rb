@@ -5,7 +5,8 @@ module Trait
     extend ActiveSupport::Concern
 
     included do
-      belongs_to :commissioner
+      belongs_to :commissioner, :class_name => "User"
+      field :commissioned_at, :type => DateTime
     end
   end
 end
