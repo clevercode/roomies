@@ -13,6 +13,13 @@ $ = jQuery
   
 $('input:password').nakedPassword({path: '/images/naked/'})
 
+$modal       = $('#modal')
+$easy_button = $('#easy_button')
+$overlay     = $('#darknessification')
+
+if $('body').hasClass('signed_in')
+  modal_right = $('html').outerWidth() - ($easy_button.offset().left + $easy_button.outerWidth()) + 2
+
 superdate = $('.superdate')
 superdate.live 'keyup', (event) ->
   val = $(this).val()
@@ -40,7 +47,7 @@ $('#picker').datepicker()
 
 textWidth = $('.widtherize').innerWidth()
 $(".widtherize p").widtherize( {'width': textWidth } )
-                                                                             
+
 $('input').bind 'focus', (event) ->        
   $this = $(this)
   if $this.attr('value') == 'email' || $this.attr('value') == 'password'
@@ -56,13 +63,15 @@ $('input').bind 'blur', (event) ->
 
 $('p.edit_profile a').bind 'click', (event) ->
   $.ajax url: $(this).attr('href'), success: (data) -> 
-    $('#modal').empty()
+    $modal.empty()
     $(data).find('#main').appendTo('#modal')
-    $('#darknessification').show()
-    $('#modal').show()
+    $darknessification.show()
+    $modal.css({right: modal_right}).show()
+    $easy_button.text('close')
   return false
 
 $('#darknessification, .cancel a').live 'click', (event) ->
-  $('#darknessification').hide()
-  $('#modal').hide()
+  $darknessification.hide()
+  $modal.hide()
+  $easy_button.text('add task/expense')
   return false
