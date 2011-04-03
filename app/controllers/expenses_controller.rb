@@ -33,6 +33,7 @@ class ExpensesController < ApplicationController
   # GET /expenses/new.xml
   def new
     @expense = Expense.new
+    @assignees = []
 
     respond_to do |format|
       format.html # new.html.erb
