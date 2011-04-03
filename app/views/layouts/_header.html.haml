@@ -9,13 +9,11 @@
       %li.graphic.profile
         = link_to image_tag(@user.gravatar('small')), current_user
       %li
-        = link_to 'add task/expense', new_expense_path
-      -# %li
-      -#   = link_to 'Create an expense', new_expense_path
+        = link_to 'add task/expense', new_expense_path, :id => 'easy_button'
       %li.graphic
         = link_to ' ', destroy_user_session_path
   - else
-    = semantic_form_for(@user, :as => :user, :url => session_path(:user)) do |f|
+    = semantic_form_for(:user, :url => session_path(:user)) do |f|
       = f.inputs do
         = f.input :email, :label => false, :input_html => { :value => "email" }
         = f.input :password, :label => false, :input_html => { :value => "password" }
