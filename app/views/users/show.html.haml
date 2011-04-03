@@ -1,11 +1,14 @@
 - @main_class = 'profile'
 
 #profile_overview.header_bar
-  %h1 hi there, #{@user.name}
+  - if signed_in? && current_user == @user
+    %h1 hi there, #{@user.name}
+  - else
+    %h1 #{@user.name}
 #about_you.content
   %img{ :src => "#{@user.gravatar}", :alt => "profile picture" }
   %h2 but about you
-  %p Intrinsicly utilize out-of-the-box resources whereas inexpensive products. Objectively foster impactful collaboration and idea-sharing through business niches. Competently reintermediate intermandated web-readiness through stand-alone relationships.
+  %p= @user.description
   %p.edit_profile= link_to 'edit profile', edit_user_path(@user) if current_user
   - unless @user.authentications.empty?
     %li
