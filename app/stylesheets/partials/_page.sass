@@ -110,15 +110,25 @@ body
     :background rgba(0,0,0,0.75)
   #modal
     :padding 0
-    :top 130px
-    :left 450px
+    :top 100px
     :z-index 30
     :display none
-    :position fixed
+    :position absolute
     :background $dark-grey
     :border 10px solid #fff
     h1
       :font-size 24px
+    #avatar
+      :padding 10px 0 5px
+      p
+        :float left
+        :font-size 16px
+        :margin-right 10px
+        a
+          :float left
+          :display block
+        img
+          :border 10px solid #fff
     form
       :margin 0
       fieldset.buttons
@@ -126,10 +136,16 @@ body
         li
           :margin 10px 0 0
       fieldset.inputs
+        :overflow hidden
         li
           :width 100%
           input
             :width 100%
+        textarea
+          :width 98%
+          :padding 4px
+          :border none
+          :color $dark-grey
     a
       :float right
       :display block
