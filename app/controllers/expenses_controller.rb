@@ -6,7 +6,7 @@ class ExpensesController < ApplicationController
   # GET /expenses
   # GET /expenses.xml
   def index
-    if user_signed_in? && !user.house.blank?
+    if user_signed_in? && !current_user.house.blank?
       @house = current_user.house
       @expenses = @house.expenses
     end
