@@ -1,3 +1,8 @@
 %h1 edit profile information
+#avatar
+  %p= image_tag(@user.gravatar)
+  %p 
+    Your avatar is handled by:
+    = link_to 'gravatar.com', 'http://gravatar.com/'
 = render 'users/form' 
 %p{:class => 'cancel'}= link_to 'or cancel', user_path
