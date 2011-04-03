@@ -15,4 +15,4 @@ environment = Compass::AppIntegration::Rails.env
 # respect the native sass nesting
 output_style = :nested
 # get rid of those annoying line comments that make CSSEdit hell
-line_comments = false
+line_comments = true
