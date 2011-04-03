@@ -16,3 +16,4 @@ doc/app
 /.sass-cache/
 
 /public/javascripts/application.js
+/log/test.log
