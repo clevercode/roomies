@@ -65,6 +65,133 @@
 	<key>GraphicsList</key>
 	<array>
 		<dict>
+			<key>Bounds</key>
+			<string>{{87.1956, 244.035}, {180.927, 21.1534}}</string>
+			<key>Class</key>
+			<string>ShapedGraphic</string>
+			<key>FontInfo</key>
+			<dict>
+				<key>Color</key>
+				<dict>
+					<key>w</key>
+					<string>0</string>
+				</dict>
+				<key>Font</key>
+				<string>EspressoMono-Bold</string>
+				<key>NSKern</key>
+				<real>0.0</real>
+				<key>Size</key>
+				<real>10</real>
+			</dict>
+			<key>ID</key>
+			<integer>1025</integer>
+			<key>Magnets</key>
+			<array>
+				<string>{0, 1}</string>
+				<string>{0, -1}</string>
+			</array>
+			<key>Shape</key>
+			<string>Rectangle</string>
+			<key>Style</key>
+			<dict>
+				<key>fill</key>
+				<dict>
+					<key>Color</key>
+					<dict>
+						<key>b</key>
+						<string>0.613774</string>
+						<key>g</key>
+						<string>0.971929</string>
+						<key>r</key>
+						<string>0.930325</string>
+					</dict>
+					<key>FillType</key>
+					<integer>2</integer>
+					<key>GradientAngle</key>
+					<real>90</real>
+					<key>GradientCenter</key>
+					<string>{0, -0.279412}</string>
+					<key>GradientColor</key>
+					<dict>
+						<key>b</key>
+						<string>0.266452</string>
+						<key>g</key>
+						<string>0.801377</string>
+						<key>r</key>
+						<string>0.745506</string>
+					</dict>
+					<key>MiddleColor</key>
+					<dict>
+						<key>b</key>
+						<string>0.364083</string>
+						<key>g</key>
+						<string>0.870333</string>
+						<key>r</key>
+						<string>0.850224</string>
+					</dict>
+					<key>MiddleFraction</key>
+					<real>0.67460322380065918</real>
+					<key>TrippleBlend</key>
+					<string>YES</string>
+				</dict>
+				<key>image fill</key>
+				<dict>
+					<key>ImageSizing</key>
+					<integer>0</integer>
+					<key>Offset</key>
+					<string>{0.5, 0}</string>
+					<key>Scale</key>
+					<real>0.75</real>
+				</dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+					<key>Fuzziness</key>
+					<real>0.57164120674133301</real>
+					<key>ShadowVector</key>
+					<string>{0, 1}</string>
+				</dict>
+				<key>stroke</key>
+				<dict>
+					<key>Cap</key>
+					<integer>0</integer>
+					<key>Color</key>
+					<dict>
+						<key>b</key>
+						<string>0</string>
+						<key>g</key>
+						<string>0.676895</string>
+						<key>r</key>
+						<string>0.605353</string>
+					</dict>
+					<key>CornerRadius</key>
+					<real>5</real>
+					<key>Join</key>
+					<integer>0</integer>
+					<key>Width</key>
+					<real>1.5</real>
+				</dict>
+			</dict>
+			<key>Text</key>
+			<dict>
+				<key>Align</key>
+				<integer>0</integer>
+				<key>Pad</key>
+				<integer>10</integer>
+				<key>Text</key>
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf350
+{\fonttbl\f0\fnil\fcharset0 EspressoMono-Bold;}
+{\colortbl;\red255\green255\blue255;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b\fs20 \cf0 \expnd0\expndtw0\kerning0
+description [string]}</string>
+				<key>VerticalPad</key>
+				<integer>0</integer>
+			</dict>
+		</dict>
+		<dict>
 			<key>Class</key>
 			<string>Group</string>
 			<key>Graphics</key>
@@ -2454,7 +2581,7 @@ completed_at [datetime]}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{87.1954, 243.736}, {180.927, 21.1534}}</string>
+			<string>{{87.1954, 264.736}, {180.927, 21.1534}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FontInfo</key>
@@ -2656,8 +2783,8 @@ house_id}</string>
 			<key>Points</key>
 			<array>
 				<string>{52.9125, 189.109}</string>
-				<string>{53.3704, 401.65}</string>
-				<string>{78.1954, 401.65}</string>
+				<string>{53.3704, 443.65}</string>
+				<string>{78.1954, 443.65}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -3575,7 +3702,7 @@ assignements}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{97.8804, 350.864}, {170.242, 21.1534}}</string>
+			<string>{{97.8804, 371.864}, {170.242, 21.1534}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FontInfo</key>
@@ -3702,7 +3829,7 @@ categories [array]}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{87.1954, 329.313}, {180.927, 21.1534}}</string>
+			<string>{{87.1954, 350.313}, {180.927, 21.1534}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FontInfo</key>
@@ -3833,7 +3960,7 @@ achievements}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{97.8803, 308.47}, {170.242, 21.1534}}</string>
+			<string>{{97.8803, 329.47}, {170.242, 21.1534}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FontInfo</key>
@@ -3960,7 +4087,7 @@ categories [array]}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{87.1954, 286.918}, {180.927, 21.1534}}</string>
+			<string>{{87.1954, 307.918}, {180.927, 21.1534}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FontInfo</key>
@@ -4207,14 +4334,14 @@ points}</string>
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
 
 \f0\b\fs20 \cf0 \expnd0\expndtw0\kerning0
-name}</string>
+name [string]}</string>
 				<key>VerticalPad</key>
 				<integer>0</integer>
 			</dict>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{87.1954, 265.764}, {180.927, 21.1534}}</string>
+			<string>{{87.1954, 286.764}, {180.927, 21.1534}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FontInfo</key>
@@ -4461,7 +4588,7 @@ authentications [array]}</string>
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
 
 \f0\b\fs20 \cf0 \expnd0\expndtw0\kerning0
-email}</string>
+email [string]}</string>
 				<key>VerticalPad</key>
 				<integer>0</integer>
 			</dict>
@@ -8620,7 +8747,7 @@ achievements}</string>
 			<array>
 				<dict>
 					<key>Bounds</key>
-					<string>{{87.2377, 447.216}, {177.557, 21.1534}}</string>
+					<string>{{87.2377, 489.216}, {177.557, 21.1534}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FontInfo</key>
@@ -8747,7 +8874,7 @@ provider [string]}</string>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{87.2377, 468.369}, {177.557, 21.1534}}</string>
+					<string>{{87.2377, 510.369}, {177.557, 21.1534}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FontInfo</key>
@@ -8874,7 +9001,7 @@ uid [int]}</string>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{87.2377, 426.062}, {177.557, 21.1534}}</string>
+					<string>{{87.2377, 468.062}, {177.557, 21.1534}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FontInfo</key>
@@ -9001,7 +9128,7 @@ user_id}</string>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{87.1954, 387.542}, {152.669, 28.2125}}</string>
+					<string>{{87.1954, 429.542}, {152.669, 28.2125}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FontInfo</key>
@@ -9851,7 +9978,7 @@ collections}</string>
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2011-04-02 03:59:15 -0400</string>
+	<string>2011-04-03 03:39:12 -0400</string>
 	<key>Modifier</key>
 	<string>Olivier Lacan</string>
 	<key>NotesVisible</key>
