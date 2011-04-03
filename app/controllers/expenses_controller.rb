@@ -1,7 +1,7 @@
 class ExpensesController < ApplicationController
  
   # returning a list of all users for these actions only
-  before_filter :user_list, :only => [:new, :create, :edit, :update]
+  before_filter :user_list #, :only => [:new, :create, :edit, :update]
  
   # GET /expenses
   # GET /expenses.xml
