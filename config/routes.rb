@@ -6,14 +6,15 @@ Roomies::Application.routes.draw do
   resources :authentications
   resources :achievements
   resources :expenses
-  resources :tasks
+  resources :tascs
   resources :houses
   resources :corkboard
 
   match '/auth/:provider/callback' => 'authentications#create'
   match '/registrations' => 'registrations#email'
   match '/user/:id/homeless/:house_id' => 'houses#destroy_roomie', :as => :homeless
-  
+  match '/tasks(/:action)' => 'tascs#index'
+
   root :to => 'home#index'
   namespace :user do
     root :to => 'corkboard#index'
