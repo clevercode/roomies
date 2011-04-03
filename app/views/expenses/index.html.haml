@@ -15,7 +15,7 @@
       %td= expense.purpose
       %td= expense.due_date
       %td= expense.cost
-      %td= expense.user
+      %td= expense.assignees
       %td= link_to 'Show', expense
       %td= link_to 'Edit', edit_expense_path(expense)
       %td= link_to 'Destroy', expense, :confirm => 'Are you sure?', :method => :delete
