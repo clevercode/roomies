@@ -16,7 +16,7 @@
       %td
         %ul
           - tasc.assignees.each do |assignee|
-            %li= assignee.user.name
+            %li= assignee
       %td= link_to 'Show', tasc
       %td= link_to 'Edit', edit_tasc_path(tasc)
       %td= link_to 'Destroy', tasc, :confirm => 'Are you sure?', :method => :delete
