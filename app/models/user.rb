@@ -18,7 +18,7 @@ class User
         :recoverable, :rememberable, :trackable, :validatable
 
   validates :email, :presence => true,
-                    :uniqueness => true
+                    :uniqueness => { :case_sensitive => false }
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :email, :password, :remember_me
