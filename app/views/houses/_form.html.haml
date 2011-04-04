@@ -1,26 +1,10 @@
-= form_for @house do |f|
-  -if @house.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@house.errors.count, "error")} prohibited this house from being saved:"
-      %ul
-        - @house.errors.full_messages.each do |msg|
-          %li= msg
-
-  .field
-    = f.label :name
-    = f.text_field :name
-
-  .field
+-if @house.errors.any?
+  #error_explanation
+    %h2= "#{pluralize(@house.errors.count, "error")} prohibited this house from being saved:"
     %ul
-      - @house.users.each do |user|
-        %li
-          = user.name
-          = link_to 'x', homeless_url(:id => user.id, :house_id => @house)
-    - if @house.users.empty?
-      %p= "Oh noes, you're all alone!"
-
-  .field
-    = f.label :users
-    = f.select :users, User.all.map { |u| [u, u.id]  }, { :include_blank => 'Select a Roomie...' }
-  .actions
-    = f.submit 'Save'
+      - @house.errors.full_messages.each do |msg|
+        %li= msg
+= semantic_form_for @house do |f|
+  = f.inputs do
+    = f.input :name
+  = f.buttons
