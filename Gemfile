@@ -18,7 +18,6 @@ gem 'bson_ext', '>= 1.2.4'
 gem 'jquery-rails'
 gem 'haml-rails'
 
-gem 'ruby-debug19'
 
 # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
 # gem 'ruby-debug'
@@ -35,4 +34,5 @@ group :development, :test do
   gem 'mongoid-rspec'
   gem 'factory_girl_rails'
   gem 'barista_growl', :git => 'http://github.com/TrevorBurnham/barista_growl.git'
+  gem 'ruby-debug19'
 end
