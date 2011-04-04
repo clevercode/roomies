@@ -44,15 +44,12 @@ class HousesController < ApplicationController
   # POST /houses.xml
   def create
     @house = House.new(params[:house])
-    unless params[:house][:users].blank?
-      user = User.find(params[:house].delete(:users))
-      user.house = @house
-      user.save
-    end
+    current_user.house = @house
+    current_user.save
 
     respond_to do |format|
       if @house.save
-        format.html { redirect_to(@house, :notice => 'House was successfully created.') }
+        format.html { redirect_to(current_user) }
         format.xml  { render :xml => @house, :status => :created, :location => @house }
       else
         format.html { render :action => "new" }
@@ -74,7 +71,7 @@ class HousesController < ApplicationController
 
     respond_to do |format|
       if @house.update_attributes(params[:house])
-        format.html { redirect_to(@house, :notice => 'House was successfully updated.') }
+        format.html { redirect_to(current_user) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -101,6 +98,6 @@ class HousesController < ApplicationController
     user.save
 
     house = House.find( params[:house_id] )
-    redirect_to house
+    redirect_to current_user
   end
 end
