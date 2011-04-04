@@ -1,7 +1,22 @@
-%h1 Editing house
-
+%h1 edit house information
 = render 'form'
-
-= link_to 'Show', @house
-\|
-= link_to 'Back', houses_path
+- if !@house.users.empty?
+  %h2 roomies:
+  %ul
+    - @house.users.each do |user|
+      %li
+        #{user.name} -
+        - if user != current_user
+          = link_to 'kick out!', homeless_url(:id => user.id, :house_id => @house)
+        - else
+          that's you!
+      %li= link_to 'add a roomie!', 'add_roomie_url', :id => 'add_roomie'
+  %form.formtastic.add_roomie_form
+    %fieldset.inputs
+      %ol
+        %li
+          %input{:type => 'text', :value => 'enter roomie email address here'}
+    %fieldset.buttons
+      %ol
+        %li
+          %input{:type => 'submit', :value => 'Invite Roomie'}
