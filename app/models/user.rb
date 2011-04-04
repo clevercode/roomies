@@ -4,7 +4,6 @@ class User
 
   # Fields
   field :name, :type => String
-  field :description, :type => String
 
   # Associations
   has_many :authentications, :dependent => :delete # User has access to an array of Authentications that have its id for user_id
@@ -21,7 +20,7 @@ class User
                     :uniqueness => true
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :description, :email, :password, :remember_me
+  attr_accessible :name, :email, :password, :remember_me
 
   ###
   # user methods
