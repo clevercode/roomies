@@ -13,9 +13,9 @@ $ = jQuery
   
 $('input:password').nakedPassword({path: '/images/naked/'})
 
-$modal       = $('#modal')
-$easy_button = $('#easy_button')
-$overlay     = $('#darknessification')
+$modal             = $('#modal')
+$easy_button       = $('#easy_button')
+$darknessification = $('#darknessification')
 
 if $('body').hasClass('signed_in')
   modal_right = $('html').outerWidth() - ($easy_button.offset().left + $easy_button.outerWidth()) + 2
@@ -61,7 +61,7 @@ $('input').bind 'blur', (event) ->
     else if $this.attr('type') == 'password'
       $this.attr('value','password')
 
-$('p.edit_profile a').bind 'click', (event) ->
+$('a.ajax').bind 'click', (event) ->
   $.ajax url: $(this).attr('href'), success: (data) -> 
     $modal.empty()
     $(data).find('#main').appendTo('#modal')
@@ -70,8 +70,13 @@ $('p.edit_profile a').bind 'click', (event) ->
     $easy_button.text('close')
   return false
 
-$('#darknessification, .cancel a').live 'click', (event) ->
+$('#darknessification').live 'click', (event) ->
   $darknessification.hide()
   $modal.hide()
   $easy_button.text('add task/expense')
+  return false
+
+$('#add_roomie').live 'click', (event) ->
+  $(this).hide()
+  $('#modal form').show()
   return false
