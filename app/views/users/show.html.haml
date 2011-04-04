@@ -1,15 +1,26 @@
 - @main_class = 'profile'
 
-#profile_overview.header_bar
+#about_you.content
+  %img{ :src => "#{@user.gravatar}", :alt => "profile picture" }
   - if signed_in? && current_user == @user
     %h1 hi there, #{@user.name}
   - else
     %h1 #{@user.name}
-#about_you.content
-  %img{ :src => "#{@user.gravatar}", :alt => "profile picture" }
-  %h2 but about you
-  %p= @user.description
-  %p.edit_profile= link_to 'edit profile', edit_user_path(@user) if current_user
+  %h2 total points: 0
+  %p tasks: 987
+  %p expenses: 3
+  - if @user.house
+    %p 
+      your house: #{@user.house.name} - 
+      = link_to 'change house name or add roomies', edit_house_path(@user.house), :class => 'ajax'
+      |
+      = link_to 'move out', homeless_url(:id => @user.id, :house_id => @user.house)
+  - else
+    %p
+      Oh no! It seems you're homeless! Want to 
+      = link_to 'build a house', new_house_path, :class => 'ajax'
+      ?
+  %p.edit_profile= link_to 'edit profile', edit_user_path(@user), :class => 'ajax' if current_user
   - unless @user.authentications.empty?
     %li
       Authentications:
