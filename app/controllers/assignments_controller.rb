@@ -34,7 +34,6 @@ class AssignmentsController < ApplicationController
   def new
     @assignment = Assignment.new
     @roomies = User.where(:house_id => current_user.house)
-    puts current_user.house
  
     respond_to do |format|
       format.html # new.html.erb
