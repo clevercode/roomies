@@ -3921,7 +3921,7 @@ purpose [string]}</string>
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc
 
 \f0\b\fs28 \cf1 \expnd0\expndtw0\kerning0
-assignements}</string>
+assignments}</string>
 				<key>VerticalPad</key>
 				<integer>0</integer>
 			</dict>
@@ -10060,7 +10060,7 @@ collections}</string>
 				<key>Font</key>
 				<string>Helvetica</string>
 				<key>Size</key>
-				<real>12</real>
+				<real>11</real>
 			</dict>
 			<key>ID</key>
 			<integer>601</integer>
@@ -10210,7 +10210,7 @@ collections}</string>
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2011-04-03 17:29:27 -0400</string>
+	<string>2011-04-05 13:36:26 -0400</string>
 	<key>Modifier</key>
 	<string>Olivier Lacan</string>
 	<key>NotesVisible</key>
@@ -10291,6 +10291,8 @@ collections}</string>
 		<integer>0</integer>
 		<key>ExpandedCanvases</key>
 		<array/>
+		<key>FitInWindow</key>
+		<true/>
 		<key>Frame</key>
 		<string>{{0, 4}, {1197, 874}}</string>
 		<key>ListView</key>
@@ -10304,15 +10306,15 @@ collections}</string>
 		<key>SidebarWidth</key>
 		<integer>138</integer>
 		<key>VisibleRegion</key>
-		<string>{{-13, 18}, {1183, 765}}</string>
+		<string>{{-45.9148, -5.9574}, {1248, 797.597}}</string>
 		<key>Zoom</key>
-		<real>1</real>
+		<real>0.95913153886795044</real>
 		<key>ZoomValues</key>
 		<array>
 			<array>
 				<string>Canvas 1</string>
-				<real>1</real>
-				<real>0.88999998569488525</real>
+				<real>0.0</real>
+				<real>1.690000057220459</real>
 			</array>
 		</array>
 	</dict>
