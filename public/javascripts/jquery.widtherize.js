@@ -1,8 +1,9 @@
 function resizer() {
     this.resize = function(element, size) {
 	this.init(element);
-	var line = this.growTo(size)*0.89;
-	element.css({'font-size':this.growTo(size)+'px','line-height':line+'px'});
+  // var line = this.growTo(size)*0.89;
+  // element.css({'font-size':this.growTo(size)+'px','line-height':line+'px'});
+	element.css({'font-size':this.growTo(size)+'px'});
 	this.tester.remove();
     }
 
