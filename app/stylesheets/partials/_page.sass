@@ -10,6 +10,7 @@
 
 body, select, input, textarea
   color: $font-color
+  text-shadow: 1px 1px 0 #d9eaff
   // Set your base font here, to apply evenly
   // font-family: Georgia, serif;
 
@@ -51,9 +52,9 @@ input:invalid, textarea:invalid
 //-----------------------------------
 
 body
-  :margin 0 2em
-  :overflow hidden
-  :font-family "Gill Sans"
+  overflow: hidden
+  font-family: "Gill Sans"
+  background: url('../images/clouds.png') top left repeat-x, url('../images/hills.png') bottom left repeat-x
   form
     @include input
   form.formtastic
@@ -72,16 +73,16 @@ body
 @import header
 
 #container
-  :width 960px
-  :margin 0 auto
-  :background $dark-grey
+  width: 960px
+  margin: 0 auto
 
-#main  
-  :padding 30px
+#main
+  overflow: hidden
+  padding: 60px 30px 20px
   ul
     list-style: none
   form.formtastic
-    :width 450px
+    width: 450px
     fieldset.inputs, fieldset.buttons
       label
         :padding 0
@@ -158,9 +159,18 @@ body
 @import corkboard
 
 footer
-  :clear both
-  :padding 10px
-  :overflow hidden
-  :background $light-grey
+  clear: both
+  padding: 10px
+  overflow: hidden
+  margin-top: 100px
   p
-    :float left
+    float: left
+    color: #f9ffe5
+    font-weight: bold
+    text-shadow: 0 0 5px #91a843
+    &#links
+      float: right
+      a
+        color: #f9ffe5
+        font-weight: bold
+        text-shadow: 0 0 5px #91a843

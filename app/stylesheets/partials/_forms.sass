@@ -1,8 +1,14 @@
 @mixin input
   input
-    :border none
-    :color $input-color
-    :font-size 18px
-    :padding 3px 5px 4px
+    font-size: 18px
+    color: $input-color
+    margin: 2px
+    padding: 3px 5px 4px
+    border: 1px solid #fff
+    outline: 1px solid #7490b3
+    background: -moz-linear-gradient(top, #d9eaff, #f2f8ff)
+    background: -webkit-gradient(linear, left top, left bottom, from(#d9eaff), to(#f2f8ff))
     &[type=submit]
-      :padding 3px 20px 4px
+      padding: 2px 20px 4px
+      background: -moz-linear-gradient(top, #a6ceff, #95b9e5)
+      background: -webkit-gradient(linear, left top, left bottom, from(#a6ceff), to(#95b9e5))
