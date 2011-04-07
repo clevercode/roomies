@@ -1,43 +1,69 @@
 #main.home
-  .widtherize
-    :float left
-    :padding 0
-    :margin 0 0 2em 0
-    :width 350px
+  .widtheriz
+    padding: 0
+    float: left
+    width: 325px
+    margin: 0 0 30px 0
+    font-weight: bold
+    .m
+      font-size: 100px
+      line-height: 85px
+    .l
+      font-size: 138px
+      line-height: 115px
+    .t
+      font-size: 83px
+      line-height 100px
+    .e
+      font-size: 122px
+      line-height: 80px
   #screencast
-    :float right
-    :padding 2em 2em 0 0
+    float: right
+    padding: 20px
+    border: 1px solid #a6ceff
+    background: -moz-linear-gradient(top, #fff, rgba(255,255,255,0))
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(rgba(255,255,255,0)))
   #signup
-    :clear left
+    clear: both
+    padding: 20px
+    border: 1px solid #a6ceff
+    background: -moz-linear-gradient(top, #fff, rgba(255,255,255,0))
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(rgba(255,255,255,0)))
     p
-      :font-size 18px
+      font-size: 18px
     form.formtastic
-      :width 100%
-      :margin-top 40px
+      margin: 0
+      width: 100%
       fieldset.inputs
-        :width 70%
-      fieldset.buttons
-        :width 27%
-        :float right
-      fieldset.inputs, fieldset.buttons
+        width: 610px
+        margin-right: 5px
         li
-          :margin 0
-          :width 100%
+          width: 610px
           input
-            :width 100%
-            :font-size 48px
-            :margin-bottom 10px
-            :padding 6px 10px 8px
-            &[type=submit]
-              :margin 0
-              :width 100%
-              :padding 6px 40px 8px
+            width: 584px
+            font-size: 44px
+            margin-bottom: 10px
+            padding: 6px 10px 8px
+      fieldset.buttons
+        width: 230px
+        float: right
+        li
+          margin: 0
+          width: 228px
+          padding: 1px
+          input
+            margin: 0
+            font-size: 44px
+            margin-bottom: 10px
+            padding: 2px 50px 8px
   .benefit
-    :float left
-    :width 260px
-    :margin 20px
+    float: left
+    width: 265px
+    margin: 20px 15px
+    &.middle
+      margin: 20px 22px
     h2
-      :font-size 60px
+      font-size: 60px
     p
-      :font-size 14px
-      :line-height 20px
+      font-size: 18px
+      line-height: 20px
