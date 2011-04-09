@@ -80,3 +80,36 @@ $('#add_roomie').live 'click', (event) ->
   $(this).hide()
   $('#modal form').show()
   return false
+  
+current = 0
+
+init = setInterval(() -> 
+  current -= 1
+  $('#clouds').css("background-position",current+"px 0")
+,20)
+
+$('.corkboard #upcoming li.expense, 
+   .corkboard #upcoming li.task, 
+   .corkboard .others li.bounty, 
+   .corkboard .others li.freebie, 
+   .corkboard .others li.gift').live 'mouseover', (event) ->
+    $(this)
+      .children('ul')
+        .children('li:eq(1)')
+        .stop()
+        .animate({width:'208px'}, 200, (event) ->
+          $(this).next().show().animate({opacity:1}, 200)
+        )
+        
+$('.corkboard #upcoming li.expense, 
+   .corkboard #upcoming li.task, 
+   .corkboard .others li.bounty, 
+   .corkboard .others li.freebie, 
+   .corkboard .others li.gift').live 'mouseleave', (event) ->
+    $(this)
+      .children('ul')
+        .children('li:eq(2)')
+        .stop()
+        .animate({opacity:0}, (event) ->
+          $(this).hide().prev().animate({width:'233px'})
+        )
