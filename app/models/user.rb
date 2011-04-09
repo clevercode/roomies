@@ -96,7 +96,7 @@ class User
     email_address = self.email.downcase
     hash = Digest::MD5.hexdigest(email_address)
     if size == 'small'
-      image_src = "http://www.gravatar.com/avatar/#{hash}?s=34"
+      image_src = "http://www.gravatar.com/avatar/#{hash}?s=41"
     else
       image_src = "http://www.gravatar.com/avatar/#{hash}?s=130"
     end
