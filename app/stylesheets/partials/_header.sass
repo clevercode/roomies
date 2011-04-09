@@ -18,35 +18,46 @@ body
       form.formtastic
         fieldset.inputs, fieldset.buttons
           input
-            :width 150px
+            width: 150px
             &[type=submit]
-              :width auto
+              width: auto
       ul
-        li.graphic
-          :padding 0
-          :background url('../images/53.png') no-repeat 50% 50%
-          a
-            :padding 0
         li.profile
-          :background #fff
-          img
-            :margin 8px 0 0
-        li
-          :float left
-          :font-size 24px
-          :min-width 50px
-          :min-height 50px
-          :background #fff
-          :margin 0 0 0 10px
-          :padding-right 30px
-          :background #fff url('../images/49.png') no-repeat 10px 50%
           a
-            :width 100%
-            :height 50px
-            :display block
-            :line-height 50px
-            :color $dark-grey
-            :text-align center
-            :padding-left 32px
-            :text-decoration none
+            padding: 0
+          img
+            margin: 8px 0 0
+            -moz-box-shadow: #bfdcff 1px 1px 0, #7490b2 -1px -1px 0
+            -webkit-box-shadow: #bfdcff 1px 1px 0, #7490b2 -1px -1px 0
+        li
+          float: left
+          font-size: 24px
+          min-width: 50px
+          min-height: 50px
+          margin: 0 15px 0 0
+          a
+            width: 100%
+            height: 50px
+            display: block
+            line-height: 50px
+            text-align: center
+            color: $font-color
+            text-decoration: none
+            padding: 0 10px 0 5px
+            border: 1px solid #fff
+            outline: 1px solid #7490b3
+            background: -moz-linear-gradient(top, #a6ceff, #95b9e5)
+            background: -webkit-gradient(linear, left top, left bottom, from(#a6ceff), to(#95b9e5))
+            &:hover, &:focus
+              color: $font-color
+              border: 1px solid #fff
+              outline: 1px solid #7490b3
+              background: -moz-linear-gradient(top, #bfdcff, #95b9e5)
+              background: -webkit-gradient(linear, left top, left bottom, from(#bfdcff), to(#95b9e5))
+            &:active
+              background: -moz-linear-gradient(top, #95b9e5, #a6ceff)
+              background: -webkit-gradient(linear, left top, left bottom, from(#95b9e5), to(#a6ceff))
+              img
+                -moz-box-shadow: #bfdcff -1px -1px 0, #7490b2 1px 1px 0
+                -webkit-box-shadow: #bfdcff -1px -1px 0, #7490b2 1px 1px 0
 

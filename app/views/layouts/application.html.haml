@@ -3,6 +3,7 @@
 -ie_html :class => 'no-js' do
   = render :partial => 'layouts/head'
   %body{ :lang => 'en', :class => "#{controller.controller_name} #{signed_in? ? 'signed_in' : ''}"}
+    #clouds
     #container
       %header#header
         = render :partial => 'layouts/header'

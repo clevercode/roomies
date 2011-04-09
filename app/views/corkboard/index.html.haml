@@ -1,32 +1,128 @@
 - @main_class = 'corkboard'
 
-.header_bar
-  %h1 urgent tasks &amp; expenses
-#urgent.content
-  %p.info Congratulations! You have no urgent tasks or expenses.
+.content.others
+  .list
+    %h2 bounties
+    %ul
+      %li.bounty 
+        %ul
+          %li{:title => 'expense'}
+          %li Buy new cat litter for Ninja
+          %li.edit
+      %li.bounty 
+        %ul
+          %li{:title => 'task'}
+          %li Fix the power supply on the garden sprinkler system
+          %li.edit
+      %li.bounty 
+        %ul
+          %li{:title => 'expense'}
+          %li Buy eggs, milk, granola, mac &amp; cheese and skirt steak at Publix
+          %li.edit
+      %li.bounty 
+        %ul
+          %li{:title => 'task'}
+          %li Rake &amp; trash leaves
+          %li.edit
+  .list
+    %h2 freebies
+    %ul
+      %li.freebie 
+        %ul
+          %li{:title => 'expense'}
+          %li Pay Brighthouse Internet bill
+          %li.edit
+      %li.freebie 
+        %ul
+          %li{:title => 'task'}
+          %li Renew Driver’s License
+          %li.edit
+      %li.freebie 
+        %ul
+          %li{:title => 'expense'}
+          %li Collect Andrew’s check and send rent to landlord
+          %li.edit
+  .list.last
+    %h2 gifts
+    %ul
+      %li.gift 
+        %ul
+          %li{:title => 'expense'}
+          %li Buy Sunpass
+          %li.edit
+      %li.gift 
+        %ul
+          %li{:title => 'task'}
+          %li Empty dishwasher
+          %li.edit
+      %li.gift 
+        %ul
+          %li{:title => 'expense'}
+          %li Pay last Full Sail tuition fees
+          %li.edit
 .header_bar
   %h1 my upcoming tasks &amp; expenses
 #upcoming.content
   -# %p.info You have no upcoming tasks or expenses. Not the best way to earn awesome achievements, now is it?
-  .upcoming
+  .list
     %h2 today
     %ul
-      %li.expense Buy new cat litter for Ninja
-      %li.task Fix the power supply on the garden sprinkler system
-      %li.expense Buy eggs, milk, granola, mac &amp; cheese and skirt steak at Publix
-      %li.task Rake &amp; trash leaves
-  .upcoming
+      %li.expense 
+        %ul
+          %li{:title => 'expense'}
+          %li Buy new cat litter for Ninja
+          %li.edit
+      %li.task 
+        %ul
+          %li{:title => 'task'}
+          %li Fix the power supply on the garden sprinkler system
+          %li.edit
+      %li.expense 
+        %ul
+          %li{:title => 'expense'}
+          %li Buy eggs, milk, granola, mac &amp; cheese and skirt steak at Publix
+          %li.edit
+      %li.task 
+        %ul
+          %li{:title => 'task'}
+          %li Rake &amp; trash leaves
+          %li.edit
+  .list
     %h2 tomorrow
     %ul
-      %li.expense Pay Brighthouse Internet bill
-      %li.task Renew Driver’s License
-      %li.expense Collect Andrew’s check and send rent to landlord
-  .upcoming.last
+      %li.expense 
+        %ul
+          %li{:title => 'expense'}
+          %li Pay Brighthouse Internet bill
+          %li.edit
+      %li.task 
+        %ul
+          %li{:title => 'task'}
+          %li Renew Driver’s License
+          %li.edit
+      %li.expense 
+        %ul
+          %li{:title => 'expense'}
+          %li Collect Andrew’s check and send rent to landlord
+          %li.edit
+  .list.last
     %h2= (Date::DAYNAMES[Date.tomorrow.next_day.wday.to_i]).downcase
     %ul
-      %li.expense Buy Sunpass
-      %li.task Empty dishwasher
-      %li.expense Pay last Full Sail tuition fees
+      %li.expense 
+        %ul
+          %li{:title => 'expense'}
+          %li Buy Sunpass
+          %li.edit
+      %li.task 
+        %ul
+          %li{:title => 'task'}
+          %li Empty dishwasher
+          %li.edit
+      %li.expense 
+        %ul
+          %li{:title => 'expense'}
+          %li Pay last Full Sail tuition fees
+          %li.edit
 .header_bar
   %h1 this month
 #calendar.content

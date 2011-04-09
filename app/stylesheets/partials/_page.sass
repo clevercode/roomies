@@ -53,8 +53,15 @@ input:invalid, textarea:invalid
 
 body
   overflow: hidden
-  font-family: "Gill Sans"
+  font-family: "ff-meta-web-pro-1", "ff-meta-web-pro-2", sans-serif
   background: url('../images/clouds.png') top left repeat-x, url('../images/hills.png') bottom left repeat-x
+  #clouds
+    width: 100%
+    z-index: -10
+    opacity: 0.4
+    height: 160px
+    position: absolute
+    background: url('../images/clouds.png') top left repeat-x
   form
     @include input
   form.formtastic

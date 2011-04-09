@@ -6,12 +6,10 @@
 %nav
   - if user_signed_in?
     %ul
-      %li.graphic.profile
+      %li.profile
         = link_to image_tag(current_user.gravatar('small'), :width => 34, :height => 34), current_user
       %li
-        = link_to 'add assignment', new_assignment_path, :id => 'easy_button'
-      %li.graphic
-        = link_to ' ', destroy_user_session_path
+        = link_to '+ add assignment', new_assignment_path, :id => 'easy_button'
   - else
     = semantic_form_for(:user, :url => session_path(:user)) do |f|
       = f.inputs do
