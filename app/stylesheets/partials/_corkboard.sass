@@ -82,35 +82,108 @@
                   height: 25px
                   display: none
                   background: url('../images/139.png') 0 4px no-repeat
+                &.check  
+                  width: 25px
+                  height: 25px
+                  background: url('../images/58.png') 7px 5px no-repeat
+    &#upcoming_filters
+      padding: 0
+      ul
+        margin: 0
+        float: left
+        li
+          float: left
+          color: #fff
+          cursor: pointer
+          padding: 5px 10px
+          border-radius: inherit
+          border: 1px solid #7d7d7d
+          border-left: 1px solid rgba(255,255,255,0.3)
+          border-right: 1px solid rgba(0,0,0,0.3)
+          text-shadow: rgba(0,0,0,.3) -1px -1px 0
+          background: -moz-linear-gradient(top, #b0b0b0, #7d7d7d)
+          background: -webkit-gradient(linear, left top, left bottom, from(#b0b0b0), to(#7d7d7d))
+          &.left
+            border-left: 1px solid #7d7d7d
+            border-radius: 5px 0 0 5px
+          &.right
+            border-radius: 0 5px 5px 0
+          &#task_filter
+            background: -moz-linear-gradient(top, #8dc2e3, #5b8eb0)
+            background: -webkit-gradient(linear, left top, left bottom, from(#8dc2e3), to(#5b8eb0))
+            &:hover
+              background: -moz-linear-gradient(top, #9dd8fc, #5b8eb0)
+              background: -webkit-gradient(linear, left top, left bottom, from(#9dd8fc), to(#5b8eb0))
+            &:active, &.active
+              text-shadow: rgba(0,0,0,.4) 1px 1px 0
+              background: -moz-linear-gradient(top, #5b8eb0, #8dc2e3)
+              -moz-box-shadow: #5b8eb0 -3px 0px 3px inset, #5b8eb0 3px 0px 3px inset
+              -webkit-box-shadow: #5b8eb0 -3px 0px 3px inset, #5b8eb0 3px 0px 3px inset
+              background: -webkit-gradient(linear, left top, left bottom, from(#5b8eb0), to(#8dc2e3))
+          &#expense_filter
+            background: -moz-linear-gradient(top, #c4e35f, #94b038)
+            background: -webkit-gradient(linear, left top, left bottom, from(#c4e35f), to(#94b038))
+            &:hover
+              background: -moz-linear-gradient(top, #dafc6a, #94b038)
+              background: -webkit-gradient(linear, left top, left bottom, from(#dafc6a), to(#94b038))
+            &:active, &.active  
+              text-shadow: rgba(0,0,0,.4) 1px 1px 0
+              background: -moz-linear-gradient(top, #94b038, #c4e35f)
+              -moz-box-shadow: #94b038 -3px 0px 3px inset, #94b038 3px 0px 3px inset
+              -webkit-box-shadow: #94b038 -3px 0px 3px inset, #94b038 3px 0px 3px inset
+              background: -webkit-gradient(linear, left top, left bottom, from(#94b038), to(#c4e35f))
+          &:hover
+            background: -moz-linear-gradient(top, #c9c9c9, #7d7d7d)
+            background: -webkit-gradient(linear, left top, left bottom, from(#c9c9c9), to(#7d7d7d))
+          &:active, &.active
+            text-shadow: rgba(0,0,0,.3) 1px 1px 0
+            background: -moz-linear-gradient(top, #7d7d7d, #b0b0b0)
+            -moz-box-shadow: #7d7d7d -3px 0px 3px inset, #7d7d7d 3px 0px 3px inset
+            -webkit-box-shadow: #7d7d7d -3px 0px 3px inset, #7d7d7d 3px 0px 3px inset
+            background: -webkit-gradient(linear, left top, left bottom, from(#7d7d7d), to(#b0b0b0))
+        &#filters
+          float: right
     &#calendar
-      p.info
-        margin-bottom: 20px
+      padding: 0
+      border: 1px solid #9eafc5
+      border-top: none // Helpful comment!
       .day
         padding: 0
-        margin: 1px
         float: left
-        width: 126px
-        background: $light-grey
+        width: 128px
+        margin: -1px 0 0 -1px
+        border-top: 1px solid #9eafc5
+        border-left: 1px solid #9eafc5
+        background: -moz-linear-gradient(top, rgba(255,255,255,.75), rgba(255,255,255,.15))
+        background: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,.75)), to(rgba(255,255,255,.15)))
+        &:nth-child(7n)
+          width: 130px
         p
           font-size: 48px
           min-height: 75px
           line-height: 75px
           text-align: center
+          text-shadow: 1px 1px 0px #fff
         #todo
-          :padding 0
-          :background #bfbfbf
-          :border-top 1px solid #fff
+          padding: 0
+          width: 58px
+          margin: 0px auto 20px
           a
-            :width 63px
-            :float left
-            :display block
-            :font-size 14px
-            :min-height 30px
-            :line-height 30px
-            :color $dark-grey
-            :text-align center
-            :text-decoration none
+            color: #fff
+            float: left
+            padding: 0 2px
+            display: block
+            font-size: 12px
+            min-width: 23px
+            min-height: 23px
+            line-height: 23px
+            text-align: center
+            text-decoration: none
+            border: 1px solid #94b038
+            text-shadow: rgba(0,0,0,.3) -1px -1px 0
+            background: -moz-linear-gradient(top, #c4e35f, #94b038)
+            background: -webkit-gradient(linear, left top, left bottom, from(#c4e35f), to(#94b038))
             &.tasks
-              :width 62px
-              :background #e6e6e6
-              :border-right 1px solid #fff
+              border: 1px solid #5b8eb0
+              background: -moz-linear-gradient(top, #8dc2e3, #5b8eb0)
+              background: -webkit-gradient(linear, left top, left bottom, from(#8dc2e3), to(#5b8eb0))
