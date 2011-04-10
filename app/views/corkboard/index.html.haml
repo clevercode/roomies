@@ -6,22 +6,22 @@
     %ul
       %li.bounty 
         %ul
-          %li{:title => 'expense'}
+          %li.check
           %li Buy new cat litter for Ninja
           %li.edit
       %li.bounty 
         %ul
-          %li{:title => 'task'}
+          %li.check
           %li Fix the power supply on the garden sprinkler system
           %li.edit
       %li.bounty 
         %ul
-          %li{:title => 'expense'}
+          %li.check
           %li Buy eggs, milk, granola, mac &amp; cheese and skirt steak at Publix
           %li.edit
       %li.bounty 
         %ul
-          %li{:title => 'task'}
+          %li.check
           %li Rake &amp; trash leaves
           %li.edit
   .list
@@ -29,17 +29,17 @@
     %ul
       %li.freebie 
         %ul
-          %li{:title => 'expense'}
+          %li.check
           %li Pay Brighthouse Internet bill
           %li.edit
       %li.freebie 
         %ul
-          %li{:title => 'task'}
+          %li.check
           %li Renew Driver’s License
           %li.edit
       %li.freebie 
         %ul
-          %li{:title => 'expense'}
+          %li.check
           %li Collect Andrew’s check and send rent to landlord
           %li.edit
   .list.last
@@ -47,21 +47,27 @@
     %ul
       %li.gift 
         %ul
-          %li{:title => 'expense'}
+          %li.check
           %li Buy Sunpass
           %li.edit
       %li.gift 
         %ul
-          %li{:title => 'task'}
+          %li.check
           %li Empty dishwasher
           %li.edit
       %li.gift 
         %ul
-          %li{:title => 'expense'}
+          %li.check
           %li Pay last Full Sail tuition fees
           %li.edit
-.header_bar
-  %h1 my upcoming tasks &amp; expenses
+#upcoming_filters
+  %ul
+    %li.left.active my assignments
+    %li.right everyone's assignments
+  %ul#filters
+    %li.left all
+    %li#task_filter tasks
+    %li.right#expense_filter expenses
 #upcoming.content
   -# %p.info You have no upcoming tasks or expenses. Not the best way to earn awesome achievements, now is it?
   .list
@@ -126,10 +132,9 @@
 .header_bar
   %h1 this month
 #calendar.content
-  %p.info Click on the number of tasks or expenses for any given day to see more information about them.
   - @user.calendar.map do |i|
     .day
       %p= i
       #todo
-        =link_to '3', '#', :class => "tasks"
+        =link_to '99', '#', :class => "tasks"
         =link_to '2', '#', :class => "expenses"
