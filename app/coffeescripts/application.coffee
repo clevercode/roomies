@@ -10,7 +10,11 @@ $ = jQuery
 #   fallback: 'fallback.png',
 #   monochrome: true
 # )
-  
+
+d = new Date()
+if d.getHours() < 6 || d.getHours() > 8
+  $('html').addClass('nighttime')
+
 $('input:password').nakedPassword({path: '/images/naked/'})
 
 $modal             = $('#modal')
@@ -97,7 +101,7 @@ $('.corkboard #upcoming li.expense,
       .children('ul')
         .children('li:eq(1)')
         .stop()
-        .animate({width:'208px'}, 200, (event) ->
+        .animate({paddingRight:'0px'}, 200, (event) ->
           $(this).next().show().animate({opacity:1}, 200)
         )
         
@@ -111,5 +115,5 @@ $('.corkboard #upcoming li.expense,
         .children('li:eq(2)')
         .stop()
         .animate({opacity:0}, (event) ->
-          $(this).hide().prev().animate({width:'233px'})
+          $(this).hide().prev().animate({paddingRight:'25px'})
         )
