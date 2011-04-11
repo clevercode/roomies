@@ -1,0 +1,66 @@
+h1. Weekly Report #3
+
+h2. Design comps
+This week was dedicated to establishing the proper user interface of Roomies in details. Zach started the bulk of the work on comps by the wireframes for the Home page and Corkboard early in the week. While I was dedicating myself to more specific parts of the user interface (presentic-centric calendar, data-filtering, buttons, lighting), Zach finished the initial comps for the Profile and Support pages.
+
+h2. Protosite styling
+After applying the layouts we had agreed upon during the wireframing phase last week to our protosite, Zach started applying the styles from the early design comps to the protosite itself, allowing us to better assess which elements made sense in situation and which didn't.
+
+His work allowed me to proceed with two rounds of revisions on the comps produced earlier in the week.
+
+h2. Identity
+Using and enhancing a background graphic I had designed while producing the UML diagram for our database (which was itself inspired by our teaser beta subscription page), Zach created an airy interface for Roomies that mixed our two initial ideas for the home page. One was highly structured using a grid, the second was meant to be used as an alternative during A/B testing and would have featured much more negative space and graphics to engage users in the unique appearance of our application.
+
+Zach two repeating patterns – of clouds and hills – to differ from the stark and utilitarian interfaces of most task management software today. We aim to solve our users' problems and frustrations, not create more by making them feel like they're working. This is in line with the gaming elements we incorporated into the application.
+
+On a similar idea, Zach used three rich graphics to illustrate the three main benefits offered by Roomies: 
+* a cloud: home task management system available from anywhere
+* pacman: a fun and rewarding way to work together as roommates
+* a piggy bank: a tool to save time and money
+
+h2. Technologies
+* Photoshop: was used extensively to open up the realm of possibilities graphically and let us enrich the interface until a satifying point where we branched of, one of us translating the initial design to the browser with Haml & Sass, the other concentrating on smaller scale UI elements in Photoshop.
+* Haml & Sass: After a quick phase of early design comps, styles were applied using HTML5 markup and CSS3 styling through Haml & Sass syntax, which allows for less verbose markup and smarter styles with variables for colors and mixins for common CSS effects with built-in cross-browser compatibily.
+
+h2. Budget
+Since the first part of our Design phase that included Information Architecture (Sitemap & UML) & Wireframes officially ended last week we are able to provide you with a budget update.
+
+The current invoice (including Discovery) now reaches $5,235 with the following breakdown:
+* Discovery – 36 hours ($1,440) as estimated
+* Information Architecture & Wireframing – 68 hours & 45 minutes ($3,795) instead of 84 hours ($4,620) estimated
+
+As we noted earlier, you will not be billed for the estimated hours but instead for the actual number of hours worked, which means that as of now Roomies is under budget by roughly 15 hours or $825.
+
+Currently unbilled hours include:
+* Project Management – 16 hours ($880)
+* Testing – 1 hour & 30 minutes ($110)
+* User Experience & Branding – 42 hours ($2,310)
+
+We will bring you another budget update at the conclusion of the Design phase.
+
+h2. Contact
+
+h3. Chris Burke
+
+We consulted Chris with our initial designs for the Home page & Corkboard page. He provided us with extremely valuable feedback regarding the usability of the corkboard page and the confusion some of its elements was inducing (color-coding, grouping, placement of action buttons).
+
+h3. Mike Smotherman
+
+After having revised the user interface for the presentic-centric calendar once, Mike offered unprompted help in the form of a response to a "Forrst post":http://forrst.com/posts/Present_centric_calendar_UI_uncluttered-Lyv Olivier made with the second iteration. Pointing out a similar flaw in the calendar UI than Chris he provided us with a useful suggestion that offered a interesting compromise. We were breaking habituation to a common calendar interface willingly (it is flawed, inadequate & archaic) but we were also doing away with the convention of grouping days by weeks which was altogether counterproductive. We therefore reintroduced named days of the week in the calendar, accepting that up to six days could be irrelevant (since passed) on the first row of the calendar. 
+
+Regardless of this compromise, the calendar offers much more relevant data than most current calendars which offer monthly views in which 90% of the data is irrelevant by each month's end.
+
+h3. Andrew Smith
+
+As usual, we consulted Andrew daily regarding UI designs & implementation discussions, he offered us useful feedback and suggestions throughout the week.
+
+h2. Upcoming
+
+1. Following another suggestion of Mike's that we had considered on our own but discarded too quickly, it is very likely that a new iteration of the calendar UI will emerge in the coming days. Streamlining it for the most common uses by reducing it to a single line, considering most people wouldn't require such a thorough view of future tasks on the home screen of the application. The option to unfold the current larger calendar may be offered inline.
+
+2. We will spend the majority of the week implementing the styles defined in the first round of design comps into the Roomies pre-alpha protosite.
+
+4. Unit tests that were post-poned from last week's design-centric work session will be written in anticipation for the begining of our server-side development phase.
+
+3. We target an optimistic Alpha release by the end of this week, which will included a very limited set of features but will allow us to start testing the application with a selected group of users.
+
