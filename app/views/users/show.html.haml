@@ -2,24 +2,33 @@
 
 #about_you.content
   %img{ :src => "#{@user.gravatar}", :alt => "profile picture" }
-  - if signed_in? && current_user == @user
-    %h1 hi there, #{@user.name}
-  - else
-    %h1 #{@user.name}
-  %h2 total points: 0
-  %p tasks: 987
-  %p expenses: 3
+  #about_header
+    - if signed_in? && current_user == @user
+      %h1 hi there, #{@user.name}
+    - else
+      %h1 #{@user.name}
+    %p 455/500 pts
+    %p next level
+  #roomie_bar
+    %span
+    %span
+  %p#level amazing roomie
   - if @user.house
-    %p 
+    %p#house
       your house: #{@user.house.name} - 
       = link_to 'change house name or add roomies', edit_house_path(@user.house), :class => 'ajax'
       |
       = link_to 'move out', homeless_url(:id => @user.id, :house_id => @user.house)
   - else
-    %p
+    %p#house
       Oh no! It seems you're homeless! Want to 
       = link_to 'build a house', new_house_path, :class => 'ajax'
       ?
+  %p#tasks_expenses
+    %span
+    %span tasks: 789
+    %span
+    %span expenses: 3
   %p.edit_profile= link_to 'edit profile', edit_user_path(@user), :class => 'ajax' if current_user
   - unless @user.authentications.empty?
     %li
@@ -84,7 +93,7 @@
       %tr
         %th name
         %th progress to next "amazing roomie" badge
-        %th next level
+        %th.level next level
       %tr
         %td zachary nicoll
         %td.progress_bar
