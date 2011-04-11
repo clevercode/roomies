@@ -58,15 +58,16 @@
             background: -webkit-gradient(linear, left top, left bottom, from(#d9eaff), to(#f2f8ff))
             ul
               li
-                padding: 0
                 float: right
-                width: 233px
+                width: 208px
                 border: none
                 background: none
                 line-height: 25px
+                padding: 0 25px 0 0
                 -moz-box-shadow: none
                 -webkit-box-shadow: none
                 &[title=expense], &[title=task]
+                  padding: 0
                   width: 13px
                   height: 13px
                   background: #b2cf55
@@ -76,13 +77,15 @@
                   -webkit-box-shadow: #a6ceff 0 0 5px
                 &[title=task]
                   background: #95b9e6
-                &.edit  
+                &.edit
                   opacity: 0
+                  padding: 0
                   width: 25px
                   height: 25px
                   display: none
                   background: url('../images/139.png') 0 4px no-repeat
-                &.check  
+                &.check
+                  padding: 0
                   width: 25px
                   height: 25px
                   background: url('../images/58.png') 7px 5px no-repeat
@@ -98,9 +101,9 @@
           padding: 5px 10px
           border-radius: inherit
           border: 1px solid #7d7d7d
-          border-left: 1px solid rgba(255,255,255,0.3)
           border-right: 1px solid rgba(0,0,0,0.3)
           text-shadow: rgba(0,0,0,.3) -1px -1px 0
+          border-left: 1px solid rgba(255,255,255,0.3)
           background: -moz-linear-gradient(top, #b0b0b0, #7d7d7d)
           background: -webkit-gradient(linear, left top, left bottom, from(#b0b0b0), to(#7d7d7d))
           &.left
