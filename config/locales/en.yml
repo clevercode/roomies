@@ -9,6 +9,9 @@ en:
   auth_destroy: 'Successfully destroyed authentication.'
   welcome: 'Welcome.'
   formtastic:
+    placeholders:
+      user:
+        email: "youremail@domain.com"
     submit: "Submit"
 
 
