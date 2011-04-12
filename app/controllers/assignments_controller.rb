@@ -1,8 +1,11 @@
 class AssignmentsController < ApplicationController
  
+  # user need to be signed in
+  before_filter :authenticate_user!
+
   # returning a list of all users for these actions only
   before_filter :user_list #, :only => [:new, :create, :edit, :update]
- 
+   
   # GET /assignments
   # GET /assignments.xml
   def index
@@ -33,7 +36,7 @@ class AssignmentsController < ApplicationController
   # GET /assignments/new.xml
   def new
     @assignment = Assignment.new
-    @roomies = User.where(:house_id => current_user.house)
+    @roomies = User.where(:house => current_user.house)
  
     respond_to do |format|
       format.html # new.html.erb
