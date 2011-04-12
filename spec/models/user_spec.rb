@@ -69,11 +69,6 @@ describe User do
       user = User.new(@attr.merge(:password => pass))
       user.should_not be_valid
     end
-    
-    # it "should not require a password" do
-    #   user = User.new(@attr.merge(:password => ""))
-    #   user.should be_valid
-    # end
   end
   
   it "should have access to the house it belongs to" do
