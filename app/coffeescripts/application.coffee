@@ -88,7 +88,7 @@ current = 0
 init = setInterval(() -> 
   current -= 1
   $('#clouds').css("background-position",current+"px 0")
-,50)
+,70)
 
 $('.corkboard #upcoming li.expense, 
    .corkboard #upcoming li.task, 
