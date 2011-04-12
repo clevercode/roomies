@@ -95,16 +95,16 @@ body
     width: 450px
     fieldset.inputs, fieldset.buttons
       label
-        :padding 0
-        :width 100%
-        :margin 10px 0 0
+        padding: 0
+        width: 450px
+        margin: 10px 0 0
       input
-        :width 200px
+        width: 200px
         &[type=checkbox]
-          :width auto
+          width: auto
         &[type=submit]
-          :width auto
-          :margin 10px 0
+          width: auto
+          margin: 10px 0
   h2
     :font-size 30px
   #error_explanation
@@ -120,28 +120,31 @@ body
     :position fixed
     :background rgba(0,0,0,0.75)
   #modal
-    :padding 0
-    :top 100px
-    :z-index 30
-    :display none
-    :position absolute
-    :background $dark-grey
-    :border 10px solid #fff
+    padding: 0
+    top: 100px
+    z-index: 30
+    display: none
+    position: absolute
+    border: 1px solid #a6ceff
+    -moz-box-shadow: rgba(0,0,0,0.3) 0 1px 1px, $blue 0 -5px 10px inset
+    -webkit-box-shadow: rgba(0,0,0,0.3) 0px 1px 2px, $blue 0 -2px 5px inset
+    background-image: -webkit-gradient(radial, 50% 0%, 500, 50% 0%, 0, from(#9ec6ff), to($lightblue))
+    background-image: -moz-radial-gradient(center 45deg, circle farthest-side, $lightblue 0%, #9ec6ff 100%)
     h1
-      :font-size 24px
+      font-size: 24px
     h2
-      :font-size 20px
+      font-size: 20px
     #avatar
-      :padding 10px 0 5px
+      padding: 10px 0 5px
       p
-        :float left
-        :font-size 16px
-        :margin-right 10px
+        float: left
+        font-size: 16px
+        margin-right: 10px
         a
-          :float left
-          :display block
+          float: left
+          display: block
         img
-          :border 10px solid #fff
+          border: 10px solid #fff
     .add_roomie_form
       :display none
       :margin-top 10px
@@ -153,17 +156,32 @@ body
         li
           :margin 10px 0 0
       fieldset.inputs
-        :width 100%
-        :overflow hidden
+        width: 450px
+        overflow: hidden
         li
-          :width 100%
+          width: 450px
           input
-            :width 100%
-        textarea
-          :width 98%
-          :padding 4px
-          :border none
-          :color $dark-grey
+            width: 435px
+  .notice, .first_time
+    padding: 5px
+    border-radius: 5px
+    border: 1px solid rgba(66,66,66,0.9)
+    background: -moz-linear-gradient(top, rgba(90,90,90,0.9), rgba(66,66,66,0.9))
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(90,90,90,0.9)), to(rgba(66,66,66,0.9)))
+    p
+      color: #fff
+      font-size: 16px
+      line-height: 25px
+      border-radius: 5px
+      padding: 10px 20px
+      border: 1px solid #000
+      text-shadow: 1px 1px 0 #000
+      -moz-box-shadow: #555 0px 1px 1px inset
+      -webkit-box-shadow: #555 0px 1px 1px inset
+      background: -moz-linear-gradient(top, #333, #262626)
+      background: -webkit-gradient(linear, left top, left bottom, from(#444), to(#262626))
+      a
+        color: #fff
 @import home
 @import profile
 @import corkboard
