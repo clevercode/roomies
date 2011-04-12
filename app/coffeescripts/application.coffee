@@ -49,21 +49,19 @@ superdate.live 'keyup', (event) ->
   
 $('#picker').datepicker()
 
-textWidth = $('.widtherize').innerWidth()
-$(".widtherize p").widtherize( {'width': textWidth } )
+value = ''
 
-$('input').bind 'focus', (event) ->        
+$('input').live 'focus', (event) ->        
   $this = $(this)
-  if $this.attr('value') == 'email' || $this.attr('value') == 'password'
-    $this.attr('value','')
+  $value = $this.attr('value')
+  if $value == 'email' || $value == 'password' || $value == 'example@domain.com'
+    value = $this.attr('value')
+    $this.attr('value','').css({color:'#3a4859',fontStyle:'normal'})
 
-$('input').bind 'blur', (event) ->
+$('input').live 'blur', (event) ->
   $this = $(this)
   if $this.attr('value') == ''
-    if $this.attr('type') == 'text'
-      $this.attr('value','email')
-    else if $this.attr('type') == 'password'
-      $this.attr('value','password')
+    $this.attr('value',value).css({color:'#7490b3',fontStyle:'italic'})
 
 $('a.ajax').bind 'click', (event) ->
   $.ajax url: $(this).attr('href'), success: (data) -> 
@@ -77,7 +75,7 @@ $('a.ajax').bind 'click', (event) ->
 $('#darknessification').live 'click', (event) ->
   $darknessification.hide()
   $modal.hide()
-  $easy_button.text('add task/expense')
+  $easy_button.text('+ add assignment')
   return false
 
 $('#add_roomie').live 'click', (event) ->
