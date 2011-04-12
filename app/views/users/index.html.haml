@@ -1,106 +1,16 @@
 - @main_class = 'profile'
 
-#profile_overview.header_bar
-  - if signed_in? && current_user == @user
-    %h1 hi there, #{@user.name}
-  - else
-    %h1 #{@user.name}
-#about_you.content
-  %img{ :src => "#{@user.gravatar}", :alt => "profile picture" }
-  %h2 but about you
-  %p= @user.description
-  %p.edit_profile= link_to 'edit profile', edit_user_path(@user) if current_user
-  - unless @user.authentications.empty?
-    %li
-      Authentications:
-      %ul
-        - @user.authentications.each do |auth|
-          %li #{auth.provider.titleize}
--# %p= link_to 'Edit', edit_user_path if current_user == @user
--# %p= link_to 'Back to all Roomies', users_path
-#achievements.header_bar
-  %h1 achievements
-#badges.content
-  #image
-  #image
-  #image
-  #image.faded
-  #image.faded
-  #image.faded
-  #image.faded
-  #image.faded
-  #image.faded
-  #image.faded
-  #image.faded
-  #image.faded
-- if current_user
-  #progress.header_bar
-    %h1 progress 
-  .content
-    %table
-      %tr
-        %td awesomeness
-        %td.progress_bar
-          .bars
-            .bar
-            .bar_bg
-        %td.percentage 77%
-      %tr
-        %td reliability
-        %td.progress_bar
-          .bars
-            .bar
-            .bar_bg
-        %td.percentage 77%
-      %tr
-        %td helpfullness
-        %td.progress_bar
-          .bars
-            .bar
-            .bar_bg
-        %td.percentage 77%
-      %tr
-        %td cooking master
-        %td.progress_bar
-          .bars
-            .bar
-            .bar_bg
-        %td.percentage 77%
-  #batte.header_bar
-    %h1 roomie battle!!!
-  .content
-    %table
-      %tr
-        %th name
-        %th progress to next "amazing roomie" badge
-        %th next level
-      %tr
-        %td zachary nicoll
-        %td.progress_bar
-          .bars
-            .bar
-            .bar_bg
-        %td.level 4
-      %tr
-        %td andrew smith
-        %td.progress_bar
-          .bars
-            .bar
-            .bar_bg
-        %td.level 1
-      %tr
-        %td alyssa nicoll
-        %td.progress_bar
-          .bars
-            .bar
-            .bar_bg
-        %td.level 1
-      %tr
-        %td olivier lacan
-        %td.progress_bar
-          .bars
-            .bar
-            .bar_bg
-        %td.level 1
-  #modal
-  #darknessification
+- if signed_in? 
+  %h1 hi there, #{@user.name}
+  %p You live at <strong>#{@user.house.name}</strong>
+  %p Your roomies:
+  %ul
+  - @roomies.each do |roomie|
+    %li= link_to roomie.name, roomie
+  %p Other people:
+  %ul
+  - User.all.each do |people|
+    %li #{people.name} (#{people.house.name unless people.house.blank?})
+- else
+  %h1 #{@user.name}
+
