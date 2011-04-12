@@ -23,6 +23,10 @@ $darknessification = $('#darknessification')
 
 if $('body').hasClass('signed_in')
   modal_right = $('html').outerWidth() - ($easy_button.offset().left + $easy_button.outerWidth()) + 2
+  
+if window.innerHeight > $('body').height()
+  $('footer').css({position:'fixed', bottom:0})
+  $('body').css({minHeight:window.innerHeight})
 
 superdate = $('.superdate')
 superdate.live 'keyup', (event) ->
