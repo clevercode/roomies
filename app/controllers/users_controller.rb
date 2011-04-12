@@ -5,6 +5,10 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    if signed_in?
+      @user = current_user
+      @roomies = User.where(:house_id => @user.house_id)
+    end
     respond_with(@users)
   end
 
