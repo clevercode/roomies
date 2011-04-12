@@ -2,8 +2,10 @@
   div
     padding: 30px
     overflow: hidden
-    &#flash
-      padding: 0
+    &#flash, &.first_time, &.notice
+      padding: 5px
+      .notice
+        padding: 5px
     &.header_bar, &#upcoming .list h2
       color: #52471e
       font-size: 24px
@@ -154,11 +156,14 @@
         padding: 0
         float: left
         width: 128px
+        position: relative
         margin: -1px 0 0 -1px
         border-top: 1px solid #9eafc5
         border-left: 1px solid #9eafc5
         background: -moz-linear-gradient(top, rgba(255,255,255,.75), rgba(255,255,255,.15))
         background: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,.75)), to(rgba(255,255,255,.15)))
+        &.past
+          opacity: 0.3
         &:nth-child(7n)
           width: 130px
         p
@@ -167,6 +172,15 @@
           line-height: 75px
           text-align: center
           text-shadow: 1px 1px 0px #fff
+          &.day_name
+            top: 5px
+            left: 5px
+            font-size: 12px
+            min-height: 12px
+            text-align: left
+            position: absolute
+            line-height: normal
+            text-transform: uppercase
         #todo
           padding: 0
           width: 58px
