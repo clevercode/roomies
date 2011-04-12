@@ -9,7 +9,13 @@
     background: -moz-linear-gradient(top, #d9eaff, #f2f8ff)
     background: -webkit-gradient(linear, left top, left bottom, from(#d9eaff), to(#f2f8ff))
     &[type=submit]
+      outline: none
       font-weight: bold
+      border-radius: 10px
       padding: 2px 20px 4px
+      border: 1px solid saturate(#95b9e5,20%)
+      text-shadow: rgba(255,255,255,0.5) 1px 1px 0px
       background: -moz-linear-gradient(top, #a6ceff, #95b9e5)
       background: -webkit-gradient(linear, left top, left bottom, from(#a6ceff), to(#95b9e5))
+      -moz-box-shadow: rgba(70,96,128,0.65) 0 2px 2px, saturate(#95b9e5,20%) -3px -7px 7px inset, saturate(#95b9e5,20%) 3px -7px 7px inset
+      -webkit-box-shadow: rgba(70,96,128,0.65) 0 2px 2px, saturate(#95b9e5,20%) -3px -7px 7px inset, saturate(#95b9e5,20%) 3px -7px 7px inset
