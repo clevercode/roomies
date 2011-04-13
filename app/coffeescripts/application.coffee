@@ -10,7 +10,11 @@ $ = jQuery
 #   fallback: 'fallback.png',
 #   monochrome: true
 # )
-  
+
+d = new Date()
+if d.getHours() < 6 || d.getHours() > 8
+  $('html').addClass('nighttime')
+
 $('input:password').nakedPassword({path: '/images/naked/'})
 
 $modal             = $('#modal')
@@ -45,21 +49,19 @@ superdate.live 'keyup', (event) ->
   
 $('#picker').datepicker()
 
-textWidth = $('.widtherize').innerWidth()
-$(".widtherize p").widtherize( {'width': textWidth } )
+value = ''
 
-$('input').bind 'focus', (event) ->        
+$('input').live 'focus', (event) ->        
   $this = $(this)
-  if $this.attr('value') == 'email' || $this.attr('value') == 'password'
-    $this.attr('value','')
+  $value = $this.attr('value')
+  if $value == 'email' || $value == 'password' || $value == 'example@domain.com'
+    value = $this.attr('value')
+    $this.attr('value','').css({color:'#3a4859',fontStyle:'normal'})
 
-$('input').bind 'blur', (event) ->
+$('input').live 'blur', (event) ->
   $this = $(this)
   if $this.attr('value') == ''
-    if $this.attr('type') == 'text'
-      $this.attr('value','email')
-    else if $this.attr('type') == 'password'
-      $this.attr('value','password')
+    $this.attr('value',value).css({color:'#7490b3',fontStyle:'italic'})
 
 $('a.ajax').bind 'click', (event) ->
   $.ajax url: $(this).attr('href'), success: (data) -> 
@@ -73,7 +75,7 @@ $('a.ajax').bind 'click', (event) ->
 $('#darknessification').live 'click', (event) ->
   $darknessification.hide()
   $modal.hide()
-  $easy_button.text('add task/expense')
+  $easy_button.text('+ add assignment')
   return false
 
 $('#add_roomie').live 'click', (event) ->
@@ -86,7 +88,7 @@ current = 0
 init = setInterval(() -> 
   current -= 1
   $('#clouds').css("background-position",current+"px 0")
-,50)
+,70)
 
 $('.corkboard #upcoming li.expense, 
    .corkboard #upcoming li.task, 
@@ -97,7 +99,7 @@ $('.corkboard #upcoming li.expense,
       .children('ul')
         .children('li:eq(1)')
         .stop()
-        .animate({width:'208px'}, 200, (event) ->
+        .animate({paddingRight:'0px'}, 200, (event) ->
           $(this).next().show().animate({opacity:1}, 200)
         )
         
@@ -111,5 +113,5 @@ $('.corkboard #upcoming li.expense,
         .children('li:eq(2)')
         .stop()
         .animate({opacity:0}, (event) ->
-          $(this).hide().prev().animate({width:'233px'})
+          $(this).hide().prev().animate({paddingRight:'25px'})
         )

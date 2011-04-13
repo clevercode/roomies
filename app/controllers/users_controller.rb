@@ -37,9 +37,9 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.where(:email => params[:user][:email]).first
+    @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
-      respond_with(@user)
+      redirect_to current_user, :notice => 'You just successfully changed your profile imformation! Yay!'
     else
       render :edit
     end

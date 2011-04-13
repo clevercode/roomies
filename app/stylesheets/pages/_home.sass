@@ -1,20 +1,20 @@
 #main.home
-  .widtheriz
+  .mantra
     padding: 0
     float: left
     width: 325px
     font-weight: bold
     margin: 0 0 20px 0
-    .l
+    p:first-child
       font-size: 145px
       line-height: 100px
-    .t
+    p:nth-child(2)
       font-size: 94px
       line-height 50px
-    .m
-      font-size: 151px
+    p:nth-child(3)
+      font-size: 148px
       line-height: 80px
-    .e
+    p:nth-child(4)
       font-size: 132px
       line-height: 140px
   #screencast
@@ -22,14 +22,18 @@
     padding: 20px
     margin: 30px 0 50px
     border: 1px solid #a6ceff
-    background: -moz-linear-gradient(top, #fff, rgba(255,255,255,0))
-    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(rgba(255,255,255,0)))
+    -moz-box-shadow: rgba(0,0,0,0.3) 0 1px 1px, $blue 0 -5px 10px inset
+    -webkit-box-shadow: rgba(0,0,0,0.3) 0px 1px 2px, $blue 0 -2px 5px inset
+    background-image: -webkit-gradient(radial, 50% 0%, 500, 50% 0%, 0, from(#9ec6ff), to(rgba(255,255,255,0)))
+    background-image: -moz-radial-gradient(center 45deg, circle farthest-side, rgba(255,255,255,0) 0%, #9ec6ff 100%)
   #signup
     clear: both
     padding: 20px
     border: 1px solid #a6ceff
-    background: -moz-linear-gradient(top, #fff, rgba(255,255,255,0))
-    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(rgba(255,255,255,0)))
+    -moz-box-shadow: rgba(0,0,0,0.3) 0 1px 1px, $blue 0 -5px 10px inset
+    -webkit-box-shadow: rgba(0,0,0,0.3) 0px 1px 2px, $blue 0 -2px 5px inset
+    background-image: -webkit-gradient(radial, 50% 0%, 500, 50% 0%, 0, from(#9ec6ff), to(rgba(255,255,255,0)))
+    background-image: -moz-radial-gradient(center 45deg, circle farthest-side, rgba(255,255,255,0) 0%, #9ec6ff 100%)
     p
       font-size: 18px
     form.formtastic
@@ -43,8 +47,10 @@
           input
             width: 584px
             font-size: 44px
+            font-style: italic
             margin-bottom: 10px
             padding: 10px 10px 0
+            color: rgba(116,144,179,0.7)
       fieldset.buttons
         width: 230px
         float: right
@@ -54,17 +60,36 @@
           padding: 1px
           input
             margin: 0
+            color: #fff
+            width: 228px
+            outline: none
             font-size: 44px
             margin-bottom: 10px
+            border-radius: 15px
             padding: 2px 40px 8px
+            border: 1px solid saturate(#90ce66,20%)
+            text-shadow: rgba(0,0,0,0.5) 2px 2px 5px
+            background: -moz-linear-gradient(top, #d7ff8c, #a8d977)
+            -moz-box-shadow: rgba(93,76,42,0.85) 0 2px 2px, saturate(#90ce66,20%) -5px -10px 20px inset, saturate(#90ce66,20%) 5px -10px 20px inset
+            -webkit-box-shadow: rgba(93,76,42,0.85) 0 2px 2px, saturate(#90ce66,20%) -5px -10px 20px inset, saturate(#90ce66,20%) 5px -10px 20px inset
+            background: -webkit-gradient(linear, left top, left bottom, from(#d7ff8c), to(#a8d977))
   .benefit
     float: left
     width: 265px
     margin: 20px 15px
     &.middle
       margin: 20px 22px
+      h2
+        text-indent: 65px
+        background: url('../images/pacman.png') no-repeat 0px 15px
+    &:last-child
+      h2
+        background: url('../images/pig.png') no-repeat 0px 15px
     h2
       font-size: 60px
+      text-indent: 70px
+      font-weight: bold
+      background: url('../images/cloud.png') no-repeat 0px 20px
     p
       font-size: 18px
       line-height: 20px

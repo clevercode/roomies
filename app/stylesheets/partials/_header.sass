@@ -17,8 +17,10 @@ body
       :float right
       form.formtastic
         fieldset.inputs, fieldset.buttons
-          input
+          input[type=text], input[type=password]
             width: 150px
+            font-style: italic
+            color: rgba(116,144,179,0.7)
             &[type=submit]
               width: auto
       ul

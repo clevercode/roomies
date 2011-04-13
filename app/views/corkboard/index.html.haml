@@ -1,5 +1,11 @@
 - @main_class = 'corkboard'
 
+- if signed_in? && current_user == @user && !@user.name?
+  .first_time
+    %p 
+      Hi there new roomie! If you'd like to change your password to something besides 'new_roomie' or possibly tell us your name, go ahead and click here - 
+      = link_to 'edit profile.', edit_user_path(@user), :class => 'ajax' if current_user
+      Happy editing!
 .content.others
   .list
     %h2 bounties
@@ -7,22 +13,22 @@
       %li.bounty 
         %ul
           %li.check
-          %li Buy new cat litter for Ninja
+          %li Clean the windows
           %li.edit
       %li.bounty 
         %ul
           %li.check
-          %li Fix the power supply on the garden sprinkler system
+          %li Wash the back of the house
           %li.edit
       %li.bounty 
         %ul
           %li.check
-          %li Buy eggs, milk, granola, mac &amp; cheese and skirt steak at Publix
+          %li Clean the porch
           %li.edit
       %li.bounty 
         %ul
           %li.check
-          %li Rake &amp; trash leaves
+          %li Clean the windows again
           %li.edit
   .list
     %h2 freebies
@@ -30,17 +36,12 @@
       %li.freebie 
         %ul
           %li.check
-          %li Pay Brighthouse Internet bill
+          %li Did the laundry
           %li.edit
       %li.freebie 
         %ul
           %li.check
-          %li Renew Driver’s License
-          %li.edit
-      %li.freebie 
-        %ul
-          %li.check
-          %li Collect Andrew’s check and send rent to landlord
+          %li Killed the cat
           %li.edit
   .list.last
     %h2 gifts
@@ -48,28 +49,27 @@
       %li.gift 
         %ul
           %li.check
-          %li Buy Sunpass
+          %li Bought a new cat
           %li.edit
       %li.gift 
         %ul
           %li.check
-          %li Empty dishwasher
+          %li Paid for dinner
           %li.edit
       %li.gift 
         %ul
           %li.check
-          %li Pay last Full Sail tuition fees
+          %li Bought whales for everyone
           %li.edit
 #upcoming_filters
   %ul
     %li.left.active my assignments
     %li.right everyone's assignments
   %ul#filters
-    %li.left all
+    %li.left.active all
     %li#task_filter tasks
     %li.right#expense_filter expenses
 #upcoming.content
-  -# %p.info You have no upcoming tasks or expenses. Not the best way to earn awesome achievements, now is it?
   .list
     %h2 today
     %ul
@@ -131,10 +131,26 @@
           %li.edit
 .header_bar
   %h1 this month
-#calendar.content
-  - @user.calendar.map do |i|
+#calendar.content  
+  - today = Date.today.wday()
+  - number_of_days = today == 0 ? 34 : 34 - today
+  - if number_of_days != 34
+    - (0..today).map do |i|
+      - date = Date.today - today +i.days 
+      - unless date == Date.today
+        .day.past
+          %p.day_name= Date::ABBR_DAYNAMES[date.wday()]
+          %p= date.day
+          #todo
+            =link_to '0', '#', :class => "tasks"
+            =link_to '0', '#', :class => "expenses"
+  - (0..number_of_days).map do |i|
+    - date = Date.today + i.days
     .day
-      %p= i
+      %p.day_name= Date::ABBR_DAYNAMES[date.wday()]
+      %p= date.day
       #todo
         =link_to '99', '#', :class => "tasks"
         =link_to '2', '#', :class => "expenses"
+  #modal
+  #darknessification
