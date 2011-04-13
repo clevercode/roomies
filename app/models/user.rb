@@ -109,7 +109,7 @@ class User
   end
   
   protected
-    def password_required?
-     !persisted? || password.present? || password_confirmation.present?
-   end
+  def password_required?
+   !persisted? || password.present? || password_confirmation.present?
+  end
 end
