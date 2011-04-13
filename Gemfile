@@ -5,11 +5,10 @@ gem 'rails', '3.0.5'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
 gem 'haml'
 gem "compass", ">= 0.10.6"
 gem 'html5-boilerplate'
-gem 'formtastic'
+gem 'simple_form'
 gem 'devise', '>= 1.2.rc'
 gem 'omniauth'
 gem 'barista', '~> 1.0'
@@ -35,4 +34,5 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'barista_growl', :git => 'http://github.com/TrevorBurnham/barista_growl.git'
   gem 'ruby-debug19'
+  gem 'jasmine'
 end

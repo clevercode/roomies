@@ -1,0 +1,53 @@
+#modal
+  a
+    &:link, &:visited
+      :color $blue
+    &:hover, &:active
+      :color $green
+
+  :padding 0
+  :top 100px
+  :z-index 30
+  :display none
+  :position absolute
+  :background $dark-grey
+  :text-shadow none
+  :color white
+  :border 10px solid #fff
+  h1
+    :font-size 24px
+  h2
+    :font-size 20px
+  #avatar
+    :padding 10px 0 5px
+    p
+      :float left
+      :font-size 16px
+      :margin-right 10px
+      a
+        :float left
+        :display block
+      img
+        :border 10px solid #fff
+  .add_roomie_form
+    :display none
+    :margin-top 10px
+  form
+    :mrgin 0
+    fieldset.buttons
+      :float right
+      :clear both
+      li
+        :margin 10px 0 0
+    fieldset.inputs
+      :width 100%
+      :overflow hidden
+      li
+        :width 100%
+        input
+          :width 100%
+      textarea
+        :width 98%
+        :padding 4px
+        :border none
+        :color $dark-grey

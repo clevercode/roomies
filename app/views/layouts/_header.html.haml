@@ -11,10 +11,8 @@
       %li
         = link_to '+ add assignment', new_assignment_path, :id => 'easy_button'
   - else
-    = semantic_form_for(:user, :url => session_path(:user)) do |f|
-      = f.inputs do
-        = f.input :email, :label => false, :input_html => { :value => "email" }
-        = f.input :password, :label => false, :input_html => { :value => "password" }
-      = f.buttons do
-        = f.commit_button :label => 'sign in'
+    = simple_form_for :user, :url => session_path(:user) do |f|
+      = f.input :email, :label => false, :input_html => { :value => "email" }
+      = f.input :password, :label => false, :input_html => { :value => "password" }
+      = f.submit 'sign in'
 
