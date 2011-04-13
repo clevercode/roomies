@@ -13,7 +13,10 @@ Roomies::Application.routes.draw do
   match '/registrations' => 'registrations#email'
   match '/user/:id/homeless/:house_id' => 'houses#destroy_roomie', :as => :homeless
 
+  # normal visitors are directed to the home page
   root :to => 'home#index'
+
+  # ensures the root for logged in users is the corkboard
   namespace :user do
     root :to => 'corkboard#index'
   end
