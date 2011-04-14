@@ -8,19 +8,23 @@ Roomies::Application.routes.draw do
   resources :houses
   resources :corkboard
   resources :assignments
+  resources :pages
+  resources :support
+  resources :user_mailer
 
   match '/auth/:provider/callback' => 'authentications#create'
   match '/registrations' => 'registrations#email'
   match '/user/:id/homeless/:house_id' => 'houses#destroy_roomie', :as => :homeless
+  match '/support/index' => 'support#submit_request'
 
   # normal visitors are directed to the home page
   root :to => 'home#index'
 
   # ensures the root for logged in users is the corkboard
   namespace :user do
+    match '/' => 'corkboard#index'
     root :to => 'corkboard#index'
   end
-
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
