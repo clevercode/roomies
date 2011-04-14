@@ -38,9 +38,21 @@ form.simple_form
     +linear-gradient(color-stops(#a6ceff, #95b9e5))
     -moz-box-shadow: rgba(70,96,128,0.65) 0 2px 2px, saturate(#95b9e5,20%) -3px -7px 7px inset, saturate(#95b9e5,20%) 3px -7px 7px inset
     -webkit-box-shadow: rgba(70,96,128,0.65) 0 2px 2px, saturate(#95b9e5,20%) -3px -7px 7px inset, saturate(#95b9e5,20%) 3px -7px 7px inset
+    &:hover
+      +linear-gradient(color-stops(saturate(lighten(#a6ceff, 5%), 20%), #95b9e5))
+    &:active
+      +linear-gradient(color-stops(#95b9e5, #a6ceff))
+      -moz-box-shadow: rgba(70,96,128,0.65) 0 2px 2px, saturate(#95b9e5,30%) -5px 7px 7px inset, saturate(#95b9e5,30%) 5px 7px 7px inset
+      -webkit-box-shadow: rgba(70,96,128,0.65) 0 2px 2px, saturate(#95b9e5,30%) -5px 7px 7px inset, saturate(#95b9e5,30%) 5px 7px 7px inset
     &.green
       color: #fff
       +linear-gradient(color-stops(#d7ff8c, #a8d977))
       text-shadow: rgba(0,0,0,0.5) 2px 2px 5px, saturate(#90ce66,20%) 1px 1px 0
       -moz-box-shadow: rgba(93,76,42,0.85) 0 2px 2px, saturate(#90ce66,20%) -5px -10px 20px inset, saturate(#90ce66,20%) 5px -10px 20px inset
       -webkit-box-shadow: rgba(93,76,42,0.85) 0 2px 2px, saturate(#90ce66,20%) -5px -10px 20px inset, saturate(#90ce66,20%) 5px -10px 20px inset
+      &:hover
+        +linear-gradient(color-stops(saturate(lighten(#d7ff8c, 5%), 20%), #a8d977))
+      &:active
+        +linear-gradient(color-stops(#a8d977, #d7ff8c))
+        -moz-box-shadow: rgba(93,76,42,0.85) 0 2px 2px, saturate(#90ce66,20%) -5px 10px 20px inset, saturate(#90ce66,20%) 5px 10px 20px inset
+        -webkit-box-shadow: rgba(93,76,42,0.85) 0 2px 2px, saturate(#90ce66,20%) -5px 10px 20px inset, saturate(#90ce66,20%) 5px 10px 20px inset
