@@ -1,28 +1,33 @@
 body
   header
-    :margin 0
-    :padding 15px 30px
-    :overflow hidden
-    :background none
+    margin: 0
+    padding: 15px 30px
+    overflow: hidden
+    background: none
     h1
-      :float left
-      :font-size 2em
+      float: left
+      font-size: 2em
       a
-        :width 195px
-        :height 75px
-        :display block
-        :text-indent -9999px
-        :background url('../images/logo.png') no-repeat
+        width: 195px
+        height: 75px
+        display: block
+        text-indent: -9999px
+        background: url('../images/logo.png') no-repeat
     nav
-      :float right
-      form.formtastic
-        fieldset.inputs, fieldset.buttons
-          input[type=text], input[type=password]
+      float: right
+      form.simple_form
+        width: 440px
+        margin-top: 20px
+        .input
+          input
             width: 150px
             font-style: italic
             color: rgba(116,144,179,0.7)
-            &[type=submit]
-              width: auto
+        input[type=submit]
+          clear: none
+          margin-top: -2px
+      .form_hint
+        background: #000
       ul
         li.profile
           a

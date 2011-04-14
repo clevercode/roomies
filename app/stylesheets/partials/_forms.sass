@@ -1,21 +1,46 @@
-@mixin input
-  input
-    margin: 2px
-    font-size: 18px
-    padding: 5px 5px 0
-    color: $input-color
-    border: 1px solid #fff
-    outline: 1px solid #7490b3
-    background: -moz-linear-gradient(top, #d9eaff, #f2f8ff)
-    background: -webkit-gradient(linear, left top, left bottom, from(#d9eaff), to(#f2f8ff))
-    &[type=submit]
+form.simple_form
+  width: 315px
+  float: right
+  .input
+    float: left
+    label
+      width: 300px
+      display: block
+      margin: 0 0 5px
+    input, textarea
+      width: 300px
+      font-size: 18px
+      padding: 5px 5px 0
+      margin: 0 10px 10px 0
+      color: $input-color
+      border: 1px solid #fff
+      outline: 1px solid #7490b3
+      +linear-gradient(color-stops(#d9eaff, #f2f8ff))
+    .boolean  
+      float: right
+      width: auto
+      border: none
       outline: none
-      font-weight: bold
-      border-radius: 10px
-      padding: 2px 20px 4px
-      border: 1px solid saturate(#95b9e5,20%)
-      text-shadow: rgba(255,255,255,0.5) 1px 1px 0px
-      background: -moz-linear-gradient(top, #a6ceff, #95b9e5)
-      background: -webkit-gradient(linear, left top, left bottom, from(#a6ceff), to(#95b9e5))
-      -moz-box-shadow: rgba(70,96,128,0.65) 0 2px 2px, saturate(#95b9e5,20%) -3px -7px 7px inset, saturate(#95b9e5,20%) 3px -7px 7px inset
-      -webkit-box-shadow: rgba(70,96,128,0.65) 0 2px 2px, saturate(#95b9e5,20%) -3px -7px 7px inset, saturate(#95b9e5,20%) 3px -7px 7px inset
+      margin: 0 0 0 10px
+  .boolean
+    float: right
+  input[type=submit]
+    float: right
+    clear: both
+    outline: none
+    font-size: 16px
+    margin-top: 10px
+    padding: 5px 20px
+    font-weight: bold
+    +border-radius(10px)
+    border: 1px solid saturate(#95b9e5,20%)
+    text-shadow: rgba(255,255,255,0.5) 1px 1px 0px
+    +linear-gradient(color-stops(#a6ceff, #95b9e5))
+    -moz-box-shadow: rgba(70,96,128,0.65) 0 2px 2px, saturate(#95b9e5,20%) -3px -7px 7px inset, saturate(#95b9e5,20%) 3px -7px 7px inset
+    -webkit-box-shadow: rgba(70,96,128,0.65) 0 2px 2px, saturate(#95b9e5,20%) -3px -7px 7px inset, saturate(#95b9e5,20%) 3px -7px 7px inset
+    &.green
+      color: #fff
+      +linear-gradient(color-stops(#d7ff8c, #a8d977))
+      text-shadow: rgba(0,0,0,0.5) 2px 2px 5px, saturate(#90ce66,20%) 1px 1px 0
+      -moz-box-shadow: rgba(93,76,42,0.85) 0 2px 2px, saturate(#90ce66,20%) -5px -10px 20px inset, saturate(#90ce66,20%) 5px -10px 20px inset
+      -webkit-box-shadow: rgba(93,76,42,0.85) 0 2px 2px, saturate(#90ce66,20%) -5px -10px 20px inset, saturate(#90ce66,20%) 5px -10px 20px inset

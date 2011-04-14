@@ -20,12 +20,20 @@ $('input:password').nakedPassword({path: '/images/naked/'})
 $modal             = $('#modal')
 $easy_button       = $('#easy_button')
 $darknessification = $('#darknessification')
+$superdate         = $('.superdate')
 
 if $('body').hasClass('signed_in')
   modal_right = $('html').outerWidth() - ($easy_button.offset().left + $easy_button.outerWidth()) + 2
+  
+if window.innerHeight > $('body').height()
+  $('footer').css({position:'fixed', bottom:0, width:'940px'})
+  $('body').css({minHeight:window.innerHeight})
+  
+$('.home #signup form').bind 'submit', (event) ->
+  # alert 'hi'
+  # return false
 
-superdate = $('.superdate')
-superdate.live 'keyup', (event) ->
+$superdate.live 'keyup', (event) ->
   val = $(this).val()
   console.log('got a value')
   if val?
@@ -72,7 +80,7 @@ $('a.ajax').bind 'click', (event) ->
     $easy_button.text('close')
   return false
 
-$('#darknessification').live 'click', (event) ->
+$darknessification.live 'click', (event) ->
   $darknessification.hide()
   $modal.hide()
   $easy_button.text('+ add assignment')

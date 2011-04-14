@@ -38,10 +38,10 @@ small
 // Add the 'required' attribute on your
 // inputs if you want to use these
 input:valid, textarea:valid
+  +box-shadow($blue, 0, 0, 2px, 2px)
 
 input:invalid, textarea:invalid
-  +border-radius(1px)
-  +box-shadow(red, 0, 0, 5px, 0)
+  +box-shadow($red, 0, 0, 2px, 2px)
 
 .no-boxshadow input:invalid,
 .no-boxshadow textarea:invalid
@@ -58,6 +58,19 @@ body
   overflow: hidden
   font-family: "ff-meta-web-pro-1", "ff-meta-web-pro-2", sans-serif
   background: url('../images/clouds.png') top left repeat-x, url('../images/hills.png') bottom left repeat-x
+  &.registrations, &.sessions
+    #main
+      h2
+        text-align: right
+        margin-bottom: 10px
+        padding-bottom: 5px
+        border-bottom: 1px dashed $darkblue
+      form
+        margin-bottom: 20px
+      a
+        clear: both
+        float: right
+        line-height: 20px
   #clouds
     width: 100%
     z-index: -10
@@ -65,21 +78,8 @@ body
     height: 160px
     position: absolute
     background: url('../images/clouds.png') top left repeat-x
-  form
-    @include input
-  form.formtastic
-    :margin-top 20px
-    :overflow hidden
-    fieldset.inputs, fieldset.buttons
-      :padding 0
-      :float left
-      ol
-        li
-          :padding 0
-          :float left
-          :overflow hidden
-          :margin 0 10px 0 0
-          @include input
+
+@import forms
 @import header
 
 #container
@@ -185,6 +185,7 @@ body
 @import pages/home
 @import pages/profile
 @import pages/corkboard
+@import pages/support
 
 footer
   clear: both
