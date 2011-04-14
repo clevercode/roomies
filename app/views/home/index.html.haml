@@ -9,18 +9,16 @@
 #screencast
   <iframe src="http://player.vimeo.com/video/21793992?title=0&amp;byline=0&amp;portrait=0" width="460" height="340" frameborder="0"></iframe>
 #signup
-  = semantic_form_for(@user, :as => :user, :url => registration_path(:user)) do |f|
-    = f.inputs do
-      = f.input :email, :label => false, :input_html => { :value => "example@domain.com" }
-      = f.input :password, :label => false, :input_html => { :value => "new_roomie", :type => 'hidden' }
-    = f.buttons do
-      = f.commit_button :label => 'move in'
+  = simple_form_for :user do |f|
+    = f.input :email, :label => false, :input_html => { :value => "example@domain.com" }
+    = f.submit 'sign ip', :class => 'green'
   %p
     or sign in with
     =link_to 'twitter,', '/auth/twitter'
     =link_to 'facebook,', '/auth/facebook'
     or
     =link_to 'google', '/auth/google'
+  %p sign up + sign in = sign ip &uarr;
     
 .benefit
   %h2 relax
