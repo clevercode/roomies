@@ -11,12 +11,9 @@
         - else
           that's you!
       %li= link_to 'add a roomie!', 'add_roomie_url', :id => 'add_roomie'
-  %form.formtastic.add_roomie_form
-    %fieldset.inputs
-      %ol
-        %li
-          %input{:type => 'text', :value => 'enter roomie email address here'}
-    %fieldset.buttons
-      %ol
-        %li
-          %input{:type => 'submit', :value => 'Invite Roomie'}
+  = simple_form_for :roomie, :class => 'add_roomie_form' do |f|
+    = f.input :email, :label => false, :input_html => { :value => 'enter roomie email address here' }
+    = f.submit 'invite roomie'
+    %div.input
+      %input{:type => 'text', :value => 'enter roomie email address here'}
+    %input{:type => 'submit', :value => 'Invite Roomie'}

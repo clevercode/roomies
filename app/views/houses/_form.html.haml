@@ -4,7 +4,6 @@
     %ul
       - @house.errors.full_messages.each do |msg|
         %li= msg
-= semantic_form_for @house do |f|
-  = f.inputs do
-    = f.input :name
-  = f.buttons
+= simple_form_for @house do |f|
+  = f.input :name
+  = f.submit 'submit', :class => 'green'
