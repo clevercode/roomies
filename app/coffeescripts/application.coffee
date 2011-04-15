@@ -15,7 +15,7 @@ d = new Date()
 if d.getHours() < 6 || d.getHours() > 8
   $('html').addClass('nighttime')
 
-$('input:password').nakedPassword({path: '/images/naked/'})
+# $('input:password').nakedPassword({path: '/images/naked/'})
 
 $modal             = $('#modal')
 $easy_button       = $('#easy_button')
@@ -52,20 +52,6 @@ $superdate.live 'keyup', (event) ->
     $('#picker').datepicker( "setDate" , date )
   
 $('#picker').datepicker()
-
-value = ''
-
-$('input').live 'focus', (event) ->        
-  $this = $(this)
-  $value = $this.attr('value')
-  if $value == 'email' || $value == 'password' || $value == 'example@domain.com'
-    value = $this.attr('value')
-    $this.attr('value','').css({color:'#3a4859',fontStyle:'normal'})
-
-$('input').live 'blur', (event) ->
-  $this = $(this)
-  if $this.attr('value') == ''
-    $this.attr('value',value).css({color:'#7490b3',fontStyle:'italic'})
 
 $('a.ajax').bind 'click', (event) ->
   $.ajax url: $(this).attr('href'), success: (data) -> 

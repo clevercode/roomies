@@ -10,15 +10,15 @@
   <iframe src="http://player.vimeo.com/video/21793992?title=0&amp;byline=0&amp;portrait=0" width="460" height="340" frameborder="0"></iframe>
 #signup
   = simple_form_for(@user, :as => :user, :url => registration_path(:user)) do |f|
-    = f.input :email, :label => false, :input_html => { :value => "example@domain.com" }
-    = f.submit 'sign ip', :class => 'green'
+    = f.input :email, :label => false, :input_html => { :placeholder => "example@domain.com" }
+    = f.submit 'sign up', :class => 'green'
   %p
     or sign in with
     =link_to 'twitter,', '/auth/twitter'
     =link_to 'facebook,', '/auth/facebook'
     or
     =link_to 'google', '/auth/google'
-  %p sign up + sign in = sign ip &uarr;
+  %p free for 30 days, cheap after
     
 .benefit
   %h2 relax
@@ -31,3 +31,5 @@
 .benefit
   %h2 save
   %p Since you stay on top of bills and expenses and receive reminders in due time, it’s not just money you’ll be saving, but time worrying about important.
+#modal
+#darknessification
