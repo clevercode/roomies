@@ -11,9 +11,6 @@
         - else
           that's you!
       %li= link_to 'add a roomie!', 'add_roomie_url', :id => 'add_roomie'
-  = simple_form_for :roomie, :class => 'add_roomie_form' do |f|
+  = simple_form_for :add_roomie do |f|
     = f.input :email, :label => false, :input_html => { :value => 'enter roomie email address here' }
     = f.submit 'invite roomie'
-    %div.input
-      %input{:type => 'text', :value => 'enter roomie email address here'}
-    %input{:type => 'submit', :value => 'Invite Roomie'}

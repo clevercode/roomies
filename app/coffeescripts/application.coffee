@@ -28,10 +28,6 @@ if $('body').hasClass('signed_in')
 if window.innerHeight > $('body').height()
   $('footer').css({position:'fixed', bottom:0, width:'940px'})
   $('body').css({minHeight:window.innerHeight})
-  
-$('.home #signup form').bind 'submit', (event) ->
-  # alert 'hi'
-  # return false
 
 $superdate.live 'keyup', (event) ->
   val = $(this).val()
@@ -77,7 +73,7 @@ $('a.ajax').bind 'click', (event) ->
     $(data).find('#main').appendTo('#modal')
     $darknessification.show()
     $modal.css({right: modal_right}).show()
-    $easy_button.text('close')
+    $easy_button.text('x close')
   return false
 
 $darknessification.live 'click', (event) ->
