@@ -11,4 +11,7 @@ class Assignment
 
   belongs_to :house
   belongs_to :category
+
+  validates :purpose, :presence => true
+
 end
