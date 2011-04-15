@@ -12,7 +12,7 @@ body, select, input, textarea
   color: $font-color
   text-shadow: 1px 1px 0 #d9eaff
   // Set your base font here, to apply evenly
-  // font-family: Georgia, serif;
+  font-family: "ff-meta-web-pro-1", "ff-meta-web-pro-2", sans-serif
 
 //Headers (h1, h2, etc) have no default font-size or margin; define those yourself
 h1, h2, h3, h4, h5, h6
@@ -57,7 +57,6 @@ input:invalid, textarea:invalid
 
 body
   overflow: hidden
-  font-family: "ff-meta-web-pro-1", "ff-meta-web-pro-2", sans-serif
   background: url('../images/clouds.png') 200px 0px repeat-x, url('../images/hills.png') bottom left repeat-x
   &.registrations, &.sessions
     #main
@@ -120,7 +119,7 @@ body
     :display none
     :position fixed
     :background rgba(0,0,0,0.75)
-  .notice, .first_time
+  .notice, .first_time, .alert
     padding: 5px
     text-align: center
     border-radius: 5px
