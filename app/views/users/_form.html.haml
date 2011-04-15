@@ -1,7 +1,6 @@
-= semantic_form_for @user do |f|
-  = f.inputs do
-    = f.input :name
-    = f.input :email
-    = f.input :password
-  = f.buttons
+= simple_form_for @user do |f|
+  = f.input :name
+  = f.input :email
+  = f.input :password
+  = f.submit 'submit', :class => 'green'
 

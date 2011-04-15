@@ -38,10 +38,10 @@ small
 // Add the 'required' attribute on your
 // inputs if you want to use these
 input:valid, textarea:valid
-  +box-shadow($blue, 0, 0, 2px, 2px)
+  color: $font-color
 
 input:invalid, textarea:invalid
-  +box-shadow($red, 0, 0, 2px, 2px)
+  color: $red
 
 .no-boxshadow input:invalid,
 .no-boxshadow textarea:invalid
@@ -53,11 +53,12 @@ input:invalid, textarea:invalid
 
 ::selection
   background: #b04727
+  text-shadow: none
 
 body
   overflow: hidden
   font-family: "ff-meta-web-pro-1", "ff-meta-web-pro-2", sans-serif
-  background: url('../images/clouds.png') top left repeat-x, url('../images/hills.png') bottom left repeat-x
+  background: url('../images/clouds.png') 200px 0px repeat-x, url('../images/hills.png') bottom left repeat-x
   &.registrations, &.sessions
     #main
       h2
@@ -119,51 +120,9 @@ body
     :display none
     :position fixed
     :background rgba(0,0,0,0.75)
-  #modal
-    padding: 0
-    top: 100px
-    z-index: 30
-    display: none
-    position: absolute
-    border: 1px solid #a6ceff
-    -moz-box-shadow: rgba(0,0,0,0.3) 0 1px 1px, $blue 0 -5px 10px inset
-    -webkit-box-shadow: rgba(0,0,0,0.3) 0px 1px 2px, $blue 0 -2px 5px inset
-    background-image: -webkit-gradient(radial, 50% 0%, 500, 50% 0%, 0, from(#9ec6ff), to($lightblue))
-    background-image: -moz-radial-gradient(center 45deg, circle farthest-side, $lightblue 0%, #9ec6ff 100%)
-    h1
-      font-size: 24px
-    h2
-      font-size: 20px
-    #avatar
-      padding: 10px 0 5px
-      p
-        float: left
-        font-size: 16px
-        margin-right: 10px
-        a
-          float: left
-          display: block
-        img
-          border: 10px solid #fff
-    .add_roomie_form
-      :display none
-      :margin-top 10px
-    form
-      :margin 0
-      fieldset.buttons
-        :float right
-        :clear both
-        li
-          :margin 10px 0 0
-      fieldset.inputs
-        width: 450px
-        overflow: hidden
-        li
-          width: 450px
-          input
-            width: 435px
   .notice, .first_time
     padding: 5px
+    text-align: center
     border-radius: 5px
     border: 1px solid rgba(66,66,66,0.9)
     background: -moz-linear-gradient(top, rgba(90,90,90,0.9), rgba(66,66,66,0.9))
@@ -186,6 +145,7 @@ body
 @import pages/profile
 @import pages/corkboard
 @import pages/support
+@import modals
 
 footer
   clear: both
