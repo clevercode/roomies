@@ -1,14 +1,15 @@
 form.simple_form
-  width: 315px
+  width: 438px
   float: right
   .input
     float: left
+    padding: 0 0 0 2px
     label
-      width: 300px
+      width: 400px
       display: block
       margin: 0 0 5px
-    input, textarea
-      width: 300px
+    input, textarea  
+      width: 424px
       font-size: 18px
       padding: 5px 5px 0
       margin: 0 10px 10px 0
@@ -46,8 +47,9 @@ form.simple_form
       -webkit-box-shadow: rgba(70,96,128,0.65) 0 2px 2px, saturate(#95b9e5,30%) -5px 7px 7px inset, saturate(#95b9e5,30%) 5px 7px 7px inset
     &.green
       color: #fff
+      border: 1px solid saturate(#a8d977,20%)
       +linear-gradient(color-stops(#d7ff8c, #a8d977))
-      text-shadow: rgba(0,0,0,0.5) 2px 2px 5px, saturate(#90ce66,20%) 1px 1px 0
+      text-shadow: rgba(0,0,0,0.5) 2px 2px 5px, darken($green,10%) 1px 1px 0
       -moz-box-shadow: rgba(93,76,42,0.85) 0 2px 2px, saturate(#90ce66,20%) -5px -10px 20px inset, saturate(#90ce66,20%) 5px -10px 20px inset
       -webkit-box-shadow: rgba(93,76,42,0.85) 0 2px 2px, saturate(#90ce66,20%) -5px -10px 20px inset, saturate(#90ce66,20%) 5px -10px 20px inset
       &:hover
