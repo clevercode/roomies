@@ -6,13 +6,23 @@
     %th Due date
     %th Cost
     %th Assignee
-    %th
+    %th Frequency
+    %th Type
     %th
     %th
  
   - @assignments.each do |assignment|
     %tr
       %td= assignment.purpose
+      %td= assignment.due_date if %w{Tasc Expense Bill Chore}.include?(assignment._type)
+      %td= assignment.cost if %w{Bill Expense Gift Wish}.include?(assignment._type)
+      %td
+        - if %w{Tasc Expense Bill Chore}.include?(assignment._type)
+          %ul
+            - assignment.assignees.map do |a|
+              %li= a.name
+      %td= assignment.frequency if %w{Bill Chore}.include?(assignment._type)
+      %td= assignment._type
       %td= link_to 'Show', assignment
       %td= link_to 'Edit', edit_assignment_path(assignment)
       %td= link_to 'Destroy', assignment, :confirm => 'Are you sure?', :method => :delete
