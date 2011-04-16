@@ -1,35 +1,12 @@
-= simple_form_for @assignment do |f|
-  - if @assignment.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@assignment.errors.count, "error")} prohibited this expense from being saved:"
-      %ul
-        - @assignment.errors.full_messages.each do |msg|
-          %li= msg
- 
+= simple_form_for :assignment, :url => '/assignments' do |f|
   = f.input :purpose
-  
-  .input
-    = label_tag 'Assignees'
-    = text_field_tag 'assignees', nil, :placeholder => "Enter one of a roomie's name here..."
-  
-  .input
-    = label_tag 'Due date'
-    = text_field_tag 'due_date', nil, :placeholder => "Enter a due date in plain text..."
-  
-  .radio
-    = label_tag 'Repeating'
-    = radio_button_tag 'repeating', 'no', true
-    = radio_button_tag 'repeating', 'yes'
+  = f.input :assignees, :as => :check_boxes, :collection => @roomies.all, :required => false
+  = f.input :cost, :required => false
+  = f.input :due_date, :required => false, :input_html => { :class => 'superdate' }
+  #picker
+  = f.input :repeating, :as => :boolean, :required => false
+  = f.input :frequency, :required => false
+  = f.input :category, :required => false
 
-  .select
-    = label_tag 'Frequency'
-    = select_tag 'frequency', "<option>Weekly</option><option>Monthly</option>"
-  
-  = f.input :category, :collection => ['Kitchen','Garden','Internet','Cleaning']
-  %ul
-  - @roomies.all.map do |user|
-    %li
-      = user.name
-      %input{ :type => "checkbox", :value => "#{user }" }
   = f.submit 'create', :disable_with => "Please wait...", :class => 'green'
 
