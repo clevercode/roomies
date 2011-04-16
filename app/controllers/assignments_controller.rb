@@ -35,7 +35,7 @@ class AssignmentsController < ApplicationController
   # GET /assignments/new
   # GET /assignments/new.xml
   def new
-    @assignment = Assignment.new
+    # @assignment = Assignment.new
     @roomies = User.where(:house_id => current_user.house_id)
  
     respond_to do |format|
