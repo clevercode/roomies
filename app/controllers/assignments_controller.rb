@@ -3,11 +3,9 @@ class AssignmentsController < ApplicationController
   # user need to be signed in
   before_filter :authenticate_user!
 
-  # returning a list of all users for these actions only
-  before_filter :user_list #, :only => [:new, :create, :edit, :update]
+  # returning a list of all roomies for these actions only
+  before_filter :roomies_list #, :only => [:new, :create, :edit, :update]
    
-  # GET /assignments
-  # GET /assignments.xml
   def index
     if user_signed_in? && !current_user.house.blank?
       @house = current_user.house
@@ -21,8 +19,6 @@ class AssignmentsController < ApplicationController
     end
   end
  
-  # GET /assignments/1
-  # GET /assignments/1.xml
   def show
     @assignment = Assignment.find(params[:id])
  
@@ -32,11 +28,8 @@ class AssignmentsController < ApplicationController
     end
   end
  
-  # GET /assignments/new
-  # GET /assignments/new.xml
   def new
     # @assignment = Assignment.new
-    @roomies = User.where(:house_id => current_user.house_id)
  
     respond_to do |format|
       format.html # new.html.erb
@@ -44,13 +37,10 @@ class AssignmentsController < ApplicationController
     end
   end
  
-  # GET /assignments/1/edit
   def edit
     @assignment = Assignment.find(params[:id])
   end
  
-  # POST /assignments
-  # POST /assignments.xml
   def create
     @assignment = AssignmentFactory.new(params[:assignment])
  
@@ -65,8 +55,6 @@ class AssignmentsController < ApplicationController
     end
   end
  
-  # PUT /assignments/1
-  # PUT /assignments/1.xml
   def update
     @assignment = Assignment.find(params[:id])
  
@@ -81,8 +69,6 @@ class AssignmentsController < ApplicationController
     end
   end
  
-  # DELETE /assignments/1
-  # DELETE /assignments/1.xml
   def destroy
     @assignment = Assignment.find(params[:id])
     @assignment.destroy
@@ -94,12 +80,8 @@ class AssignmentsController < ApplicationController
   end
  
   private
-  # making the user list accessible not only to new and edit
-  # but also to create and update in case errors arise
-  # (if declared inside an action, the instance variable was
-  # not accessible to others and broke the user select).
-  def user_list 
-    @users = User.all
+  def roomies_list 
+    @roomies = User.where(:house_id => current_user.house_id)
   end
 end
 
