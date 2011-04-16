@@ -1,2 +1,14 @@
-%h1 Assignments#edit
-%p Find me in app/views/assignments/edit.html.haml
+%h1 Assignment
+= simple_form_for @assignment, :url => edit_assignment_path(@assignment) do |f|
+  = f.input :purpose
+  = f.input :assignees, :input_html => { :value => @assignment.assignees.map { |a| a.name.to_s } }, :required => false
+  = f.input :cost, :required => false
+  = f.input :due_date, :required => false, :input_html => { :class => 'superdate' }
+  #picker
+  = f.input :repeating, :as => :boolean, :required => false
+  = f.input :frequency, :required => false
+  = f.input :category, :required => false
+
+  = f.submit 'create', :disable_with => "Please wait...", :class => 'green'
+
+= link_to 'Back', assignments_path
