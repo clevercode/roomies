@@ -52,7 +52,7 @@ class AssignmentsController < ApplicationController
   # POST /assignments
   # POST /assignments.xml
   def create
-    @assignment = Assignment.new(params[:assignment])
+    @assignment = AssignmentFactory.new(params[:assignment])
  
     respond_to do |format|
       if @assignment.save
