@@ -1,7 +1,16 @@
 %h1 New assignment
- 
-= render 'form'
- 
+= simple_form_for :assignment, :url => '/assignments' do |f|
+  = f.input :purpose
+  = f.input :assignees, :collection => @roomies.all, :required => false
+  = f.input :cost, :required => false
+  = f.input :due_date, :required => false, :input_html => { :class => 'superdate' }
+  #picker
+  = f.input :repeating, :as => :boolean, :required => false
+  = f.input :frequency, :required => false
+  = f.input :category, :required => false
+
+  = f.submit 'create', :disable_with => "Please wait...", :class => 'green'
+
 = link_to 'Back', assignments_path
  
 
