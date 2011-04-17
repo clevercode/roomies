@@ -60,15 +60,51 @@
   .list.last
     %h2= (Date::DAYNAMES[Date.tomorrow.next_day.wday.to_i]).downcase
     %ul
- 
+
+.header_bar
+  %h1 these coming days
+#centric.content  
+  - # what weekday number is today? (Sun = 0, Mon = 1)?
+  - weekday_number = Date.today.wday()
+  - # how many days do we show after today
+  - days = 13
+  - # how many days are we showing after today?
+  - number_of_days = (weekday_number == 0) ? days : days - weekday_number
+  - # if the number of days after today are not
+  - # equal to the total number of days shown
+  - if number_of_days != days
+    - (0..weekday_number).map do |i|
+      - date = Date.today - weekday_number + i.days 
+      - unless date == Date.today
+        .day.past
+          %p.day_name= Date::ABBR_DAYNAMES[date.wday()]
+          %p= date.day
+          #todo
+            =link_to '0', '#', :class => "tasks"
+            =link_to '0', '#', :class => "expenses"
+  - (0..number_of_days).map do |i|
+    - date = Date.today + i.days
+    .day
+      %p.day_name= Date::ABBR_DAYNAMES[date.wday()]
+      %p= date.day
+      #todo
+        =link_to '99', '#', :class => "tasks"
+        =link_to '2', '#', :class => "expenses"
+
 .header_bar
   %h1 this month
 #calendar.content  
-  - today = Date.today.wday()
-  - number_of_days = today == 0 ? 34 : 34 - today
-  - if number_of_days != 34
-    - (0..today).map do |i|
-      - date = Date.today - today +i.days 
+  - # what weekday number is today? (Sun = 0, Mon = 1)?
+  - weekday_number = Date.today.wday()
+  - # how many days do we show
+  - days = 34
+  - # how many days are we showing after today?
+  - number_of_days = (weekday_number == 0) ? days : days - weekday_number
+  - # if the number of days after today are not
+  - # equal to the total number of days shown
+  - if number_of_days != days
+    - (0..weekday_number).map do |i|
+      - date = Date.today - weekday_number + i.days 
       - unless date == Date.today
         .day.past
           %p.day_name= Date::ABBR_DAYNAMES[date.wday()]
