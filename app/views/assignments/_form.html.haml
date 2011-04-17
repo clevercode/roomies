@@ -14,6 +14,9 @@
 
   = f.submit 'create', :disable_with => "Please wait...", :class => 'green'
 
+%p.array= @roomies.all.map {|r| r.name}
+%p.array= @roomies.all.map {|r| r.id.to_s}
+
 :javascript
   jQuery(function(){
     var names =  #{@roomies.all.map {|r| r.name}};
