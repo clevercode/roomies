@@ -21,10 +21,20 @@
       h1
         font-size: 24px
     &.content
-      :padding 30px 0
+      padding: 30px 0
+      &.others
+        div.list
+          width: 202px
+          ul
+            li
+              ul
+                li
+                  width: 130px
+          &.last
+            width: 204px
       p.info
-        :font-size 18px
-        :text-align center
+        font-size: 18px
+        text-align: center
       div.list
         padding: 0
         float: left
@@ -35,7 +45,7 @@
         h2
           color: #52471e
           font-size: 24px
-          padding: 0 10px
+          padding: 0 15px
           line-height: 43px
           border: 1px solid #ab6c00
           border-radius: 5px 5px 0 0
@@ -45,9 +55,8 @@
           -webkit-box-shadow: #fff2db 1px 1px 0 inset, #fff2db -1px -1px 0 inset
           background: -webkit-gradient(linear, left top, left bottom, from(#ffd88f), to(#f7a231))
         ul
-          :margin 0
+          margin: 0
           li
-            cursor: pointer
             font-size: 16px
             overflow: hidden
             padding: 5px 10px
@@ -68,6 +77,10 @@
                 padding: 0 25px 0 0
                 -moz-box-shadow: none
                 -webkit-box-shadow: none
+                a
+                  text-decoration: none
+                  &:hover
+                    text-decoration: underline
                 &[title=expense], &[title=bill], &[title=task], &[title=chore]
                   padding: 0
                   width: 13px
