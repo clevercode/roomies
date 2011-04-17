@@ -260,9 +260,16 @@
         background: -moz-linear-gradient(top, rgba(255,255,255,.75), rgba(255,255,255,.15))
         background: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,.75)), to(rgba(255,255,255,.15)))
 
+        // when hovering on the day, reveal additional data
+        &:hover .day_name
+          opacity: 1
+
+
         // past
         &.past
           opacity: 0.3
+          .day_name
+            opacity: 1
         &:nth-child(7n)
           width: 130px
         p
@@ -274,6 +281,7 @@
 
           // day name
           &.day_name
+            opacity: 0
             top: 5px
             left: 5px
             font-size: 12px
