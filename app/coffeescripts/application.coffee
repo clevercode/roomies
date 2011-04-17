@@ -105,3 +105,55 @@ $('.corkboard #upcoming li.expense,
         .animate({opacity:0}, (event) ->
           $(this).hide().prev().animate({paddingRight:'25px'})
         )
+
+
+# ============================================
+# ========== AUTOCOMPLETEY GOODNESS ==========
+# ============================================
+
+window.apply_autocomplete = (names, ids) ->
+  split = (val) ->
+    return val.split(/,\s*/)
+  extractLast = (term) ->
+    return split(term).pop()
+  
+  $('.autocomplete')
+    # // dont navigate away from the field on tab when selecting an item
+    .bind "keydown", (event) ->
+      if event.keyCode == $.ui.keyCode.TAB && $( this ).data( "autocomplete" ).menu.active
+        event.preventDefault()
+    .autocomplete({
+      source: ( request, response ) ->
+        # // delegate back to autocomplete, but extract the last term
+        response( $.ui.autocomplete.filter(names, extractLast( request.term )))
+      ,
+      search: () ->
+        # // custom minLength
+        term = extractLast(this.value)
+        if term.length < 1 
+          return false
+      ,
+      focus: () ->
+        # // prevent value inserted on focus
+        return false
+      ,
+      select: (event, ui) ->
+        terms = split(this.value)
+        input_ids   = split($(this).prev().attr('value'))
+        
+        # // remove the current input
+        terms.pop()
+        if input_ids.length < 2 && input_ids[0] == ''
+          input_ids.pop()
+        
+        # // add the selected item
+        terms.push(ui.item.value)
+        input_ids.push(ids[names.indexOf(ui.item.value)])
+        
+        # // add placeholder to get the comma-and-space at the end
+        terms.push('')
+        this.value = terms.join(', ')
+        $(this).prev().attr('value',input_ids)
+        
+        return false
+    })

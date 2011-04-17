@@ -42,6 +42,7 @@ class AssignmentsController < ApplicationController
   end
  
   def create
+    params[:assignment][:assignees] = Array.wrap(params[:assignment][:assignees].split(','))
     @assignment = AssignmentFactory.new(params[:assignment])
  
     respond_to do |format|

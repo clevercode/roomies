@@ -2,14 +2,10 @@
   div
     padding: 30px
     overflow: hidden
-    
-    // flash
     &#flash, &.first_time, &.notice
       padding: 5px
       .notice
         padding: 5px
-    
-    // headher_bar & upcoming
     &.header_bar, &#upcoming .list h2
       color: #52471e
       font-size: 24px
@@ -24,13 +20,21 @@
       background: -webkit-gradient(linear, left top, left bottom, from(#f7eb8b), to(#f7d340))
       h1
         font-size: 24px
-
-    // content
     &.content
-      :padding 30px 0
+      padding: 30px 0
+      &.others
+        div.list
+          width: 202px
+          ul
+            li
+              ul
+                li
+                  width: 130px
+          &.last
+            width: 204px
       p.info
-        :font-size 18px
-        :text-align center
+        font-size: 18px
+        text-align: center
       div.list
         padding: 0
         float: left
@@ -41,7 +45,7 @@
         h2
           color: #52471e
           font-size: 24px
-          padding: 0 10px
+          padding: 0 15px
           line-height: 43px
           border: 1px solid #ab6c00
           border-radius: 5px 5px 0 0
@@ -51,9 +55,8 @@
           -webkit-box-shadow: #fff2db 1px 1px 0 inset, #fff2db -1px -1px 0 inset
           background: -webkit-gradient(linear, left top, left bottom, from(#ffd88f), to(#f7a231))
         ul
-          :margin 0
+          margin: 0
           li
-            cursor: pointer
             font-size: 16px
             overflow: hidden
             padding: 5px 10px
@@ -74,8 +77,10 @@
                 padding: 0 25px 0 0
                 -moz-box-shadow: none
                 -webkit-box-shadow: none
-
-                // color-coded square
+                a
+                  text-decoration: none
+                  &:hover
+                    text-decoration: underline
                 &[title=expense], &[title=bill], &[title=task], &[title=chore]
                   padding: 0
                   width: 13px
@@ -99,8 +104,6 @@
                   width: 25px
                   height: 25px
                   background: url('../images/58.png') 7px 5px no-repeat
-    
-    // upcoming filters
     &#upcoming_filters
       padding: 0
       ul
@@ -120,11 +123,9 @@
           background: -webkit-gradient(linear, left top, left bottom, from(#b0b0b0), to(#7d7d7d))
           &.left
             border-left: 1px solid #7d7d7d
-            @include border-radius(5px 0 0 5px)
+            border-radius: 5px 0 0 5px
           &.right
-            @include border-radius(0 5px 5px 0)
-          
-          // task filter
+            border-radius: 0 5px 5px 0
           &#task_filter
             background: -moz-linear-gradient(top, #8dc2e3, #5b8eb0)
             background: -webkit-gradient(linear, left top, left bottom, from(#8dc2e3), to(#5b8eb0))
@@ -137,8 +138,6 @@
               -moz-box-shadow: #5b8eb0 -3px 0px 3px inset, #5b8eb0 3px 0px 3px inset
               -webkit-box-shadow: #5b8eb0 -3px 0px 3px inset, #5b8eb0 3px 0px 3px inset
               background: -webkit-gradient(linear, left top, left bottom, from(#5b8eb0), to(#8dc2e3))
-
-          // expense filter
           &#expense_filter
             background: -moz-linear-gradient(top, #c4e35f, #94b038)
             background: -webkit-gradient(linear, left top, left bottom, from(#c4e35f), to(#94b038))
@@ -162,93 +161,10 @@
             background: -webkit-gradient(linear, left top, left bottom, from(#7d7d7d), to(#b0b0b0))
         &#filters
           float: right
-    
-    // centric
-    &#centric
-      padding: 0
-      border: 1px solid #9eafc5
-      border-top: none // Helpful comment!
-
-      // day
-      .day
-        padding: 0
-        float: left
-        width: 64px
-        position: relative
-        margin: -1px 0 0 -1px
-        border-top: 1px solid #9eafc5
-        border-left: 1px solid #9eafc5
-        background: -moz-linear-gradient(top, rgba(255,255,255,.75), rgba(255,255,255,.15))
-        background: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,.75)), to(rgba(255,255,255,.15)))
-
-        // when hovering on the day, reveal additional data
-        &:hover .day_name
-          opacity: 1
-
-
-        // past
-        &.past
-          opacity: 0.3
-          .day_name
-            opacity: 1
-        &:nth-child(14n)
-          width: 65px
-        p
-          font-size: 28px
-          min-height: 55px
-          line-height: 55px
-          text-align: center
-          text-shadow: 1px 1px 0px #fff
-
-          // day name
-          &.day_name
-            opacity: 0
-            top: 5px
-            left: 5px
-            font-size: 11px
-            line-height: 12px
-            min-height: 12px
-            text-align: left
-            position: absolute
-            line-height: normal
-            text-transform: uppercase
-            
-        // todo
-        #todo
-          padding: 0
-          width: 48px
-          margin: 0 auto 1em
-          a
-            color: #111
-            float: left
-            padding: 0 2px
-            display: block
-            font-size: 11px
-            font-weight: 100
-            min-width: 18px
-            min-height: 18px
-            line-height: 18px
-            text-align: center
-            text-decoration: none
-            // text-shadow: rgba(0,0,0,.3) 0 -1px 0
-            text-shadow: none
-            +linear-gradient(color-stops($lightgreen, $green), top)
-            // +background-image(linear-gradient(#c4e35f, #ccc 30%, #bbb 70%, #94b038))
-            +box-shadow(transparentize(darken(saturate($green, 20%), 30%), 0) 0 0 2px inset)
-
-            // tasks
-            &.tasks
-              +linear-gradient(color-stops($lightblue, $blue), top)
-              +box-shadow(transparentize(darken(saturate($blue, 20%), 30%), 0) 0 0 2px 5px inset)
-
-
-    // calendar
     &#calendar
       padding: 0
       border: 1px solid #9eafc5
       border-top: none // Helpful comment!
-
-      // day
       .day
         padding: 0
         float: left
@@ -259,17 +175,8 @@
         border-left: 1px solid #9eafc5
         background: -moz-linear-gradient(top, rgba(255,255,255,.75), rgba(255,255,255,.15))
         background: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,.75)), to(rgba(255,255,255,.15)))
-
-        // when hovering on the day, reveal additional data
-        &:hover .day_name
-          opacity: 1
-
-
-        // past
         &.past
           opacity: 0.3
-          .day_name
-            opacity: 1
         &:nth-child(7n)
           width: 130px
         p
@@ -278,10 +185,7 @@
           line-height: 75px
           text-align: center
           text-shadow: 1px 1px 0px #fff
-
-          // day name
           &.day_name
-            opacity: 0
             top: 5px
             left: 5px
             font-size: 12px
@@ -290,8 +194,6 @@
             position: absolute
             line-height: normal
             text-transform: uppercase
-            
-        // todo
         #todo
           padding: 0
           width: 58px
@@ -311,8 +213,6 @@
             text-shadow: rgba(0,0,0,.3) -1px -1px 0
             background: -moz-linear-gradient(top, #c4e35f, #94b038)
             background: -webkit-gradient(linear, left top, left bottom, from(#c4e35f), to(#94b038))
-
-            // tasks
             &.tasks
               border: 1px solid #5b8eb0
               background: -moz-linear-gradient(top, #8dc2e3, #5b8eb0)
