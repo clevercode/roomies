@@ -51,7 +51,7 @@ $superdate.live 'keyup', (event) ->
 
     $('#picker').datepicker( "setDate" , date )
   
-$('#picker').datepicker()
+# $('#picker').datepicker()
 
 $('a.ajax').bind 'click', (event) ->
   $.ajax url: $(this).attr('href'), success: (data) -> 
