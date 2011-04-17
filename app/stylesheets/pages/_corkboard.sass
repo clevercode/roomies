@@ -162,6 +162,85 @@
             background: -webkit-gradient(linear, left top, left bottom, from(#7d7d7d), to(#b0b0b0))
         &#filters
           float: right
+    
+    // centric
+    &#centric
+      padding: 0
+      border: 1px solid #9eafc5
+      border-top: none // Helpful comment!
+
+      // day
+      .day
+        padding: 0
+        float: left
+        width: 64px
+        position: relative
+        margin: -1px 0 0 -1px
+        border-top: 1px solid #9eafc5
+        border-left: 1px solid #9eafc5
+        background: -moz-linear-gradient(top, rgba(255,255,255,.75), rgba(255,255,255,.15))
+        background: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,.75)), to(rgba(255,255,255,.15)))
+
+        // when hovering on the day, reveal additional data
+        &:hover .day_name
+          opacity: 1
+
+
+        // past
+        &.past
+          opacity: 0.3
+          .day_name
+            opacity: 1
+        &:nth-child(14n)
+          width: 65px
+        p
+          font-size: 28px
+          min-height: 55px
+          line-height: 55px
+          text-align: center
+          text-shadow: 1px 1px 0px #fff
+
+          // day name
+          &.day_name
+            opacity: 0
+            top: 5px
+            left: 5px
+            font-size: 11px
+            line-height: 12px
+            min-height: 12px
+            text-align: left
+            position: absolute
+            line-height: normal
+            text-transform: uppercase
+            
+        // todo
+        #todo
+          padding: 0
+          width: 48px
+          margin: 0 auto 1em
+          a
+            color: #111
+            float: left
+            padding: 0 2px
+            display: block
+            font-size: 11px
+            font-weight: 100
+            min-width: 18px
+            min-height: 18px
+            line-height: 18px
+            text-align: center
+            text-decoration: none
+            // text-shadow: rgba(0,0,0,.3) 0 -1px 0
+            text-shadow: none
+            +linear-gradient(color-stops($lightgreen, $green), top)
+            // +background-image(linear-gradient(#c4e35f, #ccc 30%, #bbb 70%, #94b038))
+            +box-shadow(transparentize(darken(saturate($green, 20%), 30%), 0) 0 0 2px inset)
+
+            // tasks
+            &.tasks
+              +linear-gradient(color-stops($lightblue, $blue), top)
+              +box-shadow(transparentize(darken(saturate($blue, 20%), 30%), 0) 0 0 2px 5px inset)
+
 
     // calendar
     &#calendar
