@@ -49,17 +49,16 @@ body
             display: block
             line-height: 50px
             text-align: center
-            color: $font-color
+            color: #fff
+            font-weight: 500
+            text-shadow: rgba(0,0,0,.5) 0 1px 0
             text-decoration: none
             padding: 0 10px 0 5px
-            border: 1px solid #fff
-            outline: 1px solid #7490b3
-            background: -moz-linear-gradient(top, #a6ceff, #95b9e5)
-            background: -webkit-gradient(linear, left top, left bottom, from(#a6ceff), to(#95b9e5))
+            +border-radius(5px)
+            +background-image(linear-gradient($lightblue, $blue))
             &:hover, &:focus
-              color: $font-color
-              border: 1px solid #fff
-              outline: 1px solid #7490b3
+              color: #fff
+              +background-image(linear-gradient($lightblue,darken(saturate($blue, 30%), 30%)))
               background: -moz-linear-gradient(top, #bfdcff, #95b9e5)
               background: -webkit-gradient(linear, left top, left bottom, from(#bfdcff), to(#95b9e5))
             &:active

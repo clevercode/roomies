@@ -12,7 +12,7 @@
 :javascript
   !window.jQuery && document.write(unescape('%3Cscript src="/javascripts/jquery.min.js"%3E%3C/script%3E'))
   
-= javascript_include_tag 'rails', 'plugins'
+= javascript_include_tag 'rails', 'plugins', 'jquery.noisy.min', 'naked_password-0.2.3.min', 'date'
 
 -# Fix any <img> or .png_bg bg-images. Also, please read goo.gl/mZiyb
 /[if lt IE 7 ]
@@ -24,7 +24,7 @@
 = yield :javascripts
 
 -# Including the coffeescript compiled to JS
-= javascript_include_tag :defaults, 'jquery.noisy.min', 'naked_password-0.2.3.min', 'date'
+= javascript_include_tag :defaults
 
 -# asynchronous google analytics: mathiasbynens.be/notes/async-analytics-snippet
 -# Looks for google_account_id first in ENV['GOOGLE_ACCOUNT_ID'] then in config/google.yml
