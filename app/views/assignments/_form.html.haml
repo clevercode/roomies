@@ -1,12 +1,74 @@
 = simple_form_for :assignment, :url => '/assignments' do |f|
   = f.input :purpose
-  = f.input :assignees, :as => :check_boxes, :collection => @roomies.all, :required => false
+  .input.string.optional
+    %label{ :class => 'string optional', :for => 'assignment_assignees'} Assignees 
+    %input{ :class => 'string optional autocomplete', :name => 'assignment[assignees]', :size => '50', :type => 'hidden' }
+    %input{ :class => 'string optional autocomplete', :id => 'assignment_assignees', :name => 'ignore_me', :size => '50', :type => 'text' }
+    %span#assignees
   = f.input :cost, :required => false
   = f.input :due_date, :required => false, :input_html => { :class => 'superdate' }
-  #picker
+  -# #picker
   = f.input :repeating, :as => :boolean, :required => false
   = f.input :frequency, :required => false
   = f.input :category, :required => false
 
   = f.submit 'create', :disable_with => "Please wait...", :class => 'green'
 
+:javascript
+  jQuery(function(){
+    var roomies    =  #{@roomies.all.map {|r| r.name}};
+    var roomie_ids =  #{@roomies.all.map {|r| r.id.to_s}};
+    
+    function split( val ) {
+      return val.split( /,\s*/ );
+    };
+    function extractLast( term ) {
+      return split( term ).pop();
+    };
+    
+    $('.autocomplete')
+      // don't navigate away from the field on tab when selecting an item
+      .bind( "keydown", function( event ) {
+        if ( event.keyCode === $.ui.keyCode.TAB &&
+        $( this ).data( "autocomplete" ).menu.active ) {
+          event.preventDefault();
+        }
+      })
+      .autocomplete({
+        source: function( request, response ) {
+          // delegate back to autocomplete, but extract the last term
+          response( $.ui.autocomplete.filter(
+            roomies, extractLast( request.term ) ) );
+        },
+        search: function() {
+          // custom minLength
+          var term = extractLast( this.value );
+          if ( term.length < 1 ) { return false; }
+        },
+        focus: function() {
+          // prevent value inserted on focus
+          return false;
+        },
+        select: function( event, ui ) {
+          var terms = split(this.value);
+          var ids   = split($(this).prev().attr('value'));
+          
+          // remove the current input
+          terms.pop();
+          if(ids.length < 2 && ids[0] == ''){
+            ids.pop()
+          }
+          
+          // add the selected item
+          terms.push(ui.item.value);
+          ids.push(roomie_ids[roomies.indexOf(ui.item.value)]);
+          
+          // add placeholder to get the comma-and-space at the end
+          terms.push('');
+          this.value = terms.join(', ');
+          $(this).prev().attr('value',ids);
+          
+          return false;
+        }
+      });
+  });
