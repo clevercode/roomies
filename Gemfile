@@ -6,7 +6,7 @@ gem 'rails', '3.0.5'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'haml'
-gem "compass", ">= 0.10.6"
+gem "compass", :git => 'https://github.com/chriseppstein/compass.git', :tag => "v0.11.beta.7"
 gem 'html5-boilerplate'
 gem 'simple_form'
 gem 'devise', '>= 1.2.rc'
