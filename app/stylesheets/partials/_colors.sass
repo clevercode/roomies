@@ -1,3 +1,25 @@
+// roomies color scheme 
+// DO NOT MODIFY FOR YOUR SPECIFIC USES !
+// THESE SHOULD BE CONSIDERED AS CONSTANTS
+// they should only be modified if they are 
+// never used as is anywhere in the site
+$blue = #95bae6
+$green = #a7c24e
+$yellow = #f8d85a
+$red = #ca6040
+
+// light variations
+$lightblue = desaturate(lighten($blue, 10%), 0%)
+$lightgreen = desaturate(lighten($green, 20%), 0%)
+$lightyellow = desaturate(lighten(yellow, 20%), 0%)
+
+$darkblue = darken($blue, 20%)
+
+// background gradient
+$sunblue = desaturate(lighten($blue, 20%),20%)
+$skyblue = saturate(lighten($blue, 7%),20%)
+
+
 // default font color
 $font-color: #3a4859
 $dark-grey: #404040
@@ -16,14 +38,10 @@ $selected-font-color: white
 $selected-background-color: #ff5e99
 
 // bg-color for selected text
+::selection
+  background: transparentize($green, .5)
+  text-shadow: none
 
 // input text color
 $input-color: #3a4859
 
-// roomies color scheme
-$blue = #a5cdff
-$lightblue = desaturate(lighten($blue, 20%), 20%)
-$darkblue = #7490b3
-$green = #a7c24e
-$yellow = #f8d85a
-$red = #ca6040
