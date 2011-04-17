@@ -60,6 +60,11 @@ $('a.ajax').bind 'click', (event) ->
     $darknessification.show()
     $modal.css({right: modal_right}).show()
     $easy_button.text('x close')
+    roomies    = $(data).find('#main p:eq(0)').text()
+    roomie_ids = $(data).find('#main p:eq(1)').text()
+    apply_autocomplete(roomies,roomie_ids)
+    console.log roomies
+    console.log roomie_ids
   return false
 
 $darknessification.live 'click', (event) ->
@@ -111,12 +116,16 @@ $('.corkboard #upcoming li.expense,
 # ========== AUTOCOMPLETEY GOODNESS ==========
 # ============================================
 
-window.apply_autocomplete = (names, ids) ->
+window.apply_autocomplete = (roomies, roomie_ids) ->
   split = (val) ->
     return val.split(/,\s*/)
-  extractLast = (term) ->
-    return split(term).pop()
-  
+  extractLast = (value) ->
+    return split(value).pop()
+  make_array = (value) ->
+    return value.replace('["','').replace('"]','').replace('", "',',')
+    
+  roomies_array    = roomies
+  roomie_ids_array = roomie_ids
   $('.autocomplete')
     # // dont navigate away from the field on tab when selecting an item
     .bind "keydown", (event) ->
@@ -125,7 +134,10 @@ window.apply_autocomplete = (names, ids) ->
     .autocomplete({
       source: ( request, response ) ->
         # // delegate back to autocomplete, but extract the last term
-        response( $.ui.autocomplete.filter(names, extractLast( request.term )))
+        if typeof(roomies) == 'string'
+          roomies_array = split(make_array(roomies))
+          roomie_ids_array = split(make_array(roomie_ids))
+        response( $.ui.autocomplete.filter(roomies_array,extractLast(request.term)) )
       ,
       search: () ->
         # // custom minLength
@@ -139,21 +151,21 @@ window.apply_autocomplete = (names, ids) ->
       ,
       select: (event, ui) ->
         terms = split(this.value)
-        input_ids   = split($(this).prev().attr('value'))
+        ids   = split($(this).prev().attr('value'))
         
         # // remove the current input
         terms.pop()
-        if input_ids.length < 2 && input_ids[0] == ''
-          input_ids.pop()
+        if ids.length < 2 && ids[0] == ''
+          ids.pop()
         
         # // add the selected item
         terms.push(ui.item.value)
-        input_ids.push(ids[names.indexOf(ui.item.value)])
+        ids.push(roomie_ids_array[roomies_array.indexOf(ui.item.value)])
         
         # // add placeholder to get the comma-and-space at the end
         terms.push('')
         this.value = terms.join(', ')
-        $(this).prev().attr('value',input_ids)
+        $(this).prev().attr('value',ids)
         
         return false
     })
