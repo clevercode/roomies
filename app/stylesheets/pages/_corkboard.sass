@@ -10,12 +10,12 @@
         padding: 5px
 
     // header bar
-    &.header_bar, &#upcoming .list h2
+    &.header_bar, &#upcoming .list h2, &.content.others .list h2
       color: #52471e
       font-size: 24px
       line-height: 1.8
-      font-weight: 900
-      padding: 0 20px 1%
+      font-weight: 500
+      padding: 0 20px
       border: 1px solid #ab8900
       +border-top-radius(5px)
       +text-shadow(rgba(255,255,255,.8) 0 1px 0)
@@ -24,12 +24,17 @@
       h1
         font-size: 24px
 
+      
+
     // content
     &.content
       padding: 30px 0
       &.others
         div.list
           width: 202px
+          h2
+            +background-image(linear-gradient(#ffd88f, #f7a231))
+            +box-shadow(#fff2db 1px 1px 0 inset, #fff2db -1px -1px 0 inset)
           ul
             li
               ul
@@ -47,16 +52,7 @@
         margin-right: 30px
         &.last
           margin: 0
-        h2
-          color: #52471e
-          font-size: 24px
-          padding: 0 15px
-          line-height: 43px
-          border: 1px solid #ab6c00
-          +border-top-radius(5px)
-          text-shadow: #fffdc2 1px 1px 0
-          +background-image(linear-gradient(#ffd88f, #f7a231))
-          +box-shadow(#fff2db 1px 1px 0 inset, #fff2db -1px -1px 0 inset)
+
         ul
           margin: 0
           li
@@ -119,10 +115,11 @@
           float: left
           color: #fff
           font-size: 1.3em
+          font-weight: 500
           line-height: 1.6
           +text-shadow(rgba(0,0,0,.5) 0 -1px 0)
           cursor: pointer
-          padding: 0 20px 1%
+          padding: 0 20px
           +border-radius(inherit)
           border: 1px solid #7d7d7d
           border-right: 1px solid rgba(0,0,0,0.3)
@@ -170,6 +167,7 @@
     // centric
     &#centric
       padding: 0
+      margin: 0 0 2em
       border: 1px solid #9eafc5
       border-top: none // Helpful comment!
 
@@ -196,25 +194,28 @@
             opacity: 1
         &:nth-child(14n)
           width: 65px
-        p
+
+        // day number
+        p.day_number
           font-size: 28px
-          min-height: 55px
-          line-height: 55px
+          min-height: 45px
+          line-height: 45px
           text-align: center
           text-shadow: 1px 1px 0px #fff
+          margin-top: .35em
 
-          // day name
-          &.day_name
-            opacity: 0
-            top: 5px
-            left: 5px
-            font-size: 11px
-            line-height: 12px
-            min-height: 12px
-            text-align: left
-            position: absolute
-            line-height: normal
-            text-transform: uppercase
+        // day name
+        p.day_name
+          opacity: 0
+          top: 5px
+          left: 5px
+          font-size: 11px
+          line-height: 12px
+          min-height: 12px
+          text-align: left
+          position: absolute
+          line-height: normal
+          text-transform: uppercase
 
         // todo
         #todo
@@ -228,8 +229,8 @@
             display: block
             font-size: 11px
             min-width: 18px
-            min-height: 20px
-            line-height: 20px
+            height: 20px
+            line-height: 22px
             text-align: center
             text-decoration: none
             text-shadow: none
@@ -255,8 +256,17 @@
         border-top: 1px solid #9eafc5
         border-left: 1px solid #9eafc5
         +background-image(linear-gradient(rgba(255,255,255,.75), rgba(255,255,255,.15)))
+        
+        // when hovering on the day, reveal additional data
+        &:hover .day_name
+          opacity: 1
+                
+        // past
         &.past
           opacity: 0.3
+          .day_name
+            opacity: 1
+                
         &:nth-child(7n)
           width: 130px
         p
@@ -266,6 +276,7 @@
           text-align: center
           text-shadow: 1px 1px 0px #fff
           &.day_name
+            opacity: 0
             top: 5px
             left: 5px
             font-size: 12px
