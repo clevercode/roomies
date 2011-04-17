@@ -24,6 +24,15 @@
             %li.check
               %li= link_to freebie.purpose, assignment_url(freebie)
             %li.edit
+  .list
+    %h2 wishes
+    %ul
+      - @wishes.each do |wish|
+        %li.gift 
+          %ul
+            %li.check
+            %li= link_to wish.purpose, assignment_url(wish)
+            %li.edit
   .list.last
     %h2 gifts
     %ul
@@ -53,7 +62,7 @@
             %li{ :title => thing._type.downcase }
             %li= link_to thing.purpose, assignment_url(thing)
             %li.edit
-    .list
+  .list
     %h2 tomorrow
     %ul
  
