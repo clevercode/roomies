@@ -5,7 +5,8 @@ gem 'rails', '3.0.5'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'haml'
+gem "sass", "3.1.0.alpha.249"
+gem "haml", "~> 3.1.0.alpha"
 gem "compass", :git => 'https://github.com/chriseppstein/compass.git', :tag => "v0.11.beta.7"
 gem 'html5-boilerplate'
 gem 'simple_form'
