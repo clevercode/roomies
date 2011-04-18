@@ -9,39 +9,51 @@
   .list
     %h2 bounties
     %ul
-      - @bounties.each  do |bounty|
-        %li.bounty 
-          %ul
-            %li.check
-            %li= link_to bounty.purpose, assignment_url(bounty)
-            %li.edit
+      - unless @bounties.count == 0
+        - @bounties.each  do |bounty|
+          %li.bounty 
+            %ul
+              %li.check
+              %li= link_to bounty.purpose, assignment_url(bounty)
+              %li.edit
+      - else
+        %li you have no new bounties
   .list
     %h2 freebies
     %ul
-      - @freebies.each do |freebie|
-        %li.freebie 
-          %ul
-            %li.check
-              %li= link_to freebie.purpose, assignment_url(freebie)
-            %li.edit
+      - unless @freebies.count == 0
+        - @freebies.each do |freebie|
+          %li.freebie 
+            %ul
+              %li.check
+                %li= link_to freebie.purpose, assignment_url(freebie)
+              %li.edit
+      - else
+        %li you have no new freebies
   .list
     %h2 wishes
     %ul
-      - @wishes.each do |wish|
-        %li.gift 
-          %ul
-            %li.check
-            %li= link_to wish.purpose, assignment_url(wish)
-            %li.edit
+      - unless @wishes.count == 0
+        - @wishes.each do |wish|
+          %li.gift 
+            %ul
+              %li.check
+              %li= link_to wish.purpose, assignment_url(wish)
+              %li.edit
+      - else
+        %li you have no new wishes
   .list.last
     %h2 gifts
     %ul
-      - @gifts.each do |gift|
-        %li.gift 
-          %ul
-            %li.check
-            %li= link_to gift.purpose, assignment_url(gift)
-            %li.edit
+      - unless @gifts.count == 0
+        - @gifts.each do |gift|
+          %li.gift 
+            %ul
+              %li.check
+              %li= link_to gift.purpose, assignment_url(gift)
+              %li.edit
+      - else
+        %li you have no new gifts
 
 #upcoming_filters
   %ul#assignee_filters
