@@ -110,6 +110,12 @@ $('.corkboard #upcoming li.expense,
         .animate({opacity:0}, (event) ->
           $(this).hide().prev().animate({paddingRight:'25px'})
         )
+        
+if $('#flash').height() > '5'
+  setTimeout ->
+    $('#flash').fadeOut()
+  , 3000
+  
 
 
 # ============================================
