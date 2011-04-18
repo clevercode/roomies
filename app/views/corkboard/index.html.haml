@@ -88,21 +88,7 @@
   - # what weekday number is today? (Sun = 0, Mon = 1)?
   - weekday_number = Date.today.wday()
   - # how many days do we show after today
-  - days = 13
-  - # how many days are we showing after today?
-  - number_of_days = if weekday_number == 0 then days else days - weekday_number end
-  - # if the number of days after today are not
-  - # equal to the total number of days shown
-  - if number_of_days != days
-    - (0..weekday_number).map do |i|
-      - date = Date.today - weekday_number + i.days 
-      - unless date == Date.today
-        .day.past
-          %p.day_name= Date::ABBR_DAYNAMES[date.wday()]
-          %p.day_number= date.day
-          #todo
-            =link_to '0', '#', :class => "tasks"
-            =link_to '0', '#', :class => "expenses"
+  - number_of_days = 13
   - (0..number_of_days).map do |i|
     - date = Date.today + i.days
     .day
