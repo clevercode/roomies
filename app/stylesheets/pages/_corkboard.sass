@@ -254,6 +254,9 @@
         border-top: 1px solid #9eafc5
         border-left: 1px solid #9eafc5
         +background-image(linear-gradient(rgba(255,255,255,.75), rgba(255,255,255,.15)))
+        &.current_day
+          +background-image(linear-gradient(rgba(0,0,50,.15), rgba(0,0,0,0)))
+          +box-shadow(transparentize(darken($blue, 40%), 0.5) 1px 5px 15px 1px inset, transparentize(darken($blue, 40%), 0.5) -1px 5px 15px 1px inset)
         
         // when hovering on the day, reveal additional data
         &:hover .day_name
@@ -288,7 +291,7 @@
           width: 58px
           margin: 0px auto 20px
           a
-            color: #fff
+            color: #111
             float: left
             padding: 0 2px
             display: block
@@ -299,7 +302,7 @@
             text-align: center
             text-decoration: none
             border: 1px solid #94b038
-            text-shadow: rgba(0,0,0,.3) -1px -1px 0
+            text-shadow: rgba(255,255,255,.3) 1px 1px 0
             +background-image(linear-gradient(#c4e35f, #94b038))
             &.tasks
               border: 1px solid #5b8eb0
