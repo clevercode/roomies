@@ -63,8 +63,8 @@ describe User do
       user.should_not be_valid
     end
     
-    it "should not accept passwords longer than 20 characters" do
-      pass = 'z' * 21
+    it "should not accept passwords longer than 32 characters" do
+      pass = 'z' * 33
       user = User.new(@attr.merge(:password => pass))
       user.should_not be_valid
     end
