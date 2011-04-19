@@ -59,7 +59,6 @@ $('a.ajax').bind 'click', (event) ->
     $(data).find('#main').appendTo('#modal')
     $darknessification.show()
     $modal.css({right: modal_right}).show()
-    $easy_button.text('x close')
     roomies    = $(data).find('#main p:eq(0)').text()
     roomie_ids = $(data).find('#main p:eq(1)').text()
     apply_autocomplete(roomies,roomie_ids)
@@ -70,7 +69,6 @@ $('a.ajax').bind 'click', (event) ->
 $darknessification.live 'click', (event) ->
   $darknessification.hide()
   $modal.hide()
-  $easy_button.text('+ add assignment')
   return false
 
 $('#add_roomie').live 'click', (event) ->
