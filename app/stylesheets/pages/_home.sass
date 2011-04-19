@@ -43,7 +43,7 @@
       .input
         input
           width: 580px
-          font-size: 44px
+          font-size: 42px
           margin-bottom: 10px
           padding: 10px 10px 0
       input[type=submit]
@@ -51,21 +51,27 @@
         clear: none
         width: 230px
         outline: none
-        font-size: 46px
+        font-size: 44px
         font-style: normal
         +border-radius(15px)
         padding: 2px 30px 4px
         margin: -2px 0 10px 10px
+      #password_junk  
+        float: left
+        width: 580px
+        display: none
     p
       width: 230px
       float: right
       font-size: 14px
       text-align: center
-    p:nth-child(2)
+    p.other_auths, p.generate
       float: left
       width: 610px
       font-size: 16px
       text-align: left
+    p.generate
+      display: none
   .benefit
     float: left
     width: 265px
