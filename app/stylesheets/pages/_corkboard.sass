@@ -110,7 +110,7 @@
                   height: 25px
                   background: url('../images/58.png') 7px 5px no-repeat
     &#upcoming_filters
-      width: 100%
+      width: 900px
       padding: 0
       ul
         margin: 0
@@ -168,8 +168,13 @@
         &#filters
           float: right
 
+    // upcoming
+    #upcoming
+      +column(12)
+
     // centric
     &#centric
+      +column(12)
       padding: 0
       margin: 0 0 2em
       border: 1px solid #9eafc5
@@ -179,7 +184,7 @@
       .day
         padding: 0
         float: left
-        width: 64px
+        width: 63px
         position: relative
         margin: -1px 0 0 -1px
         border-top: 1px solid #9eafc5
@@ -197,7 +202,7 @@
           .day_name
             opacity: 1
         &:nth-child(14n)
-          width: 65px
+          width: 66px
 
         // day number
         p.day_number
@@ -247,6 +252,7 @@
               +box-shadow(transparentize(darken(saturate($blue, 20%), 20%), 0.5) 0 0 1px 1px inset)
 
     // calendar
+<<<<<<< Updated upstream
 
     // upcoming
     #upcoming
@@ -255,6 +261,12 @@
     // centric
     &#centric
       +column(12)
+||||||| merged common ancestors
+    &#calendar
+=======
+    &#calendar
+      +column(12)
+>>>>>>> Stashed changes
       padding: 0
       margin: 0 0 2em
       border: 1px solid #9eafc5
@@ -264,7 +276,13 @@
       .day
         padding: 0
         float: left
+<<<<<<< Updated upstream
         width: 63px
+||||||| merged common ancestors
+        width: 128px
+=======
+        width: 126px
+>>>>>>> Stashed changes
         position: relative
         margin: -1px 0 0 -1px
         border-top: 1px solid #9eafc5
