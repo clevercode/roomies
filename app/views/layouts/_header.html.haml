@@ -11,8 +11,9 @@
       %li
         = link_to '+ add assignment', new_assignment_path, :id => 'easy_button', :class => 'ajax'
   - else
-    = simple_form_for :user, :url => session_path(:user) do |f|
-      = f.input :email, :label => false, :input_html => { :placeholder => "email" }
-      = f.input :password, :label => false, :input_html => { :placeholder => "password" }
-      = f.submit 'sign in'
+    - if controller_name != 'sessions'
+      = simple_form_for :user, :url => session_path(:user) do |f|
+        = f.input :email, :label => false, :input_html => { :placeholder => "email" }
+        = f.input :password, :label => false, :input_html => { :placeholder => "password" }
+        = f.submit 'sign in'
 
