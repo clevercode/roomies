@@ -5,55 +5,43 @@
     %p 
       Hi there! If you'd like to change your password or possibly tell us your name, go ahead and click here &rarr; 
       = link_to 'edit profile.', edit_user_path(@user), :class => 'ajax' if current_user
-.content.others
+#specials.content
   .list
     %h2 bounties
     %ul
-      - unless @bounties.count == 0
-        - @bounties.each  do |bounty|
-          %li.bounty 
-            %ul
-              %li.check
-              %li= link_to bounty.purpose, assignment_url(bounty)
-              %li.edit
-      - else
-        %li you have no new bounties
+      - @bounties.each  do |bounty|
+        %li.bounty 
+          %ul
+            %li.check
+            %li.purpose= link_to bounty.purpose, assignment_url(bounty)
+            %li.edit
   .list
     %h2 freebies
     %ul
-      - unless @freebies.count == 0
-        - @freebies.each do |freebie|
-          %li.freebie 
-            %ul
-              %li.check
-                %li= link_to freebie.purpose, assignment_url(freebie)
-              %li.edit
-      - else
-        %li you have no new freebies
+      - @freebies.each do |freebie|
+        %li.freebie 
+          %ul
+            %li.check
+              %li.purpose= link_to freebie.purpose, assignment_url(freebie)
+            %li.edit
   .list
     %h2 wishes
     %ul
-      - unless @wishes.count == 0
-        - @wishes.each do |wish|
-          %li.gift 
-            %ul
-              %li.check
-              %li= link_to wish.purpose, assignment_url(wish)
-              %li.edit
-      - else
-        %li you have no new wishes
+      - @wishes.each do |wish|
+        %li.gift 
+          %ul
+            %li.check
+            %li.purpose= link_to wish.purpose, assignment_url(wish)
+            %li.edit
   .list.last
     %h2 gifts
     %ul
-      - unless @gifts.count == 0
-        - @gifts.each do |gift|
-          %li.gift 
-            %ul
-              %li.check
-              %li= link_to gift.purpose, assignment_url(gift)
-              %li.edit
-      - else
-        %li you have no new gifts
+      - @gifts.each do |gift|
+        %li.gift 
+          %ul
+            %li.check
+            %li.purpose= link_to gift.purpose, assignment_url(gift)
+            %li.edit
 
 #upcoming_filters
   %ul#assignee_filters
@@ -77,12 +65,10 @@
   .list
     %h2 tomorrow
     %ul
-      %li you have nothing due tomorrow
  
   .list.last
     %h2= (Date::DAYNAMES[Date.tomorrow.next_day.wday.to_i]).downcase
     %ul
-      %li you have nothing due  #{(Date::DAYNAMES[Date.tomorrow.next_day.wday.to_i]).downcase}
 
 .header_bar
   %h1 these coming days
@@ -93,13 +79,13 @@
   - number_of_days = 13
   - (0..number_of_days).map do |i|
     - date = Date.today + i.days
-    .day
+    - current_day = (date == Date.today) ? 'current_day' : nil
+    .day{:class => current_day}
       %p.day_name= Date::ABBR_DAYNAMES[date.wday()]
       %p.day_number= date.day
-
       #todo
-        =link_to '99', '#', :class => "tasks"
-        =link_to '2', '#', :class => "expenses"
+        =link_to '1', '#', :class => "tasks"
+        =link_to '2', '#', :class => "expenses tooltip", :title => "Yaaaaaaoooo"
 
 .header_bar
   %h1 this month
@@ -118,18 +104,18 @@
       - unless date == Date.today
         .day.past
           %p.day_name= Date::ABBR_DAYNAMES[date.wday()]
-          %p= date.day
+          %p.day_number= date.day
           #todo
             =link_to '0', '#', :class => "tasks"
             =link_to '0', '#', :class => "expenses"
   - (0..number_of_days).map do |i|
     - date = Date.today + i.days
-    - current_day = (date == Date.today) ? 'current_day' : ''
+    - current_day = (date == Date.today) ? 'current_day' : nil
     .day{:class => current_day}
       %p.day_name= Date::ABBR_DAYNAMES[date.wday()]
-      %p= date.day
+      %p.day_number= date.day
       #todo
-        =link_to '99', '#', :class => "tasks"
+        =link_to '1', '#', :class => "tasks"
         =link_to '2', '#', :class => "expenses"
 #modal
 #darknessification

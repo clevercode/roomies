@@ -15,9 +15,24 @@
 +html5-boilerplate-styles
 +html5-boilerplate-helpers
 
+// RESET OVERRIDES
+// Because I've never seen a unordered list 
+// with a margin I like
+ul
+  margin-left: 0
+
 // Or, you can import the "overrides" partial if
 // you want more control over individual mixins
 //@import "partials/overrides";
+
+// Importing blueprint grid framework
+@import blueprint
+$blueprint_grid_columns : 12
+$blueprint_grid_width : 60px
+$blueprint-grid-margin : 20px
+$blueprint-container-size : 960px
+// #main
+  +showgrid()
 
 // Finally, put your own styles in these partials
 // and add more as needed (i.e. forms, tables, nav)

@@ -85,7 +85,8 @@ body
 
 #main
   overflow: hidden
-  padding: 60px 30px 20px
+  // padding: 60px 30px 20px
+  padding: 60px 0 20px
   ul
     list-style: none
   form.formtastic
@@ -151,14 +152,19 @@ footer
   padding: 10px
   overflow: hidden
   margin-top: 100px
+  +column(12)
   p
     float: left
     color: #f9ffe5
-    font-weight: bold
+    font-size: 1.2em
+    font-weight: 500
     text-shadow: 0 0 5px #91a843
     &#links
       float: right
       a
         color: #f9ffe5
-        font-weight: bold
+        text-decoration: none
+        font-weight: 500
         text-shadow: 0 0 5px #91a843
+        &:hover, &:focus
+          text-decoration: underline
