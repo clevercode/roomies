@@ -5,7 +5,7 @@
     %p 
       Hi there! If you'd like to change your password or possibly tell us your name, go ahead and click here &rarr; 
       = link_to 'edit profile.', edit_user_path(@user), :class => 'ajax' if current_user
-.content.others
+#specials.content
   .list
     %h2 bounties
     %ul
@@ -13,7 +13,7 @@
         %li.bounty 
           %ul
             %li.check
-            %li= link_to bounty.purpose, assignment_url(bounty)
+            %li.purpose= link_to bounty.purpose, assignment_url(bounty)
             %li.edit
   .list
     %h2 freebies
@@ -22,7 +22,7 @@
         %li.freebie 
           %ul
             %li.check
-              %li= link_to freebie.purpose, assignment_url(freebie)
+              %li.purpose= link_to freebie.purpose, assignment_url(freebie)
             %li.edit
   .list
     %h2 wishes
@@ -31,7 +31,7 @@
         %li.gift 
           %ul
             %li.check
-            %li= link_to wish.purpose, assignment_url(wish)
+            %li.purpose= link_to wish.purpose, assignment_url(wish)
             %li.edit
   .list.last
     %h2 gifts
@@ -40,14 +40,14 @@
         %li.gift 
           %ul
             %li.check
-            %li= link_to gift.purpose, assignment_url(gift)
+            %li.purpose= link_to gift.purpose, assignment_url(gift)
             %li.edit
 
 #upcoming_filters
-  %ul
+  %ul#assignee_filters
     %li.left.active my assignments
     %li.right everyone's assignments
-  %ul#filters
+  %ul#assignment_filters
     %li.left.active all
     %li#task_filter tasks
     %li.right#expense_filter expenses
@@ -76,29 +76,16 @@
   - # what weekday number is today? (Sun = 0, Mon = 1)?
   - weekday_number = Date.today.wday()
   - # how many days do we show after today
-  - days = 13
-  - # how many days are we showing after today?
-  - number_of_days = (weekday_number == 0) ? days : days - weekday_number
-  - # if the number of days after today are not
-  - # equal to the total number of days shown
-  - if number_of_days != days
-    - (0..weekday_number).map do |i|
-      - date = Date.today - weekday_number + i.days 
-      - unless date == Date.today
-        .day.past
-          %p.day_name= Date::ABBR_DAYNAMES[date.wday()]
-          %p.day_number= date.day
-          #todo
-            =link_to '0', '#', :class => "tasks"
-            =link_to '0', '#', :class => "expenses"
+  - number_of_days = 13
   - (0..number_of_days).map do |i|
     - date = Date.today + i.days
-    .day
+    - current_day = (date == Date.today) ? 'current_day' : nil
+    .day{:class => current_day}
       %p.day_name= Date::ABBR_DAYNAMES[date.wday()]
       %p.day_number= date.day
       #todo
         =link_to '1', '#', :class => "tasks"
-        =link_to '2', '#', :class => "expenses"
+        =link_to '2', '#', :class => "expenses tooltip", :title => "Yaaaaaaoooo"
 
 .header_bar
   %h1 this month
@@ -123,7 +110,8 @@
             =link_to '0', '#', :class => "expenses"
   - (0..number_of_days).map do |i|
     - date = Date.today + i.days
-    .day
+    - current_day = (date == Date.today) ? 'current_day' : nil
+    .day{:class => current_day}
       %p.day_name= Date::ABBR_DAYNAMES[date.wday()]
       %p.day_number= date.day
       #todo
