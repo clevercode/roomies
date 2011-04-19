@@ -1,3 +1,6 @@
+.header_bar
+  +column(12)
+
 #main.corkboard
   div
     padding: 30px
@@ -9,8 +12,10 @@
     &.header_bar, &#upcoming .list h2
       color: #52471e
       font-size: 24px
-      padding: 0 10px
-      line-height: 43px
+      line-height: 1.8
+      font-weight: 500
+      text-indent: 20px
+      padding: 0
       border: 1px solid #ab8900
       border-radius: 5px 5px 0 0
       text-shadow: #fffedb 1px 1px 0
@@ -81,7 +86,7 @@
                   text-decoration: none
                   &:hover
                     text-decoration: underline
-                &[title=expense], &[title=bill], &[title=task], &[title=chore]
+                &[title=expense], &[title=bill], &[title=tasc], &[title=chore]
                   padding: 0
                   width: 13px
                   height: 13px
@@ -90,7 +95,7 @@
                   border: 1px solid #fff
                   -moz-box-shadow: #a6ceff 0 0 5px
                   -webkit-box-shadow: #a6ceff 0 0 5px
-                &[title=task], &[title=chore]
+                &[title=tasc], &[title=chore]
                   background: #95b9e6
                 &.edit
                   opacity: 0
@@ -105,6 +110,7 @@
                   height: 25px
                   background: url('../images/58.png') 7px 5px no-repeat
     &#upcoming_filters
+      width: 100%
       padding: 0
       ul
         margin: 0
@@ -161,14 +167,180 @@
             background: -webkit-gradient(linear, left top, left bottom, from(#7d7d7d), to(#b0b0b0))
         &#filters
           float: right
+
+    // centric
+    &#centric
+      padding: 0
+      margin: 0 0 2em
+      border: 1px solid #9eafc5
+      border-top: none // Helpful comment!
+
+      // day
+      .day
+        padding: 0
+        float: left
+        width: 64px
+        position: relative
+        margin: -1px 0 0 -1px
+        border-top: 1px solid #9eafc5
+        border-left: 1px solid #9eafc5
+        +background-image(linear-gradient(rgba(255,255,255,.75), rgba(255,255,255,.15)))
+
+        // when hovering on the day, reveal additional data
+        &:hover .day_name
+          opacity: 1
+
+
+        // past
+        &.past
+          opacity: 0.3
+          .day_name
+            opacity: 1
+        &:nth-child(14n)
+          width: 65px
+
+        // day number
+        p.day_number
+          font-size: 28px
+          min-height: 45px
+          line-height: 45px
+          text-align: center
+          text-shadow: 1px 1px 0px #fff
+          margin-top: .35em
+
+        // day name
+        p.day_name
+          opacity: 0
+          top: 5px
+          left: 5px
+          font-size: 11px
+          line-height: 12px
+          min-height: 12px
+          text-align: left
+          position: absolute
+          line-height: normal
+          text-transform: uppercase
+
+        // todo
+        #todo
+          padding: 0
+          width: 48px
+          margin: 0 auto 1em
+          a
+            color: #111
+            float: left
+            padding: 0 2px
+            display: block
+            font-size: 11px
+            min-width: 18px
+            height: 20px
+            line-height: 22px
+            text-align: center
+            text-decoration: none
+            text-shadow: none
+            +background-image(linear-gradient(lighten($lightgreen, 0%), saturate($green, 20%)))
+            +box-shadow(transparentize(darken(saturate($green, 60%), 20%), 0.5) 0 0 1px 1px inset)
+ 
+            // tasks
+            &.tasks
+              +linear-gradient(color-stops($lightblue, $blue), top)
+              +box-shadow(transparentize(darken(saturate($blue, 20%), 20%), 0.5) 0 0 1px 1px inset)
+
+    // calendar
+
+    // upcoming
+    #upcoming
+      +column(12)
+
+    // centric
+    &#centric
+      +column(12)
+      padding: 0
+      margin: 0 0 2em
+      border: 1px solid #9eafc5
+      border-top: none // Helpful comment!
+
+      // day
+      .day
+        padding: 0
+        float: left
+        width: 63px
+        position: relative
+        margin: -1px 0 0 -1px
+        border-top: 1px solid #9eafc5
+        border-left: 1px solid #9eafc5
+        +background-image(linear-gradient(rgba(255,255,255,.75), rgba(255,255,255,.15)))
+
+        // when hovering on the day, reveal additional data
+        &:hover .day_name
+          opacity: 1
+
+
+        // past
+        &.past
+          opacity: 0.3
+          .day_name
+            opacity: 1
+        &:nth-child(14n)
+          width: 66px
+
+        // day number
+        p.day_number
+          font-size: 28px
+          min-height: 45px
+          line-height: 45px
+          text-align: center
+          text-shadow: 1px 1px 0px #fff
+          margin-top: .35em
+
+        // day name
+        p.day_name
+          opacity: 0
+          top: 5px
+          left: 5px
+          font-size: 11px
+          line-height: 12px
+          min-height: 12px
+          text-align: left
+          position: absolute
+          line-height: normal
+          text-transform: uppercase
+
+        // todo
+        #todo
+          padding: 0
+          width: 48px
+          margin: 0 auto 1em
+          a
+            color: #111
+            float: left
+            padding: 0 2px
+            display: block
+            font-size: 11px
+            min-width: 18px
+            height: 20px
+            line-height: 22px
+            text-align: center
+            text-decoration: none
+            text-shadow: none
+            +background-image(linear-gradient(lighten($lightgreen, 0%), saturate($green, 20%)))
+            +box-shadow(transparentize(darken(saturate($green, 60%), 20%), 0.5) 0 0 1px 1px inset)
+ 
+            // tasks
+            &.tasks
+              +linear-gradient(color-stops($lightblue, $blue), top)
+              +box-shadow(transparentize(darken(saturate($blue, 20%), 20%), 0.5) 0 0 1px 1px inset)
+
+    // calendar
     &#calendar
+      +column(12)
       padding: 0
       border: 1px solid #9eafc5
       border-top: none // Helpful comment!
       .day
         padding: 0
         float: left
-        width: 128px
+        width: 126px
         position: relative
         margin: -1px 0 0 -1px
         border-top: 1px solid #9eafc5
@@ -178,7 +350,7 @@
         &.past
           opacity: 0.3
         &:nth-child(7n)
-          width: 130px
+          width: 129px
         p
           font-size: 48px
           min-height: 75px
