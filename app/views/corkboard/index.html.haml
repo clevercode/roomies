@@ -9,39 +9,51 @@
   .list
     %h2 bounties
     %ul
-      - @bounties.each  do |bounty|
-        %li.bounty 
-          %ul
-            %li.check
-            %li= link_to bounty.purpose, assignment_url(bounty)
-            %li.edit
+      - unless @bounties.count == 0
+        - @bounties.each  do |bounty|
+          %li.bounty 
+            %ul
+              %li.check
+              %li= link_to bounty.purpose, assignment_url(bounty)
+              %li.edit
+      - else
+        %li you have no new bounties
   .list
     %h2 freebies
     %ul
-      - @freebies.each do |freebie|
-        %li.freebie 
-          %ul
-            %li.check
-              %li= link_to freebie.purpose, assignment_url(freebie)
-            %li.edit
+      - unless @freebies.count == 0
+        - @freebies.each do |freebie|
+          %li.freebie 
+            %ul
+              %li.check
+                %li= link_to freebie.purpose, assignment_url(freebie)
+              %li.edit
+      - else
+        %li you have no new freebies
   .list
     %h2 wishes
     %ul
-      - @wishes.each do |wish|
-        %li.gift 
-          %ul
-            %li.check
-            %li= link_to wish.purpose, assignment_url(wish)
-            %li.edit
+      - unless @wishes.count == 0
+        - @wishes.each do |wish|
+          %li.gift 
+            %ul
+              %li.check
+              %li= link_to wish.purpose, assignment_url(wish)
+              %li.edit
+      - else
+        %li you have no new wishes
   .list.last
     %h2 gifts
     %ul
-      - @gifts.each do |gift|
-        %li.gift 
-          %ul
-            %li.check
-            %li= link_to gift.purpose, assignment_url(gift)
-            %li.edit
+      - unless @gifts.count == 0
+        - @gifts.each do |gift|
+          %li.gift 
+            %ul
+              %li.check
+              %li= link_to gift.purpose, assignment_url(gift)
+              %li.edit
+      - else
+        %li you have no new gifts
 
 #upcoming_filters
   %ul#assignee_filters
@@ -65,10 +77,12 @@
   .list
     %h2 tomorrow
     %ul
+      %li you have nothing due tomorrow
  
   .list.last
     %h2= (Date::DAYNAMES[Date.tomorrow.next_day.wday.to_i]).downcase
     %ul
+      %li you have nothing due  #{(Date::DAYNAMES[Date.tomorrow.next_day.wday.to_i]).downcase}
 
 .header_bar
   %h1 these coming days
@@ -76,21 +90,7 @@
   - # what weekday number is today? (Sun = 0, Mon = 1)?
   - weekday_number = Date.today.wday()
   - # how many days do we show after today
-  - days = 13
-  - # how many days are we showing after today?
-  - number_of_days = if weekday_number == 0 then days else days - weekday_number end
-  - # if the number of days after today are not
-  - # equal to the total number of days shown
-  - if number_of_days != days
-    - (0..weekday_number).map do |i|
-      - date = Date.today - weekday_number + i.days 
-      - unless date == Date.today
-        .day.past
-          %p.day_name= Date::ABBR_DAYNAMES[date.wday()]
-          %p.day_number= date.day
-          #todo
-            =link_to '0', '#', :class => "tasks"
-            =link_to '0', '#', :class => "expenses"
+  - number_of_days = 13
   - (0..number_of_days).map do |i|
     - date = Date.today + i.days
     .day
@@ -124,7 +124,8 @@
             =link_to '0', '#', :class => "expenses"
   - (0..number_of_days).map do |i|
     - date = Date.today + i.days
-    .day
+    - current_day = (date == Date.today) ? 'current_day' : ''
+    .day{:class => current_day}
       %p.day_name= Date::ABBR_DAYNAMES[date.wday()]
       %p= date.day
       #todo

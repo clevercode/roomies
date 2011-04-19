@@ -22,14 +22,18 @@
   - if @user.house
     %p#house
       #{@user.house.name} - 
-      = link_to 'change house name or add roomies', edit_house_path(@user.house), :class => 'ajax'
-      |
-      = link_to 'move out', homeless_url(:id => @user.id, :house_id => @user.house)
+      - if signed_in? && current_user == @user
+        = link_to 'change house name or add roomies', edit_house_path(@user.house), :class => 'ajax'
+        |
+        = link_to 'move out', homeless_url(:id => @user.id, :house_id => @user.house)
   - else
     %p#house
-      Oh no! It seems you're homeless! Want to 
-      = link_to 'build a house', new_house_path, :class => 'ajax'
-      ?
+      - if signed_in? && current_user == @user
+        Oh no! It seems you're homeless! Want to 
+        = link_to 'build a house', new_house_path, :class => 'ajax'
+        ?
+      - else
+        It seems he's homeless!
   %p#tasks_expenses
     %span
     %span tasks: 789

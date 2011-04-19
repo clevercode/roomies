@@ -40,10 +40,12 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    
     if @user.update_attributes(params[:user])
-      redirect_to current_user, :notice => 'You just successfully changed your profile imformation! Yay!'
+      sign_in(@user, :bypass => true)
+      redirect_to current_user, :notice => 'You just successfully changed your imformation! Yay!'
     else
-      render :edit
+      redirect_to current_user, :notice => 'Sorry, something went horribly wrong when updating your information.'
     end
   end
 

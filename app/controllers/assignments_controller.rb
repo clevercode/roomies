@@ -42,17 +42,21 @@ class AssignmentsController < ApplicationController
   end
  
   def create
-    params[:assignment][:assignees] = Array.wrap(params[:assignment][:assignees].split(','))
-    @assignment = AssignmentFactory.new(params[:assignment])
+    unless current_user.house.nil?
+      params[:assignment][:assignees] = Array.wrap(params[:assignment][:assignees].split(','))
+      @assignment = AssignmentFactory.new(params[:assignment])
  
-    respond_to do |format|
-      if @assignment.save
-        format.html { redirect_to(assignment_url(@assignment), :notice => 'Assignment was successfully created.') }
-        format.xml  { render :xml => @assignment, :status => :created, :location => @assignment }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @assignment.errors, :status => :unprocessable_entity }
-      end
+      respond_to do |format|
+        if @assignment.save
+          format.html { redirect_to(assignment_url(@assignment), :notice => 'Assignment was successfully created.') }
+          format.xml  { render :xml => @assignment, :status => :created, :location => @assignment }
+        else
+          format.html { render :action => "new" }
+          format.xml  { render :xml => @assignment.errors, :status => :unprocessable_entity }
+        end
+      end  
+    else
+      redirect_to current_user, :notice => 'Sorry, you need to build a house before you can create assignments.'
     end
   end
  

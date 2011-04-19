@@ -9,10 +9,14 @@
       %li.profile
         = link_to image_tag(current_user.gravatar('small'), :width => 34, :height => 34), current_user
       %li
-        = link_to '+ add assignment', new_assignment_path, :id => 'easy_button', :class => 'ajax'
+        - if current_user.house.nil?
+          = link_to 'build a house', new_house_path, :id => 'easy_button', :class => 'ajax'
+        - else
+          = link_to '+ add assignment', new_assignment_path, :id => 'easy_button', :class => 'ajax'
   - else
-    = simple_form_for :user, :url => session_path(:user) do |f|
-      = f.input :email, :label => false, :input_html => { :placeholder => "email" }
-      = f.input :password, :label => false, :input_html => { :placeholder => "password" }
-      = f.submit 'sign in'
+    - if controller_name != 'sessions'
+      = simple_form_for :user, :url => session_path(:user) do |f|
+        = f.input :email, :label => false, :input_html => { :placeholder => "email" }
+        = f.input :password, :label => false, :input_html => { :placeholder => "password" }
+        = f.submit 'sign in'
 
