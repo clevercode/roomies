@@ -245,109 +245,15 @@
             text-shadow: none
             +background-image(linear-gradient(lighten($lightgreen, 0%), saturate($green, 20%)))
             +box-shadow(transparentize(darken(saturate($green, 60%), 20%), 0.5) 0 0 1px 1px inset)
- 
+
             // tasks
             &.tasks
               +linear-gradient(color-stops($lightblue, $blue), top)
               +box-shadow(transparentize(darken(saturate($blue, 20%), 20%), 0.5) 0 0 1px 1px inset)
-
-    // calendar
-<<<<<<< Updated upstream
 
     // upcoming
     #upcoming
       +column(12)
-
-    // centric
-    &#centric
-      +column(12)
-||||||| merged common ancestors
-    &#calendar
-=======
-    &#calendar
-      +column(12)
->>>>>>> Stashed changes
-      padding: 0
-      margin: 0 0 2em
-      border: 1px solid #9eafc5
-      border-top: none // Helpful comment!
-
-      // day
-      .day
-        padding: 0
-        float: left
-<<<<<<< Updated upstream
-        width: 63px
-||||||| merged common ancestors
-        width: 128px
-=======
-        width: 126px
->>>>>>> Stashed changes
-        position: relative
-        margin: -1px 0 0 -1px
-        border-top: 1px solid #9eafc5
-        border-left: 1px solid #9eafc5
-        +background-image(linear-gradient(rgba(255,255,255,.75), rgba(255,255,255,.15)))
-
-        // when hovering on the day, reveal additional data
-        &:hover .day_name
-          opacity: 1
-
-
-        // past
-        &.past
-          opacity: 0.3
-          .day_name
-            opacity: 1
-        &:nth-child(14n)
-          width: 66px
-
-        // day number
-        p.day_number
-          font-size: 28px
-          min-height: 45px
-          line-height: 45px
-          text-align: center
-          text-shadow: 1px 1px 0px #fff
-          margin-top: .35em
-
-        // day name
-        p.day_name
-          opacity: 0
-          top: 5px
-          left: 5px
-          font-size: 11px
-          line-height: 12px
-          min-height: 12px
-          text-align: left
-          position: absolute
-          line-height: normal
-          text-transform: uppercase
-
-        // todo
-        #todo
-          padding: 0
-          width: 48px
-          margin: 0 auto 1em
-          a
-            color: #111
-            float: left
-            padding: 0 2px
-            display: block
-            font-size: 11px
-            min-width: 18px
-            height: 20px
-            line-height: 22px
-            text-align: center
-            text-decoration: none
-            text-shadow: none
-            +background-image(linear-gradient(lighten($lightgreen, 0%), saturate($green, 20%)))
-            +box-shadow(transparentize(darken(saturate($green, 60%), 20%), 0.5) 0 0 1px 1px inset)
- 
-            // tasks
-            &.tasks
-              +linear-gradient(color-stops($lightblue, $blue), top)
-              +box-shadow(transparentize(darken(saturate($blue, 20%), 20%), 0.5) 0 0 1px 1px inset)
 
     // calendar
     &#calendar
@@ -365,8 +271,18 @@
         border-left: 1px solid #9eafc5
         background: -moz-linear-gradient(top, rgba(255,255,255,.75), rgba(255,255,255,.15))
         background: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,.75)), to(rgba(255,255,255,.15)))
+
+
+        // when hovering on the day, reveal additional data
+        &:hover .day_name
+          opacity: 1
+
+
+        // past
         &.past
           opacity: 0.3
+          .day_name
+            opacity: 1
         &:nth-child(7n)
           width: 129px
         p
@@ -376,6 +292,7 @@
           text-align: center
           text-shadow: 1px 1px 0px #fff
           &.day_name
+            opacity: 0
             top: 5px
             left: 5px
             font-size: 12px
