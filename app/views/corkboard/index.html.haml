@@ -77,10 +77,12 @@
   .list
     %h2 tomorrow
     %ul
+      %li you have nothing due tomorrow
  
   .list.last
     %h2= (Date::DAYNAMES[Date.tomorrow.next_day.wday.to_i]).downcase
     %ul
+      %li you have nothing due  #{(Date::DAYNAMES[Date.tomorrow.next_day.wday.to_i]).downcase}
 
 .header_bar
   %h1 these coming days
