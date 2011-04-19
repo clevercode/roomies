@@ -9,6 +9,7 @@
   background: -webkit-gradient(radial, 50% 0%, 500, 50% 0%, 0, from(#9ec6ff), to($lightblue))
   background: -moz-radial-gradient(center 45deg, circle farthest-side, $lightblue 0%, #9ec6ff 100%)
   #main
+    overflow: hidden
     padding: 30px 30px 90px
     background: url('../images/clouds.png') 105% -5% repeat-x, url('../images/hills.png') 0% 110% repeat-x
   a
@@ -22,6 +23,26 @@
     margin-bottom: 75px
   h2
     font-size: 20px
+  p
+    font-size: 16px
+  p.pass
+    padding-top: 10px
+    font-weight: bold
+  p.button
+    float: right
+    margin: 15px 0 40px
+    a
+      color: #fff
+      font-size: 16px
+      margin-top: 10px
+      padding: 5px 20px
+      font-weight: bold
+      +border-radius(10px)
+      text-decoration: none
+      border: 1px solid saturate(#a8d977,20%)
+      +linear-gradient(color-stops(#d7ff8c, #a8d977))
+      +text-shadow(rgba(0,0,0,0.5) 2px 2px 5px, darken($green,10%) 1px 1px 0)
+      +box-shadow(rgba(93,76,42,0.85) 0 2px 2px, saturate(#90ce66,20%) -5px -10px 20px inset, saturate(#90ce66,20%) 5px -10px 20px inset)
   #avatar
     padding: 10px 0 5px
     p
