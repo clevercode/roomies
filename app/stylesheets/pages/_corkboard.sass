@@ -5,10 +5,12 @@
   div
     padding: 30px
     overflow: hidden
+
     &#flash, &.first_time, &.notice
       padding: 5px
       .notice
         padding: 5px
+
     &.header_bar, &#upcoming .list h2
       color: #52471e
       font-size: 24px
@@ -25,28 +27,24 @@
       background: -webkit-gradient(linear, left top, left bottom, from(#f7eb8b), to(#f7d340))
       h1
         font-size: 24px
+
+
     &.content
       padding: 30px 0
-      &.others
-        div.list
-          width: 202px
-          ul
-            li
-              ul
-                li
-                  width: 130px
-          &.last
-            width: 204px
+
+      &#specials
+        .list
+          +column(3)
+          .purpose
+            width: 70%
+
       p.info
         font-size: 18px
         text-align: center
       div.list
         padding: 0
         float: left
-        width: 280px
-        margin-right: 30px
-        &.last
-          margin: 0
+        +column(4)
         h2
           color: #52471e
           font-size: 24px
@@ -55,23 +53,18 @@
           border: 1px solid #ab6c00
           border-radius: 5px 5px 0 0
           text-shadow: #fffdc2 1px 1px 0
-          background: -moz-linear-gradient(top, #ffd88f, #f7a231)
-          -moz-box-shadow: #fff2db 1px 1px 0 inset, #fff2db -1px -1px 0 inset
-          -webkit-box-shadow: #fff2db 1px 1px 0 inset, #fff2db -1px -1px 0 inset
-          background: -webkit-gradient(linear, left top, left bottom, from(#ffd88f), to(#f7a231))
+          +background-image(linear-gradient(#ffd88f, #f7a231))
+          +box-shadow(#fff2db 1px 1px 0 inset, #fff2db -1px -1px 0 inset)
         ul
-          margin: 0
           li
+            +clearfix
             font-size: 16px
-            overflow: hidden
             padding: 5px 10px
             color: $font-color
             border: 1px solid #7490b3
             border-top: none // Comments do make things better!
-            background: -moz-linear-gradient(top, #d9eaff, #f2f8ff)
-            -moz-box-shadow: #fff 1px 1px 0 inset, #fff -1px -1px 0 inset
-            -webkit-box-shadow: #fff 1px 1px 0 inset, #fff -1px -1px 0 inset
-            background: -webkit-gradient(linear, left top, left bottom, from(#d9eaff), to(#f2f8ff))
+            +background-image(linear-gradient(#d9eaff, #f2f8ff))
+            +box-shadow(#fff 1px 1px 0 inset, #fff -1px -1px 0 inset)
             ul
               li
                 float: right
@@ -80,8 +73,7 @@
                 background: none
                 line-height: 25px
                 padding: 0 25px 0 0
-                -moz-box-shadow: none
-                -webkit-box-shadow: none
+                +box-shadow(none)
                 a
                   text-decoration: none
                   &:hover
@@ -109,64 +101,73 @@
                   width: 25px
                   height: 25px
                   background: url('../images/58.png') 7px 5px no-repeat
+
+    // upcoming filters
     &#upcoming_filters
-      width: 900px
+      width: 940px
       padding: 0
+
+      // assignee filters
       ul
-        margin: 0
         float: left
         li
+          opacity: .9
           float: left
-          color: #fff
+          color: rgba(255,255,255,.99)
+          font-size: 1.2em
+          font-weight: 400
+          line-height: 1.8
+          +text-shadow(rgba(0,0,0,.5) 0 -1px 0)
           cursor: pointer
-          padding: 5px 10px
-          border-radius: inherit
-          border: 1px solid #7d7d7d
-          border-right: 1px solid rgba(0,0,0,0.3)
-          text-shadow: rgba(0,0,0,.3) -1px -1px 0
-          border-left: 1px solid rgba(255,255,255,0.3)
-          background: -moz-linear-gradient(top, #b0b0b0, #7d7d7d)
-          background: -webkit-gradient(linear, left top, left bottom, from(#b0b0b0), to(#7d7d7d))
+          padding: 0 20px
+          +border-radius(inherit)
+          +box-shadow(rgba(0,0,0,.3) 0 0 0 1px inset)
+          +background-image(linear-gradient($lightgrey, $grey))
           &.left
-            border-left: 1px solid #7d7d7d
-            border-radius: 5px 0 0 5px
+            +border-left-radius(5px)
           &.right
-            border-radius: 0 5px 5px 0
-          &#task_filter
-            background: -moz-linear-gradient(top, #8dc2e3, #5b8eb0)
-            background: -webkit-gradient(linear, left top, left bottom, from(#8dc2e3), to(#5b8eb0))
-            &:hover
-              background: -moz-linear-gradient(top, #9dd8fc, #5b8eb0)
-              background: -webkit-gradient(linear, left top, left bottom, from(#9dd8fc), to(#5b8eb0))
-            &:active, &.active
-              text-shadow: rgba(0,0,0,.4) 1px 1px 0
-              background: -moz-linear-gradient(top, #5b8eb0, #8dc2e3)
-              -moz-box-shadow: #5b8eb0 -3px 0px 3px inset, #5b8eb0 3px 0px 3px inset
-              -webkit-box-shadow: #5b8eb0 -3px 0px 3px inset, #5b8eb0 3px 0px 3px inset
-              background: -webkit-gradient(linear, left top, left bottom, from(#5b8eb0), to(#8dc2e3))
-          &#expense_filter
-            background: -moz-linear-gradient(top, #c4e35f, #94b038)
-            background: -webkit-gradient(linear, left top, left bottom, from(#c4e35f), to(#94b038))
-            &:hover
-              background: -moz-linear-gradient(top, #dafc6a, #94b038)
-              background: -webkit-gradient(linear, left top, left bottom, from(#dafc6a), to(#94b038))
-            &:active, &.active  
-              text-shadow: rgba(0,0,0,.4) 1px 1px 0
-              background: -moz-linear-gradient(top, #94b038, #c4e35f)
-              -moz-box-shadow: #94b038 -3px 0px 3px inset, #94b038 3px 0px 3px inset
-              -webkit-box-shadow: #94b038 -3px 0px 3px inset, #94b038 3px 0px 3px inset
-              background: -webkit-gradient(linear, left top, left bottom, from(#94b038), to(#c4e35f))
+            +border-right-radius(5px)
+
           &:hover
-            background: -moz-linear-gradient(top, #c9c9c9, #7d7d7d)
-            background: -webkit-gradient(linear, left top, left bottom, from(#c9c9c9), to(#7d7d7d))
+            +background-image(linear-gradient($lightgrey,darken($grey,10%)))
+            opacity: 1
           &:active, &.active
-            text-shadow: rgba(0,0,0,.3) 1px 1px 0
-            background: -moz-linear-gradient(top, #7d7d7d, #b0b0b0)
-            -moz-box-shadow: #7d7d7d -3px 0px 3px inset, #7d7d7d 3px 0px 3px inset
-            -webkit-box-shadow: #7d7d7d -3px 0px 3px inset, #7d7d7d 3px 0px 3px inset
-            background: -webkit-gradient(linear, left top, left bottom, from(#7d7d7d), to(#b0b0b0))
-        &#filters
+            opacity: .9
+            text-shadow: rgba(255,255,255,.4) 0 -1px 0
+            color: #111
+            +background-image(linear-gradient($grey, $lightgrey))
+            +box-shadow(rgba(0,0,0,.4) -1px 0px 1px inset, rgba(0,0,0,.4) 1px 0px 1px inset, rgba(0,0,0,.5) 0 1px 5px inset, rgba(0,0,0,.5) 0 -1px 2px inset)
+
+        // assignee filter
+        &#assignee_filters
+
+        // assignment filters
+        &#assignment_filters
           float: right
+          &:active, &.active
+            text-shadow: rgba(255,255,255,.4) 0 -1px 0
+            color: #111
+
+
+          // task filter
+          #task_filter
+            +background-image(linear-gradient(lighten(desaturate($blue, 10%), 0%), darken(desaturate($blue, 5%), 15%)))
+            &:hover
+              +background-image(linear-gradient(lighten(desaturate($blue, 10%), 0%), darken(desaturate($blue, 5%), 20%)))
+            &:active, &.active
+              +background-image(linear-gradient(darken(desaturate($blue, 15%), 20%), darken(desaturate($blue, 10%), 5%)))
+              +box-shadow(rgba(0,0,0,.4) -1px 0px 2px inset, rgba(0,0,0,.4) 1px 0px 2px inset, rgba(0,0,0,.5) 0 1px 4px inset, rgba(0,0,0,.5) 0 -1px 2px inset)
+
+          // expense filter
+          #expense_filter
+            +background-image(linear-gradient(lighten(desaturate($green, 10%), 10%), darken(saturate($green, 10%), 10%)))
+            &:hover
+              +background-image(linear-gradient(lighten(desaturate($green, 10%), 10%), darken(saturate($green, 10%), 15%)))
+            &:active, &.active  
+              +background-image(linear-gradient(darken(saturate($green, 5%), 15%), lighten(desaturate($green, 10%), 5%)))
+              +box-shadow(rgba(0,0,0,.4) -1px 0px 2px inset, rgba(0,0,0,.4) 1px 0px 2px inset, rgba(0,0,0,.5) 0 1px 4px inset, rgba(0,0,0,.5) 0 -1px 2px inset)
+
+
 
     // upcoming
     #upcoming
@@ -184,7 +185,7 @@
       .day
         padding: 0
         float: left
-        width: 63px
+        width: 67px
         position: relative
         margin: -1px 0 0 -1px
         border-top: 1px solid #9eafc5
@@ -195,6 +196,13 @@
         &:hover .day_name
           opacity: 1
 
+        &:hover
+          +background-image(linear-gradient(rgba(255,255,255,.55), transparentize(lighten($lightblue, 5%), .01)))
+
+        &.current_day
+          +background-image(linear-gradient(transparentize($lightblue,.5),rgba(255,255,255,.75)))
+
+
 
         // past
         &.past
@@ -202,7 +210,7 @@
           .day_name
             opacity: 1
         &:nth-child(14n)
-          width: 66px
+          width: 69px
 
         // day number
         p.day_number
@@ -251,10 +259,6 @@
               +linear-gradient(color-stops($lightblue, $blue), top)
               +box-shadow(transparentize(darken(saturate($blue, 20%), 20%), 0.5) 0 0 1px 1px inset)
 
-    // upcoming
-    #upcoming
-      +column(12)
-
     // calendar
     &#calendar
       +column(12)
@@ -264,14 +268,15 @@
       .day
         padding: 0
         float: left
-        width: 126px
+        width: 134px
         position: relative
         margin: -1px 0 0 -1px
         border-top: 1px solid #9eafc5
         border-left: 1px solid #9eafc5
-        background: -moz-linear-gradient(top, rgba(255,255,255,.75), rgba(255,255,255,.15))
-        background: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,.75)), to(rgba(255,255,255,.15)))
+        +background-image(linear-gradient(rgba(255,255,255,.75), rgba(255,255,255,.15)))
 
+        &:hover
+          +background-image(linear-gradient(rgba(255,255,255,.55), transparentize(lighten($lightblue, 0%), .01)))
 
         // when hovering on the day, reveal additional data
         &:hover .day_name
@@ -284,43 +289,92 @@
           .day_name
             opacity: 1
         &:nth-child(7n)
-          width: 129px
-        p
+          width: 136px
+
+        p.day_number
           font-size: 48px
-          min-height: 75px
-          line-height: 75px
+          min-height: 45px
+          line-height: 45px
           text-align: center
           text-shadow: 1px 1px 0px #fff
-          &.day_name
-            opacity: 0
-            top: 5px
-            left: 5px
-            font-size: 12px
-            min-height: 12px
-            text-align: left
-            position: absolute
-            line-height: normal
-            text-transform: uppercase
+          margin-top: .35em
+          
+        
+        // day name
+        p.day_name
+          opacity: 0
+          top: 7px
+          left: 7px
+          font-size: 13px
+          line-height: 13px
+          min-height: 13px
+          text-align: left
+          position: absolute
+          line-height: normal
+          text-transform: uppercase
         #todo
           padding: 0
           width: 58px
           margin: 0px auto 20px
           a
-            color: #fff
+            color: #111
             float: left
             padding: 0 2px
             display: block
             font-size: 12px
             min-width: 23px
-            min-height: 23px
-            line-height: 23px
+            height: 20px
+            line-height: 22px
             text-align: center
             text-decoration: none
-            border: 1px solid #94b038
-            text-shadow: rgba(0,0,0,.3) -1px -1px 0
-            background: -moz-linear-gradient(top, #c4e35f, #94b038)
-            background: -webkit-gradient(linear, left top, left bottom, from(#c4e35f), to(#94b038))
+            text-shadow: none
+            +background-image(linear-gradient(lighten($lightgreen, 0%), saturate($green, 20%)))
+            +box-shadow(transparentize(darken(saturate($green, 60%), 20%), 0.5) 0 0 1px 1px inset)
             &.tasks
-              border: 1px solid #5b8eb0
-              background: -moz-linear-gradient(top, #8dc2e3, #5b8eb0)
-              background: -webkit-gradient(linear, left top, left bottom, from(#8dc2e3), to(#5b8eb0))
+              +linear-gradient(color-stops($lightblue, $blue), top)
+              +box-shadow(transparentize(darken(saturate($blue, 20%), 20%), 0.5) 0 0 1px 1px inset)
+
+// a.tooltip
+//   &:after
+//     font: 12px/1.4 Arial, Georgia, sans-serif
+//     content: attr(title)
+//     display: none
+//     position: absolute
+//     padding: 5px 10px
+//     top: 0px 
+//     margin: 1em 0 3em
+//     color: #fff
+//     background: #075698
+//     left: -20px
+//     +border-radius(4px)
+//     +background-image(linear-gradient(#075698,#2e88c4))
+//     +box-shadow(#000 0 0 4px)
+
+//   /* creates triangle */ 
+//   &:before
+//     z-index: 13
+//     position: absolute
+//     content: "\00a0"
+//     display: none
+//     width: 0
+//     height: 0
+//     border-style: solid
+//     top: -3px
+//     left: 0px
+//     border-width: 15px 7px 15px 7px
+//     border-color: transparent transparent #075698
+  
+//   &:hover::before
+//     display:block
+  
+//   &:hover
+//     z-index: 10
+//     position: relative
+  
+//   &:hover::after
+//     width: 200px
+//     display: block
+//     margin: 25px 0 0 10px
+
+// // http://www.nitinh.com/2010/03/sexy-tooltip-using-css3/#ixzz1JwiqfcPL
+
