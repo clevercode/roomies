@@ -1,19 +1,19 @@
 class AssignmentFactory
 
-  def self.new(attributes = {})
+  def self.new(attributes)
 
-    # if there are no assignees
+    # if there are no assignees (bounties, freebies, gifts & wishes)
     if attributes[:assignees].blank?
 
-      # bounties, freebies, gifts & wishes
+      # if it has not been claimed (bounties & wishes)
       if attributes[:cost].nil?
-        if attributes[:commissioned_at].nil?
-          Freebie.new(attributes)
-        else
+        if attributes[:claimed_at].nil?
           Bounty.new(attributes)
+        else
+          Freebie.new(attributes)
         end
       else
-        if attributes[:completed_at].nil?
+        if attributes[:claimed_at].nil?
           Wish.new(attributes)
         else
           Gift.new(attributes)
