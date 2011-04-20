@@ -103,6 +103,15 @@ class User
       image_src = "http://www.gravatar.com/avatar/#{hash}?s=130"
     end
   end
+  
+  def has_invitations?
+    @invitation = Invitation.where(:email => self.email).first
+    unless @invitation.nil?
+      true
+    else
+      false
+    end
+  end
 
   private
   def send_welcome_email
