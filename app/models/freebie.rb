@@ -4,5 +4,6 @@ class Freebie < Assignment
   # may claim points to be defined by the validator
   #
   # NB: this might be too similar to bounty
-  include Trait::Commissionable
+  belongs_to :claimant, :class_name => 'User'
+  field :claimed_at, :type => DateTime
 end

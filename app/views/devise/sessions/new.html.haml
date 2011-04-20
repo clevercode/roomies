@@ -1,8 +1,10 @@
 %h2 Sign in
-- simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+-# = simple_form_for(resource, :as => resoue_name, :url => session_path(resource_name)) do |f|
+= simple_form_for :user, :url => session_path(:user) do |f|
   = f.input :email, :label => false, :input_html => { :placeholder => "email" }
   = f.input :password, :label => false, :input_html => { :placeholder => "password" }
+  = f.submit "Sign In"
   - if devise_mapping.rememberable?
     = f.input :remember_me, :as => :boolean 
-  = f.button :submit, :label => 'Sign in'
+
 = render :partial => "devise/shared/links"
