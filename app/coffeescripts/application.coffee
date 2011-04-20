@@ -72,13 +72,6 @@ $darknessification.live 'click', (event) ->
   $darknessification.hide()
   $modal.hide()
   return false
-
-# // Listens for a click on the add roomie link, showing a
-# // single input field when clicked.
-$('#add_roomie').live 'click', (event) ->
-  $(this).hide()
-  $('#modal form').show()
-  return false
   
 # // Handles the cloud scrolling
 current = 0
