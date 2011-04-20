@@ -121,14 +121,16 @@ body
     display: none
     position: fixed
     background: rgba(0,0,0,0.75)
-  .notice, .first_time, .alert
-    padding: 5px
+  .notice, .alert, .notifications
+    padding: 0
+    margin: 0 20px 0 0
     text-align: center
     border-radius: 5px
-    border: 1px solid rgba(66,66,66,0.9)
+    +box-shadow(rgba(66,66,66,0.9) 0 0 0 1px inset)
     +linear-gradient(color-stops(rgba(90,90,90,0.9), rgba(66,66,66,0.9)))
     p
       color: #fff
+      margin: 5px
       font-size: 16px
       line-height: 25px
       border-radius: 5px
@@ -140,6 +142,7 @@ body
       +linear-gradient(color-stops(#333, #262626))
       a
         color: #fff
+      
 @import pages/home
 @import pages/profile
 @import pages/corkboard
