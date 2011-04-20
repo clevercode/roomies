@@ -1,6 +1,8 @@
 class User 
   include Mongoid::Document
   require 'digest/md5'
+  
+  after_create :send_welcome_email
 
   # Fields
   field :name, :type => String
@@ -100,6 +102,20 @@ class User
     else
       image_src = "http://www.gravatar.com/avatar/#{hash}?s=130"
     end
+  end
+  
+  def has_invitations?
+    @invitation = Invitation.where(:email => self.email).first
+    unless @invitation.nil?
+      true
+    else
+      false
+    end
+  end
+
+  private
+  def send_welcome_email
+    UserMailer.welcome_email(self).deliver
   end
   
   protected

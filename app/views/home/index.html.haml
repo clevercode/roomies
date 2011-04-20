@@ -11,13 +11,18 @@
 #signup
   = simple_form_for(@user, :as => :user, :url => registration_path(:user)) do |f|
     = f.input :email, :label => false, :input_html => { :placeholder => "example@domain.com" }
+    #password_junk
+      = f.input :password, :label => false, :required => false, :input_html => { :placeholder => 'type your own password here' }
     = f.submit 'sign up', :class => 'green'
-  %p
+  %p.other_auths
     or sign in with
     =link_to 'twitter,', '/auth/twitter'
     =link_to 'facebook,', '/auth/facebook'
     or
     =link_to 'google', '/auth/google'
+  %p.generate
+    or
+    = link_to 'have us generate one for you', 'generate'
   %p free for 30 days, cheap after
     
 .benefit
@@ -32,4 +37,10 @@
   %h2 save
   %p Since you stay on top of bills and expenses and receive reminders in due time, it’s not just money you’ll be saving, but time worrying about important.
 #modal
+  #main
+    %h1 generated password
+    %p.pass
+    %p Be sure to write this down, as we will be storing it securly and won't be able to access it again.
+    %p If you forget your password, you can always click on the "forgot password" link when signing in.
+    %p{ :class => 'button' }= link_to 'sign me up!', 'sign_up'
 #darknessification

@@ -30,8 +30,6 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      # Tell the UserMailer to send a welcome email after save
-      UserMailer.welcome_email(@user).deliver
       respond_with(@user)
     else
       render :new
@@ -54,6 +52,23 @@ class UsersController < ApplicationController
     @user.destroy
 
     render :index
+  end
+
+  def accept_invitation
+    invitation = Invitation.where(:email => current_user.email).first
+    inviter = User.find(invitation.inviter_id)
+    current_user.house = inviter.house
+    
+    if current_user.save
+      Invitation.where(:email => current_user.email).destroy
+    end
+    
+    redirect_to '/corkboard', :notice => "Congratulations! You've successfully joined a new house!"
+  end
+  
+  def reject_invitations
+    Invitation.where(:email => current_user.email).destroy
+    redirect_to '/corkboard'
   end
 
 end

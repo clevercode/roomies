@@ -1,5 +1,16 @@
-# Place your application-specific JavaScript functions and classes here
-# This file is automatically included by javascript_include_tag :defaults
+###
+Provides requestAnimationFrame in a cross browser way.
+@author paulirish / http://paulirish.com/
+###
+
+unless window.requestAnimationFrame
+	window.requestAnimationFrame =
+		window.webkitRequestAnimationFrame or
+    window.mozRequestAnimationFrame or
+    window.oRequestAnimationFrame or
+    window.msRequestAnimationFrame or
+    (callback, element) ->
+      window.setTimeout( callback, 1000 / 60 )
 
 $ = jQuery
 
@@ -11,20 +22,21 @@ $ = jQuery
 #   monochrome: true
 # )
 
+# // Adds a class of nighttime to the html after 8pm and before 6am
 d = new Date()
-if d.getHours() < 6 || d.getHours() > 8
+if d.getHours() < 6 || d.getHours() > 20
   $('html').addClass('nighttime')
-
-# $('input:password').nakedPassword({path: '/images/naked/'})
 
 $modal             = $('#modal')
 $easy_button       = $('#easy_button')
 $darknessification = $('#darknessification')
 $superdate         = $('.superdate')
 
+# // Sets the modal to be right aligned with the add assignment button
 if $('body').hasClass('signed_in')
   modal_right = $('html').outerWidth() - ($easy_button.offset().left + $easy_button.outerWidth()) + 2
   
+# // Handles the sticky footer
 if window.innerHeight > $('body').height()
   $('footer').css({position:'fixed', bottom:0, width:'940px'})
   $('body').css({minHeight:window.innerHeight})
@@ -53,6 +65,8 @@ $superdate.live 'keyup', (event) ->
   
 # $('#picker').datepicker()
 
+# // Listens for a click on any anchor with a class of ajax.
+# // Knabs the anchor's href and ajaxes it in to the modal.
 $('a.ajax').bind 'click', (event) ->
   $.ajax url: $(this).attr('href'), success: (data) -> 
     $modal.empty()
@@ -62,27 +76,41 @@ $('a.ajax').bind 'click', (event) ->
     roomies    = $(data).find('#main p:eq(0)').text()
     roomie_ids = $(data).find('#main p:eq(1)').text()
     apply_autocomplete(roomies,roomie_ids)
-    console.log roomies
-    console.log roomie_ids
   return false
 
+# // Listens for a click on the dark overlay when the modal is up
 $darknessification.live 'click', (event) ->
   $darknessification.hide()
   $modal.hide()
   return false
-
-$('#add_roomie').live 'click', (event) ->
-  $(this).hide()
-  $('#modal form').show()
-  return false
   
-current = 0
 
-init = setInterval(() -> 
-  current -= 1
-  $('#clouds').css("background-position",current+"px 0")
-,70)
+Clouds = 
+  # Initialize the counter
+  xPosition: 0
 
+  # Cache the element
+  element: $('#clouds')
+
+  # Animation Logic
+  animate: ->
+    # Create a binded version of this method
+    @_bindedAnimate ||= _(@animate).bind(this)
+
+    # Queue up another call of this method
+    window.requestAnimationFrame(@_bindedAnimate)
+
+    # Update our internal counter 
+    @xPosition -= 0.25
+
+    # Set CSS to new the new counter value
+    @element.css("background-position", @xPosition+"px 0")
+
+Clouds.animate()
+
+
+
+# // Handles mouseover and mouseout for the corkboard lists.
 $('.corkboard #upcoming li.expense, 
    .corkboard #upcoming li.task, 
    .corkboard .others li.bounty, 
@@ -108,12 +136,42 @@ $('.corkboard #upcoming li.expense,
         .animate({opacity:0}, (event) ->
           $(this).hide().prev().animate({paddingRight:'25px'})
         )
-        
+
+# // Hides the flash notice if it's visible.
 if $('#flash').height() > '5'
   setTimeout ->
     $('#flash').fadeOut()
   , 3000
   
+
+# =========================================
+# ========== SIGN UP AMAZINGNESS ==========
+# =========================================
+
+signup_ready = false
+$('#user_new #user_submit').bind 'click', (event) ->
+  $('#user_new .input:eq(0)').fadeOut((event) -> 
+    $('#password_junk').fadeIn()
+    signup_ready = true
+  )
+  $('.other_auths').fadeOut((event) -> 
+    $('.generate').fadeIn()
+  )
+  return false unless signup_ready
+  
+$('.generate').bind 'click', (event) ->
+  characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz"
+  random_string = ''
+  for i in [1..32]
+    random_number = Math.floor(Math.random() * characters.length)
+    random_string += characters.substring(random_number, random_number + 1)
+  $('#password_junk input').attr('value',random_string)
+  $darknessification.show()
+  $modal.show().find('p.pass').text(random_string)
+  $('p.button a').live 'click', (event) ->
+    $('#user_new').submit()
+    return false
+  return false
 
 
 # ============================================
