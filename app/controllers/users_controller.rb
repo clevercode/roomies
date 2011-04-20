@@ -54,4 +54,21 @@ class UsersController < ApplicationController
     render :index
   end
 
+  def accept_invitation
+    invitation = Invitation.where(:email => current_user.email).first
+    inviter = User.find(invitation.inviter_id)
+    current_user.house = inviter.house
+    
+    if current_user.save
+      Invitation.where(:email => current_user.email).destroy
+    end
+    
+    redirect_to '/corkboard', :notice => "Congratulations! You've successfully joined a new house!"
+  end
+  
+  def reject_invitations
+    Invitation.where(:email => current_user.email).destroy
+    redirect_to '/corkboard'
+  end
+
 end
