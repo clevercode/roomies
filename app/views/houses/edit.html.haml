@@ -1,16 +1,2 @@
-%h1 edit house information
+%h1 edit house name
 = render 'form'
-- if !@house.users.empty?
-  %h2 roomies:
-  %ul
-    - @house.users.each do |user|
-      %li
-        #{user.name} -
-        - if user != current_user
-          = link_to 'kick out!', homeless_url(:id => user.id, :house_id => @house)
-        - else
-          that's you!
-      %li= link_to 'add a roomie!', 'add_roomie_url', :id => 'add_roomie'
-  = simple_form_for :add_roomie do |f|
-    = f.input :email, :label => false, :input_html => { :placeholder => 'enter roomie email address here' }
-    = f.submit 'invite roomie'
