@@ -1,5 +1,16 @@
-# Place your application-specific JavaScript functions and classes here
-# This file is automatically included by javascript_include_tag :defaults
+###
+Provides requestAnimationFrame in a cross browser way.
+@author paulirish / http://paulirish.com/
+###
+
+unless window.requestAnimationFrame
+	window.requestAnimationFrame =
+		window.webkitRequestAnimationFrame or
+    window.mozRequestAnimationFrame or
+    window.oRequestAnimationFrame or
+    window.msRequestAnimationFrame or
+    (callback, element) ->
+      window.setTimeout( callback, 1000 / 60 )
 
 $ = jQuery
 
@@ -80,12 +91,31 @@ $('#add_roomie').live 'click', (event) ->
   $('#modal form').show()
   return false
   
-# // Handles the cloud scrolling
-current = 0
-init = setInterval(() -> 
-  current -= 1
-  $('#clouds').css("background-position",current+"px 0")
-,70)
+
+Clouds = 
+  # Initialize the counter
+  xPosition: 0
+
+  # Cache the element
+  element: $('#clouds')
+
+  # Animation Logic
+  animate: ->
+    # Create a binded version of this method
+    @_bindedAnimate ||= _(@animate).bind(this)
+
+    # Queue up another call of this method
+    window.requestAnimationFrame(@_bindedAnimate)
+
+    # Update our internal counter 
+    @xPosition -= 0.25
+
+    # Set CSS to new the new counter value
+    @element.css("background-position", @xPosition+"px 0")
+
+Clouds.animate()
+
+
 
 # // Handles mouseover and mouseout for the corkboard lists.
 $('.corkboard #upcoming li.expense, 
