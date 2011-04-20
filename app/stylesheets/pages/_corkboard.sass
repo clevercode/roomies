@@ -1,5 +1,8 @@
 #main.corkboard
-  &#flash, &.first_time, &.notice
+  &.notifications
+    padding: 0
+  
+  &#flash, &.notice
     padding: 5px
     .notice
       padding: 5px
@@ -269,6 +272,10 @@
     width: 134px
     +background-image(linear-gradient(rgba(255,255,255,.75), rgba(255,255,255,.15)))
 
+    &.current_day
+      +background-image(linear-gradient(rgba(0,0,50,.15), rgba(0,0,0,0)))
+      +box-shadow(transparentize(darken($blue, 40%), 0.5) 1px 5px 15px 1px inset, transparentize(darken($blue, 40%), 0.5) -1px 5px 15px 1px inset)
+    
     &:hover
       +background-image(linear-gradient(rgba(255,255,255,.55), transparentize(lighten($lightblue, 0%), .01)))
 
