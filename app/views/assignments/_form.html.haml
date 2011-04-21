@@ -1,5 +1,8 @@
 = simple_form_for :assignment, :url => '/assignments' do |f|
   = f.input :purpose
+  = f.input :house_id, :label => false, :input_html => { :type => 'hidden', :value => current_user.house_id }
+  = f.input :commissioner_id, :label => false, :input_html => { :type => 'hidden', :value => current_user.id }
+  = f.input :commissioned_at, :label => false, :input_html => { :type => 'hidden', :value => Time.now }
   .input.string.optional
     %label{ :class => 'string optional', :for => 'assignment_assignees'} Assignees 
     %input{ :class => 'string optional autocomplete', :name => 'assignment[assignees]', :size => '50', :type => 'hidden' }
