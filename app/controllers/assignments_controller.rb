@@ -68,7 +68,7 @@ class AssignmentsController < ApplicationController
  
     respond_to do |format|
       if @assignment.update_attributes(params[:assignment])
-        format.html { redirect_to(@assignment, :notice => 'Assignment was successfully updated.') }
+        format.html { redirect_to(assignment_path(@assignment), :notice => 'Assignment was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
