@@ -1,2 +1,31 @@
 %h1 Assignment
+%h2
+  Type: 
+  %strong #{@assignment._type}
+
 %p= @assignment.purpose
+%hr
+- if @assignment.respond_to?("assignees")
+  %p Assignees: 
+  %ul
+    - @assignment.assignees.map do |a| 
+      %li
+        = link_to "- " + a.name.to_s, a
+
+- if @assignment.respond_to?("cost")
+  %p 
+    Cost: 
+    %strong #{@assignment.cost}
+
+- if @assignment.respond_to?("due_date")
+  %p 
+    Due date: 
+    %strong #{@assignment.due_date}
+
+- if @assignment.respond_to?("frequency")
+  %p 
+    Frequency : 
+    %strong #{@assignment.frequency}
+%hr
+= link_to 'Edit Assignment', edit_assignment_path(@assignment)
+= link_to 'Back to Assignments', assignments_path
