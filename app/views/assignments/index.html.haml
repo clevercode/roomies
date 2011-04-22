@@ -23,7 +23,7 @@
               %li= a.name
       %td= assignment.frequency if %w{Bill Chore}.include?(assignment._type)
       %td= assignment._type
-      %td= link_to 'Show', assignment
+      %td= link_to 'Show', assignment_path(assignment)
       %td= link_to 'Edit', edit_assignment_path(assignment)
       %td= link_to 'Destroy', assignment, :confirm => 'Are you sure?', :method => :delete
  
