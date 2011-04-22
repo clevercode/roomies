@@ -44,6 +44,9 @@ class AssignmentsController < ApplicationController
   def create
     unless current_user.house.nil?
       params[:assignment][:assignees] = Array.wrap(params[:assignment][:assignees].split(','))
+
+      # passing the params through AssignmentFactory to receive
+      # the appropriate assignment type
       @assignment = AssignmentFactory.new(params[:assignment])
  
       respond_to do |format|
