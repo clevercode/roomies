@@ -3,7 +3,7 @@
 
 en:
   hello: 'Hello world'
-  signed_in: 'Sign in successfully.'
+  signed_in: 'Welcome back, you signed in successfully.'
   auth_success: 'Authentication successful.'
   auth_fail: 'Authentication failed.'
   auth_destroy: 'Successfully destroyed authentication.'
