@@ -54,7 +54,7 @@ class AssignmentsController < ApplicationController
           format.html { redirect_to(assignment_url(@assignment), :notice => 'Assignment was successfully created.') }
           format.xml  { render :xml => @assignment, :status => :created, :location => @assignment }
         else
-          format.html { render :action => "new" }
+          format.html { render :action => "new", :notice => "Your assignment couldn't be created, try again." }
           format.xml  { render :xml => @assignment.errors, :status => :unprocessable_entity }
         end
       end  
