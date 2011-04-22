@@ -60,7 +60,7 @@ class User
     self.password, self.password_confirmation = String::RandomString(16)
 
     if (confirmation) 
-      self.confirmed_at, self.confirmation_sent_at = Time.now  
+      # self.confirmed_at, self.confirmation_sent_at = Time.now  
     end 
   end
 
