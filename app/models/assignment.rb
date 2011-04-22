@@ -2,6 +2,7 @@ class Assignment
   # basic model for assignements to be
   # inherited by more specific models
   include Mongoid::Document
+  include Mongoid::Timestamps
 
   field :purpose, :type => String
   field :value, :type => Integer
