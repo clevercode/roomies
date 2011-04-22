@@ -1,12 +1,26 @@
 %h1 Assignment
-= simple_form_for @assignment, :url => edit_assignment_path(@assignment) do |f|
+%p Type: #{@assignment._type}
+= simple_form_for @assignment, :as => :assignment, :url => "/assignments/#{@assignment.to_param}", :html => { :method => :put } do |f|
+  
   = f.input :purpose
-  = f.input :assignees, :input_html => { :value => @assignment.assignees.map { |a| a.name.to_s } }, :required => false
-  = f.input :cost, :required => false
-  = f.input :due_date, :required => false, :input_html => { :class => 'superdate' }
+  
+  - if @assignment.respond_to?("assignees")
+    = f.input :assignees, :input_html => { :value => @assignment.assignees.map { |a| a.name.to_s } }, :required => false
+
+  - if @assignment.respond_to?("cost")
+    = f.input :cost, :required => false
+
+  - if @assignment.respond_to?("due_date")
+    = f.input :due_date, :required => false, :input_html => { :class => 'superdate' }
+
   #picker
-  = f.input :repeating, :as => :boolean, :required => false
-  = f.input :frequency, :required => false
+
+  - if @assignment.respond_to?("repeating")
+    = f.input :repeating, :as => :boolean, :required => false
+
+  - if @assignment.respond_to?("frequency")
+    = f.input :frequency, :required => false
+
   = f.input :category, :required => false
 
   = f.submit 'create', :disable_with => "Please wait...", :class => 'green'
