@@ -1,11 +1,11 @@
 %h1 Assignment
 %h2
   Type: 
-  %strong #{@assignment._type}
+  %strong #{@assignment.class}
 
 %p= @assignment.purpose
 %hr
-- if @assignment.respond_to?("assignees")
+- if @assignment.respond_to?("assignees") && @assignment.assignees != nil
   %p Assignees: 
   %ul
     - @assignment.assignees.map do |a| 
