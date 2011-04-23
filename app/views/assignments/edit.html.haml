@@ -1,14 +1,42 @@
 %h1 Assignment
-= simple_form_for @assignment, :url => edit_assignment_path(@assignment) do |f|
-  = f.input :purpose
-  = f.input :assignees, :input_html => { :value => @assignment.assignees.map { |a| a.name.to_s } }, :required => false
-  = f.input :cost, :required => false
-  = f.input :due_date, :required => false, :input_html => { :class => 'superdate' }
-  #picker
-  = f.input :repeating, :as => :boolean, :required => false
-  = f.input :frequency, :required => false
-  = f.input :category, :required => false
+%p Type: #{@assignment.class}
 
-  = f.submit 'create', :disable_with => "Please wait...", :class => 'green'
+= form_tag("/assignments/#{@assignment.to_param}", :method => :put)
+= hidden_field_tag 'id', "#{@assignment.to_param}"
+= hidden_field_tag 'type',"#{@assignment.class}"
+%ul
+  %li= text_field_tag 'purpose', @assignment.purpose ||= '', :placeholder => "What's the purpose?"
+  %li= text_field_tag 'assignees',(@assignment.respond_to?("assignees")) ? @assignment.assignees.join(", ") : '', :placeholder => "Who should do it?"
+  %li= text_field_tag 'due date', (@assignment.respond_to?("due_date")) ? @assignment.due_date : '', :placeholder => "When is it due?"
+  %li= text_field_tag 'cost', (@assignment.respond_to?("cost")) ? @assignment.cost : '', :placeholder => "How much will it cost?"
+  %li= text_field_tag 'frequency', (@assignment.respond_to?("frequency")) ? @assignment.frequency : '', :placeholder => "How often should it repeat?"
+  %li= text_field_tag 'category', @assignment.category ||= '', :placeholder => "What category does it belong to?"
+
+%p= submit_tag 'Update assignment'
+
+-# = simple_form_for [@assignment, :stuff], :url => "/assignments/#{@assignment.to_param}", :html => { :method => :put } do |f|
+  
+  -# = f.input :purpose
+  
+  -# - if @assignment.respond_to?("assignees") && @assignment.assignees != nil
+  -#   = f.input :assignees, :input_html => { :value => @assignment.assignees.map { |a| a.name.to_s } }, :required => false
+
+  -# - if @assignment.respond_to?("cost")
+  -#   = f.input :cost, :required => false
+
+  -# - if @assignment.respond_to?("due_date")
+  -#   = f.input :due_date, :required => false, :input_html => { :class => 'superdate' }
+
+  -# #picker
+
+  -# - if @assignment.respond_to?("repeating")
+  -#   = f.input :repeating, :as => :boolean, :required => false
+
+  -# - if @assignment.respond_to?("frequency")
+  -#   = f.input :frequency, :required => false
+
+  -# = f.input :category, :required => false
+
+  -# = f.submit 'create', :disable_with => "Please wait...", :class => 'green'
 
 = link_to 'Back', assignments_path

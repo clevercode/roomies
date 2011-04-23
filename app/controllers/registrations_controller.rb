@@ -1,33 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
 
-  def new
-    super
-  end
-
-  def create
-    super
-  end
-
-  def edit
-    super
-  end
-
-  def update
-    super
-  end
-
-  def destroy
-    super
-  end
-
-  def cancel
-    super
-  end
-
-  protected
-  def after_sign_up_path_for(resource)
-    '/corkboard'
-  end
 
   def email
     if session[:omniauth]
@@ -54,5 +26,11 @@ class RegistrationsController < Devise::RegistrationsController
       redirect_to new_user_registration_url
     end
   end
+
+  protected
+  def after_sign_up_path_for(resource)
+    '/corkboard'
+  end
+
   
 end

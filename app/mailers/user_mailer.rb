@@ -23,7 +23,7 @@ class UserMailer < ActionMailer::Base
                                     "===================================" +
                                     "<p>Someone you live with(hopefully), sent you an " +
                                     "invitation to move into their house on Roomies!</p>" +
-                                    "<p>If you already have an account, you can simple sign " +
+                                    "<p>If you already have an account, you can simply sign " +
                                     "in and accept the invitation. If you're new to the whole " +
                                     "thing, head over to roomiesapp.com and signup. As soon " +
                                     "as your logged in, you will see a notification staring you " +

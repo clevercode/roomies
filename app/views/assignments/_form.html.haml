@@ -4,9 +4,10 @@
   %ul#names
   = f.input :cost, :required => false
   = f.input :due_date, :required => false, :input_html => { :class => 'superdate' }
-  -# #picker
+  #picker
   = f.input :repeating, :as => :boolean, :required => false
   = f.input :frequency, :required => false
   = f.input :category, :required => false
+  = f.input :completed_at, :required => false, :input_html => { :class => 'superdate' }
 
   = f.submit 'create', :disable_with => "Please wait...", :class => 'green'

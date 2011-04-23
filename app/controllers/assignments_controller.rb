@@ -47,6 +47,9 @@ class AssignmentsController < ApplicationController
       params[:assignment][:commissioner_id] = current_user.id
       params[:assignment][:commissioned_at] = Time.now
       params[:assignment][:assignees]       = Array.wrap(params[:assignment][:assignees].split(','))
+
+      # passing the params through AssignmentFactory to receive
+      # the appropriate assignment type
       @assignment = AssignmentFactory.new(params[:assignment])
  
       respond_to do |format|
@@ -54,7 +57,7 @@ class AssignmentsController < ApplicationController
           format.html { redirect_to '/corkboard', :notice => 'Assignment was successfully created.' }
           format.xml  { render :xml => @assignment, :status => :created, :location => @assignment }
         else
-          format.html { render :action => "new" }
+          format.html { render :action => "new", :notice => "Your assignment couldn't be created, try again." }
           format.xml  { render :xml => @assignment.errors, :status => :unprocessable_entity }
         end
       end  
@@ -65,10 +68,15 @@ class AssignmentsController < ApplicationController
  
   def update
     @assignment = Assignment.find(params[:id])
+
+    assignment_type = AssignmentFactory.class_for(params[:assignment])
+    if assignment_type != @assignment.class
+      @assignment.becomes(assignment_type)
+    end
  
     respond_to do |format|
       if @assignment.update_attributes(params[:assignment])
-        format.html { redirect_to(@assignment, :notice => 'Assignment was successfully updated.') }
+        format.html { redirect_to(assignment_path(@assignment), :notice => 'Assignment was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
