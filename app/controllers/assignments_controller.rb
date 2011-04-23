@@ -43,7 +43,10 @@ class AssignmentsController < ApplicationController
  
   def create
     unless current_user.house.nil?
-      params[:assignment][:assignees] = Array.wrap(params[:assignment][:assignees].split(','))
+      params[:assignment][:house_id]        = current_user.house_id
+      params[:assignment][:commissioner_id] = current_user.id
+      params[:assignment][:commissioned_at] = Time.now
+      params[:assignment][:assignees]       = Array.wrap(params[:assignment][:assignees].split(','))
       @assignment = AssignmentFactory.new(params[:assignment])
  
       respond_to do |format|
