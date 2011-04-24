@@ -14,9 +14,13 @@ form.simple_form
       padding: 10px 5px 0
       color: $input-color
       margin: 0 10px 10px 0
-      border: 1px solid #fff
-      outline: 1px solid #7490b3
-      +linear-gradient(color-stops(#d9eaff, #f2f8ff))
+      +background-image(linear-gradient(lighten($blue, 15%), lighten($blue, 20%)))
+      +box-shadow(transparentize(black, .4) 0 1px 1px 0 inset)
+      +border-radius(3px)
+      border: none
+      outline: none
+      &:focus
+        
     .boolean  
       float: right
       width: auto
@@ -30,32 +34,33 @@ form.simple_form
     clear: both
     outline: none
     color: white
-    text-shadow: rgba(0,0,0,0.5) 0 1px 1px
+    // +text-shadow(rgba(0,0,0,0.5) 0 1px 1px)
+    text-shadow: none
     font-size: 16px
     margin-top: 10px
     padding: 5px 20px
     font-weight: bold
+    border: none
     +border-radius(10px)
-    border: 1px solid saturate(#95b9e5,20%)
-    +linear-gradient(color-stops(#a6ceff, #95b9e5))
-    -moz-box-shadow: rgba(70,96,128,0.65) 0 2px 2px, saturate(#95b9e5,20%) -3px -7px 7px inset, saturate(#95b9e5,20%) 3px -7px 7px inset
-    -webkit-box-shadow: rgba(70,96,128,0.65) 0 2px 2px, saturate(#95b9e5,20%) -3px -7px 7px inset, saturate(#95b9e5,20%) 3px -7px 7px inset
+    +background-image(linear-gradient(#a6ceff, #95b9e5))
+    +box-shadow(rgba(70,96,128,0.65) 0 2px 2px, saturate(#95b9e5,20%) -3px -7px 7px inset, saturate(#95b9e5,20%) 3px -7px 7px inset)
     &:hover
-      +linear-gradient(color-stops(saturate(lighten(#a6ceff, 5%), 20%), #95b9e5))
+      +background-image(linear-gradient(saturate(lighten(#a6ceff, 5%), 20%), #95b9e5))
     &:active
-      +linear-gradient(color-stops(#95b9e5, #a6ceff))
-      -moz-box-shadow: rgba(70,96,128,0.65) 0 2px 2px, saturate(#95b9e5,30%) -5px 7px 7px inset, saturate(#95b9e5,30%) 5px 7px 7px inset
-      -webkit-box-shadow: rgba(70,96,128,0.65) 0 2px 2px, saturate(#95b9e5,30%) -5px 7px 7px inset, saturate(#95b9e5,30%) 5px 7px 7px inset
+      +background-image(linear-gradient(#95b9e5, #a6ceff))
+      +box-shadow(rgba(70,96,128,0.65) 0 2px 2px, saturate(#95b9e5,30%) -5px 7px 7px inset, saturate(#95b9e5,30%) 5px 7px 7px inset)
     &.green
       color: #fff
-      border: 1px solid saturate(#a8d977,20%)
-      +linear-gradient(color-stops(#d7ff8c, #a8d977))
-      text-shadow: rgba(0,0,0,0.5) 2px 2px 5px, darken($green,10%) 1px 1px 0
-      -moz-box-shadow: rgba(93,76,42,0.85) 0 2px 2px, saturate(#90ce66,20%) -5px -10px 20px inset, saturate(#90ce66,20%) 5px -10px 20px inset
-      -webkit-box-shadow: rgba(93,76,42,0.85) 0 2px 2px, saturate(#90ce66,20%) -5px -10px 20px inset, saturate(#90ce66,20%) 5px -10px 20px inset
+      // border: 1px solid saturate(#a8d977,20%)
+      +background-image(linear-gradient($lightgreen, $green))
+      +text-shadow(rgba(0,0,0,0.5) 0 2px 5px, darken($green,10%) 1px 1px 0)
+      // +box-shadow(rgba(93,76,42,0.85) 0 2px 2px, saturate(#90ce66,20%) -5px -10px 20px inset, saturate(#90ce66,20%) 5px -10px 20px inset)
+      +box-shadow(darken(saturate($green, 10%), 20%) 0 0 5px inset, transparentize(white, .2) 0 2px 7px inset, darken($green, 30%) 0 1px 2px) 
       &:hover
-        +linear-gradient(color-stops(saturate(lighten(#d7ff8c, 5%), 20%), #a8d977))
+        +background-image(linear-gradient(darken(saturate($lightgreen, 5%), 5%), darken(saturate($green, 5%), 5%)))
       &:active
-        +linear-gradient(color-stops(#a8d977, #d7ff8c))
-        -moz-box-shadow: rgba(93,76,42,0.85) 0 2px 2px, saturate(#90ce66,20%) -5px 10px 20px inset, saturate(#90ce66,20%) 5px 10px 20px inset
-        -webkit-box-shadow: rgba(93,76,42,0.85) 0 2px 2px, saturate(#90ce66,20%) -5px 10px 20px inset, saturate(#90ce66,20%) 5px 10px 20px inset
+        +text-shadow(rgba(0,0,0,.7) 0 -1px 1px, rgba(0,0,0,.2) 0 1px 1px)
+        // +background-image(linear-gradient(#a8d977, #d7ff8c))
+        // +box-shadow(rgba(93,76,42,0.85) 0 2px 2px, saturate(#90ce66,20%) -5px 10px 20px inset, saturate(#90ce66,20%) 5px 10px 20px inset)
+        +background-image(linear-gradient(darken(saturate($green, 5%), 5%), (darken(saturate($lightgreen, 5%), 5%))))
+        +box-shadow(rgba(0,0,0,.7) 0 1px 5px inset, rgba(0,0,0,.5) 0 -1px 2px inset)
