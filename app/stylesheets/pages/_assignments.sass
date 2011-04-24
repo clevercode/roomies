@@ -3,6 +3,7 @@
     font-size: 1em
     border: none
 form
+  +column(4)
   div.input
     input.autocomplete
       width: 394px
@@ -20,3 +21,13 @@ form
       background: url('../images/244.png') no-repeat right top
 p.array
   display: none
+
+#picker
+  width: 100%
+  clear: both
+  margin: 0 0 1em
+  .ui-datepicker
+    width: 98.5%
+    .ui-widget-content
+      border: none
+      background: none
