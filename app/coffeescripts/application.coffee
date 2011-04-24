@@ -41,29 +41,58 @@ if window.innerHeight > $('body').height()
   $('footer').css({position:'fixed', bottom:0, width:'940px'})
   $('body').css({minHeight:window.innerHeight})
 
+
 $superdate.live 'keyup', (event) ->
   val = $(this).val()
-  console.log('got a value')
   if val?
     console.log('val after existence check: ', val)
+
+    # parsing anything the user enters as a date
     date = Date.parse( val )
     console.log('date after DateJS parsing: ', date)
-    date = date.toString('MMMM d, yyyy')
-    console.log('date after toString: ', date)
-    $('#popol').html(date)
-    d = new Date(val)
-    console.log('d after instantiation with val', d)
-    if d.getMonth() is not NaN
-      # check for invalid date
-      month : d.getMonth()+1,
-      day : d.getDate(),
-      year : d.getFullYear()
-    else
-      false
 
-    $('#picker').datepicker( "setDate" , date )
-  
-# $('#picker').datepicker()
+    # making the date more legible and concise
+    date = date.toString('MMMM d, yyyy')
+
+    # updating the datepicker
+    $('#picker').datepicker('setDate', date)
+
+    console.log('date after toString: ', date)
+    console.log('d after instantiation with val', d)
+
+    # if d.getMonth() is not NaN
+    #   # check for invalid date
+    #   month : d.getMonth()+1,
+    #   day : d.getDate(),
+    #   year : d.getFullYear()
+    # else
+    #   false
+
+$superdate.live 'focusout', (event) ->
+  val = $(this).val()
+  if val?
+    date = Date.parse( val )
+    date = date.toString('MMMM d, yyyy')
+    $(this).val(date)
+    $('#picker').datepicker('setDate', date)
+
+# $('picker').datepicker( "setDate" , date )
+
+$('#picker').datepicker(
+  dateFormat: 'MM d, yy',
+  onSelect: (dateText, inst) ->
+    # date = Date.parse( dateText )
+    console.log(Date.parse(dateText))
+    console.log(Date.parse("today"))
+    if Date.parse($superdate.val) == Date.parse("today")
+      console.log('yo today dude')
+    # date = date.toString('MMMM d, yyyy')
+    $superdate.val(dateText)
+)
+
+# $('#assignment_due_date').live 'keyup', (event) ->
+#   unless megadate == "unknown"
+#     $('#picker').datepicker('setDate', saved_date)
 
 # // Listens for a click on any anchor with a class of ajax.
 # // Knabs the anchor's href and ajaxes it in to the modal.
