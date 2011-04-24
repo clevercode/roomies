@@ -61,23 +61,38 @@
     %li#task_filter tasks
     %li.right#expense_filter expenses
 
-#upcoming.content
+#upcoming.content    
   .list
     %h2 today
     %ul
-      - @things.each do |thing|
-        %li{ :class => thing._type.downcase } 
+      - @todays_assignments.each do |assignment|
+        -# - if assignment.due_date.today?
+        %li{ :class => assignment._type.downcase } 
           %ul
-            %li{ :title => thing._type.downcase }
-            %li= link_to thing.purpose, assignment_url(thing)
+            %li{ :title => assignment._type.downcase }
+            %li= link_to assignment.purpose, assignment_url(assignment)
             %li.edit
   .list
     %h2 tomorrow
     %ul
+      - @tomorrows_assignments.each do |assignment|
+        -# - if assignment.due_date == Time.now.tomorrow
+        %li{ :class => assignment._type.downcase } 
+          %ul
+            %li{ :title => assignment._type.downcase }
+            %li= link_to assignment.purpose, assignment_url(assignment)
+            %li.edit
  
   .list.last
     %h2= (Date::DAYNAMES[Date.tomorrow.next_day.wday.to_i]).downcase
     %ul
+      - @next_days_assignments.each do |assignment|
+        -# - if assignment.due_date == Time.now.tomorrow.tomorrow
+        %li{ :class => assignment._type.downcase } 
+          %ul
+            %li{ :title => assignment._type.downcase }
+            %li= link_to assignment.purpose, assignment_url(assignment)
+            %li.edit
 
 .header_bar
   %h1 these coming days

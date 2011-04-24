@@ -43,7 +43,10 @@ class AssignmentsController < ApplicationController
  
   def create
     unless current_user.house.nil?
-      params[:assignment][:assignees] = Array.wrap(params[:assignment][:assignees].split(','))
+      params[:assignment][:house_id]        = current_user.house_id
+      params[:assignment][:commissioner_id] = current_user.id
+      params[:assignment][:commissioned_at] = Time.now
+      params[:assignment][:assignees]       = Array.wrap(params[:assignment][:assignees].split(','))
 
       # passing the params through AssignmentFactory to receive
       # the appropriate assignment type
@@ -51,7 +54,7 @@ class AssignmentsController < ApplicationController
  
       respond_to do |format|
         if @assignment.save
-          format.html { redirect_to(assignment_url(@assignment), :notice => 'Assignment was successfully created.') }
+          format.html { redirect_to '/corkboard', :notice => 'Assignment was successfully created.' }
           format.xml  { render :xml => @assignment, :status => :created, :location => @assignment }
         else
           format.html { render :action => "new", :notice => "Your assignment couldn't be created, try again." }

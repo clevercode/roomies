@@ -3,7 +3,7 @@ module Trait
     extend ActiveSupport::Concern
 
     included do
-      field :due_date, :type => DateTime
+      field :due_date
     end
   end
 end

@@ -1,10 +1,7 @@
 = simple_form_for :assignment, :url => '/assignments' do |f|
   = f.input :purpose
-  .input.string.optional
-    %label{ :class => 'string optional', :for => 'assignment_assignees'} Assignees 
-    %input{ :class => 'string optional autocomplete', :name => 'assignment[assignees]', :size => '50', :type => 'hidden' }
-    %input{ :class => 'string optional autocomplete', :id => 'assignment_assignees', :name => 'ignore_me', :size => '50', :type => 'text' }
-    %span#assignees
+  = f.input :assignees, :required => false, :input_html => {:class => 'autocomplete'}
+  %ul#names
   = f.input :cost, :required => false
   = f.input :due_date, :required => false, :input_html => { :class => 'superdate' }
   #picker
@@ -16,13 +13,3 @@
     = check_box_tag 'completed', 'true'
 
   = f.submit 'create', :disable_with => "Please wait...", :class => 'green'
-
-%p.array= @roomies.all.map {|r| r.name}
-%p.array= @roomies.all.map {|r| r.id.to_s}
-
-:javascript
-  jQuery(function(){
-    var names =  #{@roomies.all.map {|r| r.name}};
-    var ids   =  #{@roomies.all.map {|r| r.id.to_s}};
-    apply_autocomplete(names,ids);
-  });

@@ -7,7 +7,6 @@ form
   div.input
     input.autocomplete
       width: 394px
-      position: absolute
       padding-right: 35px
     span#assignees
       top: 10px
@@ -19,6 +18,25 @@ form
       position: relative
       margin-bottom: 20px
       background: url('../images/244.png') no-repeat right top
+      background: url('../images/244.png') no-repeat 98% 50%
+  ul#names
+    float: left
+    width: 432px
+    display: none
+    list-style: none
+    background: #fff
+    margin: -5px 0 10px 2px
+    border: 1px solid #7490b3
+    li
+      cursor: pointer
+      font-weight: bold
+      padding: 7px 5px 5px
+      +linear-gradient(color-stops(#f2f8ff, #d9eaff))
+      &:hover
+        +linear-gradient(color-stops(lighten(#f2f8ff,10%), #d9eaff))
+      &:active
+        +box-shadow(darken(#d9eaff,10%) 0 0 5px 1px inset)
+        +linear-gradient(color-stops(darken(#d9eaff,1%), #d9eaff))
 p.array
   display: none
 
@@ -31,3 +49,4 @@ p.array
     .ui-widget-content
       border: none
       background: none
+

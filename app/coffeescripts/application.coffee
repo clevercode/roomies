@@ -14,6 +14,12 @@ unless window.requestAnimationFrame
 
 $ = jQuery
 
+$modal             = $('#modal')
+$easy_button       = $('#easy_button')
+$darknessification = $('#darknessification')
+$superdate         = $('.superdate')
+$names             = $('#names')
+
 # $('body').noisy(
 #   intensity: 0.4, 
 #   size: 200, 
@@ -27,11 +33,6 @@ d = new Date()
 if d.getHours() < 6 || d.getHours() > 20
   $('html').addClass('nighttime')
 
-$modal             = $('#modal')
-$easy_button       = $('#easy_button')
-$darknessification = $('#darknessification')
-$superdate         = $('.superdate')
-
 # // Sets the modal to be right aligned with the add assignment button
 if $('body').hasClass('signed_in')
   modal_right = $('html').outerWidth() - ($easy_button.offset().left + $easy_button.outerWidth()) + 2
@@ -40,59 +41,6 @@ if $('body').hasClass('signed_in')
 if window.innerHeight > $('body').height()
   $('footer').css({position:'fixed', bottom:0, width:'940px'})
   $('body').css({minHeight:window.innerHeight})
-
-
-$superdate.live 'keyup', (event) ->
-  val = $(this).val()
-  if val?
-    console.log('val after existence check: ', val)
-
-    # parsing anything the user enters as a date
-    date = Date.parse( val )
-    console.log('date after DateJS parsing: ', date)
-
-    # making the date more legible and concise
-    date = date.toString('MMMM d, yyyy')
-
-    # updating the datepicker
-    $('#picker').datepicker('setDate', date)
-
-    console.log('date after toString: ', date)
-    console.log('d after instantiation with val', d)
-
-    # if d.getMonth() is not NaN
-    #   # check for invalid date
-    #   month : d.getMonth()+1,
-    #   day : d.getDate(),
-    #   year : d.getFullYear()
-    # else
-    #   false
-
-$superdate.live 'focusout', (event) ->
-  val = $(this).val()
-  if val?
-    date = Date.parse( val )
-    date = date.toString('MMMM d, yyyy')
-    $(this).val(date)
-    $('#picker').datepicker('setDate', date)
-
-# $('picker').datepicker( "setDate" , date )
-
-$('#picker').datepicker(
-  dateFormat: 'MM d, yy',
-  onSelect: (dateText, inst) ->
-    # date = Date.parse( dateText )
-    console.log(Date.parse(dateText))
-    console.log(Date.parse("today"))
-    if Date.parse($superdate.val) == Date.parse("today")
-      console.log('yo today dude')
-    # date = date.toString('MMMM d, yyyy')
-    $superdate.val(dateText)
-)
-
-# $('#assignment_due_date').live 'keyup', (event) ->
-#   unless megadate == "unknown"
-#     $('#picker').datepicker('setDate', saved_date)
 
 # // Listens for a click on any anchor with a class of ajax.
 # // Knabs the anchor's href and ajaxes it in to the modal.
@@ -115,24 +63,24 @@ $darknessification.live 'click', (event) ->
   
 
 Clouds = 
-  # Initialize the counter
+  # // Initialize the counter
   xPosition: 0
 
-  # Cache the element
+  # // Cache the element
   element: $('#clouds')
 
-  # Animation Logic
+  # // Animation Logic
   animate: ->
-    # Create a binded version of this method
+    # // Create a binded version of this method
     @_bindedAnimate ||= _(@animate).bind(this)
 
-    # Queue up another call of this method
+    # // Queue up another call of this method
     window.requestAnimationFrame(@_bindedAnimate)
 
-    # Update our internal counter 
+    # // Update our internal counter 
     @xPosition -= 0.25
 
-    # Set CSS to new the new counter value
+    # // Set CSS to new the new counter value
     @element.css("background-position", @xPosition+"px 0")
 
 Clouds.animate()
@@ -171,7 +119,76 @@ if $('#flash').height() > '5'
   setTimeout ->
     $('#flash').fadeOut()
   , 3000
+
+
+# =========================================
+# ========== NEW ASSIGNMENT JAZZ ==========
+# =========================================
   
+$('#assignment_assignees').live 'keyup', (event) ->
+  input_text = $(event.target).val()
+  if input_text.length > 1
+    $.ajax url: '/users?name=' + input_text, success: (data) ->
+      $names.empty().show()
+      $(data).find('#names li').appendTo('#names')
+  else
+    $names.hide().empty()
+
+$('#names li').live 'click', (event) ->
+  $('#assignment_assignees').attr('value',$(this).text())
+
+$superdate.live 'keyup', (event) ->
+  val = $(this).val()
+  if val?
+    console.log('val after existence check: ', val)
+
+    # parsing anything the user enters as a date
+    date = Date.parse( val )
+    console.log('date after DateJS parsing: ', date)
+
+    # making the date more legible and concise
+    date = date.toString('MMMM d, yyyy')
+
+    # updating the datepicker
+    $('#picker').datepicker('setDate', date)
+
+    console.log('date after toString: ', date)
+    console.log('d after instantiation with val', d)
+
+    # if d.getMonth() is not NaN
+    #   # check for invalid date
+    #   month : d.getMonth()+1,
+    #   day : d.getDate(),
+    #   year : d.getFullYear()
+    # else
+    #   false
+
+    $('#picker').datepicker( "setDate" , date )
+
+$superdate.live 'focusout', (event) ->
+  val = $(this).val()
+  if val?
+    date = Date.parse( val )
+    date = date.toString('MMMM d, yyyy')
+    $(this).val(date)
+    $('#picker').datepicker('setDate', date)
+
+$('#picker').datepicker(
+  dateFormat: 'MM d, yy',
+  onSelect: (dateText, inst) ->
+    # date = Date.parse( dateText )
+    console.log(Date.parse(dateText))
+    console.log(Date.parse("today"))
+    if Date.parse($superdate.val) == Date.parse("today")
+      console.log('yo today dude')
+    # date = date.toString('MMMM d, yyyy')
+    $superdate.val(dateText)
+)
+
+# $('#assignment_due_date').live 'keyup', (event) ->
+#   unless megadate == "unknown"
+#     $('#picker').datepicker('setDate', saved_date)
+
 
 # =========================================
 # ========== SIGN UP AMAZINGNESS ==========
@@ -201,62 +218,3 @@ $('.generate').bind 'click', (event) ->
     $('#user_new').submit()
     return false
   return false
-
-
-# ============================================
-# ========== AUTOCOMPLETEY GOODNESS ==========
-# ============================================
-
-window.apply_autocomplete = (roomies, roomie_ids) ->
-  split = (val) ->
-    return val.split(/,\s*/)
-  extractLast = (value) ->
-    return split(value).pop()
-  make_array = (value) ->
-    return value.replace('["','').replace('"]','').replace('", "',',')
-    
-  roomies_array    = roomies
-  roomie_ids_array = roomie_ids
-  $('.autocomplete')
-    # // dont navigate away from the field on tab when selecting an item
-    .bind "keydown", (event) ->
-      if event.keyCode == $.ui.keyCode.TAB && $( this ).data( "autocomplete" ).menu.active
-        event.preventDefault()
-    .autocomplete({
-      source: ( request, response ) ->
-        # // delegate back to autocomplete, but extract the last term
-        if typeof(roomies) == 'string'
-          roomies_array = split(make_array(roomies))
-          roomie_ids_array = split(make_array(roomie_ids))
-        response( $.ui.autocomplete.filter(roomies_array,extractLast(request.term)) )
-      ,
-      search: () ->
-        # // custom minLength
-        term = extractLast(this.value)
-        if term.length < 1 
-          return false
-      ,
-      focus: () ->
-        # // prevent value inserted on focus
-        return false
-      ,
-      select: (event, ui) ->
-        terms = split(this.value)
-        ids   = split($(this).prev().attr('value'))
-        
-        # // remove the current input
-        terms.pop()
-        if ids.length < 2 && ids[0] == ''
-          ids.pop()
-        
-        # // add the selected item
-        terms.push(ui.item.value)
-        ids.push(roomie_ids_array[roomies_array.indexOf(ui.item.value)])
-        
-        # // add placeholder to get the comma-and-space at the end
-        terms.push('')
-        this.value = terms.join(', ')
-        $(this).prev().attr('value',ids)
-        
-        return false
-    })
