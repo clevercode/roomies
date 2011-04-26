@@ -32,8 +32,8 @@
         -# - if assignment.due_date.today?
         %li{ :class => assignment._type.downcase } 
           %ul
-            %li{ :title => assignment._type.downcase }
-            %li= link_to assignment.purpose, assignment_url(assignment)
+            %li.type{ :title => assignment._type.downcase }
+            %li.purpose= link_to assignment.purpose, assignment_url(assignment)
             %li.edit
   .list
     %h2 tomorrow
@@ -42,8 +42,8 @@
         -# - if assignment.due_date == Time.now.tomorrow
         %li{ :class => assignment._type.downcase } 
           %ul
-            %li{ :title => assignment._type.downcase }
-            %li= link_to assignment.purpose, assignment_url(assignment)
+            %li.type{ :title => assignment._type.downcase }
+            %li.purpose= link_to assignment.purpose, assignment_url(assignment)
             %li.edit
  
   .list.last
@@ -53,8 +53,8 @@
         -# - if assignment.due_date == Time.now.tomorrow.tomorrow
         %li{ :class => assignment._type.downcase } 
           %ul
-            %li{ :title => assignment._type.downcase }
-            %li= link_to assignment.purpose, assignment_url(assignment)
+            %li.type{ :title => assignment._type.downcase }
+            %li.purpose= link_to assignment.purpose, assignment_url(assignment)
             %li.edit
 
 .header_bar
