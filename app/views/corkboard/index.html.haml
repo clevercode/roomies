@@ -70,9 +70,10 @@
     .day{:class => current_day}
       %p.day_name= Date::ABBR_DAYNAMES[date.wday()]
       %p.day_number= date.day
-      #todo
-        =link_to '1', '#', :class => "tasks"
-        =link_to '2', '#', :class => "expenses tooltip", :title => "Yaaaaaaoooo"
+      - unless Assignment.where(:due_date => date.to_s).count <= 0
+        #todo
+          =link_to Assignment.where(:due_date => date.to_s).count, '#', :class => "tasks"
+          -# =link_to '2', '#', :class => "expenses tooltip", :title => "Yaaaaaaoooo"
 
 .header_bar
   %h1 this month
@@ -101,8 +102,9 @@
     .day{:class => current_day}
       %p.day_name= Date::ABBR_DAYNAMES[date.wday()]
       %p.day_number= date.day
-      #todo
-        =link_to '1', '#', :class => "tasks"
-        =link_to '2', '#', :class => "expenses"
+      - unless Assignment.where(:due_date => date.to_s).count <= 0
+        #todo
+          =link_to Assignment.where(:due_date => date.to_s).count, '#', :class => "tasks"
+          -# =link_to '2', '#', :class => "expenses"
 #modal
 #darknessification
