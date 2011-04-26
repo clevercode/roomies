@@ -3,9 +3,6 @@ class AssignmentsController < ApplicationController
   # user need to be signed in
   before_filter :authenticate_user!
 
-  # returning a list of all roomies for these actions only
-  before_filter :roomies_list #, :only => [:new, :create, :edit, :update]
-
   autocomplete :category, :category_name
 
   def index
@@ -92,9 +89,5 @@ class AssignmentsController < ApplicationController
     end
   end
  
-  private
-  def roomies_list 
-    @roomies = User.where(:house_id => current_user.house_id)
-  end
 end
 

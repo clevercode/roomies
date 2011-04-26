@@ -9,4 +9,10 @@ module ApplicationHelper
       "#{short_title} | #{@title}"
     end
   end
+
+  private
+  def roomies_list 
+    @roomies = User.where(:house_id => current_user.house_id)
+  end
+
 end
