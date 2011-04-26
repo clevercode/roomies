@@ -38,9 +38,12 @@
         It seems he's homeless!
   %p#tasks_expenses
     %span
-    %span tasks: 789
+    - if @tasks
+      %span= pluralize(@tasks.count, 'task')
+    - else
+      %span no tasks
     %span
-    %span expenses: 3
+    %span= pluralize(@expenses.count, 'expense')
   %p.edit_profile= link_to 'edit profile', edit_user_path(@user), :class => 'ajax' if current_user
 #achievements.header_bar
   %h1 achievements
