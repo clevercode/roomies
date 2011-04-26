@@ -50,7 +50,7 @@ class AssignmentsController < ApplicationController
 
       # passing the params through AssignmentFactory to receive
       # the appropriate assignment type
-      @assignment = AssignmentFactory.new(params[:assignment])
+      @assignment = Assignment.new(params[:assignment])
  
       respond_to do |format|
         if @assignment.save
