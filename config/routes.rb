@@ -29,8 +29,5 @@ Roomies::Application.routes.draw do
   root :to => 'home#index'
 
   # ensures the root for logged in users is the corkboard
-  namespace :user do
-    root :to => 'corkboard#index'
-  end
 
 end
