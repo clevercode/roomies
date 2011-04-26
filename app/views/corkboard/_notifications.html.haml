@@ -1,0 +1,14 @@
+.notifications
+  - if current_user.has_invitations?
+    %p 
+      Hey you, guess what?! You've got an invitation to move in to another roomie's house! Go ahead and click
+      = link_to 'here', '/accept_invitation'
+      to accept the invitation and start living together easier, or click
+      = link_to 'here', '/reject_invitations'
+      to reject it. Have a fantastic day.
+    - unless current_user.house.nil?
+      %p NOTICE: Clicking the link above will remove you from the house you currently belong to and let you join the new one.
+  - unless @user.name?
+    %p 
+      Hi there! If you'd like to change your password or possibly tell us your name, go ahead and click here &rarr; 
+      = link_to 'edit profile.', edit_user_path(@user), :class => 'ajax'
