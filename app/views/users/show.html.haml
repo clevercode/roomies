@@ -85,40 +85,28 @@
             .bar_bg
         %td.percentage 77%
   #batte.header_bar
-    %h1 roomie battle!!!
-  .content
-    %table
-      %tr
-        %th name
-        %th progress to next "amazing roomie" badge
-        %th.level next level
-      %tr
-        %td zachary nicoll
-        %td.progress_bar
-          .bars
-            .bar
-            .bar_bg
-        %td.level 4
-      %tr
-        %td andrew smith
-        %td.progress_bar
-          .bars
-            .bar
-            .bar_bg
-        %td.level 1
-      %tr
-        %td alyssa nicoll
-        %td.progress_bar
-          .bars
-            .bar
-            .bar_bg
-        %td.level 1
-      %tr
-        %td olivier lacan
-        %td.progress_bar
-          .bars
-            .bar
-            .bar_bg
-        %td.level 1
+    %h1 roomie battle
+  - if roomies_list
+    .content
+      %table
+        %tr
+          %th name
+          %th progress to next "amazing roomie" badge
+          %th.level next level
+        - roomies_list.all.map do |roomie|
+          %tr
+            %td
+              - if (roomie == current_user)
+                <strong>you</strong> 
+              - else
+                = roomie.name
+            %td.progress_bar
+              .bars
+                .bar
+                .bar_bg
+            %td.level 4
+  - else
+    .content
+      %p You don't have roomies to battle with yet. Quick! Remedy this at once.
   #modal
   #darknessification
