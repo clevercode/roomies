@@ -179,6 +179,9 @@ GEM
       activesupport (= 3.0.5)
       bundler (~> 1.0)
       railties (= 3.0.5)
+    rails3-jquery-autocomplete (0.7.0)
+      rails (~> 3.0.0)
+      yajl-ruby
     railties (3.0.5)
       actionpack (= 3.0.5)
       activesupport (= 3.0.5)
@@ -229,6 +232,7 @@ GEM
     warden (1.0.3)
       rack (>= 1.0.0)
     will_paginate (3.0.pre2)
+    yajl-ruby (0.8.2)
 
 PLATFORMS
   ruby
@@ -251,6 +255,7 @@ DEPENDENCIES
   mongoid-rspec
   omniauth
   rails (= 3.0.5)
+  rails3-jquery-autocomplete
   rspec
   rspec-rails
   ruby-debug19
