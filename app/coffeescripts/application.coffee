@@ -43,21 +43,11 @@ if $body.hasClass('signed_in')
 if window.innerHeight > $body.height()
   $footer.css({position:'fixed', bottom:0})
 
-# // Listens for a click on any anchor with a class of ajax.
-# // Knabs the anchor's href and ajaxes it in to the modal.
-$('a.ajax').bind 'click', (event) ->
-  $.ajax url: $(this).attr('href'), success: (data) -> 
-    $modal.empty()
-    $(data).find('#main').appendTo('#modal')
-    $darknessification.show()
-    $modal.css({right: modal_right}).show()
-  return false
-
-# // Listens for a click on the dark overlay when the modal is up
-$darknessification.live 'click', (event) ->
-  $darknessification.hide()
-  $modal.hide()
-  return false
+# // Hides the flash notice if it's visible.
+if $('#flash').height() > '5'
+  setTimeout ->
+    $('#flash').fadeOut()
+  , 5000
   
 
 Clouds = 
@@ -84,9 +74,30 @@ Clouds =
 Clouds.animate()
 
 
-# =========================================
-# ============= CORKBOARD  ================
-# =========================================
+# ===========================
+# ========== MODAL ==========
+# ===========================
+
+# // Listens for a click on any anchor with a class of ajax.
+# // Knabs the anchor's href and ajaxes it in to the modal.
+$('a.ajax').bind 'click', (event) ->
+  $.ajax url: $(this).attr('href'), success: (data) -> 
+    $modal.empty()
+    $(data).find('#main').appendTo('#modal')
+    $darknessification.show()
+    $modal.css({right: modal_right}).show()
+  return false
+
+# // Listens for a click on the dark overlay when the modal is up
+$darknessification.live 'click', (event) ->
+  $darknessification.hide()
+  $modal.hide()
+  return false
+
+
+# ===============================
+# ========== CORKBOARD ==========
+# ===============================
 
 # // Handles mouseover and mouseout for the corkboard lists.
 $('.corkboard #upcoming li.expense, 
@@ -115,16 +126,33 @@ $('.corkboard #upcoming li.expense,
           $(this).hide().prev().animate({paddingRight:'25px'}, 100)
         )
 
-# // Hides the flash notice if it's visible.
-if $('#flash').height() > '5'
-  setTimeout ->
-    $('#flash').fadeOut()
-  , 5000
-
-# Edit assignment on edit icon click 
+# // Edit assignment on edit icon click 
 $('.edit').live 'click', (event) ->
   id = $(this).data("assignment_id")
   window.location.href = "/assignments/#{id}/edit"
+  return false
+  
+$('.header_bar a').bind 'click', (event) ->
+  $this = $(this)
+  $header_bar = $this.parent().parent()
+  
+  # // Adds a class of active to the clicked on link, and removes it from the sibling.
+  $this.addClass('active').siblings().removeClass('active')
+
+  # // Removes the current class and add the appropriate one.
+  $header_bar.removeClass($this.siblings().text()).addClass($this.text())
+  
+  # // Checks to see if the we want to show the full on calendar or not.
+  if $header_bar.hasClass('upcoming')
+    $header_bar.find('h1').text('these coming days')
+    $('#calendar').hide()
+    $('#centric').show()
+  else
+    $header_bar.find('h1').text('this coming month')
+    $footer.css({position:'static'})
+    $('#centric').hide()
+    $('#calendar').show()
+  
   return false
 
 
