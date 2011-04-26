@@ -5,7 +5,9 @@ class AssignmentsController < ApplicationController
 
   # returning a list of all roomies for these actions only
   before_filter :roomies_list #, :only => [:new, :create, :edit, :update]
-   
+
+  autocomplete :category, :category_name
+
   def index
     if user_signed_in? && !current_user.house.blank?
       @house = current_user.house
