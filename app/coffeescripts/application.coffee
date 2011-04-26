@@ -18,7 +18,7 @@ $modal             = $('#modal')
 $easy_button       = $('#easy_button')
 $darknessification = $('#darknessification')
 $superdate         = $('.superdate')
-$names             = $('#names')
+# $names             = $('#names')
 
 # $('body').noisy(
 #   intensity: 0.4, 
@@ -50,9 +50,9 @@ $('a.ajax').bind 'click', (event) ->
     $(data).find('#main').appendTo('#modal')
     $darknessification.show()
     $modal.css({right: modal_right}).show()
-    roomies    = $(data).find('#main p:eq(0)').text()
-    roomie_ids = $(data).find('#main p:eq(1)').text()
-    apply_autocomplete(roomies,roomie_ids)
+    # roomies    = $(data).find('#main p:eq(0)').text()
+    # roomie_ids = $(data).find('#main p:eq(1)').text()
+    # apply_autocomplete(roomies,roomie_ids)
   return false
 
 # // Listens for a click on the dark overlay when the modal is up
@@ -125,17 +125,18 @@ if $('#flash').height() > '5'
 # ========== NEW ASSIGNMENT JAZZ ==========
 # =========================================
   
-$('#assignment_assignees').live 'keyup', (event) ->
-  input_text = $(event.target).val()
-  if input_text.length > 1
-    $.ajax url: '/users?name=' + input_text, success: (data) ->
-      $names.empty().show()
-      $(data).find('#names li').appendTo('#names')
-  else
-    $names.hide().empty()
+# $('#assignment_assignees').live 'keyup', (event) ->
+#   input_text = $(event.target).val()
+#   if input_text.length > 1
+#     $.ajax url: '/users?name=' + input_text, success: (data) ->
+#       $names.empty().show()
+#       $(data).find('#names li').appendTo('#names')
+#   else
+#     $names.hide().empty()
 
-$('#names li').live 'click', (event) ->
-  $('#assignment_assignees').attr('value',$(this).text())
+# $('#names li').live 'click', (event) ->
+#   $('#assignment_assignees').attr('value',$(this).text())
+
 # Variables
 $picker = $("#picker")
 
