@@ -8,6 +8,8 @@ Roomies::Application.routes.draw do
 
   resources :users
   resources :authentications
+  resources :assignments
+  resources :categories
   resources :achievements
   resources :houses
   resources :corkboard
@@ -15,10 +17,6 @@ Roomies::Application.routes.draw do
   resources :support
   resources :user_mailer
   resources :invitations
-
-  # all assignments
-  resources :assignments, :tascs, :chores, :expenses, 
-            :bills, :bounties, :freebies, :gifts, :wishes
 
   match '/auth/:provider/callback'     => 'authentications#create'
   match '/registrations'               => 'registrations#email'
