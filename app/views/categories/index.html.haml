@@ -1,0 +1,6 @@
+- @main_class = 'corkboard'
+
+- unless @categories.empty?
+  %ul
+    - @categories.each do |cat|
+      %li= link_to cat.name, cat
