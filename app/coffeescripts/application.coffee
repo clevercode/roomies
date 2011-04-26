@@ -136,6 +136,8 @@ $('#assignment_assignees').live 'keyup', (event) ->
 
 $('#names li').live 'click', (event) ->
   $('#assignment_assignees').attr('value',$(this).text())
+# Variables
+$picker = $("#picker")
 
 $superdate.live 'keyup', (event) ->
   val = $(this).val()
@@ -150,20 +152,10 @@ $superdate.live 'keyup', (event) ->
     date = date.toString('MMMM d, yyyy')
 
     # updating the datepicker
-    $('#picker').datepicker('setDate', date)
+    $picker.datepicker('setDate', date)
 
     console.log('date after toString: ', date)
     console.log('d after instantiation with val', d)
-
-    # if d.getMonth() is not NaN
-    #   # check for invalid date
-    #   month : d.getMonth()+1,
-    #   day : d.getDate(),
-    #   year : d.getFullYear()
-    # else
-    #   false
-
-    $('#picker').datepicker( "setDate" , date )
 
 $superdate.live 'focusout', (event) ->
   val = $(this).val()
@@ -171,9 +163,9 @@ $superdate.live 'focusout', (event) ->
     date = Date.parse( val )
     date = date.toString('MMMM d, yyyy')
     $(this).val(date)
-    $('#picker').datepicker('setDate', date)
+    $picker.datepicker('setDate', date)
 
-$('#picker').datepicker(
+$picker.datepicker(
   dateFormat: 'MM d, yy',
   onSelect: (dateText, inst) ->
     # date = Date.parse( dateText )
