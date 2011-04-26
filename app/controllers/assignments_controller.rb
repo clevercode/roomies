@@ -35,19 +35,16 @@ class AssignmentsController < ApplicationController
       params[:assignment][:house_id]        = current_user.house_id
       params[:assignment][:commissioner_id] = current_user.id
       params[:assignment][:commissioned_at] = Time.now
-      params[:assignment][:assignees]       = Array.wrap(params[:assignment][:assignees].split(','))
 
       # passing the params through AssignmentFactory to receive
       # the appropriate assignment type
       @assignment = Assignment.new(params[:assignment])
 
       if @assignment.save
-        flash[:notice] = "Your new assignment was successfully created."
+        redirect_to '/corkboard', :notice => "Your new assignment was successfully created."
       else
-        flash[:notice] = "Your assignment couldn't be created, try again."
+        redirect_to '/corkboard', :notice => "Your assignment couldn't be created, try again."
       end
-
-      respond_with @assignment
 
     else
       redirect_to current_user, :notice => 'Sorry, you need to build a house before you can create assignments.'
