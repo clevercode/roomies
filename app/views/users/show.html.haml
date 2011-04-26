@@ -1,6 +1,6 @@
 - @main_class = 'profile'
 
-#about_you.content
+#about.content
   %img{ :src => "#{@user.gravatar}", :alt => "profile picture" }
   #about_header
     - if signed_in? && current_user == @user
@@ -15,101 +15,107 @@
         %h1  #{@user.name}
     %p 455/500 pts
     %p next level
-  #roomie_bar
-    %span
-    %span
-  %p#level amazing roomie
-  - if @user.house
-    %p#house
-      #{@user.house.name} - 
-      - if signed_in? && current_user == @user
-        = link_to 'change house name', edit_house_path(@user.house), :class => 'ajax'
-        or
-        = link_to 'add roomies', new_invitation_path, :class => 'ajax'
-        |
-        = link_to 'move out', homeless_url(:id => @user.id, :house_id => @user.house)
-  - else
-    %p#house
-      - if signed_in? && current_user == @user
-        Oh no! It seems you're homeless! Want to 
-        = link_to 'build a house', new_house_path, :class => 'ajax'
-        ?
-      - else
-        It seems he's homeless!
-  %p#tasks_expenses
-    %span
-    - if @tasks
-      %span= pluralize(@tasks.count, 'task')
+  #hud
+    #roomie_bar
+      %span
+      %span
+    %p#level amazing roomie
+    - if @user.house
+      %p#house
+        #{@user.house.name} - 
+        - if signed_in? && current_user == @user
+          = link_to 'change house name', edit_house_path(@user.house), :class => 'ajax'
+          or
+          = link_to 'add roomies', new_invitation_path, :class => 'ajax'
+          |
+          = link_to 'move out', homeless_url(:id => @user.id, :house_id => @user.house)
     - else
-      %span no tasks
-    %span
-    %span= pluralize(@expenses.count, 'expense')
+      %p#house
+        - if signed_in? && current_user == @user
+          Oh no! It seems you're homeless! Want to 
+          = link_to 'build a house', new_house_path, :class => 'ajax'
+          ?
+        - else
+          It seems he's homeless!
+    %p#tasks_expenses
+      %span
+      - if @tasks
+        %span= pluralize(@tasks.count, 'task')
+      - else
+        %span no tasks
+      %span
+      %span= pluralize(@expenses.count, 'expense')
   %p.edit_profile= link_to 'edit profile', edit_user_path(@user), :class => 'ajax' if current_user
-#achievements.header_bar
-  %h1 achievements
-#badges.content
-  #image
-  #image
-  #image
-  #image.faded
-  #image.faded
-  #image.faded
+#achievements
+  .header_bar
+    %h1 achievements
+  #badges.content
+    #image
+    #image
+    #image
+    #image.faded
+    #image.faded
+    #image.faded
+
 - if current_user
-  #progress.header_bar
-    %h1 progress 
-  .content
-    %table
-      %tr
-        %td awesomeness
-        %td.progress_bar
-          .bars
-            .bar
-            .bar_bg
-        %td.percentage 77%
-      %tr
-        %td reliability
-        %td.progress_bar
-          .bars
-            .bar
-            .bar_bg
-        %td.percentage 77%
-      %tr
-        %td helpfullness
-        %td.progress_bar
-          .bars
-            .bar
-            .bar_bg
-        %td.percentage 77%
-      %tr
-        %td cooking master
-        %td.progress_bar
-          .bars
-            .bar
-            .bar_bg
-        %td.percentage 77%
-  #batte.header_bar
-    %h1 roomie battle
-  - if roomies_list
+  #progress
+    .header_bar
+      %h1 progress 
     .content
       %table
         %tr
-          %th name
-          %th progress to next "amazing roomie" badge
-          %th.level next level
-        - roomies_list.all.map do |roomie|
+          %td awesomeness
+          %td.progress_bar
+            .bars
+              .bar
+              .bar_bg
+          %td.percentage 77%
+        %tr
+          %td reliability
+          %td.progress_bar
+            .bars
+              .bar
+              .bar_bg
+          %td.percentage 77%
+        %tr
+          %td helpfullness
+          %td.progress_bar
+            .bars
+              .bar
+              .bar_bg
+          %td.percentage 77%
+        %tr
+          %td cooking master
+          %td.progress_bar
+            .bars
+              .bar
+              .bar_bg
+          %td.percentage 77%
+
+  #batte
+    .header_bar
+      %h1 roomie battle
+    - if roomies_list
+      .content
+        %table
           %tr
-            %td
-              - if (roomie == current_user)
-                <strong>you</strong> 
-              - else
-                = roomie.name
-            %td.progress_bar
-              .bars
-                .bar
-                .bar_bg
-            %td.level 4
-  - else
-    .content
-      %p You don't have roomies to battle with yet. Quick! Remedy this at once.
+            %th name
+            %th progress to next "amazing roomie" badge
+            %th.level next level
+          - roomies_list.all.map do |roomie|
+            %tr
+              %td
+                - if (roomie == current_user)
+                  <strong>you</strong> 
+                - else
+                  = roomie.name
+              %td.progress_bar
+                .bars
+                  .bar
+                  .bar_bg
+              %td.level 4
+    - else
+      .content
+        %p You don't have roomies to battle with yet. Quick! Remedy this at once.
   #modal
   #darknessification
