@@ -30,9 +30,9 @@
     %ul
       - @todays_assignments.each do |assignment|
         -# - if assignment.due_date.today?
-        %li{ :class => assignment._type.downcase } 
+        %li{ :class => "task" } 
           %ul
-            %li.type{ :title => assignment._type.downcase }
+            %li.type{ :title => "task" }
             %li.purpose= link_to assignment.purpose, assignment_url(assignment)
             %li.edit
   .list
@@ -40,9 +40,9 @@
     %ul
       - @tomorrows_assignments.each do |assignment|
         -# - if assignment.due_date == Time.now.tomorrow
-        %li{ :class => assignment._type.downcase } 
+        %li{ :class => "task" } 
           %ul
-            %li.type{ :title => assignment._type.downcase }
+            %li.type{ :title => "task" }
             %li.purpose= link_to assignment.purpose, assignment_url(assignment)
             %li.edit
  
@@ -51,9 +51,9 @@
     %ul
       - @next_days_assignments.each do |assignment|
         -# - if assignment.due_date == Time.now.tomorrow.tomorrow
-        %li{ :class => assignment._type.downcase } 
+        %li{ :class => "task" } 
           %ul
-            %li.type{ :title => assignment._type.downcase }
+            %li.type{ :title => "task" }
             %li.purpose= link_to assignment.purpose, assignment_url(assignment)
             %li.edit
 
