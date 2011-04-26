@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     assignments = Assignment.all
     # returns assignment ID if current_user is included in assignees
     # else returns nil
-    array = assignments.map { |a| a if a.assignees.include?(current_user) }
+    array = assignments.map { |a| a if a.assignees.include?(@user) }
     # array.compact removes all nil values from array
     @tasks = array.compact
     @expenses = []
