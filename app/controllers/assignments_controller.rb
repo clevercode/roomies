@@ -29,7 +29,7 @@ class AssignmentsController < ApplicationController
   end
  
   def new
-    # @assignment = Assignment.new
+    @assignment = Assignment.new
  
     respond_to do |format|
       format.html # new.html.erb
