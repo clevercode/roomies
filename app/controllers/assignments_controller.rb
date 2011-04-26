@@ -69,11 +69,6 @@ class AssignmentsController < ApplicationController
   def update
     @assignment = Assignment.find(params[:id])
 
-    assignment_type = AssignmentFactory.class_for(params[:assignment])
-    if assignment_type != @assignment.class
-      @assignment.becomes(assignment_type)
-    end
- 
     respond_to do |format|
       if @assignment.update_attributes(params[:assignment])
         format.html { redirect_to(assignment_url(@assignment), :notice => 'Assignment was successfully updated.') }
