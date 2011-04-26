@@ -168,6 +168,9 @@ $superdate.live 'focusout', (event) ->
 
 $picker.datepicker(
   dateFormat: 'MM d, yy',
+  beforeShow: (dateText, inst) ->
+    if $superdate.val?
+      $picker.datepicker("setDate", $superdate.val())
   onSelect: (dateText, inst) ->
     # date = Date.parse( dateText )
     console.log(Date.parse(dateText))
