@@ -2,7 +2,7 @@
   = f.input :purpose, 
             :placeholder => "What is this for?"
 
-  = f.input :assignees, :collection => roomies_list, :prompt => "Choose a roomie"
+  = f.association :assignees, :collection => roomies_list  
 
   %ul#names
   
