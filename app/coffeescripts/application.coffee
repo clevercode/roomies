@@ -86,6 +86,9 @@ Clouds =
 Clouds.animate()
 
 
+# =========================================
+# ============= CORKBOARD  ================
+# =========================================
 
 # // Handles mouseover and mouseout for the corkboard lists.
 $('.corkboard #upcoming li.expense, 
@@ -97,8 +100,8 @@ $('.corkboard #upcoming li.expense,
       .children('ul')
         .children('li:eq(1)')
         .stop()
-        .animate({paddingRight:'0px'}, 200, (event) ->
-          $(this).next().show().animate({opacity:1}, 200)
+        .animate({paddingRight:'0px'}, 100, (event) ->
+          $(this).next().show().animate({opacity:1}, 100)
         )
         
 $('.corkboard #upcoming li.expense, 
@@ -110,15 +113,21 @@ $('.corkboard #upcoming li.expense,
       .children('ul')
         .children('li:eq(2)')
         .stop()
-        .animate({opacity:0}, (event) ->
-          $(this).hide().prev().animate({paddingRight:'25px'})
+        .animate({opacity:0}, 100, (event) ->
+          $(this).hide().prev().animate({paddingRight:'25px'}, 100)
         )
 
 # // Hides the flash notice if it's visible.
 if $('#flash').height() > '5'
   setTimeout ->
     $('#flash').fadeOut()
-  , 3000
+  , 5000
+
+# Edit assignment on edit icon click 
+$('.edit').live 'click', (event) ->
+  id = $(this).data("assignment_id")
+  window.location.href = "/assignments/#{id}/edit"
+  return false
 
 
 # =========================================
