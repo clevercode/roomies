@@ -8,8 +8,7 @@ form.simple_form
       width: 400px
       display: block
       margin: 0 0 5px
-    input[type=text], input[type=email], textarea
-      width: 424px
+    input[type=text], input[type=email], input[type=password], textarea
       font-size: 18px
       padding: 10px 5px 0
       color: $input-color
@@ -64,3 +63,13 @@ form.simple_form
         // +box-shadow(rgba(93,76,42,0.85) 0 2px 2px, saturate(#90ce66,20%) -5px 10px 20px inset, saturate(#90ce66,20%) 5px 10px 20px inset)
         +background-image(linear-gradient(darken(saturate($green, 5%), 5%), (darken(saturate($lightgreen, 5%), 5%))))
         +box-shadow(rgba(0,0,0,.7) 0 1px 5px inset, rgba(0,0,0,.5) 0 -1px 2px inset)
+
+#picker
+  width: 100%
+  clear: both
+  margin: 0 0 1em
+  .ui-datepicker
+    width: 98.5%
+    .ui-widget-content
+      border: none
+      background: none
