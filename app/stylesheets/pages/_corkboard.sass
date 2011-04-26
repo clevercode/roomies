@@ -22,6 +22,20 @@
   +column(12)
   +background-image(linear-gradient(#f7eb8b, #f7d340))
   +box-shadow(#fffedb 1px 1px 0 inset, #fffedb -1px -1px 0 inset)
+  h1
+    float: left
+  p
+    float: right
+    height: 43px
+    font-size: 16px
+    line-height: 43px
+    margin-right: 20px
+    a
+      text-decoration: none
+      &.active
+        font-weight: bold
+      &:hover
+        text-decoration: underline
 
 // content
 .content
@@ -50,7 +64,7 @@
         ul
           li
             float: right
-            width: 208px
+            width: 225px
             border: none
             background: none
             line-height: 25px
@@ -60,16 +74,15 @@
               text-decoration: none
               &:hover
                 text-decoration: underline
-            &[title=expense], &[title=bill], &[title=tasc], &[title=chore]
+            &[title=expense], &[title=bill], &[title=task], &[title=chore]
               padding: 0
               width: 13px
               height: 13px
               background: #b2cf55
               margin: 5px 0 0 10px
               border: 1px solid #fff
-              -moz-box-shadow: #a6ceff 0 0 5px
-              -webkit-box-shadow: #a6ceff 0 0 5px
-            &[title=tasc], &[title=chore]
+              +box-shadow(#a6ceff 0 0 5px)
+            &[title=task], &[title=chore]
               background: #95b9e6
             &.edit
               opacity: 0
@@ -260,6 +273,7 @@
 #calendar
   +column(12)
   padding: 0
+  display: none
   border: 1px solid #9eafc5
   border-top: none // Helpful comment!
   .day
@@ -270,6 +284,8 @@
     &.current_day
       +background-image(linear-gradient(rgba(0,0,50,.15), rgba(0,0,0,0)))
       +box-shadow(transparentize(darken($blue, 40%), 0.5) 1px 5px 15px 1px inset, transparentize(darken($blue, 40%), 0.5) -1px 5px 15px 1px inset)
+      &:hover .day_name
+        opacity: 0
     
     &:hover
       +background-image(linear-gradient(rgba(255,255,255,.55), transparentize(lighten($lightblue, 0%), .01)))

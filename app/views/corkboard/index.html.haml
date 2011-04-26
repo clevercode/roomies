@@ -17,7 +17,7 @@
     %ul
       - @todays_assignments.each do |assignment|
         -# - if assignment.due_date.today?
-        %li{ :class => "task" } 
+        %li{ :class => "task" }
           %ul
             %li.type{ :title => "task" }
             %li.purpose= link_to assignment.purpose, assignment_url(assignment)
@@ -44,9 +44,13 @@
             %li.purpose= link_to assignment.purpose, assignment_url(assignment)
             %li.edit{ :data => { :assignment_id => assignment.id } }
 
-.header_bar
+.header_bar.upcoming
   %h1 these coming days
-#centric.content  
+  %p
+    =link_to 'upcoming', '/corkboard/upcoming', :class => 'active'
+    |
+    =link_to 'monthly', '/corkboard/monthly'
+#centric.content
   - # what weekday number is today? (Sun = 0, Mon = 1)?
   - weekday_number = Date.today.wday()
   - # how many days do we show after today
@@ -62,9 +66,7 @@
           =link_to Assignment.where(:due_date => date.to_s).count, '#', :class => "tasks"
           -# =link_to '2', '#', :class => "expenses tooltip", :title => "Yaaaaaaoooo"
 
-.header_bar
-  %h1 this month
-#calendar.content  
+#calendar.content
   - # what weekday number is today? (Sun = 0, Mon = 1)?
   - weekday_number = Date.today.wday()
   - # how many days do we show
