@@ -1,15 +1,27 @@
-= simple_form_for :assignment, :url => '/assignments' do |f|
-  = f.input :purpose
-  = f.input :assignees, :required => false, :input_html => {:class => 'autocomplete'}
-  %ul#names
-  = f.input :cost, :required => false
-  = f.input :due_date, :required => false, :input_html => { :class => 'superdate' }
-  #picker
-  = f.input :repeating, :as => :boolean, :required => false
-  = f.input :frequency, :required => false
-  = f.input :category, :required => false
-  .input.boolean.optional
-    = label_tag 'completed'
-    = check_box_tag 'completed', 'true'
+= simple_form_for @assignment do |f|
+  = f.input :purpose, 
+            :placeholder => "What is this for?"
 
-  = f.submit 'create', :disable_with => "Please wait...", :class => 'green'
+  = f.input :assignees, :collection => @roomies, :prompt => "Choose a roomie"
+
+  %ul#names
+  
+  = f.input :cost, :placeholder => "Enter the cost if there is one."
+  = f.input :due_date, 
+            :placeholder => "Type (e.g. 'next friday') or select a date below.", 
+            :input_html => { :class => 'superdate', :value => ((@assignment.due_date.blank?) ? '' : @assignment.due_date.strftime("%B %d, %Y")) }
+  #picker
+
+  .label.boolean.optional
+    = label_tag "repeating", "Will this repeat in the future?"
+    = check_box_tag "repeating", "yes", false, :value => "yes"
+
+  = f.input :frequency, 
+            :collection => ["Daily","Weekly","Monthly"], 
+            :prompt => "Choose a frequency"
+
+  = f.input :category, :collection => Category.all, :prompt => "Choose a category"
+
+  = f.button :submit, 
+              :disable_with => "Please wait...", 
+              :class => "green"
