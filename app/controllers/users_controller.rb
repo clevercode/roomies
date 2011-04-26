@@ -19,6 +19,13 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    assignments = Assignment.all
+    # returns assignment ID if current_user is included in assignees
+    # else returns nil
+    array = assignments.map { |a| a if a.assignees.include?(current_user) }
+    # array.compact removes all nil values from array
+    @tasks = array.compact
+    @expenses = []
     respond_with(@user)
   end
 
