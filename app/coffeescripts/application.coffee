@@ -4,8 +4,8 @@ Provides requestAnimationFrame in a cross browser way.
 ###
 
 unless window.requestAnimationFrame
-	window.requestAnimationFrame =
-		window.webkitRequestAnimationFrame or
+  window.requestAnimationFrame =
+    window.webkitRequestAnimationFrame or
     window.mozRequestAnimationFrame or
     window.oRequestAnimationFrame or
     window.msRequestAnimationFrame or
@@ -14,7 +14,9 @@ unless window.requestAnimationFrame
 
 $ = jQuery
 
+$body              = $('body')
 $modal             = $('#modal')
+$footer            = $('footer')
 $easy_button       = $('#easy_button')
 $darknessification = $('#darknessification')
 $superdate         = $('.superdate')
@@ -34,13 +36,12 @@ if d.getHours() < 6 || d.getHours() > 20
   $('html').addClass('nighttime')
 
 # // Sets the modal to be right aligned with the add assignment button
-if $('body').hasClass('signed_in')
+if $body.hasClass('signed_in')
   modal_right = $('html').outerWidth() - ($easy_button.offset().left + $easy_button.outerWidth()) + 2
   
 # // Handles the sticky footer
-if window.innerHeight > $('body').height()
-  $('footer').css({position:'fixed', bottom:0, width:'940px'})
-  $('body').css({minHeight:window.innerHeight})
+if window.innerHeight > $body.height()
+  $footer.css({position:'fixed', bottom:0})
 
 # // Listens for a click on any anchor with a class of ajax.
 # // Knabs the anchor's href and ajaxes it in to the modal.
@@ -50,9 +51,6 @@ $('a.ajax').bind 'click', (event) ->
     $(data).find('#main').appendTo('#modal')
     $darknessification.show()
     $modal.css({right: modal_right}).show()
-    # roomies    = $(data).find('#main p:eq(0)').text()
-    # roomie_ids = $(data).find('#main p:eq(1)').text()
-    # apply_autocomplete(roomies,roomie_ids)
   return false
 
 # // Listens for a click on the dark overlay when the modal is up
