@@ -107,8 +107,10 @@
               %td
                 - if (roomie == current_user)
                   <strong>you</strong> 
-                - else
+                - elsif roomie.name
                   = roomie.name
+                - else
+                  too-lazy-to-give-name
               %td.progress_bar
                 .bars
                   .bar
