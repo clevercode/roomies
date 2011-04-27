@@ -20,8 +20,15 @@ h1, h2, h3, h4, h5, h6
   // embedding a @font-face that's already bold
   // font-weight: bold
 
-#main a, #main a:active, #main a:visited
-  color: $link-color
+#main a:link, #main a:visited
+  font-weight: bold
+  color: $font-color
+  text-decoration: none
+  +text-shadow(rgba(255,255,255,0.7) 0 1px 1px)
+  &:hover, &:focus
+    color: lighten($font-color, 10%)
+  &:active
+    color: darken($font-color, 10%)
 
 a:hover
   color: $link-hover-color
@@ -82,9 +89,15 @@ body
 
 #main
   overflow: hidden
-  // padding: 60px 30px 20px
   padding: 60px 0 20px
-
+  
+  .header_bar
+    +column(12)
+    +background-image(linear-gradient(#f7eb8b, #f7d340))
+    +box-shadow(#fffedb 1px 1px 0 inset, #fffedb -1px -1px 0 inset)
+    h1
+      float: left
+      
   ul
     list-style: none
   form.formtastic
@@ -132,7 +145,6 @@ footer
   width: 100%
   height: 150px
   overflow: hidden
-  margin-top: 50px
   background: url('../images/hills.png') bottom left repeat-x
   .container
     height: 140px
@@ -151,8 +163,9 @@ footer
         right: 10px
         a
           color: #f9ffe5
-          text-decoration: none
           font-weight: 500
           text-shadow: 0 0 5px #91a843
           &:hover, &:focus
-            text-decoration: underline
+            color: lighten(#f9ffe5, 30%)
+          &:active
+            color: darken(#f9ffe5, 20%)
