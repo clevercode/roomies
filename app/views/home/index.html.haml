@@ -15,7 +15,7 @@
       = f.input :password, :label => false, :required => false, :input_html => { :placeholder => 'type your own password here' }
     = f.submit 'sign up', :class => 'green'
   %p.other_auths
-    or sign in with
+    or sign up with
     =link_to 'twitter,', '/auth/twitter'
     =link_to 'facebook,', '/auth/facebook'
     or
@@ -37,10 +37,4 @@
   %h2 save
   %p Stay on top of bills, receive reminders in due time and keep an eye on what you spend. It saves you time, and we all know what time is. Relative...?
 #modal
-  #main
-    %h1 generated password
-    %p.pass
-    %p Be sure to write this down, as we will be storing it securly and won't be able to access it again.
-    %p If you forget your password, you can always click on the "forgot password" link when signing in.
-    %p{ :class => 'button' }= link_to 'sign me up!', 'sign_up'
 #darknessification
