@@ -34,10 +34,6 @@ $superdate         = $('.superdate')
 d = new Date()
 if d.getHours() < 6 || d.getHours() > 20
   $('html').addClass('nighttime')
-
-# // Sets the modal to be right aligned with the add assignment button
-if $body.hasClass('signed_in')
-  modal_right = $('html').outerWidth() - ($easy_button.offset().left + $easy_button.outerWidth()) + 2
   
 # // Handles the sticky footer
 if window.innerHeight > $body.height()
@@ -85,7 +81,8 @@ $('a.ajax').bind 'click', (event) ->
     $modal.empty()
     $(data).find('#main').appendTo('#modal')
     $darknessification.show()
-    $modal.css({right: modal_right}).show()
+    modal_left = ($('html').outerWidth()/2) - ($modal.outerWidth()/2)
+    $modal.css({left: modal_left}).show()
   return false
 
 # // Listens for a click on the dark overlay when the modal is up
