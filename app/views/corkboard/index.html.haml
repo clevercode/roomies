@@ -89,7 +89,9 @@
   - (0..number_of_days).map do |i|
     - date = Date.today + i.days
     - current_day = (date == Date.today) ? 'current_day' : nil
-    .day{:class => current_day}
+    - if date.wday != 0 && date.cweek == Date.today.cweek
+      - current_week = 'current_week'
+    .day{ :class => "#{current_day} #{current_week}" }
       %p.day_name= Date::ABBR_DAYNAMES[date.wday()]
       %p.day_number= date.day
       - unless Assignment.where(:due_date => date.to_s).count <= 0
