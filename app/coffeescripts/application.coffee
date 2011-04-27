@@ -144,6 +144,9 @@ $('.header_bar a').bind 'click', (event) ->
     $header_bar.find('h1').text('these coming days')
     $('#calendar').hide()
     $('#centric').show()
+    
+    if window.innerHeight > $body.height()
+      $footer.css({position:'fixed', bottom:0})
   else
     $header_bar.find('h1').text('this coming month')
     $footer.css({position:'static'})
