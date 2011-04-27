@@ -1,28 +1,28 @@
 #main #modal
-  padding: 0
   top: 100px
   z-index: 30
+  padding: 15px
   display: none
-  position: absolute
+  position: fixed
   border: 1px solid #a6ceff
-  +box-shadow(darken($blue, 70%),0,0,20px,2px)
-  background: -webkit-gradient(radial, 50% 0%, 500, 50% 0%, 0, from(#9ec6ff), to($lightblue))
-  background: -moz-radial-gradient(center 45deg, circle farthest-side, $lightblue 0%, #9ec6ff 100%)
+  +box-shadow(rgba(0,0,0,.2) 0 1px 2px, rgba(255,255,255,.5) 0 0 15px inset)
+  +background-image(linear-gradient(transparentize($blue,.4), transparentize($lightblue, .2)))
   #main
+    padding: 15px
     overflow: hidden
-    padding: 30px 30px 115px
-    background: url('../images/clouds.png') 105% -5% repeat-x, url('../images/hills.png') 0% 110% repeat-x
+    +box-shadow(rgba(0,0,0,0.5) 0 0 5px 1px)
+    background: -webkit-gradient(radial, 50% 0%, 500, 50% 0%, 0, from($skyblue), to($sunblue))
+    background: -moz-radial-gradient(center 45deg, circle farthest-side, $sunblue 0%, $skyblue 100%)
   a
     &:link, &:visited
       color: $font-color
-      text-decoration: underline
-    &:hover, &:active
-      text-decoration: none
-  h1
+      +text-shadow(rgba(255,255,255,0.7) 0 1px 1px)
+    &:hover, &:focus
+      color: lighten($font-color, 10%)
+    &:active
+      color: darken($font-color, 10%)
+  h1, h2
     font-size: 24px
-    margin-bottom: 75px
-  h2
-    font-size: 20px
   p
     font-size: 16px
   p.pass
@@ -30,7 +30,7 @@
     font-weight: bold
   p.button
     float: right
-    margin: 15px 0 40px
+    margin: 15px 0
     a
       color: #fff
       font-size: 16px
@@ -38,7 +38,6 @@
       padding: 5px 20px
       font-weight: bold
       +border-radius(10px)
-      text-decoration: none
       border: 1px solid saturate(#a8d977,20%)
       +linear-gradient(color-stops(#d7ff8c, #a8d977))
       +text-shadow(rgba(0,0,0,0.5) 2px 2px 5px, darken($green,10%) 1px 1px 0)
@@ -56,8 +55,19 @@
         border: 10px solid #fff
         +box-shadow(rgba(0,0,0,0.2),1px,1px,1px,0px)
   form
+    margin-right: 10px
     .input
       padding: 0 0 0 1px
+      input
+        margin-right: 0
+    .string
+      width: 100%
+    .boolean
+      margin: 5px 10px 0 0
+  p.auths
+    margin-top: 10px
+    padding-top: 10px
+    border-top: 1px dashed $blue
   .add_roomie
     display: none
     margin: 10px 0 20px
