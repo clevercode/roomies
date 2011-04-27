@@ -17,24 +17,19 @@
   +background-image(linear-gradient(#ffd88f, #f7a231))
   +box-shadow(#fff2db 1px 1px 0 inset, #fff2db -1px -1px 0 inset)
 
-
-.header_bar
-  +column(12)
-  +background-image(linear-gradient(#f7eb8b, #f7d340))
-  +box-shadow(#fffedb 1px 1px 0 inset, #fffedb -1px -1px 0 inset)
-  h1
-    float: left
-  p
-    float: right
-    height: 43px
-    font-size: 16px
-    line-height: 43px
-    margin-right: 20px
-    a
-      text-decoration: none
-      &.active
+#main
+  .header_bar
+    p
+      float: right
+      height: 43px
+      font-size: 16px
+      line-height: 43px
+      margin-right: 20px
+      a
+        font-weight: normal
+      a.active
         font-weight: bold
-      &:hover
+      a:hover
         text-decoration: underline
 
 // content
