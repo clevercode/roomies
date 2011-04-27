@@ -14,9 +14,4 @@
         - else
           = link_to '+ add assignment', new_assignment_path, :id => 'easy_button', :class => 'ajax'
   - else
-    - unless controller_name == 'sessions' || controller_name == 'registrations'
-      = simple_form_for :user, :url => session_path(:user) do |f|
-        = f.input :email, :label => false, :input_html => { :placeholder => "email" }
-        = f.input :password, :label => false, :input_html => { :placeholder => "password" }
-        = f.submit 'sign in'
-
+    = link_to 'Sign In', user_session_path, :class => 'ajax'
