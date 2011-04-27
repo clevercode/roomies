@@ -29,8 +29,6 @@
         font-weight: normal
       a.active
         font-weight: bold
-      a:hover
-        text-decoration: underline
 
 // content
 .content
@@ -193,8 +191,6 @@
     +box-shadow(#9eafc5 0 1px 0 inset, #9eafc5 -1px 0 0 inset)
     +background-image(linear-gradient(rgba(255,255,255,.75), rgba(255,255,255,.15)))
     &.current_day
-      +background-image(linear-gradient(rgba(0,0,50,.15), rgba(0,0,0,0)))
-      +box-shadow(transparentize(darken($blue, 40%), 0.5) 1px 5px 15px 1px inset, transparentize(darken($blue, 40%), 0.5) -1px 5px 15px 1px inset)
       .day_name
         opacity: 1
     &:hover .day_name
@@ -256,6 +252,11 @@
   .day
     width: 134px
     height: 80px
+    &.current_day
+      +background-image(linear-gradient(rgba(0,0,50,.15), rgba(0,0,0,0)))
+      +box-shadow(transparentize(darken($blue, 40%), 0.5) 1px 5px 15px 1px inset, transparentize(darken($blue, 40%), 0.5) -1px 5px 15px 1px inset)
+      .day_name
+        opacity: 1
     &.past
       opacity: 0.3
       .day_name
