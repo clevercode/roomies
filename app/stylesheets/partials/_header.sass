@@ -15,28 +15,33 @@ body
         background: url('../images/logo.png') no-repeat
     nav
       float: right
-      form.simple_form
-        width: 440px
-        margin-top: 20px
-        .input
-          input
-            width: 170px
-        .password
-          input
-            width: 130px
-        input[type=submit]
-          clear: none
-          margin-top: -2px
-      .form_hint
-        background: #000
+      a
+        display: block
+        font-size: 16px
+        margin-top: 15px
+        padding: 7px 13px
+        font-weight: bold
+        background: white
+        color: $font-color
+        +text-shadow(none)
+        +border-radius(3px)
+        text-decoration: none
+        +box-shadow(rgba(0,0,0,0.2) 0 0 3px 1px inset)
+        &:hover, &:focus
+          color: white
+          background: $skyblue
+          +box-shadow(rgba(0,0,0,0.3) 0 0 3px 1px inset)
+          +text-shadow(rgba(0,0,0,0.5) 0 1px 1px, rgba(0,0,0,0.2) 0 0 3px)
+        &:active  
+          +box-shadow(rgba(0,0,0,0.5) 0 0 3px 1px inset)
+          +text-shadow(rgba(0,0,0,0.7) 0 1px 1px, rgba(0,0,0,0.4) 0 0 3px)
       ul
         li.profile
           a
             padding: 0
           img
             margin: 8px 0 0
-            -moz-box-shadow: #bfdcff 1px 1px 0, #7490b2 -1px -1px 0
-            -webkit-box-shadow: #bfdcff 1px 1px 0, #7490b2 -1px -1px 0
+            +box-shadow(#bfdcff 1px 1px 0, #7490b2 -1px -1px 0)
         li
           float: left
           font-size: 24px
@@ -45,26 +50,23 @@ body
           margin: 0 15px 0 0
           a
             width: 100%
+            color: #fff
             height: 50px
             display: block
+            font-size: 16px
+            font-weight: bold
             line-height: 50px
             text-align: center
-            color: #fff
-            font-weight: 500
-            text-shadow: rgba(0,0,0,.5) 0 1px 0
+            +border-radius(5px)
             text-decoration: none
             padding: 0 10px 0 5px
-            +border-radius(5px)
-            +background-image(linear-gradient($lightblue, $blue))
+            +background-image(linear-gradient(#bfdcff,#95b9e5))
+            +text-shadow(rgba(0,0,0,0.5) 0 1px 1px, rgba(0,0,0,0.2) 0 0 3px)
             &:hover, &:focus
-              color: #fff
-              +background-image(linear-gradient($lightblue,darken(saturate($blue, 30%), 30%)))
-              background: -moz-linear-gradient(top, #bfdcff, #95b9e5)
-              background: -webkit-gradient(linear, left top, left bottom, from(#bfdcff), to(#95b9e5))
+              +background-image(linear-gradient(lighten(#bfdcff,5%),#95b9e5))
             &:active
-              background: -moz-linear-gradient(top, #95b9e5, #a6ceff)
-              background: -webkit-gradient(linear, left top, left bottom, from(#95b9e5), to(#a6ceff))
+              +box-shadow(rgba(0,0,0,0.3) 0 0 3px 1px inset)
+              +background-image(linear-gradient(#95b9e5,#a6ceff))
               img
-                -moz-box-shadow: #bfdcff -1px -1px 0, #7490b2 1px 1px 0
-                -webkit-box-shadow: #bfdcff -1px -1px 0, #7490b2 1px 1px 0
+                +box-shadow(#bfdcff -1px -1px 0, #7490b2 1px 1px 0)
 
