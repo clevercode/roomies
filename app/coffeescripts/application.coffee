@@ -242,9 +242,23 @@ $('.generate').bind 'click', (event) ->
   for i in [1..32]
     random_number = Math.floor(Math.random() * characters.length)
     random_string += characters.substring(random_number, random_number + 1)
+    
   $('#password_junk input').attr('value',random_string)
   $darknessification.show()
-  $modal.show().find('p.pass').text(random_string)
+  $modal.empty()
+  
+  $('<div id="main">' +
+      '<h1>generated password</h1>' +
+      '<p class="pass">' + random_string + '</p>' +
+      '<p>Be sure to write this down, as we will be storing it securly and wont be able to access it again.</p>' +
+      '<p>If you forget your password, you can always click on the "forgot password" link when signing in.</p>' +
+      '<p class="button"><a href="sign_up">sign me up!</a>' +
+    '</div>'
+  ).appendTo('#modal')
+  
+  modal_left = ($('html').outerWidth()/2) - ($modal.outerWidth()/2)
+  $modal.css({left: modal_left}).show()
+  
   $('p.button a').live 'click', (event) ->
     $('#user_new').submit()
     return false
