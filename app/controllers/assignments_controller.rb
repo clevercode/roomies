@@ -41,6 +41,7 @@ class AssignmentsController < ApplicationController
       @assignment = Assignment.new(params[:assignment])
 
       if @assignment.save
+        reward(nil, 2)
         redirect_to '/corkboard', :notice => "Your new assignment was successfully created."
       else
         redirect_to '/corkboard', :notice => "Your assignment couldn't be created, try again."
@@ -70,6 +71,23 @@ class AssignmentsController < ApplicationController
     flash[:notice] = "Your assignment was successfully destroyed"
 
     respond_with @assignment
+  end
+
+  def complete
+    @assignment = Assignment.find(params[:id])
+    if @assignment.completed_at.nil?
+      @assignment.completed_at = DateTime.now
+      if @assignment.save
+        reward(nil,3)
+        flash[:notice] = t(:completed, :scope => :assignments)
+        respond_with(@assignment)
+      else
+        flash[:notice] = t(:cant_complete, :scope => :assignments)
+      end
+    else
+      flash[:notice] = t(:already_completed, :scope => :assignments)
+      respond_with(@assignment)
+    end
   end
  
 end

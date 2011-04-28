@@ -2,8 +2,53 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  # forms & actions
+  sign_in: "Sign In"
+  sign_out: "Sign Out"
+  sign_up: "Sign Up"
+  or_sign_in_with: "Or sign in with"
+  or: "or"
+  forgot_password: "Forgot your password?"
+  email: "Email"
+  password: "Password"
+
+  # footer
+  all_rights_reserved: "All Rights Reserved."
+  about_us: "About Us"
+  privacy_policy: "Privacy Policy"
+  terms_of_service: "Terms of Service"
+  support: "Support"
+  
+  # home
+  free_for_30_days: "Free for 30 days, cheap after"
+  relax: "Relax"
+  play: "Play"
+  save: "Save"
+
+  # corkboard
+  today: "Today"
+  tomorrow: "Tomorrow"
+  my_assignments: "My Assignments"
+  everyones_assignments: "Everyone's Assignments"
+  all: "All"
+  tasks: "Tasks"
+  expenses: "Expenses"
+  these_coming_days: "These coming days"
+  add_assignment: "Add Assignment"
+
+  # assignments
+  assignments:
+    completed: "Nice job, this assignment was marked as completed!"
+    cant_complete: "We somehow couldn't mark this assignment as complete, I blame Narwhals. But drop us a line, we'll fix it and give you a gift."
+    already_completed: "This assignments was already completed, you sneaky face."
+
+  # rewards
+  rewards:
+    sessions_create: "signing in"
+    assignments_create: "creating an assignment"
+    assignments_complete: "completing an assignment"
+
   hello: 'Hello world'
-  signed_in: 'Welcome back, you signed in successfully.'
   auth_success: 'Authentication successful.'
   auth_fail: 'Authentication failed.'
   auth_destroy: 'Successfully destroyed authentication.'
@@ -14,4 +59,115 @@ en:
         email: "youremail@domain.com"
     submit: "Submit"
 
+  date:
+    formats:
+      default: "%B %d, %Y"
+      short: "%b %d"
+      long: "%A %B %d, %Y"
+
+    day_names: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday]
+    abbr_day_names: [Sun, Mon, Tue, Wed, Thu, Fri, Sat]
+
+    month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
+    abbr_month_names: [~, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+    order:
+      - :year
+      - :month
+      - :day
+
+  time:
+    formats:
+      default: "%B %d, %Y at %H:%I%p"
+      short: "%d %b %H:%M"
+      long: "%B %d, %Y %H:%M"
+    am: "am"
+    pm: "pm"
+
+  number:
+    format:
+      separator: "."
+      delimiter: ","
+      precision: 3
+      significant: false
+      strip_insignificant_zeros: false
+
+  currency:
+    format:
+      format: "%u%n"
+      unit: "$"
+      separator: "."
+      delimiter: ","
+      precision: 2
+      significant: false
+      strip_insignificant_zeros: false
+
+  human:
+    format:
+      delimiter: ""
+      precision: 3
+      significant: true
+      strip_insignificant_zeros: true
+    storage_units:
+      format: "%n %u"
+      units:
+        byte:
+          one:   "Byte"
+          other: "Bytes"
+        kb: "KB"
+        mb: "MB"
+        gb: "GB"
+        tb: "TB"
+    decimal_units:
+      format: "%n %u"
+      units:
+        unit: ""
+        thousand: Thousand
+        million: Million
+        billion: Billion
+        trillion: Trillion
+        quadrillion: Quadrillion
+
+  datetime:
+    distance_in_words:
+      half_a_minute: "half a minute"
+      less_than_x_seconds:
+        one:   "less than 1 second"
+        other: "less than %{count} seconds"
+      x_seconds:
+        one:   "1 second"
+        other: "%{count} seconds"
+      less_than_x_minutes:
+        one:   "less than a minute"
+        other: "less than %{count} minutes"
+      x_minutes:
+        one:   "1 minute"
+        other: "%{count} minutes"
+      about_x_hours:
+        one:   "about 1 hour"
+        other: "about %{count} hours"
+      x_days:
+        one:   "1 day"
+        other: "%{count} days"
+      about_x_months:
+        one:   "about 1 month"
+        other: "about %{count} months"
+      x_months:
+        one:   "1 month"
+        other: "%{count} months"
+      about_x_years:
+        one:   "about 1 year"
+        other: "about %{count} years"
+      over_x_years:
+        one:   "over 1 year"
+        other: "over %{count} years"
+      almost_x_years:
+        one:   "almost 1 year"
+        other: "almost %{count} years"
+    prompts:
+      year:   "Year"
+      month:  "Month"
+      day:    "Day"
+      hour:   "Hour"
+      minute: "Minute"
+      second: "Seconds"
 

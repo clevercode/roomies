@@ -4,16 +4,16 @@
 
 #upcoming_filters
   %ul#assignee_filters
-    %li.left.active my assignments
-    %li.right everyone's assignments
+    %li.left.active= t :my_assignments
+    %li.right= t :everyones_assignments
   %ul#assignment_filters
-    %li.left.active all
-    %li#task_filter tasks
-    %li.right#expense_filter expenses
+    %li.left.active= t :all
+    %li#task_filter= t :tasks
+    %li.right#expense_filter= t :expenses
 
 #upcoming.content    
   .list
-    %h2 today
+    %h2= t :today
     %ul
       - @todays_assignments.each do |assignment|
         -# - if assignment.due_date.today?
@@ -23,7 +23,7 @@
             %li.purpose= link_to assignment.purpose, assignment_url(assignment)
             %li.edit{ :data => { :assignment_id => assignment.id } }
   .list
-    %h2 tomorrow
+    %h2= t :tomorrow
     %ul
       - @tomorrows_assignments.each do |assignment|
         -# - if assignment.due_date == Time.now.tomorrow
@@ -45,7 +45,7 @@
             %li.edit{ :data => { :assignment_id => assignment.id } }
 
 .header_bar.upcoming
-  %h1 these coming days
+  %h1= t :these_coming_days
   %p
     =link_to 'upcoming', '/corkboard/upcoming', :class => 'active'
     |
