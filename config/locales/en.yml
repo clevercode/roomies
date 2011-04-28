@@ -2,8 +2,53 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  # forms & actions
+  sign_in: "Sign In"
+  sign_out: "Sign Out"
+  sign_up: "Sign Up"
+  or_sign_in_with: "Or sign in with"
+  or: "or"
+  forgot_password: "Forgot your password?"
+  email: "Email"
+  password: "Password"
+
+  # footer
+  all_rights_reserved: "All Rights Reserved."
+  about_us: "About Us"
+  privacy_policy: "Privacy Policy"
+  terms_of_service: "Terms of Service"
+  support: "Support"
+  
+  # home
+  free_for_30_days: "Free for 30 days, cheap after"
+  relax: "Relax"
+  play: "Play"
+  save: "Save"
+
+  # corkboard
+  today: "Today"
+  tomorrow: "Tomorrow"
+  my_assignments: "My Assignments"
+  everyones_assignments: "Everyone's Assignments"
+  all: "All"
+  tasks: "Tasks"
+  expenses: "Expenses"
+  these_coming_days: "These coming days"
+  add_assignment: "Add Assignment"
+
+  # assignments
+  assignments:
+    completed: "Nice job, this assignment was marked as completed!"
+    cant_complete: "We somehow couldn't mark this assignment as complete, I blame Narwhals. But drop us a line, we'll fix it and give you a gift."
+    already_completed: "This assignments was already completed, you sneaky face."
+
+  # rewards
+  rewards:
+    sessions_create: "signing in"
+    assignments_create: "creating an assignment"
+    assignments_complete: "completing an assignment"
+
   hello: 'Hello world'
-  signed_in: 'Welcome back, you signed in successfully.'
   auth_success: 'Authentication successful.'
   auth_fail: 'Authentication failed.'
   auth_destroy: 'Successfully destroyed authentication.'
@@ -13,10 +58,6 @@ en:
       user:
         email: "youremail@domain.com"
     submit: "Submit"
-
-  rewards:
-    sessions_create: "signing in"
-    assignments_create: "creating an assignment"
 
   date:
     formats:
