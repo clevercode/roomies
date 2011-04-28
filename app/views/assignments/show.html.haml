@@ -15,7 +15,7 @@
 - if @assignment.respond_to?("cost")
   %p 
     Cost: 
-    %strong #{@assignment.cost}
+    %strong #{number_to_currency(@assignment.cost)}
 
 - if @assignment.respond_to?("due_date")
   %p 
