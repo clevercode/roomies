@@ -4,6 +4,8 @@ class RewardsController < ApplicationController
 
   def index
     @rewards = Reward.all
+    points = @rewards.map { |r| r.points }
+    @total = points.sum
   end
 
   def new
