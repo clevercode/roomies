@@ -16,13 +16,13 @@ class ApplicationController < ActionController::Base
   
   def reward(type, points)
     type ||= (self.controller_name + "_" + self.action_name).to_sym
-    puts type
     Reward.create( 
                   :user => current_user, 
                   :type => type,
                   :points => points
     )
-    flash[:notice] = "Hey look, you just got a reward!"
+    flash[:reward] = "Hey look, you just got a reward for #{t(type, :scope => :rewards)}!"
+    flash[:error] = "Gets crowded in there when there's more than one notice..."
   end
 
   private
