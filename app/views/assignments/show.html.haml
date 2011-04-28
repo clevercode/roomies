@@ -5,27 +5,31 @@
 
 %p= @assignment.purpose
 %hr
-- if @assignment.respond_to?("assignees") && @assignment.assignees != nil
   %p Assignees: 
   %ul
-    - @assignment.assignees.map do |a| 
+    - @assignment.try(:assignees).map do |a| 
       %li
         = link_to "- " + a.name.to_s, a
 
-- if @assignment.respond_to?("cost")
   %p 
     Cost: 
-    %strong #{number_to_currency(@assignment.cost)}
+    %strong #{number_to_currency(@assignment.try(:cost))}
 
-- if @assignment.respond_to?("due_date")
   %p 
     Due date: 
-    %strong #{l(@assignment.due_date.to_date, :format => :long)}
+    %strong #{ @assignment.due_date ? l(@assignment.due_date.to_date, :format => :long) : nil}
 
-- if @assignment.respond_to?("frequency")
   %p 
     Frequency : 
-    %strong #{@assignment.frequency}
+    %strong #{@assignment.try(:frequency)}
+- if @assignment.respond_to?("completed_at")
+  %p
+    Completion date:
+    %strong #{@assignment.try(:completed_at)}
+- unless @assignment.completed_at
+  %hr
+  = button_to "complete this assignment", :action => :complete, :id => @assignment.id
+
 %hr
 = link_to 'Edit Assignment', edit_assignment_path(@assignment)
 = link_to 'Back to Assignments', assignments_path
