@@ -1,6 +1,6 @@
 = simple_form_for :user, :url => session_path(:user) do |f|
-  = f.input :email, :label => false, :input_html => { :placeholder => "email" }
-  = f.input :password, :label => false, :input_html => { :placeholder => "password" }
+  = f.input :email, :input_html => { :placeholder => "email" }
+  = f.input :password, :input_html => { :placeholder => "password" }
   - if devise_mapping.rememberable?
     = f.input :remember_me, :as => :boolean
   = f.submit "sign in"
