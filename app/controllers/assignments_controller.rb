@@ -72,6 +72,23 @@ class AssignmentsController < ApplicationController
 
     respond_with @assignment
   end
+
+  def complete
+    @assignment = Assignment.find(params[:id])
+    if @assignment.completed_at.nil?
+      @assignment.completed_at = DateTime.now
+      if @assignment.save
+        reward(nil,3)
+        flash[:notice] = t(:completed, :scope => :assignments)
+        respond_with(@assignment)
+      else
+        flash[:notice] = t(:cant_complete, :scope => :assignments)
+      end
+    else
+      flash[:notice] = t(:already_completed, :scope => :assignments)
+      respond_with(@assignment)
+    end
+  end
  
 end
 
