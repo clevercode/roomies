@@ -4,5 +4,5 @@
   %ul
     - @rewards.each do |reward|
       %li
-        = link_to "#{reward.user.name} received a reward for #{t(reward.type, :scope => :rewards)} on #{l(reward.created_at)}", reward
-
+        \- #{l(reward.created_at)}: #{reward.user.name} got #{reward.points} points
+        = link_to " for #{t(reward.type, :scope => :rewards)}", reward 
