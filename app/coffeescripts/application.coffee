@@ -82,6 +82,7 @@ $('a.ajax').bind 'click', (event) ->
   $.ajax url: $(this).attr('href'), success: (data) -> 
     $modal.empty()
     $(data).find('#main').appendTo('#modal')
+    $('<span>x</span>').appendTo('#modal h1')
     $darknessification.show()
     modal_left = ($('html').outerWidth()/2) - ($modal.outerWidth()/2)
     $modal.css({left: modal_left}).show()
@@ -93,6 +94,15 @@ $darknessification.live 'click', (event) ->
   $darknessification.hide()
   $modal.hide()
   return false
+  
+$(window).bind 'keyup', (event) ->
+  if event.keyCode == 27
+    $modal.hide()
+    $darknessification.hide()
+    
+$('#modal h1 span').live 'click', (event) ->
+  $modal.hide()
+  $darknessification.hide()
 
 
 # ===============================
