@@ -9,7 +9,7 @@
   = f.input :cost, :placeholder => "Enter the cost if there is one."
   = f.input :due_date, 
             :placeholder => "Type (e.g. 'next friday') or select a date below.", 
-            :input_html => { :class => 'superdate', :value => ((@assignment.due_date.blank?) ? '' : @assignment.due_date.strftime("%B %d, %Y")) }
+            :input_html => { :class => 'superdate', :value => ((@assignment.due_date.blank?) ? '' : l(@assignment.due_date.to_date)) }
   #picker
 
   .label.boolean.optional
