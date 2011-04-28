@@ -6,18 +6,26 @@ Roomies::Application.routes.draw do
     get "sign_out", :to => "devise/sessions#destroy"
   end
 
-  resources :users
-  resources :authentications
-  resources :assignments
-  resources :categories
-  resources :achievements
-  resources :houses
-  resources :corkboard
-  resources :pages
-  resources :support
-  resources :user_mailer
-  resources :invitations
-  resources :rewards
+  scope "(:locale)", :locale => /en|fr/ do
+
+    resources :users
+    resources :authentications
+    resources :assignments do
+      member do
+        post :complete
+      end
+    end
+    resources :categories
+    resources :achievements
+    resources :houses
+    resources :corkboard
+    resources :pages
+    resources :support
+    resources :user_mailer
+    resources :invitations
+    resources :rewards
+  
+  end
 
   match '/auth/:provider/callback'     => 'authentications#create'
   match '/registrations'               => 'registrations#email'
@@ -25,10 +33,11 @@ Roomies::Application.routes.draw do
   match '/support/index'               => 'support#submit_request'
   match '/accept_invitation'           => 'users#accept_invitation'
   match '/reject_invitations'          => 'users#reject_invitations'
+  # match '/assignments/:id/complete'    => 'assignments#complete'
 
+  # making sure the root works with I18N
+  match '/:locale' => 'home#index'
   # normal visitors are directed to the home page
   root :to => 'home#index'
-
-  # ensures the root for logged in users is the corkboard
 
 end
