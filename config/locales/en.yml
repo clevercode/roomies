@@ -15,7 +15,8 @@ en:
     submit: "Submit"
 
   rewards:
-    sign_in: "signing in"
+    sessions_create: "signing in"
+    assignments_create: "creating an assignment"
 
   date:
     formats:
