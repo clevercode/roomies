@@ -1,0 +1,8 @@
+- @main_class = 'rewards'
+
+- unless @rewards.empty?
+  %ul
+    - @rewards.each do |reward|
+      %li
+        = link_to "#{reward.user.name} received a reward for #{t(reward.type, :scope => :rewards)} on #{l(reward.created_at)}", reward
+
