@@ -83,7 +83,7 @@ $('a.ajax').bind 'click', (event) ->
     $darknessification.show()
     modal_left = ($('html').outerWidth()/2) - ($modal.outerWidth()/2)
     $modal.css({left: modal_left}).show()
-    $modal.find("form .string input:first-child").first().focus()
+    $modal.find("form > .string > input").not("input[type=hidden]").first().focus() 
   return false
 
 # // Listens for a click on the dark overlay when the modal is up
