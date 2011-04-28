@@ -20,7 +20,7 @@
 - if @assignment.respond_to?("due_date")
   %p 
     Due date: 
-    %strong #{@assignment.due_date}
+    %strong #{l(@assignment.due_date.to_date, :format => :long)}
 
 - if @assignment.respond_to?("frequency")
   %p 
