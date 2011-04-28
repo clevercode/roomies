@@ -1,12 +1,12 @@
-%p &copy; #{Date.today.year} cleverCode LLC. All Rights Reserved
+%p &copy; #{Date.today.year} cleverCode LLC. #{t :all_rights_reserved}
 %p#links
-  =link_to 'about us', '#'
+  =link_to t(:about_us), '#'
   |
-  =link_to 'privacy policy', '#'
+  =link_to t(:privacy_policy), '#'
   |
-  =link_to 'terms of service', '#'
+  =link_to t(:terms_of_service), '#'
   |  
-  =link_to 'support', support_index_path
+  =link_to t(:support), support_index_path
   - if user_signed_in?
     –
-    =link_to 'sign out', destroy_user_session_path
+    =link_to t(:sign_out), destroy_user_session_path
