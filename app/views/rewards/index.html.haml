@@ -1,6 +1,8 @@
 - @main_class = 'rewards'
 
 - unless @rewards.empty?
+  %p #{current_user.name} has <strong>#{@total}</strong> points so far.
+  %h2 Rewards:
   %ul
     - @rewards.each do |reward|
       %li
