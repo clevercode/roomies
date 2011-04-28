@@ -36,15 +36,17 @@ if d.getHours() < 6 || d.getHours() > 20
   $('html').addClass('nighttime')
   
 # // Handles the sticky footer
-if window.innerHeight > $body.height()
-  $footer.css({position:'fixed', bottom:0})
+stickyFooter = (event) ->  
+  if window.innerHeight > $body.height()
+    $footer.css({position:'fixed', bottom:0})
+
+stickyFooter()
 
 # // Hides the flash notice if it's visible.
-if $('#flash').height() > '5'
-  setTimeout ->
-    $('#flash').fadeOut()
-  , 5000
-  
+$('#flash').bind 'click', (event) ->
+  $('#flash').fadeOut(() ->
+    stickyFooter()
+  )
 
 Clouds = 
   # // Initialize the counter
@@ -144,9 +146,7 @@ $('.header_bar a').bind 'click', (event) ->
     $header_bar.find('h1').text('these coming days')
     $('#calendar').hide()
     $('#centric').show()
-    
-    if window.innerHeight > $body.height()
-      $footer.css({position:'fixed', bottom:0})
+    stickyFooter()
   else
     $header_bar.find('h1').text('this coming month')
     $footer.css({position:'static'})
