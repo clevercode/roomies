@@ -41,6 +41,27 @@ en:
     completed: "Nice job, this assignment was marked as completed!"
     cant_complete: "We somehow couldn't mark this assignment as complete, I blame Narwhals. But drop us a line, we'll fix it and give you a gift."
     already_completed: "This assignments was already completed, you sneaky face."
+  
+  # profile
+  profile:
+    youre_homeless: "Oh no! It seems you're homeless! Want to "
+    build_house: "build a house"
+    homeless_roomie: "That roomie is homeless."
+    no_tasks: "No tasks"
+    name: "Name"
+    progress: "Progress"
+    next_level: "Next level"
+    more_achievements: "More achievements"
+    achievements: "Achievements"
+    roomie_battle: "Roomie Battle"
+    you: "You"
+    task: "Task"
+    expense: "Expense"
+    edit_profile: "Edit profile"
+    points: "points"
+    hi_there: "Hi there"
+    new_roomie: "new roomie"
+
 
   # rewards
   rewards:
