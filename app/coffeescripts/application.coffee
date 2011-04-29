@@ -81,13 +81,14 @@ $('a.ajax').bind 'click', (event) ->
     modal_top = ($(window).height()/2) - ($modal.outerHeight()/2)
     modal_top = 0 if modal_top < 0
     $modal.css({left: modal_left, top: modal_top}).fadeIn _fadeSpeed
+    superDate()
     $modal.find("form > .string > input").not("input[type=hidden]").first().focus() 
   return false
 
 # // Listens for a click on the dark overlay when the modal is up.
 $darknessification.live 'click', (event) ->
   $darknessification.fadeOut _fadeSpeed
-  $modal.fadeOut()
+  $modal.fadeOut _fadeSpeed
   return false
   
 # // Watches for an escape keypress and hides the modal and overlay.
