@@ -16,12 +16,12 @@
   = render :partial => "upcoming", :locals => { :day => Date.tomorrow, :assignments => @tomorrows_assignments }
   = render :partial => "upcoming", :locals => { :day => Date.today + 2, :assignments => @next_days_assignments }
 
-.header_bar.upcoming
+.header_bar{ :data => { :name => 'upcoming' }}
   %h1= t '.these_coming_days'
   %p
-    =link_to t('.upcoming'), '/corkboard/upcoming', :class => 'active'
+    =link_to t('.upcoming'), '#', :class => 'active', :"data-name" => 'upcoming'
     |
-    =link_to t('.monthly'), '/corkboard/monthly'
+    =link_to t('.monthly'), '#', :"data-name" => 'monthly'
 
 #centric.content
   - # what weekday number is today? (Sun = 0, Mon = 1)?
