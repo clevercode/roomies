@@ -22,6 +22,12 @@ $darknessification = $('#darknessification')
 $superdate         = $('.superdate')
 # $names             = $('#names')
 
+# ========== Global Settings ========== #
+# Fade Speed
+_fadeSpeed = 100
+_slideDownSpeed = 200
+_slideUpSpeed = 150
+
 # $('body').noisy(
 #   intensity: 0.4, 
 #   size: 200, 
@@ -83,7 +89,7 @@ $('a.ajax').bind 'click', (event) ->
     $modal.empty()
     $(data).find('#main').appendTo('#modal')
     $('<span>x</span>').appendTo('#modal h1')
-    $darknessification.show()
+    $darknessification.fadeIn _fadeSpeed
     modal_left = ($('html').outerWidth()/2) - ($modal.outerWidth()/2)
     $modal.css({left: modal_left}).show()
     $modal.find("form > .string > input").not("input[type=hidden]").first().focus() 
@@ -91,18 +97,18 @@ $('a.ajax').bind 'click', (event) ->
 
 # // Listens for a click on the dark overlay when the modal is up
 $darknessification.live 'click', (event) ->
-  $darknessification.hide()
-  $modal.hide()
+  $darknessification.fadeOut _fadeSpeed
+  $modal.fadeOut()
   return false
   
 $(window).bind 'keyup', (event) ->
   if event.keyCode == 27
-    $modal.hide()
-    $darknessification.hide()
+    $modal.fadeOut _fadeSpeed
+    $darknessification.fadeOut _fadeSpeed
     
 $('#modal h1 span').live 'click', (event) ->
-  $modal.hide()
-  $darknessification.hide()
+  $modal.fadeOut _fadeSpeed
+  $darknessification.fadeOut _fadeSpeed
 
 
 # ===============================
@@ -119,8 +125,8 @@ $('.corkboard #upcoming li.expense,
       .children('ul')
         .children('li:eq(1)')
         .stop()
-        .animate({paddingRight:'0px'}, 100, (event) ->
-          $(this).next().show().animate({opacity:1}, 100)
+        .animate({paddingRight:'0px'}, _fadeSpeed, (event) ->
+          $(this).next().show().animate({opacity:1}, _fadeSpeed)
         )
         
 $('.corkboard #upcoming li.expense, 
@@ -132,8 +138,8 @@ $('.corkboard #upcoming li.expense,
       .children('ul')
         .children('li:eq(2)')
         .stop()
-        .animate({opacity:0}, 100, (event) ->
-          $(this).hide().prev().animate({paddingRight:'25px'}, 100)
+        .animate({opacity:0}, _fadeSpeed, (event) ->
+          $(this).hide().prev().animate({paddingRight:'25px'}, _fadeSpeed)
         )
 
 # // Edit assignment on edit icon click 
@@ -155,14 +161,15 @@ $('.header_bar a').bind 'click', (event) ->
   # // Checks to see if the we want to show the full on calendar or not.
   if $header_bar.hasClass('upcoming')
     $header_bar.find('h1').text('these coming days')
-    $('#calendar').hide()
-    $('#centric').show()
+    $('#calendar').slideUp _slideUpSpeed, ->
+      $('#centric').slideDown _slideDownSpeed
+    
     stickyFooter()
   else
     $header_bar.find('h1').text('this coming month')
     $footer.css({position:'static'})
-    $('#centric').hide()
-    $('#calendar').show()
+    $('#centric').slideUp _slideUpSpeed, ->
+      $('#calendar').slideDown _slideDownSpeed
   
   return false
 
@@ -255,7 +262,7 @@ $('.generate').bind 'click', (event) ->
     random_string += characters.substring(random_number, random_number + 1)
     
   $('#password_junk input').attr('value',random_string)
-  $darknessification.show()
+  $darknessification.fadeIn _fadeSpeed
   $modal.empty()
   
   $('<div id="main">' +
@@ -265,7 +272,7 @@ $('.generate').bind 'click', (event) ->
       '<p>If you forget your password, you can always click on the "forgot password" link when signing in.</p>' +
       '<p class="button"><a href="sign_up">sign me up!</a>' +
     '</div>'
-  ).appendTo('#modal')
+  ).appendTo('#modal').fadeIn _fadeSpeed
   
   modal_left = ($('html').outerWidth()/2) - ($modal.outerWidth()/2)
   $modal.css({left: modal_left}).show()
