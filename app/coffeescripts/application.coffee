@@ -36,15 +36,17 @@ if d.getHours() < 6 || d.getHours() > 20
   $('html').addClass('nighttime')
   
 # // Handles the sticky footer
-if window.innerHeight > $body.height()
-  $footer.css({position:'fixed', bottom:0})
+stickyFooter = (event) ->  
+  if window.innerHeight > $body.height()
+    $footer.css({position:'fixed', bottom:0})
+
+stickyFooter()
 
 # // Hides the flash notice if it's visible.
-if $('#flash').height() > '5'
-  setTimeout ->
-    $('#flash').fadeOut()
-  , 5000
-  
+$('#flash').bind 'click', (event) ->
+  $('#flash').fadeOut(() ->
+    stickyFooter()
+  )
 
 Clouds = 
   # // Initialize the counter
@@ -80,6 +82,7 @@ $('a.ajax').bind 'click', (event) ->
   $.ajax url: $(this).attr('href'), success: (data) -> 
     $modal.empty()
     $(data).find('#main').appendTo('#modal')
+    $('<span>x</span>').appendTo('#modal h1')
     $darknessification.show()
     modal_left = ($('html').outerWidth()/2) - ($modal.outerWidth()/2)
     $modal.css({left: modal_left}).show()
@@ -91,6 +94,15 @@ $darknessification.live 'click', (event) ->
   $darknessification.hide()
   $modal.hide()
   return false
+  
+$(window).bind 'keyup', (event) ->
+  if event.keyCode == 27
+    $modal.hide()
+    $darknessification.hide()
+    
+$('#modal h1 span').live 'click', (event) ->
+  $modal.hide()
+  $darknessification.hide()
 
 
 # ===============================
@@ -145,9 +157,7 @@ $('.header_bar a').bind 'click', (event) ->
     $header_bar.find('h1').text('these coming days')
     $('#calendar').hide()
     $('#centric').show()
-    
-    if window.innerHeight > $body.height()
-      $footer.css({position:'fixed', bottom:0})
+    stickyFooter()
   else
     $header_bar.find('h1').text('this coming month')
     $footer.css({position:'static'})

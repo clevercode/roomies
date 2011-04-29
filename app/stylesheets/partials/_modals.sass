@@ -23,6 +23,17 @@
       color: darken($font-color, 10%)
   h1, h2
     font-size: 24px
+    span
+      float: right
+      cursor: pointer
+      padding: 2px 10px
+      +box-shadow(rgba(0,0,0,.4) 0 0 15px inset)
+      +background-image(linear-gradient(transparentize($blue,.4), transparentize($lightblue, .2)))
+      &:hover
+        +background-image(none)
+      &:active
+        +box-shadow(rgba(0,0,0,.6) 0 0 15px inset)
+        +background-image(linear-gradient(transparentize($blue,.4), transparentize($lightblue, .2)))
   p
     font-size: 16px
   p.pass
