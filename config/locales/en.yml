@@ -77,7 +77,7 @@ en:
 
   time:
     formats:
-      default: "%B %d, %Y at %H:%I%p"
+      default: "%B %d, %Y at %I:%M%p"
       short: "%d %b %H:%M"
       long: "%B %d, %Y %H:%M"
     am: "am"
