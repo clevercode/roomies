@@ -5,16 +5,18 @@
   #about_header
     - if signed_in? && current_user == @user
       - if @user.name.blank?
-        %h1 hi there, new roomie
+        %h1
+          = t(:hi_there, :scope => :profile)
+          =  t(:new_roomie, :scope => :profile)
       -else
-        %h1 hi there, #{@user.name}
+        %h1 #{t(:hi_there, :scope => :profile)}, #{@user.name}
     - else
       - if @user.name.blank?
-        %h1 new roomie
+        %h1= t(:new_roomie, :scope => :profile)
       -else
         %h1  #{@user.name}
-    %p 455/500 pts
-    %p next level
+    %p 455/500 #{t(:points)}
+    %p= t(:next_level, :scope => :profile)
   #hud
     #roomie_bar
       %span
@@ -22,7 +24,7 @@
     %p#level amazing roomie
     - if @user.house
       %p#house
-        #{@user.house.name} - 
+        #{@user.house.name} &mdash;
         - if signed_in? && current_user == @user
           = link_to 'change house name', edit_house_path(@user.house), :class => 'ajax'
           or
@@ -32,23 +34,24 @@
     - else
       %p#house
         - if signed_in? && current_user == @user
-          Oh no! It seems you're homeless! Want to 
-          = link_to 'build a house', new_house_path, :class => 'ajax'
+          = t :youre_homeless, :scope => :profile
+          = link_to t(:build_house, :scope => :profile), new_house_path, :class => 'ajax'
           ?
         - else
-          It seems he's homeless!
+          = t(:homeless_roomie, :scope => :profile)
     %p#tasks_expenses
       %span
       - if @tasks
-        %span= pluralize(@tasks.count, 'task')
+        %span= pluralize(@tasks.count, t(:task, :scope => :profile))
       - else
-        %span no tasks
+        %span= t(:no_tasks, :scope => :profile)
       %span
       %span= pluralize(@expenses.count, 'expense')
-  %p.edit_profile= link_to 'edit profile', edit_user_path(@user), :class => 'ajax' if current_user
+  %p.edit_profile= link_to t(:edit_profile, :scope => :profile), edit_user_path(@user), :class => 'ajax' if current_user
 #achievements
   .header_bar
-    %h1 achievements
+    %h1= t :achievements, :scope => :profile
+    %p= link_to t(:more_achievements, :scope => :profile), achievements_url
   #badges.content
     #image
     #image
@@ -60,7 +63,7 @@
 - if current_user
   #progress
     .header_bar
-      %h1 progress 
+      %h1= t(:progress, :scope => :profile)
     .content
       %table
         %tr
@@ -94,23 +97,23 @@
 
   #batte
     .header_bar
-      %h1 roomie battle
+      %h1= t :roomie_battle, :scope => :profile 
     - if roomies_list
       .content
         %table
           %tr
-            %th name
-            %th progress to next "amazing roomie" badge
-            %th.level next level
+            %th= t :name, :scope => :profile
+            %th= t :progress, :scope => :profile             
+            %th.level= t :next_level, :scope => :profile 
           - roomies_list.all.map do |roomie|
             %tr
               %td
                 - if (roomie == current_user)
-                  <strong>you</strong> 
+                  %strong #{t(:you, :scope => :profile)}
                 - elsif roomie.name
                   = roomie.name
                 - else
-                  too-lazy-to-give-name
+                  = t :no_name_roomie, :scope => :profile 
               %td.progress_bar
                 .bars
                   .bar

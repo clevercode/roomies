@@ -3,7 +3,7 @@ class RewardsController < ApplicationController
   respond_to :html, :json
 
   def index
-    @rewards = Reward.all
+    @rewards = current_user.rewards
     points = @rewards.map { |r| r.points }
     @total = points.sum
   end

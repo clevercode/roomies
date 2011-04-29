@@ -4,58 +4,31 @@
 
 #upcoming_filters
   %ul#assignee_filters
-    %li.left.active= t :my_assignments
-    %li.right= t :everyones_assignments
+    %li.left.active= t '.my_assignments'
+    %li.right= t '.everyones_assignments'
   %ul#assignment_filters
-    %li.left.active= t :all
-    %li#task_filter= t :tasks
-    %li.right#expense_filter= t :expenses
+    %li.left.active= t '.all'
+    %li#task_filter= t '.tasks'
+    %li.right#expense_filter= t '.expenses'
 
-#upcoming.content    
-  .list
-    %h2= t :today
-    %ul
-      - @todays_assignments.each do |assignment|
-        -# - if assignment.due_date.today?
-        %li{ :class => "task" }
-          %ul
-            %li.type{ :title => "task" }
-            %li.purpose= link_to assignment.purpose, assignment_url(assignment)
-            %li.edit{ :data => { :assignment_id => assignment.id } }
-  .list
-    %h2= t :tomorrow
-    %ul
-      - @tomorrows_assignments.each do |assignment|
-        -# - if assignment.due_date == Time.now.tomorrow
-        %li{ :class => "task" } 
-          %ul
-            %li.type{ :title => "task" }
-            %li.purpose= link_to assignment.purpose, assignment_url(assignment)
-            %li.edit{ :data => { :assignment_id => assignment.id } }
- 
-  .list.last
-    %h2= (Date::DAYNAMES[Date.tomorrow.next_day.wday.to_i]).downcase
-    %ul
-      - @next_days_assignments.each do |assignment|
-        -# - if assignment.due_date == Time.now.tomorrow.tomorrow
-        %li{ :class => "task" } 
-          %ul
-            %li.type{ :title => "task" }
-            %li.purpose= link_to assignment.purpose, assignment_url(assignment)
-            %li.edit{ :data => { :assignment_id => assignment.id } }
+#upcoming.content
+  = render :partial => "upcoming", :locals => { :day => Date.today, :assignments => @todays_assignments }
+  = render :partial => "upcoming", :locals => { :day => Date.tomorrow, :assignments => @tomorrows_assignments }
+  = render :partial => "upcoming", :locals => { :day => Date.today + 2, :assignments => @next_days_assignments }
 
 .header_bar.upcoming.current
-  %h1= t :these_coming_days
+  %h1= t '.these_coming_days'
   %p
-    =link_to 'upcoming', '/corkboard/upcoming', :class => 'active'
+    =link_to t('.upcoming'), '#', :class => 'active', :"data-name" => 'upcoming'
     |
     =link_to 'monthly', '/corkboard/monthly'
 .header_bar
-  %h1= t :this_coming_month
+  %h1= t '.this_coming_month'
   %p
     =link_to 'upcoming', '/corkboard/upcoming'
     |
     =link_to 'monthly', '/corkboard/monthly', :class => 'active'
+
 #centric.content
   - # what weekday number is today? (Sun = 0, Mon = 1)?
   - weekday_number = Date.today.wday()
@@ -65,7 +38,7 @@
     - date = Date.today + i.days
     - current_day = (date == Date.today) ? 'current_day' : nil
     .day{:class => current_day}
-      %p.day_name= Date::ABBR_DAYNAMES[date.wday()]
+      %p.day_name= l(date, :format => :short_day)
       %p.day_number= date.day
       - unless Assignment.where(:due_date => date.to_s).count <= 0
         #todo
@@ -86,19 +59,20 @@
       - date = Date.today - weekday_number + i.days 
       - unless date == Date.today
         .day.past
-          %p.day_name= Date::ABBR_DAYNAMES[date.wday()]
+          %p.day_name= l(date, :format => :short_day)
           %p.day_number= date.day
           - unless Assignment.where(:due_date => date.to_s).count <= 0
             #todo
               =link_to Assignment.where(:due_date => date.to_s).count, '#', :class => "tasks"
               -# =link_to '0', '#', :class => "expenses" 
+
   - (0..number_of_days).map do |i|
     - date = Date.today + i.days
     - current_day = (date == Date.today) ? 'current_day' : nil
     - if date.wday != 0 && date.cweek == Date.today.cweek
       - current_week = 'current_week'
     .day{ :class => "#{current_day} #{current_week}" }
-      %p.day_name= Date::ABBR_DAYNAMES[date.wday()]
+      %p.day_name= l(date, :format => :short_day)
       %p.day_number= date.day
       - unless Assignment.where(:due_date => date.to_s).count <= 0
         #todo

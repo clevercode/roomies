@@ -18,30 +18,72 @@ en:
   privacy_policy: "Privacy Policy"
   terms_of_service: "Terms of Service"
   support: "Support"
+
+  # general
+  add_assignment: "Add Assignment"
   
   # home
-  free_for_30_days: "Free for 30 days, cheap after"
-  relax: "Relax"
-  play: "Play"
-  save: "Save"
+  home:
+    index:
+      living: "living"
+      together: "together"
+      made: "made"
+      easier: "easier"
+      email_example: "example@domain.com"
+      or_sign_up_with: "or sign up with"
+      free_for_30_days: "Free for 30 days, cheap after"
+      type_your_password: "choose your own password..."
+      generate_one: "let us generate one for you"
+      relax: "Relax"
+      relax_copy: "At school, work, home, or out in the world, Roomies makes it easy to keep it touch with your roommates and the stuff you have to do everyday."
+      play: "Play"
+      play_copy: "Complete tasks and expenses as expected, and you will earn points and receive achievements badges that reward you for being a good roomie."
+      save: "Save"
+      save_copy: "Stay on top of bills, receive reminders in due time and keep an eye on what you spend. It saves you time, and we all know what time is. Relative...?"
 
   # corkboard
-  today: "Today"
-  tomorrow: "Tomorrow"
-  my_assignments: "My Assignments"
-  everyones_assignments: "Everyone's Assignments"
-  all: "All"
-  tasks: "Tasks"
-  expenses: "Expenses"
-  these_coming_days: "These coming days"
-  this_coming_month: "This coming month"
-  add_assignment: "Add Assignment"
+  corkboard:
+    index:
+      today: "Today"
+      tomorrow: "Tomorrow"
+      my_assignments: "My Assignments"
+      everyones_assignments: "Everyone's Assignments"
+      all: "All"
+      tasks: "Tasks"
+      expenses: "Expenses"
+      these_coming_days: "These coming days"
+      this_coming_month: "This coming month"
+      upcoming: "Upcoming"
+      monthly: "Monthly"
+    upcoming:
+      no_assignments: "So far so good..."
 
   # assignments
   assignments:
     completed: "Nice job, this assignment was marked as completed!"
     cant_complete: "We somehow couldn't mark this assignment as complete, I blame Narwhals. But drop us a line, we'll fix it and give you a gift."
     already_completed: "This assignments was already completed, you sneaky face."
+  
+  # profile
+  profile:
+    youre_homeless: "Oh no! It seems you're homeless! Want to "
+    build_house: "build a house"
+    homeless_roomie: "That roomie is homeless."
+    no_tasks: "No tasks"
+    name: "Name"
+    progress: "Progress"
+    next_level: "Next level"
+    more_achievements: "More achievements"
+    achievements: "Achievements"
+    roomie_battle: "Roomie Battle"
+    you: "You"
+    task: "Task"
+    expense: "Expense"
+    edit_profile: "Edit profile"
+    points: "points"
+    hi_there: "Hi there"
+    new_roomie: "new roomie"
+
 
   # rewards
   rewards:
@@ -65,6 +107,9 @@ en:
       default: "%B %d, %Y"
       short: "%b %d"
       long: "%A %B %d, %Y"
+      day: "%A"
+      short_day: "%a"
+
 
     day_names: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday]
     abbr_day_names: [Sun, Mon, Tue, Wed, Thu, Fri, Sat]
@@ -78,7 +123,7 @@ en:
 
   time:
     formats:
-      default: "%B %d, %Y at %H:%I%p"
+      default: "%B %d, %Y at %I:%M%p"
       short: "%d %b %H:%M"
       long: "%B %d, %Y %H:%M"
     am: "am"
