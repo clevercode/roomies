@@ -156,10 +156,13 @@ $('.header_bar a').bind 'click', (event) ->
   $this.addClass('active').siblings().removeClass('active')
 
   # // Removes the current class and add the appropriate one.
-  $header_bar.removeClass($this.siblings().text()).addClass($this.text())
+  # $header_bar.removeClass($this.siblings().text()).addClass($this.text())
+  console.log($this.siblings().data('name'))
+  $header_bar.data('name', $this.siblings().data('name'))
   
   # // Checks to see if the we want to show the full on calendar or not.
-  if $header_bar.hasClass('upcoming')
+  console.log($header_bar.data('name'))
+  unless $header_bar.data('name') == "upcoming"
     $header_bar.find('h1').text('these coming days')
     $('#calendar').slideUp _slideUpSpeed, ->
       $('#centric').slideDown _slideDownSpeed
