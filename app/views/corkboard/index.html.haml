@@ -44,12 +44,18 @@
             %li.purpose= link_to assignment.purpose, assignment_url(assignment)
             %li.edit{ :data => { :assignment_id => assignment.id } }
 
-.header_bar.upcoming
+.header_bar.upcoming.current
   %h1= t :these_coming_days
   %p
     =link_to 'upcoming', '/corkboard/upcoming', :class => 'active'
     |
     =link_to 'monthly', '/corkboard/monthly'
+.header_bar
+  %h1= t :this_coming_month
+  %p
+    =link_to 'upcoming', '/corkboard/upcoming'
+    |
+    =link_to 'monthly', '/corkboard/monthly', :class => 'active'
 #centric.content
   - # what weekday number is today? (Sun = 0, Mon = 1)?
   - weekday_number = Date.today.wday()
