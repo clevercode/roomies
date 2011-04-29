@@ -1,34 +1,9 @@
-###
-Provides requestAnimationFrame in a cross browser way.
-@author paulirish / http://paulirish.com/
-###
-
-unless window.requestAnimationFrame
-  window.requestAnimationFrame =
-    window.webkitRequestAnimationFrame or
-    window.mozRequestAnimationFrame or
-    window.oRequestAnimationFrame or
-    window.msRequestAnimationFrame or
-    (callback, element) ->
-      window.setTimeout( callback, 1000 / 60 )
-
-$ = jQuery
-
+$                  = jQuery
 $body              = $('body')
 $modal             = $('#modal')
 $footer            = $('footer')
 $easy_button       = $('#easy_button')
 $darknessification = $('#darknessification')
-$superdate         = $('.superdate')
-# $names             = $('#names')
-
-# $('body').noisy(
-#   intensity: 0.4, 
-#   size: 200, 
-#   opacity: 0.06,
-#   fallback: 'fallback.png',
-#   monochrome: true
-# )
 
 # // Adds a class of nighttime to the html after 8pm and before 6am
 d = new Date()
@@ -47,6 +22,17 @@ $('#flash').bind 'click', (event) ->
   $('#flash').fadeOut(() ->
     stickyFooter()
   )
+
+# // Provides requestAnimationFrame in a cross browser way.
+# // @author paulirish / http://paulirish.com/
+unless window.requestAnimationFrame
+  window.requestAnimationFrame =
+    window.webkitRequestAnimationFrame or
+    window.mozRequestAnimationFrame or
+    window.oRequestAnimationFrame or
+    window.msRequestAnimationFrame or
+    (callback, element) ->
+      window.setTimeout( callback, 1000 / 60 )
 
 Clouds = 
   # // Initialize the counter
@@ -72,9 +58,9 @@ Clouds =
 Clouds.animate()
 
 
-# ===========================
-# ========== MODAL ==========
-# ===========================
+# =========================================
+# ================= MODAL =================
+# =========================================
 
 # // Listens for a click on any anchor with a class of ajax.
 # // Knabs the anchor's href and ajaxes it in to the modal.
@@ -84,30 +70,35 @@ $('a.ajax').bind 'click', (event) ->
     $(data).find('#main').appendTo('#modal')
     $('<span>x</span>').appendTo('#modal h1')
     $darknessification.show()
-    modal_left = ($('html').outerWidth()/2) - ($modal.outerWidth()/2)
-    $modal.css({left: modal_left}).show()
-    $modal.find("form > .string > input").not("input[type=hidden]").first().focus() 
+    modal_left = ($(window).width()/2) - ($modal.outerWidth()/2)
+    modal_top = ($(window).height()/2) - ($modal.outerHeight()/2)
+    modal_top = 0 if modal_top < 0
+    $modal.css({left: modal_left, top: modal_top}).show()
+    superDate()
+    $modal.find("form > .string > input").not("input[type=hidden]").first().focus()
   return false
 
-# // Listens for a click on the dark overlay when the modal is up
+# // Listens for a click on the dark overlay when the modal is up.
 $darknessification.live 'click', (event) ->
   $darknessification.hide()
   $modal.hide()
   return false
   
+# // Watches for an escape keypress and hides the modal and overlay.
 $(window).bind 'keyup', (event) ->
   if event.keyCode == 27
     $modal.hide()
     $darknessification.hide()
-    
+
+# // Watches for a click on the 'x' and hides the modal and overlay.
 $('#modal h1 span').live 'click', (event) ->
   $modal.hide()
   $darknessification.hide()
 
 
-# ===============================
-# ========== CORKBOARD ==========
-# ===============================
+# =========================================
+# =============== CORKBOARD ===============
+# =========================================
 
 # // Handles mouseover and mouseout for the corkboard lists.
 $('.corkboard #upcoming li.expense, 
@@ -136,33 +127,27 @@ $('.corkboard #upcoming li.expense,
           $(this).hide().prev().animate({paddingRight:'25px'}, 100)
         )
 
-# // Edit assignment on edit icon click 
+# // Edit assignment on edit icon click.
 $('.edit').live 'click', (event) ->
   id = $(this).data("assignment_id")
   window.location.href = "/assignments/#{id}/edit"
   return false
   
+# // Listens for a click on the calendar view option links.
 $('.header_bar a').bind 'click', (event) ->
-  $this = $(this)
-  $header_bar = $this.parent().parent()
+  unless $(this).hasClass('active')
+    $header_bar = $(this).parent().parent().siblings('.header_bar')
+    $header_bar.show().siblings('.header_bar').hide()
   
-  # // Adds a class of active to the clicked on link, and removes it from the sibling.
-  $this.addClass('active').siblings().removeClass('active')
-
-  # // Removes the current class and add the appropriate one.
-  $header_bar.removeClass($this.siblings().text()).addClass($this.text())
-  
-  # // Checks to see if the we want to show the full on calendar or not.
-  if $header_bar.hasClass('upcoming')
-    $header_bar.find('h1').text('these coming days')
-    $('#calendar').hide()
-    $('#centric').show()
-    stickyFooter()
-  else
-    $header_bar.find('h1').text('this coming month')
-    $footer.css({position:'static'})
-    $('#centric').hide()
-    $('#calendar').show()
+    # // Checks to see if the we want to show the full on calendar or not.
+    if $header_bar.hasClass('upcoming')
+      $('#calendar').hide()
+      $('#centric').show()
+      stickyFooter()
+    else
+      $footer.css({position:'static'})
+      $('#centric').hide()
+      $('#calendar').show()
   
   return false
 
@@ -170,62 +155,47 @@ $('.header_bar a').bind 'click', (event) ->
 # =========================================
 # ========== NEW ASSIGNMENT JAZZ ==========
 # =========================================
+
+do superDate = ->
+  $picker    = $("#picker")
+  $superdate = $('.superdate')
+
+  $superdate.live 'keyup', (event) ->
+    val = $(this).val()
+    if val?
+      # // parsing anything the user enters as a date
+      date = Date.parse( val )
+
+      # // making the date more legible and concise
+      date = date.toString('MMMM d, yyyy')
+
+      # // updating the datepicker
+      $picker.datepicker('setDate', date)
+
+  $superdate.live 'focusout', (event) ->
+    val = $(this).val()
+    if val?
+      date = Date.parse( val )
+      date = date.toString('MMMM d, yyyy')
+      $(this).val(date)
+      $picker.datepicker('setDate', date)
+
+  $picker.datepicker(
+    dateFormat: 'MM d, yy',
+    beforeShow: (dateText, inst) ->
+      if $superdate.val?
+        $picker.datepicker("setDate", $superdate.val())
+    onSelect: (dateText, inst) ->
+      date = dateText.toString('MMMM d, yyyy')
+      $superdate.val(date)
+  )
   
-# $('#assignment_assignees').live 'keyup', (event) ->
-#   input_text = $(event.target).val()
-#   if input_text.length > 1
-#     $.ajax url: '/users?name=' + input_text, success: (data) ->
-#       $names.empty().show()
-#       $(data).find('#names li').appendTo('#names')
-#   else
-#     $names.hide().empty()
-
-# $('#names li').live 'click', (event) ->
-#   $('#assignment_assignees').attr('value',$(this).text())
-
-# Variables
-$picker = $("#picker")
-
-$superdate.live 'keyup', (event) ->
-  val = $(this).val()
-  if val?
-    console.log('val after existence check: ', val)
-
-    # parsing anything the user enters as a date
-    date = Date.parse( val )
-    console.log('date after DateJS parsing: ', date)
-
-    # making the date more legible and concise
-    date = date.toString('MMMM d, yyyy')
-
-    # updating the datepicker
-    $picker.datepicker('setDate', date)
-
-    console.log('date after toString: ', date)
-    console.log('d after instantiation with val', d)
-
-$superdate.live 'focusout', (event) ->
-  val = $(this).val()
-  if val?
-    date = Date.parse( val )
-    date = date.toString('MMMM d, yyyy')
-    $(this).val(date)
-    $picker.datepicker('setDate', date)
-
-$picker.datepicker(
-  dateFormat: 'MM d, yy',
-  beforeShow: (dateText, inst) ->
-    if $superdate.val?
-      $picker.datepicker("setDate", $superdate.val())
-  onSelect: (dateText, inst) ->
-    # date = Date.parse( dateText )
-    console.log(Date.parse(dateText))
-    console.log(Date.parse("today"))
-    if Date.parse($superdate.val) == Date.parse("today")
-      console.log('yo today dude')
-    # date = date.toString('MMMM d, yyyy')
-    $superdate.val(dateText)
-)
+  $('#repeating').parent('div').next().hide()
+  $('#repeating').bind 'change', (event) ->
+    if event.currentTarget.checked
+      $(this).parent('div').next().show()
+    else
+      $(this).parent('div').next().hide()
 
 # $('#assignment_due_date').live 'keyup', (event) ->
 #   unless megadate == "unknown"
