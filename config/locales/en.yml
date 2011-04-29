@@ -18,6 +18,9 @@ en:
   privacy_policy: "Privacy Policy"
   terms_of_service: "Terms of Service"
   support: "Support"
+
+  # general
+  add_assignment: "Add Assignment"
   
   # home
   home:
@@ -39,15 +42,20 @@ en:
       save_copy: "Stay on top of bills, receive reminders in due time and keep an eye on what you spend. It saves you time, and we all know what time is. Relative...?"
 
   # corkboard
-  today: "Today"
-  tomorrow: "Tomorrow"
-  my_assignments: "My Assignments"
-  everyones_assignments: "Everyone's Assignments"
-  all: "All"
-  tasks: "Tasks"
-  expenses: "Expenses"
-  these_coming_days: "These coming days"
-  add_assignment: "Add Assignment"
+  corkboard:
+    index:
+      today: "Today"
+      tomorrow: "Tomorrow"
+      my_assignments: "My Assignments"
+      everyones_assignments: "Everyone's Assignments"
+      all: "All"
+      tasks: "Tasks"
+      expenses: "Expenses"
+      these_coming_days: "These coming days"
+      upcoming: "Upcoming"
+      monthly: "Monthly"
+    upcoming:
+      no_assignments: "So far so good..."
 
   # assignments
   assignments:
@@ -98,6 +106,9 @@ en:
       default: "%B %d, %Y"
       short: "%b %d"
       long: "%A %B %d, %Y"
+      day: "%A"
+      short_day: "%a"
+
 
     day_names: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday]
     abbr_day_names: [Sun, Mon, Tue, Wed, Thu, Fri, Sat]
