@@ -12,6 +12,7 @@ class User
   has_many :authentications, :dependent => :delete # User has access to an array of Authentications that have its id for user_id
   belongs_to :house # => User has a house_id
   has_many :assignees # User has access to an array of Assignees that have its id for user_id
+  has_many :rewards
 
   # Devise
   # Include default devise modules. Others available are:
