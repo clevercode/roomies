@@ -6,7 +6,10 @@
         -# - if assignment.due_date == Time.now.tomorrow.tomorrow
         %li{ :class => "task" } 
           %ul
-            %li.type{ :title => "task" }
+            - if assignment.type == "task"
+              %li.type{ :title => "task" }
+            - else
+              %li.type{ :title => "expense" }
             %li.purpose= link_to assignment.purpose, assignment_url(assignment)
             %li.edit{ :data => { :assignment_id => assignment.id } }
     - else
