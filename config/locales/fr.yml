@@ -1,0 +1,220 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+fr:
+  # forms & actions
+  sign_in: "Sign In"
+  sign_out: "Sign Out"
+  sign_up: "Sign Up"
+  or_sign_in_with: "Or sign in with"
+  or: "or"
+  forgot_password: "Forgot your password?"
+  email: "Email"
+  password: "Password"
+
+  # footer
+  all_rights_reserved: "All Rights Reserved."
+  about_us: "About Us"
+  privacy_policy: "Privacy Policy"
+  terms_of_service: "Terms of Service"
+  support: "Support"
+
+  # general
+  add_assignment: "Add Assignment"
+  
+  # home
+  home:
+    index:
+      living: "vivre"
+      together: "emsemble"
+      made: "plus"
+      easier: "facilement"
+      email_example: "exemple@domaine.com"
+      or_sign_up_with: "or sign up with"
+      free_for_30_days: "Free for 30 days, cheap after"
+      type_your_password: "choose your own password..."
+      generate_one: "let us generate one for you"
+      relax: "Relax"
+      relax_copy: "At school, work, home, or out in the world, Roomies makes it easy to keep it touch with your roommates and the stuff you have to do everyday."
+      play: "Play"
+      play_copy: "Complete tasks and expenses as expected, and you will earn points and receive achievements badges that reward you for being a good roomie."
+      save: "Save"
+      save_copy: "Stay on top of bills, receive reminders in due time and keep an eye on what you spend. It saves you time, and we all know what time is. Relative...?"
+
+  # corkboard
+  corkboard:
+    index:
+      today: "Aujourd'hui"
+      tomorrow: "Demain"
+      my_assignments: "My Assignments"
+      everyones_assignments: "Everyone's Assignments"
+      all: "All"
+      tasks: "Tasks"
+      expenses: "Expenses"
+      these_coming_days: "These coming days"
+      this_coming_month: "This coming month"
+      upcoming: "Upcoming"
+      monthly: "Monthly"
+    upcoming:
+      no_assignments: "So far so good..."
+
+  # assignments
+  assignments:
+    completed: "Nice job, this assignment was marked as completed!"
+    cant_complete: "We somehow couldn't mark this assignment as complete, I blame Narwhals. But drop us a line, we'll fix it and give you a gift."
+    already_completed: "This assignments was already completed, you sneaky face."
+  
+  # profile
+  profile:
+    youre_homeless: "Oh no! It seems you're homeless! Want to "
+    build_house: "build a house"
+    homeless_roomie: "That roomie is homeless."
+    no_tasks: "No tasks"
+    name: "Name"
+    progress: "Progress"
+    next_level: "Next level"
+    more_achievements: "More achievements"
+    achievements: "Achievements"
+    roomie_battle: "Roomie Battle"
+    you: "You"
+    task: "Task"
+    expense: "Expense"
+    edit_profile: "Edit profile"
+    points: "points"
+    hi_there: "Hi there"
+    new_roomie: "new roomie"
+
+
+  # rewards
+  rewards:
+    sessions_create: "signing in"
+    assignments_create: "creating an assignment"
+    assignments_complete: "completing an assignment"
+
+  hello: 'Hello world'
+  auth_success: 'Authentication successful.'
+  auth_fail: 'Authentication failed.'
+  auth_destroy: 'Successfully destroyed authentication.'
+  welcome: 'Welcome.'
+  formtastic:
+    placeholders:
+      user:
+        email: "youremail@domain.com"
+    submit: "Submit"
+
+  date:
+    formats:
+      default: "%B %d, %Y"
+      short: "%b %d"
+      long: "%A %B %d, %Y"
+      day: "%A"
+      short_day: "%a"
+
+
+    day_names: [Dimanche, Lundi, Mardi, Mercredi, Jeudi, Vendredi, Samedi]
+    abbr_day_names: [Sun, Mon, Tue, Wed, Thu, Fri, Sat]
+
+    month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
+    abbr_month_names: [~, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+    order:
+      - :year
+      - :month
+      - :day
+
+  time:
+    formats:
+      default: "%B %d, %Y at %I:%M%p"
+      short: "%d %b %H:%M"
+      long: "%B %d, %Y %H:%M"
+    am: "am"
+    pm: "pm"
+
+  number:
+    format:
+      separator: "."
+      delimiter: ","
+      precision: 3
+      significant: false
+      strip_insignificant_zeros: false
+
+  currency:
+    format:
+      format: "%u%n"
+      unit: "$"
+      separator: "."
+      delimiter: ","
+      precision: 2
+      significant: false
+      strip_insignificant_zeros: false
+
+  human:
+    format:
+      delimiter: ""
+      precision: 3
+      significant: true
+      strip_insignificant_zeros: true
+    storage_units:
+      format: "%n %u"
+      units:
+        byte:
+          one:   "Byte"
+          other: "Bytes"
+        kb: "KB"
+        mb: "MB"
+        gb: "GB"
+        tb: "TB"
+    decimal_units:
+      format: "%n %u"
+      units:
+        unit: ""
+        thousand: Thousand
+        million: Million
+        billion: Billion
+        trillion: Trillion
+        quadrillion: Quadrillion
+
+  datetime:
+    distance_in_words:
+      half_a_minute: "half a minute"
+      less_than_x_seconds:
+        one:   "less than 1 second"
+        other: "less than %{count} seconds"
+      x_seconds:
+        one:   "1 second"
+        other: "%{count} seconds"
+      less_than_x_minutes:
+        one:   "less than a minute"
+        other: "less than %{count} minutes"
+      x_minutes:
+        one:   "1 minute"
+        other: "%{count} minutes"
+      about_x_hours:
+        one:   "about 1 hour"
+        other: "about %{count} hours"
+      x_days:
+        one:   "1 day"
+        other: "%{count} days"
+      about_x_months:
+        one:   "about 1 month"
+        other: "about %{count} months"
+      x_months:
+        one:   "1 month"
+        other: "%{count} months"
+      about_x_years:
+        one:   "about 1 year"
+        other: "about %{count} years"
+      over_x_years:
+        one:   "over 1 year"
+        other: "over %{count} years"
+      almost_x_years:
+        one:   "almost 1 year"
+        other: "almost %{count} years"
+    prompts:
+      year:   "Year"
+      month:  "Month"
+      day:    "Day"
+      hour:   "Hour"
+      minute: "Minute"
+      second: "Seconds"
+
+
