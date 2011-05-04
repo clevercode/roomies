@@ -1,7 +1,7 @@
 - @main_class = 'corkboard'
 
 = render :partial => 'notifications'
-- unless @past_assignments.empty?
+- unless @past_due.empty? 
   .error
     %p 
       You have past due assignments and that's just no good. Click here to view them &rarr; 
