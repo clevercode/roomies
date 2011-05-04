@@ -50,7 +50,7 @@ class AssignmentsController < ApplicationController
 
       if @assignment.save
         reward(nil, 2)
-        redirect_to '/corkboard', :notice => "Your new assignment was successfully created."
+        redirect_to '/corkboard'
       else
         redirect_to '/corkboard', :notice => "Your assignment couldn't be created, try again."
       end
