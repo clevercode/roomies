@@ -71,9 +71,14 @@
         .day.past
           %p.day_name= l(date, :format => :short_day)
           %p.day_number= date.day
-          - unless Assignment.where(:due_date => date.to_s).count <= 0
+          - unless Assignment.where(:due_date => date.to_s).count == 0
             #todo
-              =link_to Assignment.where(:due_date => date.to_s).count, '#', :class => "tasks"
+              - tasks = Assignment.where(due_date: date.to_s).and(type: "task")
+              - expenses = Assignment.where(due_date: date.to_s).and(type: "expense")
+              - unless tasks.count == 0
+                =link_to tasks.count, '#', :class => "tasks"
+              - unless expenses.count == 0
+                =link_to expenses.count, '#', :class => "expenses"
               -# =link_to '0', '#', :class => "expenses" 
 
   - (0..number_of_days).map do |i|
