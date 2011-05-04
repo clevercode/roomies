@@ -1,7 +1,7 @@
 - @main_class = 'corkboard'
 
 = render :partial => 'notifications'
-- unless @past_assignments.empty?
+- unless @past_due.empty? 
   .error
     %p 
       You have past due assignments and that's just no good. Click here to view them &rarr; 
@@ -17,22 +17,22 @@
     %li.right#expense_filter= t '.expenses'
 
 #upcoming.content
-  = render :partial => "upcoming", :locals => { :day => Date.today, :assignments => @todays_assignments }
-  = render :partial => "upcoming", :locals => { :day => Date.tomorrow, :assignments => @tomorrows_assignments }
-  = render :partial => "upcoming", :locals => { :day => Date.today + 2, :assignments => @next_days_assignments }
+  = render :partial => "upcoming", :locals => { :day_of_the_week => t(".today"), :assignments => @todays_assignments }
+  = render :partial => "upcoming", :locals => { :day_of_the_week => t(".tomorrow"), :assignments => @tomorrows_assignments }
+  = render :partial => "upcoming", :locals => { :day_of_the_week => l(Date.today + 2, :format => :day), :assignments => @next_days_assignments }
 
 .header_bar.upcoming.current
   %h1= t '.these_coming_days'
   %p
     =link_to t('.upcoming'), '#', :class => 'active', :"data-name" => 'upcoming'
     |
-    =link_to 'monthly', '/corkboard/monthly'
+    =link_to t('.monthly'), '/corkboard/monthly'
 .header_bar
   %h1= t '.this_coming_month'
   %p
-    =link_to 'upcoming', '/corkboard/upcoming'
+    =link_to t('.upcoming'), '/corkboard/upcoming'
     |
-    =link_to 'monthly', '/corkboard/monthly', :class => 'active'
+    =link_to t('.monthly'), '/corkboard/monthly', :class => 'active'
 
 #centric.content
   - # what weekday number is today? (Sun = 0, Mon = 1)?
@@ -47,7 +47,12 @@
       %p.day_number= date.day
       - unless Assignment.where(:due_date => date.to_s).count <= 0
         #todo
-          =link_to Assignment.where(:due_date => date.to_s).count, '#', :class => "tasks"
+          - tasks = Assignment.where(due_date: date.to_s).and(type: "task")
+          - expenses = Assignment.where(due_date: date.to_s).and(type: "expense")
+          - unless tasks.count == 0
+            =link_to tasks.count, '#', :class => "tasks"
+          - unless expenses.count == 0
+            =link_to expenses.count, '#', :class => "expenses"
           -# =link_to '2', '#', :class => "expenses tooltip", :title => "Yaaaaaaoooo"
 
 #calendar.content
@@ -66,9 +71,14 @@
         .day.past
           %p.day_name= l(date, :format => :short_day)
           %p.day_number= date.day
-          - unless Assignment.where(:due_date => date.to_s).count <= 0
+          - unless Assignment.where(:due_date => date.to_s).count == 0
             #todo
-              =link_to Assignment.where(:due_date => date.to_s).count, '#', :class => "tasks"
+              - tasks = Assignment.where(due_date: date.to_s).and(type: "task")
+              - expenses = Assignment.where(due_date: date.to_s).and(type: "expense")
+              - unless tasks.count == 0
+                =link_to tasks.count, '#', :class => "tasks"
+              - unless expenses.count == 0
+                =link_to expenses.count, '#', :class => "expenses"
               -# =link_to '0', '#', :class => "expenses" 
 
   - (0..number_of_days).map do |i|
@@ -81,5 +91,10 @@
       %p.day_number= date.day
       - unless Assignment.where(:due_date => date.to_s).count <= 0
         #todo
-          =link_to Assignment.where(:due_date => date.to_s).count, '#', :class => "tasks"
+          - tasks = Assignment.where(due_date: date.to_s).and(type: "task")
+          - expenses = Assignment.where(due_date: date.to_s).and(type: "expense")
+          - unless tasks.count == 0
+            =link_to tasks.count, '#', :class => "tasks"
+          - unless expenses.count == 0
+            =link_to expenses.count, '#', :class => "expenses"
           -# =link_to '2', '#', :class => "expenses"

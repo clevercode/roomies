@@ -14,6 +14,9 @@ class Assignment
   # can be added on completion or refusal
   field :comments, :type => String
   
+  # added on create & updated
+  field :type, :type => String
+
 
 
   # achievement
@@ -27,5 +30,13 @@ class Assignment
   belongs_to :validator, :class_name => "User"
 
   validates :purpose, :presence => true
+  
+  before_save do
+    if self.cost.blank?
+      self.type = "task"
+    else
+      self.type = "expense"
+    end
+  end
 
 end

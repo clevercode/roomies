@@ -108,9 +108,7 @@ $('#modal h1 span').live 'click', (event) ->
 # =========================================
 
 # // Handles mouseover and mouseout for the corkboard lists.
-$('.list .expense, .list .task, 
-   .list .bounty, .list .freebie, 
-   .list .gift').live 'mouseover', (event) ->
+$('.list .assignment').live 'mouseover', (event) ->
     $(this)
       .children('ul')
         .children('li:eq(1)')
@@ -118,9 +116,7 @@ $('.list .expense, .list .task,
         .animate {paddingRight:'0px'}, _fadeSpeed, (event) ->
           $(this).next().show().animate {opacity:1}, _fadeSpeed
         
-$('.list .expense, .list .task, 
-   .list .bounty, .list .freebie, 
-   .list .gift').live 'mouseleave', (event) ->
+$('.list .assignment').live 'mouseleave', (event) ->
     $(this)
       .children('ul')
         .children('li:eq(2)')

@@ -1,0 +1,19 @@
+# Weekly Report #5
+
+This weekly report will cover the last two weeks of intense development work. We didn't provide you with a report last week as our team didn't have a chance to touch base. Client-side and server-side development did continue but in parallel with limited overlap.
+
+# Development
+
+## Server-side
+
+The most important event of the last two week was the realization that the assignment logic had been overscoped during our Structure phase. While we had pledged to keep Roomies as simple as possible – in order to make as few assumptions as possible about how real users would use the application – the internal logic quickly became cumbersome. 
+
+The original intent was noble: in order to reduce complexity and prevent users from having to make premature decisions our system was designed to intelligently assess what data users were entering and classify assignments accordingly. Problems arose when assignments were allowed to be edited. This feature increased complexity and halted server-side development for several days. It involved complex manipulations and type casting of Models based on what the updated data. For instance if an assignment was originally determined to be a task (having no cost) and subsequently edited by a user realizing he had actually intended to associate a cost then this assignment would have to be saved as an Expense (a different Model altogether). This theoretically simple operation was made difficult be the explicit assignment model types we conceived during the Structure phase.
+
+Instead, we made the difficult decision to roll back the logic that had been written until then (namely the Assignment Factory) and instead use one model for all types of assignments. We justified this move by the fact that the absence of a cost for instance is in fact meaningful data. Moreover, assignments are now extremely flexible. Their "type" is determined during the Create action and reassessed during the Update action which both effectively "cache" the type on the basic assignment model we now use for all types. This method has the same advantage as our previous one in that our assignment controller will not have to determine an assignment's type by checking its data on Index and Show actions.
+
+## Client-side
+
+In an effort to improve the flow of the application further we harmonized all modal views with identical animations and placement. The sign in form's input fields were removed from the header and are now shown without a modal panel that appears in the middle of the page. While it adds one click, this provides more interface real estate to display crucial links and actions such as the OAuth authentication options through Twitter or Facebook. 
+
+A almost imperceivable improvement is obtained by automatically focusing the first input field of every modal panel so that users can start typing immediately (to log in quickly without having to focus the email field for instance)
