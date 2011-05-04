@@ -9,7 +9,15 @@ class AssignmentsController < ApplicationController
       @house = current_user.house
       @assignments = @house.assignments
     end
-    @assignments = Assignment.all
+    
+    past_assignments = []
+    Assignment.where(:completed_at => nil).order_by([:due_date, :asc]).map do |assignment|
+      if assignment.due_date < Date.today
+        past_assignments.push assignment
+      end
+    end
+    
+    @assignments = past_assignments
  
     respond_with @assignments
   end
