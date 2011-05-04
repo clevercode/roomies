@@ -1,43 +1,12 @@
 #main.corkboard
-  &.header_bar, &#upcoming .list h2
-    h1
-      font-size: 24px
-
-.header_bar, .content .list h2
-  color: #52471e
-  font-size: 24px
-  font-weight: 500
-  line-height: 1.8
-  text-indent: 20px
-  border: 1px solid #ab6c00
-  text-shadow: #fffdc2 0 1px 1px
-  padding: 0
-  +border-top-radius(5px)
-  text-shadow: #fffedb 1px 1px 0
-  +background-image(linear-gradient(#ffd88f, #f7a231))
-  +box-shadow(#fff2db 1px 1px 0 inset, #fff2db -1px -1px 0 inset)
-
-#main
   .header_bar
     display: none
-    p
-      float: right
-      height: 43px
-      font-size: 16px
-      line-height: 43px
-      margin-right: 20px
-      a
-        font-weight: normal
-      a.active
-        font-weight: bold
     &.current
       display: block
-
-// content
-.content
-  +clearfix
-  +column(12)
-  padding: 30px 0
+    a
+      font-weight: normal
+      &.active, &:active
+        font-weight: bold
 
   .list
     padding: 0
@@ -50,6 +19,7 @@
       li
         +clearfix
         font-size: 16px
+        overflow: hidden
         padding: 5px 10px
         color: $font-color
         border: 1px solid #7490b3
@@ -78,214 +48,167 @@
               +box-shadow(#a6ceff 0 0 5px)
             &[title=task], &[title=chore]
               background: #95b9e6
-            &.edit
-              opacity: 0
-              padding: 0
-              width: 25px
-              height: 25px
-              display: none
-              background: url('../images/139.png') 0 4px no-repeat
-              cursor: pointer
-            &.check
+            &.check, &.edit
               padding: 0
               width: 25px
               height: 25px
               background: url('../images/58.png') 7px 5px no-repeat
+            &.edit
+              opacity: 0
+              display: none
+              background: url('../images/139.png') 0 4px no-repeat
+              cursor: pointer
 
-// special assignments
-#specials.content
-  .list
-    +column(3)
-    &.last
-      +column(3, true)
+  #specials.content
+    .list
+      +column(3)
+      &.last
+        +column(3, true)
 
-    .h2
-      +background-image(linear-gradient(#ffd88f, #f7a231))
-      +box-shadow(#fff2db 1px 1px 0 inset, #fff2db -1px -1px 0 inset)
-    .purpose
-      width: 70%
+      .h2
+        +background-image(linear-gradient(#ffd88f, #f7a231))
+        +box-shadow(#fff2db 1px 1px 0 inset, #fff2db -1px -1px 0 inset)
+      .purpose
+        width: 70%
 
+  #upcoming_filters
+    +column(12, last)
+    padding: 0
 
-// upcoming filters
-#upcoming_filters
-  +column(12, last)
-  padding: 0
-
-  // assignee filters
-  ul
-    float: left
-    li
-      opacity: .9
+    // assignee filters
+    ul
       float: left
-      color: rgba(255,255,255,.99)
-      font-size: 1.2em
-      font-weight: 500
-      line-height: 1.8
-      +text-shadow(rgba(0,0,0,.5) 0 -1px 1px)
-      cursor: pointer
-      padding: 0 20px
-      +border-radius(inherit)
-      +box-shadow(rgba(0,0,0,.3) 0 0 0 1px inset)
-      +background-image(linear-gradient($lightgrey, $grey))
-      &.left
-        +border-left-radius(5px)
-      &.right
-        +border-right-radius(5px)
-
-      &:hover
-        +background-image(linear-gradient($lightgrey,darken($grey,10%)))
-        opacity: 1
-      &:active, &.active
-        opacity: .9
-        text-shadow: rgba(255,255,255,.4) 0 -1px 0
-        color: #111
-        +background-image(linear-gradient($grey, $lightgrey))
-        +box-shadow(rgba(0,0,0,.4) -1px 0px 1px inset, rgba(0,0,0,.4) 1px 0px 1px inset, rgba(0,0,0,.5) 0 1px 5px inset, rgba(0,0,0,.5) 0 -1px 2px inset)
-
-  // assignee filter
-  #assignee_filters
-
-  // assignment filters
-  #assignment_filters
-    float: right
-    &:active, &.active
-      text-shadow: rgba(255,255,255,.4) 0 -1px 0
-      color: #111
-
-
-    // task filter
-    #task_filter
-      +background-image(linear-gradient(lighten(desaturate($blue, 10%), 0%), darken(desaturate($blue, 5%), 15%)))
-      &:hover
-        +background-image(linear-gradient(lighten(desaturate($blue, 10%), 0%), darken(desaturate($blue, 5%), 20%)))
-      &:active, &.active
-        +background-image(linear-gradient(darken(desaturate($blue, 15%), 20%), darken(desaturate($blue, 10%), 5%)))
-        +box-shadow(rgba(0,0,0,.4) -1px 0px 2px inset, rgba(0,0,0,.4) 1px 0px 2px inset, rgba(0,0,0,.5) 0 1px 4px inset, rgba(0,0,0,.5) 0 -1px 2px inset)
-
-    // expense filter
-    #expense_filter
-      +background-image(linear-gradient(lighten(desaturate($green, 10%), 10%), darken(saturate($green, 10%), 10%)))
-      &:hover
-        +background-image(linear-gradient(lighten(desaturate($green, 10%), 10%), darken(saturate($green, 10%), 15%)))
-      &:active, &.active  
-        +background-image(linear-gradient(darken(saturate($green, 5%), 15%), lighten(desaturate($green, 10%), 5%)))
-        +box-shadow(rgba(0,0,0,.4) -1px 0px 2px inset, rgba(0,0,0,.4) 1px 0px 2px inset, rgba(0,0,0,.5) 0 1px 4px inset, rgba(0,0,0,.5) 0 -1px 2px inset)
-
-
-// upcoming
-#upcoming
-  .list
-    h2
-      +background-image(linear-gradient(#f7eb8b, #f7d340))
-      +box-shadow(#fffedb 1px 1px 0 inset, #fffedb -1px -1px 0 inset)
-
-#centric, #calendar
-  +column(12)
-  padding: 0
-  margin: 0 0 2em
-  border: 1px solid #9eafc5
-  border-top: none // Helpful comment!
-  .day
-    padding: 0 0 1.5% 0
-    float: left
-    width: 67px
-    height: 70px
-    position: relative
-    +box-shadow(#9eafc5 0 1px 0 inset, #9eafc5 -1px 0 0 inset)
-    +background-image(linear-gradient(rgba(255,255,255,.75), rgba(255,255,255,.15)))
-    &.current_day
-      .day_name
-        opacity: 1
-    &:hover .day_name
-      opacity: 1
-    &:hover
-      +background-image(linear-gradient(rgba(255,255,255,.55), transparentize(lighten($lightblue, 0%), .01)))
-    .day_name
-      top: 5px
-      left: 5px
-      opacity: 0
-      font-size: 11px
-      min-height: 12px
-      text-align: left
-      line-height: 12px
-      position: absolute
-      line-height: normal
-      text-transform: uppercase
-    .day_number
-      font-size: 28px
-      min-height: 45px
-      line-height: 45px
-      text-align: center
-      text-shadow: 1px 1px 0px #fff
-      margin-top: .35em
-    #todo
-      padding: 0
-      a
-        color: #111
+      li
+        color: #fff
         float: left
-        padding: 0 2px
-        display: block
+        cursor: pointer
+        padding: 0 20px
+        font-size: 1.2em
+        font-weight: 500
+        line-height: 1.8
+        +border-radius(inherit)
+        +gradient-button($lightgrey)
+        &.left
+          +border-left-radius(5px)
+        &.right
+          +border-right-radius(5px)
+
+    #assignment_filters
+      float: right
+      &:active, &.active
+        text-shadow: rgba(255,255,255,.4) 0 -1px 0
+
+      #task_filter
+        +gradient-button($blue)
+
+      #expense_filter
+        +gradient-button($green)
+
+  #centric, #calendar
+    +column(12)
+    padding: 0
+    margin: 0 0 2em
+    border: 1px solid #9eafc5
+    border-top: none // Helpful comment!
+    .day
+      padding: 0 0 1.5% 0
+      float: left
+      width: 67px
+      height: 70px
+      position: relative
+      +box-shadow(#9eafc5 0 1px 0 inset, #9eafc5 -1px 0 0 inset)
+      +background-image(linear-gradient(rgba(255,255,255,.75), rgba(255,255,255,.15)))
+      &.current_day
+        .day_name
+          opacity: 1
+      &:hover .day_name
+        opacity: 1
+      &:hover
+        +background-image(linear-gradient(rgba(255,255,255,.55), transparentize(lighten($lightblue, 0%), .01)))
+      .day_name
+        top: 5px
+        left: 5px
+        opacity: 0
         font-size: 11px
-        min-width: 18px
-        height: 20px
-        line-height: 22px
+        min-height: 12px
+        text-align: left
+        line-height: 12px
+        position: absolute
+        line-height: normal
+        text-transform: uppercase
+      .day_number
+        font-size: 28px
+        min-height: 45px
+        line-height: 45px
         text-align: center
-        text-shadow: none
-        +background-image(linear-gradient(lighten($lightgreen, 0%), saturate($green, 20%)))
-        +box-shadow(transparentize(darken(saturate($green, 60%), 20%), 0.5) 0 0 1px 1px inset)
+        text-shadow: 1px 1px 0px #fff
+        margin-top: .35em
+      #todo
+        padding: 0
+        a
+          color: #111
+          float: left
+          padding: 0 2px
+          display: block
+          font-size: 11px
+          min-width: 18px
+          height: 20px
+          line-height: 22px
+          text-align: center
+          text-shadow: none
+          +background-image(linear-gradient(lighten($lightgreen, 0%), saturate($green, 20%)))
+          +box-shadow(transparentize(darken(saturate($green, 60%), 20%), 0.5) 0 0 1px 1px inset)
 
-        // tasks
-        &.tasks
-          +linear-gradient(color-stops($lightblue, $blue), top)
-          +box-shadow(transparentize(darken(saturate($blue, 20%), 20%), 0.5) 0 0 1px 1px inset)
+          &.tasks
+            +linear-gradient(color-stops($lightblue, $blue), top)
+            +box-shadow(transparentize(darken(saturate($blue, 20%), 20%), 0.5) 0 0 1px 1px inset)
 
-#centric
-  .day
-    &:nth-child(14n)
-      width: 69px
-      +box-shadow(#9eafc5 0 1px 0 inset)
+  #centric
+    .day
+      &:nth-child(14n)
+        width: 69px
+        +box-shadow(#9eafc5 0 1px 0 inset)
 
-    #todo
-      width: 48px
-      margin: 0 auto 1em
+      #todo
+        width: 48px
+        margin: 0 auto 1em
 
-// calendar
-#calendar
-  display: none
-  .day
-    width: 134px
-    height: 80px
-    &.current_day
-      +background-image(linear-gradient(rgba(0,0,50,.15), rgba(0,0,0,0)))
-      +box-shadow(transparentize(darken($blue, 40%), 0.5) 1px 5px 15px 1px inset, transparentize(darken($blue, 40%), 0.5) -1px 5px 15px 1px inset)
-      .day_name
-        opacity: 1
-    &.current_week
-      .day_name
-        opacity: 1
-    &.past
-      opacity: 0.3
-      .day_name
-        opacity: 1
-    &:nth-child(7n)
-      width: 136px
-      +box-shadow(#9eafc5 0 1px 0 inset)
+  #calendar
+    display: none
+    .day
+      width: 134px
+      height: 80px
+      &.current_day
+        +background-image(linear-gradient(rgba(0,0,50,.15), rgba(0,0,0,0)))
+        +box-shadow(transparentize(darken($blue, 40%), 0.5) 1px 5px 15px 1px inset, transparentize(darken($blue, 40%), 0.5) -1px 5px 15px 1px inset)
+        .day_name
+          opacity: 1
+      &.current_week
+        .day_name
+          opacity: 1
+      &.past
+        opacity: 0.3
+        .day_name
+          opacity: 1
+      &:nth-child(7n)
+        width: 136px
+        +box-shadow(#9eafc5 0 1px 0 inset)
 
-    p.day_number
-      font-size: 48px
-    p.day_name
-      top: 7px
-      left: 7px
-      font-size: 13px
-      line-height: 13px
-      min-height: 13px
+      p.day_number
+        font-size: 48px
+      p.day_name
+        top: 7px
+        left: 7px
+        font-size: 13px
+        line-height: 13px
+        min-height: 13px
       
-    #todo
-      width: 58px
-      margin: 0px auto 20px
-      a
-        font-size: 12px
-        min-width: 23px
+      #todo
+        width: 58px
+        margin: 0px auto 20px
+        a
+          font-size: 12px
+          min-width: 23px
 
 
 // a.tooltip
