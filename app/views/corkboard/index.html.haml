@@ -17,9 +17,9 @@
     %li.right#expense_filter= t '.expenses'
 
 #upcoming.content
-  = render :partial => "upcoming", :locals => { :day => Date.today, :assignments => @todays_assignments }
-  = render :partial => "upcoming", :locals => { :day => Date.tomorrow, :assignments => @tomorrows_assignments }
-  = render :partial => "upcoming", :locals => { :day => Date.today + 2, :assignments => @next_days_assignments }
+  = render :partial => "upcoming", :locals => { :day_of_the_week => t(".today"), :assignments => @todays_assignments }
+  = render :partial => "upcoming", :locals => { :day_of_the_week => t(".tomorrow"), :assignments => @tomorrows_assignments }
+  = render :partial => "upcoming", :locals => { :day_of_the_week => l(Date.today + 2, :format => :day), :assignments => @next_days_assignments }
 
 .header_bar.upcoming.current
   %h1= t '.these_coming_days'
