@@ -5,21 +5,30 @@ class AssignmentsController < ApplicationController
   autocomplete :category, :category_name
 
   def index
-    if user_signed_in? && !current_user.house.blank?
+    if !current_user.house.blank?
       @house = current_user.house
       @assignments = @house.assignments
-    end
-    
-    past_assignments = []
-    Assignment.where(:completed_at => nil).order_by([:due_date, :asc]).map do |assignment|
-      if assignment.due_date < Date.today
-        past_assignments.push assignment
+     
+      @future = @assignments.delete_if do |assignment|
+        assignment.due_date.past?
       end
+
+      @past_due = []
+
+      uncompleted = @assignments.where(:completed_at => nil)
+
+      unless uncompleted.blank?
+        uncompleted.order_by([:due_date, :asc]).map do |assignment|
+          if assignment.due_date.past?
+            @past_due << assignment
+          end
+        end
+      end
+    
+      respond_with @assignments
+
     end
     
-    @assignments = past_assignments
- 
-    respond_with @assignments
   end
  
   def show
