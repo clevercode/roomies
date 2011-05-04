@@ -2,10 +2,9 @@
 # ================ Globals ================
 # =========================================
 
-_fadeSpeed = 100
-_slideDownSpeed = 200
-_slideUpSpeed = 250
-
+_fadeSpeed         = 100
+_slideDownSpeed    = 200
+_slideUpSpeed      = 250
 $                  = jQuery
 $body              = $('body')
 $modal             = $('#modal')
@@ -108,31 +107,25 @@ $('#modal h1 span').live 'click', (event) ->
 # =========================================
 
 # // Handles mouseover and mouseout for the corkboard lists.
-$('.corkboard #upcoming li.expense, 
-   .corkboard #upcoming li.task, 
-   .corkboard .others li.bounty, 
-   .corkboard .others li.freebie, 
-   .corkboard .others li.gift').live 'mouseover', (event) ->
+$('.list .expense, .list .task, 
+   .list .bounty, .list .freebie, 
+   .list .gift').live 'mouseover', (event) ->
     $(this)
       .children('ul')
         .children('li:eq(1)')
         .stop()
-        .animate({paddingRight:'0px'}, _fadeSpeed, (event) ->
-          $(this).next().show().animate({opacity:1}, _fadeSpeed)
-        )
+        .animate {paddingRight:'0px'}, _fadeSpeed, (event) ->
+          $(this).next().show().animate {opacity:1}, _fadeSpeed
         
-$('.corkboard #upcoming li.expense, 
-   .corkboard #upcoming li.task, 
-   .corkboard .others li.bounty, 
-   .corkboard .others li.freebie, 
-   .corkboard .others li.gift').live 'mouseleave', (event) ->
+$('.list .expense, .list .task, 
+   .list .bounty, .list .freebie, 
+   .list .gift').live 'mouseleave', (event) ->
     $(this)
       .children('ul')
         .children('li:eq(2)')
         .stop()
-        .animate({opacity:0}, _fadeSpeed, (event) ->
-          $(this).hide().prev().animate({paddingRight:'25px'}, _fadeSpeed)
-        )
+        .animate {opacity:0}, _fadeSpeed, (event) ->
+          $(this).hide().prev().animate {paddingRight:'25px'}, _fadeSpeed
 
 # // Edit assignment on edit icon click.
 $('.edit').live 'click', (event) ->

@@ -1,4 +1,4 @@
-%h1 Listing assignments
+%h1 past due assignments
  
 %table
   %tr
@@ -7,27 +7,12 @@
     %th Cost
     %th Assignee
     %th Frequency
-    %th Type
-    %th
-    %th
  
   - @assignments.each do |assignment|
     %tr
       %td= assignment.purpose
-      %td= assignment.due_date if %w{Tasc Expense Bill Chore}.include?(assignment._type)
-      %td= assignment.cost if %w{Bill Expense Gift Wish}.include?(assignment._type)
-      %td
-        - if %w{Tasc Expense Bill Chore}.include?(assignment._type)
-          %ul
-            - assignment.assignees.map do |a|
-              %li= a.name
-      %td= assignment.frequency if %w{Bill Chore}.include?(assignment._type)
-      %td= assignment.class
-      %td= link_to 'Show', assignment_path(assignment)
-      %td= link_to 'Edit', edit_assignment_path(assignment)
-      %td= link_to 'Destroy', assignment, :confirm => 'Are you sure?', :method => :delete
- 
-%br
- 
-= link_to 'New Assignment', new_assignment_path
-
+      %td= assignment.due_date.to_date || 'none'
+      %td= assignment.cost || 'none'
+      %td none
+      %td= assignment.frequency || 'not repeating'
+      %td= button_to 'complete', :action => :complete, :id => assignment.id
