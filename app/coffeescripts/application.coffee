@@ -28,6 +28,10 @@ $('#flash').bind 'click', (event) ->
   $('#flash').fadeOut(() ->
     stickyFooter()
   )
+  
+hideModal = (event) ->
+  $darknessification.fadeOut _fadeSpeed
+  $modal.fadeOut _fadeSpeed
 
 # // Provides requestAnimationFrame in a cross browser way.
 # // @author paulirish / http://paulirish.com/
@@ -72,8 +76,8 @@ Clouds.animate()
 # // Knabs the anchor's href and ajaxes it in to the modal.
 $('a.ajax').bind 'click', (event) ->
   $.ajax url: $(this).attr('href'), success: (data) -> 
-    $modal.empty()
-    $(data).find('#main').appendTo('#modal')
+    $modal.children('#ajaxed').empty()
+    $(data).appendTo('#modal #ajaxed')
     $('<span>x</span>').appendTo('#modal h1')
     $darknessification.fadeIn _fadeSpeed
     modal_left = ($('html').outerWidth()/2) - ($modal.outerWidth()/2)
@@ -81,25 +85,22 @@ $('a.ajax').bind 'click', (event) ->
     modal_top = 0 if modal_top < 0
     $modal.css({left: modal_left, top: modal_top}).fadeIn _fadeSpeed
     superDate()
-    $modal.find("form > .string > input").not("input[type=hidden]").first().focus() 
+    $modal.find("form > .string > input").not("input[type=hidden]").first().focus()
   return false
 
 # // Listens for a click on the dark overlay when the modal is up.
 $darknessification.live 'click', (event) ->
-  $darknessification.fadeOut _fadeSpeed
-  $modal.fadeOut _fadeSpeed
+  hideModal()
   return false
   
 # // Watches for an escape keypress and hides the modal and overlay.
 $(window).bind 'keyup', (event) ->
   if event.keyCode == 27
-    $modal.fadeOut _fadeSpeed
-    $darknessification.fadeOut _fadeSpeed
+    hideModal()
 
 # // Watches for a click on the 'x' and hides the modal and overlay.
 $('#modal h1 span').live 'click', (event) ->
-  $modal.fadeOut _fadeSpeed
-  $darknessification.fadeOut _fadeSpeed
+  hideModal()
 
 
 # =========================================
@@ -113,7 +114,7 @@ $('.list .expense, .list .task,
     $(this)
       .children('ul')
         .children('li:eq(1)')
-        .stop()
+        .stop(true)
         .animate {paddingRight:'0px'}, _fadeSpeed, (event) ->
           $(this).next().show().animate {opacity:1}, _fadeSpeed
         
@@ -123,7 +124,7 @@ $('.list .expense, .list .task,
     $(this)
       .children('ul')
         .children('li:eq(2)')
-        .stop()
+        .stop(true)
         .animate {opacity:0}, _fadeSpeed, (event) ->
           $(this).hide().prev().animate {paddingRight:'25px'}, _fadeSpeed
 
@@ -228,16 +229,14 @@ $('.generate').bind 'click', (event) ->
     
   $('#password_junk input').attr('value',random_string)
   $darknessification.fadeIn _fadeSpeed
-  $modal.empty()
+  $modal.children('#ajaxed').empty()
   
-  $('<div id="main">' +
-      '<h1>generated password</h1>' +
-      '<p class="pass">' + random_string + '</p>' +
-      '<p>Be sure to write this down, as we will be storing it securly and wont be able to access it again.</p>' +
-      '<p>If you forget your password, you can always click on the "forgot password" link when signing in.</p>' +
-      '<p class="button"><a href="sign_up">sign me up!</a>' +
-    '</div>'
-  ).appendTo('#modal').fadeIn _fadeSpeed
+  $('<h1>generated password</h1>' +
+    '<p class="pass">' + random_string + '</p>' +
+    '<p>Be sure to write this down, as we will be storing it securly and wont be able to access it again.</p>' +
+    '<p>If you forget your password, you can always click on the "forgot password" link when signing in.</p>' +
+    '<p class="button"><a href="sign_up">sign me up!</a>'
+  ).appendTo('#modal #ajaxed').fadeIn _fadeSpeed
   
   modal_left = ($('html').outerWidth()/2) - ($modal.outerWidth()/2)
   $modal.css({left: modal_left}).show()
