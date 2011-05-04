@@ -47,7 +47,12 @@
       %p.day_number= date.day
       - unless Assignment.where(:due_date => date.to_s).count <= 0
         #todo
-          =link_to Assignment.where(:due_date => date.to_s).count, '#', :class => "tasks"
+          - tasks = Assignment.where(due_date: date.to_s).and(type: "task")
+          - expenses = Assignment.where(due_date: date.to_s).and(type: "expense")
+          - unless tasks.count == 0
+            =link_to tasks.count, '#', :class => "tasks"
+          - unless expenses.count == 0
+            =link_to expenses.count, '#', :class => "expenses"
           -# =link_to '2', '#', :class => "expenses tooltip", :title => "Yaaaaaaoooo"
 
 #calendar.content
