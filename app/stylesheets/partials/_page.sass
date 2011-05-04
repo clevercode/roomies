@@ -82,6 +82,37 @@ body
 @import forms
 @import header
 
+body.assignments
+  #main
+    h1
+      margin-bottom: 0px
+    table
+      margin: 0 10px
+      tr
+        +clearfix
+        +column(12)
+        font-size: 16px
+        line-height: 25px
+        text-indent: 10px
+        margin-right: 0px
+        color: $font-color
+        border: 1px solid #7490b3
+        border-top: none // Don't judge me.
+        +background-image(linear-gradient(#d9eaff, #f2f8ff))
+        +box-shadow(#fff 1px 1px 0 inset, #fff -1px -1px 0 inset)
+        td, th
+          +column(2)
+          padding: 5px 0px
+          text-align: center
+          form
+            margin: 0
+            width: auto
+        td:first-child, th:first-child
+          +column(3)
+          text-align: left
+        td:nth-child(3n+3), th:nth-child(3n+3)
+          +column(1)
+
 #container, .container
   width: 960px
   margin: 0 auto
