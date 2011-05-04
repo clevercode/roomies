@@ -14,8 +14,8 @@ class CorkboardController < ApplicationController
     
     @past_due = []
 
-    @all.where(:completed_at => nil).map do |assignment|
-      if assignment.due_date > Date.today
+    @all.where(completed_at: nil).map do |assignment|
+      if assignment.due_date < Date.today
         @past_due << assignment
       end
     end
