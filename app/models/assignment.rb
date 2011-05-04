@@ -14,6 +14,9 @@ class Assignment
   # can be added on completion or refusal
   field :comments, :type => String
   
+  # added on create & updated
+  field :type, :type => String
+
 
 
   # achievement
