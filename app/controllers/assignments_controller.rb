@@ -32,15 +32,11 @@ class AssignmentsController < ApplicationController
  
   def create
     unless current_user.house.nil?
-      params[:assignment][:house_id]        = current_user.house_id
-      params[:assignment][:commissioner_id] = current_user.id
-      params[:assignment][:commissioned_at] = Time.now
 
-      # passing the params through AssignmentFactory to receive
-      # the appropriate assignment type
-      @assignment = Assignment.new(params[:assignment])
-
-      if @assignment.save
+      house = current_user.house
+      assignment = house.assignments.build(params[:assignment])
+      
+      if assignment.save
         reward(nil, 2)
         redirect_to '/corkboard', :notice => "Your new assignment was successfully created."
       else
@@ -54,7 +50,7 @@ class AssignmentsController < ApplicationController
  
   def update
     @assignment = Assignment.find(params[:id])
-
+    
     if @assignment.update_attributes(params[:assignment])
       flash[:notice] = "Your assignment was successfully updated."
     else
