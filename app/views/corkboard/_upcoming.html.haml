@@ -1,10 +1,10 @@
 .list
-  %h2= l(day, :format => :day)
+  %h2= day_of_the_week
   %ul
     - unless assignments.empty?
       - assignments.each do |assignment|
         -# - if assignment.due_date == Time.now.tomorrow.tomorrow
-        %li{ :class => "task" } 
+        %li.assignment
           %ul
             - if assignment.type == "task"
               %li.type{ :title => "task" }
