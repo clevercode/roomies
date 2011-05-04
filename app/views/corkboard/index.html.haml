@@ -26,13 +26,13 @@
   %p
     =link_to t('.upcoming'), '#', :class => 'active', :"data-name" => 'upcoming'
     |
-    =link_to 'monthly', '/corkboard/monthly'
+    =link_to t('.monthly'), '/corkboard/monthly'
 .header_bar
   %h1= t '.this_coming_month'
   %p
-    =link_to 'upcoming', '/corkboard/upcoming'
+    =link_to t('.upcoming'), '/corkboard/upcoming'
     |
-    =link_to 'monthly', '/corkboard/monthly', :class => 'active'
+    =link_to t('.monthly'), '/corkboard/monthly', :class => 'active'
 
 #centric.content
   - # what weekday number is today? (Sun = 0, Mon = 1)?
