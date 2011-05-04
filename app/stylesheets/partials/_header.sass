@@ -52,21 +52,11 @@ body
             width: 100%
             color: #fff
             height: 50px
-            display: block
-            font-size: 16px
-            font-weight: bold
             line-height: 50px
             text-align: center
-            +border-radius(5px)
-            text-decoration: none
             padding: 0 10px 0 5px
-            +background-image(linear-gradient(#bfdcff,#95b9e5))
-            +text-shadow(rgba(0,0,0,0.5) 0 1px 1px, rgba(0,0,0,0.2) 0 0 3px)
-            &:hover, &:focus
-              +background-image(linear-gradient(lighten(#bfdcff,5%),#95b9e5))
+            +gradient-button($blue)
             &:active
-              +box-shadow(rgba(0,0,0,0.3) 0 0 3px 1px inset)
-              +background-image(linear-gradient(#95b9e5,#a6ceff))
               img
                 +box-shadow(#bfdcff -1px -1px 0, #7490b2 1px 1px 0)
 
