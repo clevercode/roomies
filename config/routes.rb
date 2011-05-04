@@ -33,7 +33,7 @@ Roomies::Application.routes.draw do
   match '/support/index'               => 'support#submit_request'
   match '/accept_invitation'           => 'users#accept_invitation'
   match '/reject_invitations'          => 'users#reject_invitations'
-  # match '/assignments/:id/complete'    => 'assignments#complete'
+  match '/assignments/day/:day'         => 'assignments#day'
 
   # making sure the root works with I18N
   match '/:locale' => 'home#index'
