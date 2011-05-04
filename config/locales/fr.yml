@@ -3,24 +3,26 @@
 
 fr:
   # forms & actions
-  sign_in: "Sign In"
-  sign_out: "Sign Out"
-  sign_up: "Sign Up"
-  or_sign_in_with: "Or sign in with"
-  or: "or"
-  forgot_password: "Forgot your password?"
+  sign_in: "Connexion"
+  sign_out: "Déconnexion"
+  sign_up: "Inscription"
+  or_sign_in_with: "ou connectez-vous avec"
+  or: "ou"
+  forgot_password: "Oublié votre mot de passe?"
   email: "Email"
-  password: "Password"
+  password: "Mot de passe"
 
   # footer
-  all_rights_reserved: "All Rights Reserved."
-  about_us: "About Us"
-  privacy_policy: "Privacy Policy"
-  terms_of_service: "Terms of Service"
-  support: "Support"
+  all_rights_reserved: "Tous droits réservés."
+  about_us: "A Propos"
+  privacy_policy: "Donnée personelles"
+  terms_of_service: "Conditions d'Utilisation"
+  support: "Aide"
 
   # general
-  add_assignment: "Add Assignment"
+  add_assignment: "Ajouter un tâche"
+  build_house: "Construire une Maison"
+
   
   # home
   home:
@@ -46,15 +48,15 @@ fr:
     index:
       today: "Aujourd'hui"
       tomorrow: "Demain"
-      my_assignments: "My Assignments"
-      everyones_assignments: "Everyone's Assignments"
-      all: "All"
-      tasks: "Tasks"
-      expenses: "Expenses"
-      these_coming_days: "These coming days"
-      this_coming_month: "This coming month"
-      upcoming: "Upcoming"
-      monthly: "Monthly"
+      my_assignments: "Mes tâches"
+      everyones_assignments: "Toutes les tâches"
+      all: "Tout"
+      tasks: "Tâches"
+      expenses: "Dépenses"
+      these_coming_days: "Les jours qui viennent"
+      this_coming_month: "Le mois prochain"
+      upcoming: "Bientôt"
+      monthly: "Mensuel"
     upcoming:
       no_assignments: "So far so good..."
 
