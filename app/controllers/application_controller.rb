@@ -18,14 +18,13 @@ class ApplicationController < ActionController::Base
   protected
   def after_sign_in_path_for(user)
     puts "called from after_sign_in_path"
-    reward(nil, 1)
+    reward(:sign_in)
     corkboard_index_url
   end
   
-  def reward(type, points)
+  def reward(type, points = nil)
     type ||= (self.controller_name + "_" + self.action_name).to_sym
-    Reward.create( 
-                  :user => current_user, 
+    current_user.rewards.create( 
                   :type => type,
                   :points => points
     )
