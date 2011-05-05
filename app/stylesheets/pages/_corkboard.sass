@@ -199,6 +199,8 @@
     &.current_day
       .day_name
         opacity: 1
+      .day_number
+        +text-shadow(none)
     &:hover .day_name
       opacity: 1
     &:hover
@@ -219,7 +221,7 @@
       min-height: 45px
       line-height: 45px
       text-align: center
-      text-shadow: 1px 1px 0px #fff
+      +text-shadow(1px 1px 0px #fff)
       margin-top: .35em
     #todo
       padding: 0
@@ -259,6 +261,7 @@
     width: 134px
     height: 80px
     &.current_day
+      +text-shadow(none)
       +background-image(linear-gradient(rgba(0,0,50,.15), rgba(0,0,0,0)))
       +box-shadow(transparentize(darken($blue, 40%), 0.5) 1px 5px 15px 1px inset, transparentize(darken($blue, 40%), 0.5) -1px 5px 15px 1px inset)
       .day_name
