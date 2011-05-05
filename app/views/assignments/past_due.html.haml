@@ -1,0 +1,23 @@
+- unless @past_due.blank?
+  %h1 past due assignments
+   
+  %table
+    %tr
+      %th Purpose
+      %th Due date
+      %th Cost
+      %th Assignee
+      %th Frequency
+   
+    - @past_due.each do |assignment|
+      %tr
+        %td= link_to assignment.purpose, assignment
+        %td= assignment.due_date.to_date || 'none'
+        %td= assignment.cost || 'none'
+        %td none
+        %td= assignment.frequency || 'not repeating'
+        %td= button_to 'complete', :action => :complete, :id => assignment.id
+- else
+  %p Well well, look who's got all their Ts crossed and stuff!
+= link_to t('back_to_assignments'), assignments_path
+= link_to t('back_to_corkboard'), corkboard_index_path

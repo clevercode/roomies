@@ -110,6 +110,26 @@ class AssignmentsController < ApplicationController
 
     respond_with(@tasks)
   end
+
+  def past_due
+    @house = current_user.house
+    @assignments = @house.assignments
+   
+    @past_due = []
+
+    uncompleted = @assignments.where(:completed_at => nil)
+
+    unless uncompleted.blank?
+      uncompleted.order_by([:due_date, :asc]).map do |assignment|
+        if assignment.due_date.past?
+          @past_due << assignment
+        end
+      end
+    end
+
+    respond_with(@past_due)
+
+  end
  
 end
 
