@@ -15,4 +15,10 @@ class Reward
     :validation => { :points => 1 }
   }
 
+  before_save do
+    if self.points.blank? && !self.type.blank?
+      self.points = TYPES[self.type][:points]
+    end
+  end
+
 end
