@@ -105,10 +105,9 @@ class AssignmentsController < ApplicationController
 
   def day
     day = Date.parse(params[:day])
-    @tasks = Assignment.where(due_date: day)
-    @expenses = Assignment.where(due_date: day)
+    @assignments = Assignment.where(due_date: day)
 
-    respond_with(@tasks)
+    respond_with(@assignments)
   end
 
   def past_due
