@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.5'
+gem 'rails', '3.0.7'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -13,6 +13,7 @@ gem 'simple_form'
 gem 'devise', '>= 1.2.rc'
 gem 'omniauth'
 gem 'barista', '~> 1.0'
+gem "therubyracer-heroku"
 gem 'mongoid', '>= 2.0.0'
 gem 'bson_ext', '>= 1.2.4'
 gem 'jquery-rails'
