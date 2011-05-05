@@ -12,6 +12,9 @@ en:
   email: "Email"
   password: "Password"
 
+  back_to_assignments: "Back to Assignments"
+  back_to_corkboard: "Back to Corkboard"
+
   # footer
   all_rights_reserved: "All Rights Reserved."
   about_us: "About Us"
