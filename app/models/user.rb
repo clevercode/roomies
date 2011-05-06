@@ -7,6 +7,7 @@ class User
   # Fields
   field :name, :type => String
   field :created_at, :type => DateTime
+  field :points_count, :type => Integer
 
   # Associations
   has_many :authentications, :dependent => :delete # User has access to an array of Authentications that have its id for user_id
