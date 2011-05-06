@@ -98,16 +98,15 @@ body.assignments
         +column(12)
         font-size: 16px
         line-height: 25px
-        text-indent: 10px
         margin-right: 0px
         color: $font-color
-        border: 1px solid #7490b3
-        border-top: none // Don't judge me.
+        border-top: none
         +background-image(linear-gradient(#d9eaff, #f2f8ff))
-        +box-shadow(#fff 1px 1px 0 inset, #fff -1px -1px 0 inset)
+        +background-image(linear-gradient(saturate(lighten($blue, 18%), 40%), saturate(lighten($blue, 23%), 20%)))
+        +box-shadow(transparentize(white, .5) 0 1px 0 inset, transparentize($blue, .2) 0 0 0 1px inset )
         td, th
           +column(2)
-          padding: 5px 0px
+          padding: 7px 0
           text-align: center
           form
             margin: 0
@@ -115,8 +114,15 @@ body.assignments
         td:first-child, th:first-child
           +column(3)
           text-align: left
+          padding-left: 20px
         td:nth-child(3n+3), th:nth-child(3n+3)
           +column(1)
+        &:first-child
+          line-height: 2
+          +background-image(linear-gradient(saturate(lighten($blue, 23%), 20%), saturate(lighten($blue, 13%), 25%)))
+
+
+          
 
 #container, .container
   width: 960px
