@@ -8,10 +8,10 @@
     %th Assignee
     %th Frequency
  
-  - @assignments.each do |assignment|
+  - @due.each do |assignment|
     %tr
       %td= link_to assignment.purpose, assignment
-      %td= assignment.due_date.to_date || 'none'
+      %td= assignment.try(:due_date).try(:to_date) || 'none'
       %td= assignment.cost || 'none'
       %td none
       %td= assignment.frequency || 'not repeating'
