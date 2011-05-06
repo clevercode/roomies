@@ -6,7 +6,7 @@
       %th Purpose
       %th Due date
       %th Cost
-      %th Assignee
+      %th Assignee(s)
       %th Frequency
    
     - @past_due.each do |assignment|
@@ -27,7 +27,7 @@
     %th Purpose
     %th Due date
     %th Cost
-    %th Assignee
+    %th Assignee(s)
     %th Frequency
  
   - @due.each do |assignment|
@@ -49,7 +49,7 @@
       %th Purpose
       %th Date completed
       %th Cost
-      %th Assignee
+      %th Assignee(s)
       %th Frequency
    
     - @completed.each do |assignment|
@@ -58,5 +58,5 @@
         %td= l(assignment.completed_at.to_date) || 'none'
         %td= assignment.cost || 'none'
         %td none
-        %td= assignment.frequency || 'not repeating'
+        %td= assignment.frequency || 'no repeat'
 
