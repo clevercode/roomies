@@ -1,3 +1,25 @@
+- unless @past_due.blank?
+  %h1 past due assignments
+   
+  %table
+    %tr
+      %th Purpose
+      %th Due date
+      %th Cost
+      %th Assignee
+      %th Frequency
+   
+    - @past_due.each do |assignment|
+      %tr
+        %td= link_to assignment.purpose, assignment
+        %td= assignment.due_date.to_date || 'none'
+        %td= assignment.cost || 'none'
+        %td none
+        %td= assignment.frequency || 'not repeating'
+        %td= button_to 'complete', :action => :complete, :id => assignment.id
+
+  %hr
+
 %h1 assignments
  
 %table
@@ -17,24 +39,24 @@
       %td= assignment.frequency || 'not repeating'
       %td= button_to 'complete', :action => :complete, :id => assignment.id
 
-- unless @past_due.blank?
+
+- unless @completed.blank?
   %hr
-  %h1 past due assignments
+  %h1 completed assignments
    
   %table
     %tr
       %th Purpose
-      %th Due date
+      %th Date completed
       %th Cost
       %th Assignee
       %th Frequency
    
-    - @past_due.each do |assignment|
+    - @completed.each do |assignment|
       %tr
         %td= link_to assignment.purpose, assignment
-        %td= assignment.due_date.to_date || 'none'
+        %td= l(assignment.completed_at.to_date) || 'none'
         %td= assignment.cost || 'none'
         %td none
         %td= assignment.frequency || 'not repeating'
-        %td= button_to 'complete', :action => :complete, :id => assignment.id
 
