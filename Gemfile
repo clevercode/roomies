@@ -10,7 +10,8 @@ gem "haml", "~> 3.1.0"
 gem "compass", "0.11"
 gem 'html5-boilerplate'
 gem 'simple_form'
-gem 'devise', '>= 1.2.rc'
+gem 'devise', '>= 1.2.0'
+gem 'devise_invitable', '~> 0.4.0'
 gem 'omniauth'
 gem 'barista', '~> 1.0'
 gem "therubyracer-heroku"
