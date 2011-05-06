@@ -3,7 +3,7 @@ class CorkboardController < ApplicationController
   before_filter :authenticate_user!
   def index
 
-    @all = Assignment.where(house_id: current_user.house.id)
+    @all = Assignment.house(current_user.house)
     @past_due = @all.past_due
     @my = @all.where(assignee_ids: [current_user.id])
     @tasks = @all.where(type: "task")
