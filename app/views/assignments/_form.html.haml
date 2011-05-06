@@ -2,7 +2,7 @@
   = f.input :purpose, 
             :placeholder => "What is this for?"
 
-  = f.association :assignees, :collection => roomies_list  
+  = f.association :assignees, :collection => roomies_list, :as => :check_boxes 
   #picker
   = f.input :due_date,
             :placeholder => "Type (e.g. 'next friday') or select a date above.", 
