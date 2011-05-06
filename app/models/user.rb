@@ -116,6 +116,12 @@ class User
     end
   end
 
+  def check_for_achievements
+    if self.points_count > 50
+      self.achievements.create(name: "Megatop Roomie")
+    end
+  end
+
   private
   def send_welcome_email
     UserMailer.welcome_email(self).deliver
