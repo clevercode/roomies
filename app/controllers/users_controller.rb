@@ -51,6 +51,9 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     
+    @user.locale = params[:user][:locale]
+    @user.save
+
     if @user.update_attributes(params[:user])
       sign_in(@user, :bypass => true)
       redirect_to current_user, :notice => 'You just successfully changed your imformation! Yay!'
