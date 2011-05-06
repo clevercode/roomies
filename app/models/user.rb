@@ -14,6 +14,7 @@ class User
   belongs_to :house # => User has a house_id
   has_many :assignees # User has access to an array of Assignees that have its id for user_id
   has_many :rewards
+  has_many :achievements
 
   # Devise
   # Include default devise modules. Others available are:
