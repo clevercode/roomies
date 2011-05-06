@@ -16,9 +16,18 @@ class Reward
   }
 
   before_save do
+    begin
+
     if self.points.blank? && !self.type.blank?
       self.points = TYPES[self.type][:points]
     end
+
+    rescue(NoMethodError)
+      raise("This type of reward - [:#{self.type}] - doesn't exist. Check the Reward model.")
+
+    end
+  end
+
   after_create do
     self.user.inc(:points_count, self.points)
 
