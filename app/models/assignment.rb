@@ -22,6 +22,8 @@ class Assignment
 
   scope :due, where(:completed_at.ne => nil).and(:due_date.gte => Date.today)
   scope :past_due, where(completed_at: nil).and(:due_date.lt => Date.today )
+  scope :owner, ->(user) { where(:house_id => user.house_id) }
+  scope :house, ->(house) { where(:house_id => house.id) }
 
   belongs_to :house, :dependent => :delete
   belongs_to :category
