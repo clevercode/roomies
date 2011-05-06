@@ -17,10 +17,11 @@ class Assignment
   # added on create & updated
   field :type, :type => String
 
-
-
   # achievement
   field :value, :type => Integer
+
+  scope :due, where(:completed_at.ne => nil).and(:due_date.gte => Date.today)
+  scope :past_due, where(completed_at: nil).and(:due_date.lt => Date.today )
 
   belongs_to :house, :dependent => :delete
   belongs_to :category

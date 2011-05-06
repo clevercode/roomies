@@ -4,6 +4,7 @@ class CorkboardController < ApplicationController
   def index
 
     @all = Assignment.where(house_id: current_user.house.id)
+    @past_due = @all.past_due
     @my = @all.where(assignee_ids: [current_user.id])
     @tasks = @all.where(type: "task")
     @expenses = @all.where(type: "expense")
@@ -12,13 +13,5 @@ class CorkboardController < ApplicationController
     @tomorrows_assignments = @all.where(due_date: Date.tomorrow.to_s)
     @next_days_assignments = @all.where(due_date: Date.tomorrow.tomorrow.to_s)
     
-    @past_due = []
-
-    @all.where(completed_at: nil).map do |assignment|
-      if assignment.due_date < Date.today
-        @past_due << assignment
-      end
-    end
-
   end
 end

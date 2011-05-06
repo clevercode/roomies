@@ -9,22 +9,9 @@ class AssignmentsController < ApplicationController
       @house = current_user.house
       @assignments = @house.assignments
      
-      @future = @assignments.delete_if do |assignment|
-        assignment.due_date.past?
-      end
+      @due = @assignments.due
+      @past_due = @assignments.past_due
 
-      @past_due = []
-
-      uncompleted = @assignments.where(:completed_at => nil)
-
-      unless uncompleted.blank?
-        uncompleted.order_by([:due_date, :asc]).map do |assignment|
-          if assignment.due_date.past?
-            @past_due << assignment
-          end
-        end
-      end
-    
       respond_with @assignments
 
     end
