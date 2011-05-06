@@ -91,7 +91,7 @@ en:
 
   # rewards
   rewards:
-    sessions_create: "signing in"
+    sign_in: "signing in"
     assignments_create: "creating an assignment"
     assignments_complete: "completing an assignment"
 
