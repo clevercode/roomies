@@ -19,6 +19,10 @@ class Reward
     if self.points.blank? && !self.type.blank?
       self.points = TYPES[self.type][:points]
     end
+  after_create do
+    self.user.inc(:points_count, self.points)
+
+    self.user.check_for_achievements
   end
 
 end
