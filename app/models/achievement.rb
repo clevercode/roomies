@@ -7,7 +7,7 @@ class Achievement
   field :badge, :type => String
 
   # Associations
-  has_one :user
+  belongs_to :user
 
   TYPE = {
     :nice_roomie => { value: 25, badge: "badges/nice_roomie.png" },
