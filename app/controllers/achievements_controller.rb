@@ -2,7 +2,7 @@ class AchievementsController < ApplicationController
   # GET /achievements
   # GET /achievements.xml
   def index
-    @achievements = Achievement.all
+    @achievements = current_user.achievements
 
     respond_to do |format|
       format.html # index.html.erb
