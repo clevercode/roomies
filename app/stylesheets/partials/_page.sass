@@ -135,12 +135,28 @@ body.assignments
   overflow: hidden
   padding: 60px 0 20px
   
-  .header_bar
-    +column(12)
+  .header_bar, .content .list h2
+    padding: 0
+    color: #52471e
+    font-size: 24px
+    font-weight: 500
+    line-height: 1.8
+    text-indent: 20px
+    +border-top-radius(5px)
+    border: 1px solid #ab6c00
+    text-shadow: #fffdc2 0 1px 1px
     +background-image(linear-gradient(#f7eb8b, #f7d340))
     +box-shadow(#fffedb 1px 1px 0 inset, #fffedb -1px -1px 0 inset)
+  .header_bar  
+    +column(12)
     h1
       float: left
+    p
+      float: right
+      height: 43px
+      font-size: 16px
+      line-height: 43px
+      margin-right: 20px
       
   ul
     list-style: none
@@ -158,6 +174,11 @@ body.assignments
         &[type=submit]
           width: auto
           margin: 10px 0
+
+  .content
+    +clearfix
+    +column(12)
+    padding: 30px 0
 
   #error_explanation
     h2
