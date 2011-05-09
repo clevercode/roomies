@@ -33,7 +33,7 @@ class AuthenticationsController < ApplicationController
       omniauth['uid'] && (omniauth['user_info']['name'] || omniauth['user_info']['nickname'] || 
       (omniauth['user_info']['first_name'] && omniauth['user_info']['last_name']))
       session[:omniauth] = omniauth.except('extra');
-      redirect_to(:controller => 'registrations', :action => 'email')
+      redirect_to(:controller => 'accounts', :action => 'email')
 
     elsif (omniauth['provider'] == 'facebook')
       # debug to output the hash that has been returned when adding new services

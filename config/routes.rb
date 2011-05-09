@@ -2,7 +2,7 @@ Roomies::Application.routes.draw do
 
   root :to => 'home#index'
 
-  devise_for :users, :controllers => { :registrations => 'registrations' }
+  devise_for :users
   devise_scope :user do
     get "sign_in", :to => "devise/sessions#new"
     get "sign_out", :to => "devise/sessions#destroy"
@@ -26,7 +26,7 @@ Roomies::Application.routes.draw do
   resources :rewards
 
   match '/auth/:provider/callback'      => 'authentications#create'
-  match '/registrations'                => 'registrations#email'
+  match '/accounts'                     => 'accounts#email'
   match '/user/:id/homeless/:house_id'  => 'houses#destroy_roomie', :as => :homeless
   match '/support/index'                => 'support#submit_request'
   match '/accept_invitation'            => 'users#accept_invitation'

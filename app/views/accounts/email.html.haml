@@ -1,5 +1,5 @@
 %h2 Email
-= form_tag(:controller => "registrations", :action => "email") do
+= form_tag(:controller => "accounts", :action => "email") do
   %p= label_tag(:email, 'Email')
   %p= email_field_tag(:email)
   %p= submit_tag("Ok")
