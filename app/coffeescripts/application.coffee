@@ -202,18 +202,6 @@ $('#todo').each( ->
 # ========== NEW ASSIGNMENT JAZZ ==========
 # =========================================
 
-# $('#assignment_assignees').live 'keyup', ->
-#   input_text = $(event.target).val()
-#   if input_text.length > 1
-#     $.ajax url: "/users?name=#{input_text}", success: (data) ->
-#       $names.empty().show()
-#       $(data).children('.name').appendTo('#names')
-#   else
-#     $names.hide().empty()
-
-# $('#names li').live 'click', ->
-#   $('#assignment_assignees').attr('value',$(this).text())
-
 do superDate = ->
   $picker    = $("#picker")
   $superdate = $('.superdate')

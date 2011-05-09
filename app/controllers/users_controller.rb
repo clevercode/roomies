@@ -9,11 +9,6 @@ class UsersController < ApplicationController
       @user = current_user
       @roomies = User.where(:house_id => @user.house_id)
     end
-    if params[:name]
-      @names = User.all(conditions: {name: /#{params[:name]}.*/i})
-    else
-      @names = ['No results']
-    end
     respond_with(@users)
   end
 

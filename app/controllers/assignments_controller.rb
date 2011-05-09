@@ -38,7 +38,6 @@ class AssignmentsController < ApplicationController
     unless current_user.house.nil?
 
       house = current_user.house
-      params[:assignment][:assignees] = Array.wrap(params[:assignment][:assignees].split(','))
       assignment = house.assignments.build(params[:assignment])
       
       if assignment.save
