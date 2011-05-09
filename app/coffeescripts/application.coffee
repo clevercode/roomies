@@ -200,6 +200,7 @@ $('#todo a').live 'click', ->
 # // Listens for the mouse leave event on our list of assignments.
 $detailList.live 'mouseleave', ->
   $detailList.fadeOut _fadeSpeed
+  $darknessification.css('opacity','.75').hide()
 
 $('#todo').each( ->
   if $(this).children('a').length < 2
