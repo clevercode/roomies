@@ -104,9 +104,10 @@ $('a.ajax').bind 'click', ->
       $modal.find("form > .string > input").not("input[type=hidden]").first().focus()
   return false
 
-# // Listens for a click on the dark overlay when the modal is up.
+# // Listens for a click on the overlay when the modal or detail list is up.
 $darknessification.live 'click', ->
   hideModal()
+  $detailList.fadeOut _fadeSpeed
   return false
   
 # // Watches for an escape keypress and hides the modal, overlay, and detail list.
