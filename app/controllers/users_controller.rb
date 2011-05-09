@@ -78,7 +78,7 @@ class UsersController < ApplicationController
       Invitation.where(:email => current_user.email).destroy
     end
     
-    redirect_to '/corkboard', :notice => "Congratulations! You've successfully joined a new house!"
+    redirect_to '/corkboard'
   end
   
   def reject_invitations
