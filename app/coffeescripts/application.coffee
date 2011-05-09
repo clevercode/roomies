@@ -159,17 +159,66 @@ $('.header_bar a').bind 'click', ->
         $footer.css({position:'static'})
   
   return false
+  
+# // Listens for a hover event on the anchors in the calendar.
+# // Pops up with a list of the corresponding assignments for that day.
+$('#todo a').live 'click', ->
+  $this = $(this)
+  $.ajax
+    url: $this.attr('href'), 
+    success: (data) ->
+      $detailList.empty()
+      $(data).each( ->
+        $("<li>
+            <a href='/assignments/#{this._id}'>#{this.purpose}</a>
+          </li>").appendTo('.detail_day_view')
+      )
+
+      # // Sets the top to just above the anchor and the left to the anchor's left.
+      top = $this.offset().top - $detailList.outerHeight() - 10
+      $detailList.css({top: top, left: $this.offset().left}).fadeIn _fadeSpeed
+
+      listPlacement = $detailList.offset().left + $detailList.outerWidth()
+      mainWidth     = $main.offset().left + $main.width()
+
+      # // Checks to see if the popup needs to go the other direction or not.
+      if listPlacement > mainWidth
+        left = ($this.offset().left + $this.outerWidth()) - $detailList.outerWidth()
+        $detailList.css('left',left)
+        
+  return false
+
+# // Listens for the mouse leave event on our list of assignments.
+$detailList.live 'mouseleave', ->
+  $detailList.fadeOut _fadeSpeed
+
+$('#todo').each( ->
+  if $(this).children('a').length < 2
+    $(this).children('a').css('marginLeft','13px')
+)
 
 
 # =========================================
 # ========== NEW ASSIGNMENT JAZZ ==========
 # =========================================
 
+# $('#assignment_assignees').live 'keyup', ->
+#   input_text = $(event.target).val()
+#   if input_text.length > 1
+#     $.ajax url: "/users?name=#{input_text}", success: (data) ->
+#       $names.empty().show()
+#       $(data).children('.name').appendTo('#names')
+#   else
+#     $names.hide().empty()
+
+# $('#names li').live 'click', ->
+#   $('#assignment_assignees').attr('value',$(this).text())
+
 do superDate = ->
   $picker    = $("#picker")
   $superdate = $('.superdate')
 
-  $superdate.live 'keyup', (event) ->
+  $superdate.live 'keyup', ->
     val = $(this).val()
     if val?
       # // parsing anything the user enters as a date
