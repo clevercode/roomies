@@ -11,8 +11,5 @@
   %ul
     - User.all.each do |people|
       %li #{people.name} (#{people.house.name unless people.house.blank?})
-  %ul#names
-    - @names.each do |name|
-      %li.name= name
 - else
   %h1 #{@user.name}

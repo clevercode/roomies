@@ -1,7 +1,7 @@
 - @main_class = 'corkboard'
 
 = render :partial => 'notifications'
-- unless @past_due.empty? 
+- unless @my_past_due.empty? 
   .error
     %p 
       You have past due assignments and that's just no good. Click here to view them &rarr; 
@@ -16,87 +16,24 @@
     %li#task_filter= t '.tasks'
     %li.right#expense_filter= t '.expenses'
 
-#upcoming.content
-  = render :partial => "upcoming", :locals => { :day_of_the_week => t(".today"), :assignments => @todays_assignments }
-  = render :partial => "upcoming", :locals => { :day_of_the_week => t(".tomorrow"), :assignments => @tomorrows_assignments }
-  = render :partial => "upcoming", :locals => { :day_of_the_week => l(Date.today + 2, :format => :day), :assignments => @next_days_assignments }
+.corkboard_view.current
+  .upcoming_lists.content
+    = render :partial => "upcoming", :locals => { :day_of_the_week => t(".today"), :assignments => @my_todays_assignments }
+    = render :partial => "upcoming", :locals => { :day_of_the_week => t(".tomorrow"), :assignments => @my_tomorrows_assignments }
+    = render :partial => "upcoming", :locals => { :day_of_the_week => l(Date.today + 2, :format => :day), :assignments => @my_next_days_assignments }
 
-.header_bar.upcoming.current
-  %h1= t '.these_coming_days'
-  %p
-    =link_to t('.upcoming'), '#', :class => 'active', "data-name" => 'upcoming'
-    |
-    =link_to t('.monthly'), '/corkboard/monthly'
-.header_bar
-  %h1= t '.this_coming_month'
-  %p
-    =link_to t('.upcoming'), '/corkboard/upcoming'
-    |
-    =link_to t('.monthly'), '/corkboard/monthly', :class => 'active'
+  = render :partial => "header_bar"
+  = render :partial => "centric_calendar", :locals => { :assignments => @my }
+  = render :partial => "monthly_calendar", :locals => { :assignments => @my }
+            
+.corkboard_view
+  .upcoming_lists.content
+    = render :partial => "upcoming", :locals => { :day_of_the_week => t(".today"), :assignments => @all_todays_assignments }
+    = render :partial => "upcoming", :locals => { :day_of_the_week => t(".tomorrow"), :assignments => @all_tomorrows_assignments }
+    = render :partial => "upcoming", :locals => { :day_of_the_week => l(Date.today + 2, :format => :day), :assignments => @all_next_days_assignments }
 
-#centric.content
-  - # what weekday number is today? (Sun = 0, Mon = 1)?
-  - weekday_number = Date.today.wday()
-  - # how many days do we show after today
-  - number_of_days = 13
-  - (0..number_of_days).map do |i|
-    - date = Date.today + i.days
-    - current_day = (date == Date.today) ? 'current_day' : nil
-    .day{:class => current_day}
-      %p.day_name= l(date, :format => :short_day)
-      %p.day_number= date.day
-      - unless Assignment.where(:due_date => date.to_s).count <= 0
-        #todo
-          - tasks = Assignment.where(due_date: date.to_s).and(type: "task")
-          - expenses = Assignment.where(due_date: date.to_s).and(type: "expense")
-          - unless tasks.count == 0
-            =link_to tasks.count, "/assignments/day/#{date}.json", :class => "tasks"
-          - unless expenses.count == 0
-            =link_to expenses.count, "/assignments/day/#{date}.json", :class => "expenses"
-          -# =link_to '2', '#', :class => "expenses tooltip", :title => "Yaaaaaaoooo"
-
-#calendar.content
-  - # what weekday number is today? (Sun = 0, Mon = 1)?
-  - weekday_number = Date.today.wday()
-  - # how many days do we show
-  - days = 34
-  - # how many days are we showing after today?
-  - number_of_days = (weekday_number == 0) ? days : days - weekday_number
-  - # if the number of days after today are not
-  - # equal to the total number of days shown
-  - if number_of_days != days
-    - (0..weekday_number).map do |i|
-      - date = Date.today - weekday_number + i.days 
-      - unless date == Date.today
-        .day.past
-          %p.day_name= l(date, :format => :short_day)
-          %p.day_number= date.day
-          - unless Assignment.where(:due_date => date.to_s).count == 0
-            #todo
-              - tasks = Assignment.where(due_date: date.to_s).and(type: "task")
-              - expenses = Assignment.where(due_date: date.to_s).and(type: "expense")
-              - unless tasks.count == 0
-                =link_to tasks.count, "/assignments/day/#{date}.json", :class => "tasks"
-              - unless expenses.count == 0
-                =link_to expenses.count, "/assignments/day/#{date}.json", :class => "expenses"
-              -# =link_to '0', '#', :class => "expenses" 
-
-  - (0..number_of_days).map do |i|
-    - date = Date.today + i.days
-    - current_day = (date == Date.today) ? 'current_day' : nil
-    - if (date.wday != 0 && date.cweek == Date.today.cweek) || (Date.today.wday == 0 && date.wday != 0 && date.cweek == Date.tomorrow.cweek)
-      - current_week = 'current_week'
-    .day{ :class => "#{current_day} #{current_week}" }
-      %p.day_name= l(date, :format => :short_day)
-      %p.day_number= date.day
-      - unless Assignment.where(:due_date => date.to_s).count <= 0
-        #todo
-          - tasks = Assignment.where(due_date: date.to_s).and(type: "task")
-          - expenses = Assignment.where(due_date: date.to_s).and(type: "expense")
-          - unless tasks.count == 0
-            =link_to tasks.count, "/assignments/day/#{date}.json", :class => "tasks"
-          - unless expenses.count == 0
-            =link_to expenses.count, "/assignments/day/#{date}.json", :class => "expenses"
-          -# =link_to '2', '#', :class => "expenses"
+  = render :partial => "header_bar"
+  = render :partial => "centric_calendar", :locals => { :assignments => @all }
+  = render :partial => "monthly_calendar", :locals => { :assignments => @all }
 
 %ul.detail_day_view

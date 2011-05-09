@@ -3,7 +3,6 @@
   %ul
     - unless assignments.empty?
       - assignments.each do |assignment|
-        -# - if assignment.due_date == Time.now.tomorrow.tomorrow
         %li.assignment
           %ul
             - if assignment.type == "task"

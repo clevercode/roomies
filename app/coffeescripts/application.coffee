@@ -32,12 +32,19 @@ $(window).bind 'resize', ->
 
 # // Hides the flash notice if it's visible.
 $('#flash').bind 'click', ->
-  $('#flash').fadeOut(() ->
+  $('#flash').fadeOut( ->
     stickyFooter()
   )
+
+# // Hides the flash notice after 20 seconds if the user hasn't clicked on it yet.
+setTimeout( ->
+  $('#flash').fadeOut( ->
+    stickyFooter()
+  )
+, 20000)
   
 hideModal = (event) ->
-  $darknessification.fadeOut _fadeSpeed
+  $darknessification.css('opacity','.75').hide()
   $modal.fadeOut _fadeSpeed
 
 # // Provides requestAnimationFrame in a cross browser way.
@@ -97,9 +104,10 @@ $('a.ajax').bind 'click', ->
       $modal.find("form > .string > input").not("input[type=hidden]").first().focus()
   return false
 
-# // Listens for a click on the dark overlay when the modal is up.
+# // Listens for a click on the overlay when the modal or detail list is up.
 $darknessification.live 'click', ->
   hideModal()
+  $detailList.fadeOut _fadeSpeed
   return false
   
 # // Watches for an escape keypress and hides the modal, overlay, and detail list.
@@ -176,6 +184,7 @@ $('#todo a').live 'click', ->
 
       # // Sets the top to just above the anchor and the left to the anchor's left.
       top = $this.offset().top - $detailList.outerHeight() - 10
+      $darknessification.css('opacity','0').show()
       $detailList.css({top: top, left: $this.offset().left}).fadeIn _fadeSpeed
 
       listPlacement = $detailList.offset().left + $detailList.outerWidth()
@@ -191,28 +200,32 @@ $('#todo a').live 'click', ->
 # // Listens for the mouse leave event on our list of assignments.
 $detailList.live 'mouseleave', ->
   $detailList.fadeOut _fadeSpeed
+  $darknessification.css('opacity','.75').hide()
 
+# // Loops through each assignment badge block on the days and center
+# // it if there is only one of them.
 $('#todo').each( ->
   if $(this).children('a').length < 2
     $(this).children('a').css('marginLeft','13px')
 )
 
+# // Listens for a click on the assignee filters and changes the UI accordingly.
+$('#upcoming_filters #assignee_filters li').live 'click', ->
+  $this = $(this)
+  if !$this.hasClass('active')
+    $this.addClass('active').siblings('li').removeClass('active')
+    $('.corkboard_view').each( ->
+      $this = $(this)
+      if $this.hasClass('current')
+        $this.removeClass('current')
+      else
+        $this.addClass('current')
+    )
+
 
 # =========================================
 # ========== NEW ASSIGNMENT JAZZ ==========
 # =========================================
-
-# $('#assignment_assignees').live 'keyup', ->
-#   input_text = $(event.target).val()
-#   if input_text.length > 1
-#     $.ajax url: "/users?name=#{input_text}", success: (data) ->
-#       $names.empty().show()
-#       $(data).children('.name').appendTo('#names')
-#   else
-#     $names.hide().empty()
-
-# $('#names li').live 'click', ->
-#   $('#assignment_assignees').attr('value',$(this).text())
 
 do superDate = ->
   $picker    = $("#picker")

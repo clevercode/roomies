@@ -8,13 +8,21 @@ class CorkboardController < ApplicationController
     else
       @all = Assignment.house(House.create(name: "Demo"))
     end
-    @past_due = @all.past_due
-    @my = @all.where(assignee_ids: [current_user.id])
-    @tasks = @all.where(type: "task")
-    @expenses = @all.where(type: "expense")
-
-    @todays_assignments = @all.where(due_date: Date.today.to_s)
-    @tomorrows_assignments = @all.where(due_date: Date.tomorrow.to_s)
-    @next_days_assignments = @all.where(due_date: Date.tomorrow.tomorrow.to_s)
+    
+    @my  = @all.where(assignee_ids: [current_user.id])
+    
+    @my_past_due               = @my.past_due
+    @my_tasks                  = @my.where(type: "task")
+    @my_expenses               = @my.where(type: "expense")
+    @my_todays_assignments     = @my.where(due_date: Date.today.to_s)
+    @my_tomorrows_assignments  = @my.where(due_date: Date.tomorrow.to_s)
+    @my_next_days_assignments  = @my.where(due_date: Date.tomorrow.tomorrow.to_s)
+    
+    @all_tasks                 = @all.where(type: "task")
+    @all_expenses              = @all.where(type: "expense")
+    @all_todays_assignments    = @all.where(due_date: Date.today.to_s)
+    @all_tomorrows_assignments = @all.where(due_date: Date.tomorrow.to_s)
+    @all_next_days_assignments = @all.where(due_date: Date.tomorrow.tomorrow.to_s)
+    
   end
 end
