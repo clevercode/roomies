@@ -5,14 +5,14 @@
   %p You live at <strong>#{@user.house.name}</strong>
   %p Your roomies:
   %ul
-  - @roomies.each do |roomie|
-    %li= link_to roomie.name, roomie
+    - @roomies.each do |roomie|
+      %li= link_to roomie.name, roomie
   %p Other people:
   %ul
-  - User.all.each do |people|
-    %li #{people.name} (#{people.house.name unless people.house.blank?})
+    - User.all.each do |people|
+      %li #{people.name} (#{people.house.name unless people.house.blank?})
   %ul#names
     - @names.each do |name|
-      %li= name
+      %li.name= name
 - else
   %h1 #{@user.name}
