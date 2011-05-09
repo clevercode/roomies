@@ -1,4 +1,4 @@
-#centric.content
+.centric.content
   - # what weekday number is today? (Sun = 0, Mon = 1)?
   - weekday_number = Date.today.wday()
   - # how many days do we show after today
@@ -10,7 +10,7 @@
       %p.day_name= l(date, :format => :short_day)
       %p.day_number= date.day
       - unless assignments.where(:due_date => date.to_s).count <= 0
-        #todo
+        .todo
           - tasks = assignments.where(due_date: date.to_s).and(type: "task")
           - expenses = assignments.where(due_date: date.to_s).and(type: "expense")
           - unless tasks.count == 0

@@ -104,7 +104,7 @@
       #expense_filter
         +gradient-button($green)
 
-  #centric, #calendar
+  .centric, .calendar
     +column(12)
     padding: 0
     margin: 0 0 2em
@@ -143,7 +143,7 @@
         text-align: center
         text-shadow: 1px 1px 0px #fff
         margin-top: .35em
-      #todo
+      .todo
         padding: 0
         a
           color: #111
@@ -163,17 +163,17 @@
             +linear-gradient(color-stops($lightblue, $blue), top)
             +box-shadow(transparentize(darken(saturate($blue, 20%), 20%), 0.5) 0 0 1px 1px inset)
 
-  #centric
+  .centric
     .day
       &:nth-child(14n)
         width: 69px
         +box-shadow(#9eafc5 0 1px 0 inset)
 
-      #todo
+      .todo
         width: 48px
         margin: 0 auto 1em
 
-  #calendar
+  .calendar
     display: none
     .day
       width: 134px
@@ -203,7 +203,7 @@
         line-height: 13px
         min-height: 13px
       
-      #todo
+      .todo
         width: 58px
         margin: 0px auto 20px
         a

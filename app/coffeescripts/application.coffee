@@ -157,13 +157,13 @@ $('.header_bar a').bind 'click', ->
     # // Checks to see if the we want to show the full on calendar or not.
     if $header_bar.hasClass('upcoming')
       $footer.css({position:'fixed'})
-      $('#calendar').slideUp _slideUpSpeed, ->
-        $('#centric').slideDown _slideDownSpeed
+      $('.calendar').slideUp _slideUpSpeed, ->
+        $('.centric').slideDown _slideDownSpeed
         stickyFooter()
     else
       $footer.css({position:'fixed'})
-      $('#centric').slideUp _slideUpSpeed, ->
-        $('#calendar').slideDown _slideDownSpeed
+      $('.centric').slideUp _slideUpSpeed, ->
+        $('.calendar').slideDown _slideDownSpeed
         $footer.css({position:'static'})
   
   return false
@@ -204,7 +204,7 @@ $detailList.live 'mouseleave', ->
 
 # // Loops through each assignment badge block on the days and center
 # // it if there is only one of them.
-$('#todo').each( ->
+$('.todo').each( ->
   if $(this).children('a').length < 2
     $(this).children('a').css('marginLeft','13px')
 )
