@@ -7,9 +7,12 @@ _slideDownSpeed    = 200
 _slideUpSpeed      = 250
 $                  = jQuery
 $body              = $('body')
-$modal             = $('#modal')
+$main              = $('#main')
 $footer            = $('footer')
+$modal             = $('#modal')
+$names             = $('#names')
 $easy_button       = $('#easy_button')
+$detailList        = $('.detail_day_view')
 $darknessification = $('#darknessification')
 
 # =========================================
@@ -17,14 +20,18 @@ $darknessification = $('#darknessification')
 # =========================================
   
 # // Handles the sticky footer
-stickyFooter = (event) ->  
+stickyFooter = ->  
   if window.innerHeight > $body.height()
     $footer.css({position:'fixed', bottom:0})
 
 stickyFooter()
 
+$(window).bind 'resize', ->
+  $footer.css({position:'static'})
+  stickyFooter()
+
 # // Hides the flash notice if it's visible.
-$('#flash').bind 'click', (event) ->
+$('#flash').bind 'click', ->
   $('#flash').fadeOut(() ->
     stickyFooter()
   )
