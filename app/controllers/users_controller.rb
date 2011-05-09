@@ -56,7 +56,7 @@ class UsersController < ApplicationController
 
     if @user.update_attributes(params[:user])
       sign_in(@user, :bypass => true)
-      redirect_to current_user, :notice => 'You just successfully changed your imformation! Yay!'
+      redirect_to current_user
     else
       redirect_to current_user, :notice => 'Sorry, something went horribly wrong when updating your information.'
     end
