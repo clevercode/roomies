@@ -44,7 +44,7 @@ setTimeout( ->
 , 20000)
   
 hideModal = (event) ->
-  $darknessification.fadeOut _fadeSpeed
+  $darknessification.css('opacity','.75').hide()
   $modal.fadeOut _fadeSpeed
 
 # // Provides requestAnimationFrame in a cross browser way.
