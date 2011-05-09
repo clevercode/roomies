@@ -230,7 +230,7 @@ do superDate = ->
       # // updating the datepicker
       $picker.datepicker('setDate', date)
 
-  $superdate.live 'focusout', (event) ->
+  $superdate.live 'focusout', ->
     val = $(this).val()
     if val?
       date = Date.parse( val )
@@ -265,17 +265,17 @@ do superDate = ->
 # =========================================
 
 signup_ready = false
-$('#user_new #user_submit').bind 'click', (event) ->
-  $('#user_new .input:eq(0)').fadeOut((event) -> 
+$('#user_new #user_submit').bind 'click', ->
+  $('#user_new .input:eq(0)').fadeOut( -> 
     $('#password_junk').fadeIn()
     signup_ready = true
   )
-  $('.other_auths').fadeOut((event) -> 
+  $('.other_auths').fadeOut( -> 
     $('.generate').fadeIn()
   )
   return false unless signup_ready
   
-$('.generate').bind 'click', (event) ->
+$('.generate').bind 'click', ->
   characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz"
   random_string = ''
   for i in [1..32]
@@ -286,17 +286,17 @@ $('.generate').bind 'click', (event) ->
   $darknessification.fadeIn _fadeSpeed
   $modal.children('#ajaxed').empty()
   
-  $('<h1>generated password</h1>' +
-    '<p class="pass">' + random_string + '</p>' +
-    '<p>Be sure to write this down, as we will be storing it securly and wont be able to access it again.</p>' +
-    '<p>If you forget your password, you can always click on the "forgot password" link when signing in.</p>' +
-    '<p class="button"><a href="sign_up">sign me up!</a>'
-  ).appendTo('#modal #ajaxed').fadeIn _fadeSpeed
+  $("<h1>generated password</h1>
+     <p class='pass'>#{random_string}</p>
+     <p>Be sure to write this down, because we will be storing it securly and won't be able to access it again.
+     If you forget your password, you can always click on the \"forgot password\" link when signing in.</p>
+     <p class='button'><a href='sign_up'>sign me up!</a>
+  ").appendTo('#modal #ajaxed').fadeIn _fadeSpeed
   
   modal_left = ($('html').outerWidth()/2) - ($modal.outerWidth()/2)
   $modal.css({left: modal_left}).show()
   
-  $('p.button a').live 'click', (event) ->
+  $('p.button a').live 'click', ->
     $('#user_new').submit()
     return false
   return false
