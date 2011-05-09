@@ -184,6 +184,7 @@ $('#todo a').live 'click', ->
 
       # // Sets the top to just above the anchor and the left to the anchor's left.
       top = $this.offset().top - $detailList.outerHeight() - 10
+      $darknessification.css('opacity','0').show()
       $detailList.css({top: top, left: $this.offset().left}).fadeIn _fadeSpeed
 
       listPlacement = $detailList.offset().left + $detailList.outerWidth()
