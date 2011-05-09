@@ -202,10 +202,25 @@ $detailList.live 'mouseleave', ->
   $detailList.fadeOut _fadeSpeed
   $darknessification.css('opacity','.75').hide()
 
+# // Loops through each assignment badge block on the days and center
+# // it if there is only one of them.
 $('#todo').each( ->
   if $(this).children('a').length < 2
     $(this).children('a').css('marginLeft','13px')
 )
+
+# // Listens for a click on the assignee filters and changes the UI accordingly.
+$('#upcoming_filters #assignee_filters li').live 'click', ->
+  $this = $(this)
+  if !$this.hasClass('active')
+    $this.addClass('active').siblings('li').removeClass('active')
+    $('.corkboard_view').each( ->
+      $this = $(this)
+      if $this.hasClass('current')
+        $this.removeClass('current')
+      else
+        $this.addClass('current')
+    )
 
 
 # =========================================
