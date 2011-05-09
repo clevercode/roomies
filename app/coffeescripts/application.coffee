@@ -32,9 +32,16 @@ $(window).bind 'resize', ->
 
 # // Hides the flash notice if it's visible.
 $('#flash').bind 'click', ->
-  $('#flash').fadeOut(() ->
+  $('#flash').fadeOut( ->
     stickyFooter()
   )
+
+# // Hides the flash notice after 20 seconds if the user hasn't clicked on it yet.
+setTimeout( ->
+  $('#flash').fadeOut( ->
+    stickyFooter()
+  )
+, 20000)
   
 hideModal = (event) ->
   $darknessification.fadeOut _fadeSpeed
