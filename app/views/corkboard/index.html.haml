@@ -84,7 +84,7 @@
   - (0..number_of_days).map do |i|
     - date = Date.today + i.days
     - current_day = (date == Date.today) ? 'current_day' : nil
-    - if date.wday != 0 && date.cweek == Date.today.cweek
+    - if (date.wday != 0 && date.cweek == Date.today.cweek) || (Date.today.wday == 0 && date.wday != 0 && date.cweek == Date.tomorrow.cweek)
       - current_week = 'current_week'
     .day{ :class => "#{current_day} #{current_week}" }
       %p.day_name= l(date, :format => :short_day)
