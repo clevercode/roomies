@@ -13,76 +13,76 @@
     +box-shadow(rgba(0,0,0,0.5) 0 0 5px 1px)
     background: -webkit-gradient(radial, 50% 0%, 500, 50% 0%, 0, from($skyblue), to($sunblue))
     background: -moz-radial-gradient(center 45deg, circle farthest-side, $sunblue 0%, $skyblue 100%)
-  a
-    &:link, &:visited
-      color: $font-color
-      +text-shadow(rgba(255,255,255,0.7) 0 1px 1px)
-    &:hover, &:focus
-      color: lighten($font-color, 10%)
-    &:active
-      color: darken($font-color, 10%)
-  h1, h2
-    font-size: 24px
-    text-align: left
-    margin-bottom: 10px
-    padding-bottom: 10px
-    border-bottom: 1px dashed $blue
-    span
-      float: right
-      cursor: pointer
-      padding: 2px 10px
-      +box-shadow(rgba(0,0,0,.4) 0 0 15px inset)
-      +background-image(linear-gradient(transparentize($blue,.4), transparentize($lightblue, .2)))
-      &:hover
-        +background-image(none)
-      &:active
-        +box-shadow(rgba(0,0,0,.6) 0 0 15px inset)
-        +background-image(linear-gradient(transparentize($blue,.4), transparentize($lightblue, .2)))
-  p
-    font-size: 16px
-  p.pass
-    padding-top: 10px
-    font-weight: bold
-  p.button
-    float: right
-    margin: 15px 0
     a
-      color: #fff
-      font-size: 16px
-      margin-top: 10px
-      padding: 5px 20px
-      font-weight: bold
-      +border-radius(10px)
-      border: 1px solid saturate(#a8d977,20%)
-      +linear-gradient(color-stops(#d7ff8c, #a8d977))
-      +text-shadow(rgba(0,0,0,0.5) 2px 2px 5px, darken($green,10%) 1px 1px 0)
-      +box-shadow(rgba(93,76,42,0.85) 0 2px 2px, saturate(#90ce66,20%) -5px -10px 20px inset, saturate(#90ce66,20%) 5px -10px 20px inset)
-  #avatar
-    padding: 10px 0 5px
+      &:link, &:visited
+        color: $font-color
+        +text-shadow(rgba(255,255,255,0.7) 0 1px 1px)
+      &:hover, &:focus
+        color: lighten($font-color, 10%)
+      &:active
+        color: darken($font-color, 10%)
+    h1, h2
+      font-size: 24px
+      text-align: left
+      margin-bottom: 10px
+      padding-bottom: 10px
+      border-bottom: 1px dashed $blue
+      span
+        float: right
+        cursor: pointer
+        padding: 2px 10px
+        +box-shadow(rgba(0,0,0,.4) 0 0 15px inset)
+        +background-image(linear-gradient(transparentize($blue,.4), transparentize($lightblue, .2)))
+        &:hover
+          +background-image(none)
+        &:active
+          +box-shadow(rgba(0,0,0,.6) 0 0 15px inset)
+          +background-image(linear-gradient(transparentize($blue,.4), transparentize($lightblue, .2)))
     p
-      float: left
       font-size: 16px
-      margin-right: 10px
+    p.pass
+      font-weight: bold
+      padding-bottom: 10px
+    p.button
+      float: right
+      margin: 15px 0
       a
+        color: #fff
+        font-size: 16px
+        margin-top: 10px
+        padding: 5px 20px
+        font-weight: bold
+        +border-radius(10px)
+        border: 1px solid saturate(#a8d977,20%)
+        +linear-gradient(color-stops(#d7ff8c, #a8d977))
+        +text-shadow(rgba(0,0,0,0.5) 2px 2px 5px, darken($green,10%) 1px 1px 0)
+        +box-shadow(rgba(93,76,42,0.85) 0 2px 2px, saturate(#90ce66,20%) -5px -10px 20px inset, saturate(#90ce66,20%) 5px -10px 20px inset)
+    #avatar
+      padding: 10px 0 5px
+      p
         float: left
-        display: block
-      img
-        border: 10px solid #fff
-        +box-shadow(rgba(0,0,0,0.2),1px,1px,1px,0px)
-  form
-    margin-right: 10px
-    .input
-      padding: 0 0 0 1px
-      input
-        margin-right: 0
-    .string
-      width: 100%
-    .boolean
-      margin: 5px 10px 0 0
-  p.auths
-    margin-top: 10px
-    padding-top: 10px
-    border-top: 1px dashed $blue
-  .add_roomie
-    display: none
-    margin: 10px 0 20px
+        font-size: 16px
+        margin-right: 10px
+        a
+          float: left
+          display: block
+        img
+          border: 10px solid #fff
+          +box-shadow(rgba(0,0,0,0.2),1px,1px,1px,0px)
+    form
+      margin-right: 10px
+      .input
+        padding: 0 0 0 1px
+        input
+          margin-right: 0
+      .string
+        width: 100%
+      .boolean
+        margin: 5px 10px 0 0
+    p.auths
+      margin-top: 10px
+      padding-top: 10px
+      border-top: 1px dashed $blue
+    .add_roomie
+      display: none
+      margin: 10px 0 20px
