@@ -34,7 +34,27 @@ class AuthenticationsController < ApplicationController
       (omniauth['user_info']['first_name'] && omniauth['user_info']['last_name']))
       session[:omniauth] = omniauth.except('extra');
       redirect_to(:controller => 'registrations', :action => 'email')
-    
+
+    elsif (omniauth['provider'] == 'facebook')
+      # debug to output the hash that has been returned when adding new services
+      render :text => omniauth.to_yaml
+      return
+      
+      # # create a new hash
+      # @authhash = Hash.new
+      
+      # omniauth['extra']['user_hash']['email'] ? @authhash[:email] =  omniauth['extra']['user_hash']['email'] : @authhash[:email] = ''
+      # omniauth['extra']['user_hash']['name'] ? @authhash[:name] =  omniauth['extra']['user_hash']['name'] : @authhash[:name] = ''
+      # omniauth['extra']['user_hash']['id'] ?  @authhash[:uid] =  omniauth['extra']['user_hash']['id'].to_s : @authhash[:uid] = ''
+      # omniauth['provider'] ? @authhash[:provider] = omniauth['provider'] : @authhash[:provider] = ''
+
+      # user = create_new_omniauth_user(omniauth)
+      # user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
+      
+      # flash[:notice] = "Caught that Facebook fucker"
+      # # redirect_to root_url
+      # sign_in_and_redirect(:user, user)
+
     else
       # New user data not valid, try again
       flash[:alert] = t(:auth_fail)
@@ -58,4 +78,5 @@ class AuthenticationsController < ApplicationController
       nil
     end
   end
+
 end
