@@ -15,8 +15,8 @@ en:
       timeout: 'Your session expired, please sign in again to continue.'
       inactive: 'Your account was not activated yet.'
     sessions:
-      signed_in: 'Welcome back, you signed in successfully.'
-      signed_out: 'See you soon ;-)'
+      signed_in:
+      signed_out:
     passwords:
       send_instructions: 'You will receive an email with instructions about how to reset your password in a few minutes.'
       updated: 'Your password was changed successfully. You are now signed in.'
@@ -25,7 +25,7 @@ en:
       confirmed: 'Your account was successfully confirmed. You are now signed in.'
     registrations:
       signed_up: ''
-      updated: 'You updated your account successfully.'
+      updated:
       destroyed: 'Bye! Your account was successfully cancelled. We hope to see you again soon.'
     unlocks:
       send_instructions: 'You will receive an email with instructions about how to unlock your account in a few minutes.'
