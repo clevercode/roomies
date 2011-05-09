@@ -81,32 +81,35 @@ Clouds.animate()
 
 # // Listens for a click on any anchor with a class of ajax.
 # // Knabs the anchor's href and ajaxes it in to the modal.
-$('a.ajax').bind 'click', (event) ->
-  $.ajax url: $(this).attr('href'), success: (data) -> 
-    $modal.children('#ajaxed').empty()
-    $(data).appendTo('#modal #ajaxed')
-    $('<span>x</span>').appendTo('#modal h1')
-    $darknessification.fadeIn _fadeSpeed
-    modal_left = ($('html').outerWidth()/2) - ($modal.outerWidth()/2)
-    modal_top = ($(window).height()/2) - ($modal.outerHeight()/2)
-    modal_top = 0 if modal_top < 0
-    $modal.css({left: modal_left, top: modal_top}).fadeIn _fadeSpeed
-    superDate()
-    $modal.find("form > .string > input").not("input[type=hidden]").first().focus()
+$('a.ajax').bind 'click', ->
+  $.ajax 
+    url: $(this).attr('href'), 
+    success: (data) -> 
+      $modal.children('#ajaxed').empty()
+      $(data).appendTo('#modal #ajaxed')
+      $('<span>x</span>').appendTo('#modal h1')
+      $darknessification.fadeIn _fadeSpeed
+      superDate()
+      modal_left = ($('html').outerWidth()/2) - ($modal.outerWidth()/2)
+      modal_top = ($(window).height()/2) - ($modal.outerHeight()/2)
+      modal_top = 0 if modal_top < 0
+      $modal.css({left: modal_left, top: modal_top}).fadeIn _fadeSpeed
+      $modal.find("form > .string > input").not("input[type=hidden]").first().focus()
   return false
 
 # // Listens for a click on the dark overlay when the modal is up.
-$darknessification.live 'click', (event) ->
+$darknessification.live 'click', ->
   hideModal()
   return false
   
-# // Watches for an escape keypress and hides the modal and overlay.
-$(window).bind 'keyup', (event) ->
+# // Watches for an escape keypress and hides the modal, overlay, and detail list.
+$(window).bind 'keyup', ->
   if event.keyCode == 27
+    $detailList.fadeOut _fadeSpeed
     hideModal()
 
 # // Watches for a click on the 'x' and hides the modal and overlay.
-$('#modal h1 span').live 'click', (event) ->
+$('#modal h1 span').live 'click', ->
   hideModal()
 
 
@@ -115,30 +118,30 @@ $('#modal h1 span').live 'click', (event) ->
 # =========================================
 
 # // Handles mouseover and mouseout for the corkboard lists.
-$('.list .assignment').live 'mouseover', (event) ->
+$('.list .assignment').live 'mouseover', ->
     $(this)
       .children('ul')
         .children('li:eq(1)')
         .stop(true)
-        .animate {paddingRight:'0px'}, _fadeSpeed, (event) ->
+        .animate {paddingRight:'0px'}, _fadeSpeed, ->
           $(this).next().show().animate {opacity:1}, _fadeSpeed
         
-$('.list .assignment').live 'mouseleave', (event) ->
+$('.list .assignment').live 'mouseleave', ->
     $(this)
       .children('ul')
         .children('li:eq(2)')
         .stop(true)
-        .animate {opacity:0}, _fadeSpeed, (event) ->
+        .animate {opacity:0}, _fadeSpeed, ->
           $(this).hide().prev().animate {paddingRight:'25px'}, _fadeSpeed
 
 # // Edit assignment on edit icon click.
-$('.edit').live 'click', (event) ->
+$('.edit').live 'click', ->
   id = $(this).data("assignment_id")
   window.location.href = "/assignments/#{id}/edit"
   return false
   
 # // Listens for a click on the calendar view option links.
-$('.header_bar a').bind 'click', (event) ->
+$('.header_bar a').bind 'click', ->
   unless $(this).hasClass('active')
     $header_bar = $(this).parent().parent().siblings('.header_bar')
     $header_bar.show().siblings('.header_bar').hide()
