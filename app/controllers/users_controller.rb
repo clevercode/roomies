@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     if params[:name]
       @names = User.all(conditions: {name: /#{params[:name]}.*/i})
     else
-      @names = []
+      @names = ['No results']
     end
     respond_with(@users)
   end
