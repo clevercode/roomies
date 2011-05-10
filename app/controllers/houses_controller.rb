@@ -2,64 +2,40 @@ class HousesController < ApplicationController
 
   respond_to :html, :json
 
-  # GET /houses
-  # GET /houses.xml
   def index
     @houses = House.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @houses }
-    end
+    respond_with @houses
   end
 
-  # GET /houses/1
-  # GET /houses/1.xml
   def show
     @house = House.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @house }
-    end
+    
+    respond_with @house
   end
 
-  # GET /houses/new
-  # GET /houses/new.xml
   def new
     @house = House.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @house }
-    end
+    respond_with @house
   end
 
-  # GET /houses/1/edit
   def edit
     @house = House.find(params[:id])
   end
 
-  # POST /houses
-  # POST /houses.xml
   def create
     @house = House.new(params[:house])
     current_user.house = @house
-    current_user.save
 
-    respond_to do |format|
-      if @house.save
-        format.html { redirect_to(current_user) }
-        format.xml  { render :xml => @house, :status => :created, :location => @house }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @house.errors, :status => :unprocessable_entity }
-      end
+    if current_user.save && @house.save
+      flash[:notice] = t('.house_created')
+      respond_with current_user
+    else
+      render :new
     end
   end
 
-  # PUT /houses/1
-  # PUT /houses/1.xml
   def update
     @house = House.find(params[:id])
     unless params[:house][:users].blank?
@@ -68,20 +44,16 @@ class HousesController < ApplicationController
       user.save
     end
 
-
-    respond_to do |format|
-      if @house.update_attributes(params[:house])
-        format.html { redirect_to(current_user) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @house.errors, :status => :unprocessable_entity }
-      end
+    if @house.update_attributes(params[:house])
+      flash[:notice] = t('.house_updated')
+      respond_with current_user
+    else
+      flash[:error] = t('.house_not_updated')
+      render :edit
     end
+
   end
 
-  # DELETE /houses/1
-  # DELETE /houses/1.xml
   def destroy
     @house = House.find(params[:id])
     @house.destroy
