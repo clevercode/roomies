@@ -33,14 +33,14 @@ class User
   # user methods
   ###
   
-  def apply_omniauth(omniauth, confirmation)
+  def apply_omniauth(omniauth)
     self.email = omniauth['user_info']['email'] if email.blank?
     # Check if email is already into the database => user exists
-    apply_trusted_services(omniauth, confirmation) if self.new_record?
+    apply_trusted_services(omniauth) if self.new_record?
   end
   
   # Create a new user
-  def apply_trusted_services(omniauth, confirmation)  
+  def apply_trusted_services(omniauth)  
     # Merge user_info && extra.user_info
     user_info = omniauth['user_info']
 
