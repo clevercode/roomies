@@ -20,6 +20,9 @@ class User
   has_many :rewards
   has_many :achievements
 
+  has_many :sent_invitations, :class_name => 'Invitation', :foreign_key => 'sender_id'
+  belongs_to :invitations
+
   # Devise
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
