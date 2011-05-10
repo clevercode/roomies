@@ -19,9 +19,9 @@
               - tasks = assignments.where(due_date: date.to_s).and(type: "task")
               - expenses = assignments.where(due_date: date.to_s).and(type: "expense")
               - unless tasks.count == 0
-                =link_to tasks.count, "/assignments/day/#{date}.json", :class => "tasks"
+                =link_to tasks.count, "/assignments/day/#{date}.json?type=task", :class => "tasks"
               - unless expenses.count == 0
-                =link_to expenses.count, "/assignments/day/#{date}.json", :class => "expenses"
+                =link_to expenses.count, "/assignments/day/#{date}.json?type=expense", :class => "expenses"
               -# =link_to '0', '#', :class => "expenses" 
 
   - (0..number_of_days).map do |i|
@@ -37,7 +37,7 @@
           - tasks = assignments.where(due_date: date.to_s).and(type: "task")
           - expenses = assignments.where(due_date: date.to_s).and(type: "expense")
           - unless tasks.count == 0
-            =link_to tasks.count, "/assignments/day/#{date}.json", :class => "tasks"
+            =link_to tasks.count, "/assignments/day/#{date}.json?type=task", :class => "tasks"
           - unless expenses.count == 0
-            =link_to expenses.count, "/assignments/day/#{date}.json", :class => "expenses"
+            =link_to expenses.count, "/assignments/day/#{date}.json?type=expense", :class => "expenses"
           -# =link_to '2', '#', :class => "expenses"
