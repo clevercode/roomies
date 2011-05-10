@@ -2,6 +2,6 @@
 = simple_form_for :user, :url => password_path(:user) do |f|
   = devise_error_messages!
   
-  = f.email_field :email
+  = f.email_field :email, :placeholder => t('.enter_email')
   = f.submit "Send me reset password instructions"
 = render :partial => "devise/shared/links"

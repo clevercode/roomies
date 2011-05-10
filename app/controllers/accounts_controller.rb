@@ -1,11 +1,11 @@
-class AccountsControler < ApplicationController
+class AccountsController < ApplicationController
 
   def email
     if session[:omniauth]
       if params[:email]
         user = User.new
         user.email = params[:email]
-        user.apply_omniauth(session[:omniauth], false)
+        user.apply_omniauth(session[:omniauth])
         
         if user.save
           user.authentications.create!(:provider => session[:omniauth]['provider'], :uid => session[:omniauth]['uid'])

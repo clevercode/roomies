@@ -26,7 +26,8 @@ Roomies::Application.routes.draw do
   resources :rewards
 
   match '/auth/:provider/callback'      => 'authentications#create'
-  match '/accounts'                     => 'accounts#email'
+  match '/auth/failure'                 => 'authentications#failure'
+  match '/registrations'                => 'accounts#email'
   match '/user/:id/homeless/:house_id'  => 'houses#destroy_roomie', :as => :homeless
   match '/support/index'                => 'support#submit_request'
   match '/accept_invitation'            => 'users#accept_invitation'
