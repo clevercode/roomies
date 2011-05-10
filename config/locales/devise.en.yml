@@ -7,7 +7,7 @@ en:
 
   devise:
     failure:
-      unauthenticated: 'You need to sign in or sign up before continuing.'
+      unauthenticated: "You need to sign in or sign up before doing that. Promise, we won't bite."
       unconfirmed: 'You have to confirm your account before continuing.'
       locked: 'Your account is locked.'
       invalid: 'Invalid email or password.'
@@ -15,8 +15,8 @@ en:
       timeout: 'Your session expired, please sign in again to continue.'
       inactive: 'Your account was not activated yet.'
     sessions:
-      signed_in:
-      signed_out:
+      signed_in: "Hey there, welcome back #{current_user.name}"
+      signed_out: "See you soon ;-)"
     passwords:
       send_instructions: 'You will receive an email with instructions about how to reset your password in a few minutes.'
       updated: 'Your password was changed successfully. You are now signed in.'
@@ -27,7 +27,7 @@ en:
       send_instructions: 'You will receive an email with instructions about how to confirm your account in a few minutes.'
       confirmed: 'Your account was successfully confirmed. You are now signed in.'
     registrations:
-      signed_up: ''
+      signed_up: "Hey, welcome to Roomies. Glad you could join us."
       updated:
       destroyed: 'Bye! Your account was successfully cancelled. We hope to see you again soon.'
     unlocks:

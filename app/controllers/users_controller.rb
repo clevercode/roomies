@@ -50,10 +50,15 @@ class UsersController < ApplicationController
     @user.save
 
     if @user.update_attributes(params[:user])
+
       sign_in(@user, :bypass => true)
-      redirect_to current_user
+      redirect_to current_user, :notice => '.profile_successfully_updated'
     else
-      redirect_to current_user, :notice => 'Sorry, something went horribly wrong when updating your information.'
+      if User.where(email: params[:email]).first != @user
+        redirect_to current_user, :notice => '.address_already_used.'
+      else
+        redirect_to current_user, :notice => '.something_went_wrong'
+      end
     end
   end
 

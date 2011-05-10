@@ -4,6 +4,7 @@
 en:
   # forms & actions
   sign_in: "Sign In"
+  signed_in: "Welcome back to Roomies!"
   sign_out: "Sign Out"
   sign_up: "Sign Up"
   or_sign_in_with: "Or sign in with"
@@ -220,4 +221,6 @@ en:
       hour:   "Hour"
       minute: "Minute"
       second: "Seconds"
+
+
 

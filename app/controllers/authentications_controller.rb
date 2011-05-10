@@ -12,7 +12,7 @@ class AuthenticationsController < ApplicationController
     if authentication
       # Just sign in an existing user with omniauth
       # The user have already used this external account
-      flash[:notice] = t(:signed_in)
+      flash[:notice] = t('.signed_in')
       sign_in_and_redirect(:user, authentication.user)
 
     elsif current_user
@@ -25,9 +25,9 @@ class AuthenticationsController < ApplicationController
     elsif omniauth['provider'] != "twitter"
       user = create_new_omniauth_user(omniauth)
       if not user.new_record?
-        flash[:notice] = "#{omniauth['provider'].titleize} .new_login_provider" 
+        flash[:notice] = "#{omniauth['provider'].titleize} " + t('.new_login_provider')
       else
-        flash[:notice] = ".welcome_back"
+        flash[:notice] = t('.welcome_back')
       end
       user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
       # Create a new User through omniauth
@@ -48,11 +48,11 @@ class AuthenticationsController < ApplicationController
   def destroy
     @authentication = current_user.authentications.find(params[:id])
     @authentication.destroy
-    flash[:notice] = t(:auth_destroy)
+    flash[:notice] = t('.auth_destroy')
     redirect_to authentications_url
   end
 
-  def create_new_omniauth_user(omniauth)
+  def create_new_omniauwth_user(omniauth)
     user = User.where(:email => omniauth['user_info']['email']).first
     unless user
       user = User.new
@@ -62,7 +62,7 @@ class AuthenticationsController < ApplicationController
   end
 
   def failure
-    flash[:error] = "OAuth doesn't like your face."
+    flash[:error] = t('.oauth_error')
     redirect_to root_path
   end
 end
