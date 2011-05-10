@@ -6,7 +6,7 @@
     overflow: hidden
     text-align: center
     margin: 0 20px 1em 0
-    +background-image(linear-gradient(transparentize($blue,.4), transparentize($lightblue, .2)))
+    +background-image(linear-gradient(transparentize($blue,.4),transparentize($lightblue, .2)))
     +box-shadow(rgba(0,0,0,.2) 0 1px 2px, rgba(255,255,255,.5) 0 0 15px inset, #d9eaff 0 0 0 1px inset)
     p
       margin: 10px
@@ -15,13 +15,13 @@
       padding: 10px 20px
       border: 1px solid #d9eaff
       color: darken($red,50%)
-      +text-shadow(lighten($blue,10%) 1px 1px 0)
-      +box-shadow(rgba(0,0,0,0.5) 0 1px 5px 1px inset)
-      +background-image(linear-gradient(transparentize($blue, .1), transparentize(darken($blue, 10%), .1)))
+      +text-shadow(none)
+      +box-shadow(rgba(0,0,0,0.3) 0 1px 3px 1px inset)
+      +background-image(linear-gradient(transparentize($blue,.3),transparentize(darken($blue, 10%), .3)))
       a
-        font-weight: bold
+        font-weight: 600
         color: darken($blue,40%)
-        +text-shadow(lighten($blue,10%) 1px 1px 0)
+        +text-shadow(none)
         &:hover
           color: darken($blue,45%)
         &:active
@@ -31,7 +31,7 @@
     p
       color: darken($red,50%)
       +text-shadow(lighten($red,10%) 1px 1px 0)
-      +background-image(linear-gradient(transparentize($red, .1), transparentize(darken($red, 10%), .1)))
+      +background-image(linear-gradient(transparentize($red, .3),transparentize(darken($red, 10%), .3)))
       a
         color: darken($red,30%)
         +text-shadow(lighten($red,10%) 1px 1px 0)
@@ -43,4 +43,4 @@
     p
       color: darken($green,50%)
       +text-shadow(lighten($green,10%) 1px 1px 0)
-      +background-image(linear-gradient(transparentize($green, .1), transparentize(darken($green, 10%), .1)))
+      +background-image(linear-gradient(transparentize($green, .3),transparentize(darken($green, 10%), .3)))
