@@ -10,6 +10,8 @@ class User
   field :points_count, :type => Integer
   field :locale, :type => String, :default => "en"
   field :calendar, :type => String, :default => "centric"
+  field :invitation_id, :type => String
+  field :invitation_limit, :type => Integer
 
   # Associations
   has_many :authentications, :dependent => :delete # User has access to an array of Authentications that have its id for user_id
