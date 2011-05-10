@@ -58,10 +58,8 @@ class HousesController < ApplicationController
     @house = House.find(params[:id])
     @house.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(houses_url) }
-      format.xml  { head :ok }
-    end
+    flash[:notice] = t('.house_destroyed')
+    redirect_to houses_url
   end
 
   def destroy_roomie
@@ -70,6 +68,7 @@ class HousesController < ApplicationController
     user.save
 
     house = House.find( params[:house_id] )
+    flash[:notice] = t('.house_destroyed')
     redirect_to current_user
   end
 end
