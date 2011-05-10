@@ -8,7 +8,7 @@
 
   - @invitations.each do |invitation|
     %tr
-      %td= invitation.type
+      -# %td= invitation.type
       %td= invitation.email
       %td= link_to 'Show', invitation
       %td= link_to 'Edit', edit_invitation_path(invitation)

@@ -22,7 +22,7 @@ Roomies::Application.routes.draw do
   resources :pages
   resources :support
   resources :user_mailer
-  resources :invitations
+  # resources :invitations
   resources :rewards
 
   match '/auth/:provider/callback'      => 'authentications#create'

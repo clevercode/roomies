@@ -21,8 +21,8 @@ class User
   # Devise
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
-  devise :invitable, :database_authenticatable, :registerable,
-        :recoverable, :rememberable, :trackable, :validatable
+  devise  :invitable, :database_authenticatable, :registerable, 
+          :recoverable, :rememberable, :trackable, :validatable
 
   validates :email, :presence => true,
                     :uniqueness => { :case_sensitive => false }
