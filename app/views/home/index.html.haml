@@ -16,8 +16,10 @@
   %p.other_auths
     = t('.or_sign_up_with')
     =link_to 'twitter', '/auth/twitter'
-    or 
-    =link_to 'facebook', '/auth/facebook'
+    , 
+    =link_to 'facebook, ', '/auth/facebook'
+    or
+    =link to 'google', '/auth/google'
   %p.generate
     or
     = link_to t('.generate_one'), 'generate'
