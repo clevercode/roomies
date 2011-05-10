@@ -212,7 +212,7 @@ $('.todo').each( ->
 # // Listens for a click on the assignee filters and changes the UI accordingly.
 $('#upcoming_filters #assignee_filters li').live 'click', ->
   $this = $(this)
-  if !$this.hasClass('active')
+  unless $this.hasClass('active')
     $this.addClass('active').siblings('li').removeClass('active')
     $('.corkboard_view').each( ->
       $this = $(this)
