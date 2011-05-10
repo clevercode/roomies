@@ -46,7 +46,10 @@
       - else
         %span= t(:no_tasks, :scope => :profile)
       %span
-      %span= pluralize(@expenses.count, 'expense')
+      - if @tasks
+        %span= pluralize(@expenses.count, t(:expense, :scope => :profile))
+      - else
+        %span= t(:no_expenses, :scope => :profile)
   %p.edit_profile= link_to t(:edit_profile, :scope => :profile), edit_user_path(@user), :class => 'ajax' if current_user
 #achievements
   .header_bar
