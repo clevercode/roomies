@@ -21,13 +21,13 @@ $darknessification = $('#darknessification')
   
 # // Handles the sticky footer
 stickyFooter = ->  
+  $footer.css({position:'static'})
   if window.innerHeight > $body.height()
     $footer.css({position:'fixed', bottom:0})
 
 stickyFooter()
 
 $(window).bind 'resize', ->
-  $footer.css({position:'static'})
   stickyFooter()
 
 # // Hides the flash notice if it's visible.
@@ -156,15 +156,13 @@ $('.header_bar a').bind 'click', ->
   
     # // Checks to see if the we want to show the full on calendar or not.
     if $header_bar.hasClass('upcoming')
-      $footer.css({position:'fixed'})
       $('.calendar').slideUp _slideUpSpeed, ->
         $('.centric').slideDown _slideDownSpeed
         stickyFooter()
     else
-      $footer.css({position:'fixed'})
       $('.centric').slideUp _slideUpSpeed, ->
         $('.calendar').slideDown _slideDownSpeed
-        $footer.css({position:'static'})
+        stickyFooter()
   
   return false
   
