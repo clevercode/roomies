@@ -58,14 +58,16 @@ class User
 
     if self.email.blank?
       self.email = user_info['email'] unless user_info['email'].blank?
+      # if user_info['email'].present?
+      #   self.email = user_info['email'] unless user_info['email'].blank?
+      # else
+      #   self.email = "#{Time.now.to_i}#{rand(777)}@roomieapp.com"
+      # end
     end  
 
     # Set a random password for omniauthenticated users
     self.password, self.password_confirmation = String::RandomString(16)
 
-    if (confirmation) 
-      # self.confirmed_at, self.confirmation_sent_at = Time.now  
-    end 
   end
 
   ###
