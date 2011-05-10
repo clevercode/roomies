@@ -15,10 +15,9 @@
     = f.submit t(:sign_up), :class => 'green'
   %p.other_auths
     = t('.or_sign_up_with')
-    =link_to 'twitter,', '/auth/twitter'
-    =link_to 'facebook,', '/auth/facebook'
-    or
-    =link_to 'google', '/auth/google'
+    =link_to 'twitter', '/auth/twitter'
+    or 
+    =link_to 'facebook', '/auth/facebook'
   %p.generate
     or
     = link_to t('.generate_one'), 'generate'
