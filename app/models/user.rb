@@ -9,6 +9,7 @@ class User
   field :created_at, :type => DateTime
   field :points_count, :type => Integer
   field :locale, :type => String, :default => "en"
+  field :calendar, :type => String, :default => "centric"
 
   # Associations
   has_many :authentications, :dependent => :delete # User has access to an array of Authentications that have its id for user_id
@@ -27,7 +28,7 @@ class User
                     :uniqueness => { :case_sensitive => false }
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :email, :password, :remember_me
+  attr_accessible :name, :email, :password, :remember_me, :locale, :calendar
 
   ###
   # user methods
