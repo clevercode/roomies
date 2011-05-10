@@ -4,6 +4,7 @@
 en:
   # forms & actions
   sign_in: "Sign In"
+  signed_in: "Welcome back to Roomies!"
   sign_out: "Sign Out"
   sign_up: "Sign Up"
   or_sign_in_with: "Or sign in with"
@@ -11,6 +12,12 @@ en:
   forgot_password: "Forgot your password?"
   email: "Email"
   password: "Password"
+  house_updated: "Your house was updated successfully."
+  house_created: "Your house was created successfuly."
+  house_destroyed: "You moved out of your house, good luck finding the next one ;-)"
+  house_joined: "You have joined a house successfuly, say Hi to your new roomies for us."
+  house_join_fail: "We lost you on the way to that new house you were invited to, drop us a note so we can fix it. Sorry about that."
+  house_join_declined: "You have declined to join a house you were invited to. They will be bummed, but you can't please everyone."
 
   back_to_assignments: "Back to Assignments"
   back_to_corkboard: "Back to Corkboard"
@@ -220,4 +227,6 @@ en:
       hour:   "Hour"
       minute: "Minute"
       second: "Seconds"
+
+
 

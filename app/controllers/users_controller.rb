@@ -50,10 +50,15 @@ class UsersController < ApplicationController
     @user.save
 
     if @user.update_attributes(params[:user])
+
       sign_in(@user, :bypass => true)
-      redirect_to current_user
+      redirect_to current_user, :notice => '.profile_successfully_updated'
     else
-      redirect_to current_user, :notice => 'Sorry, something went horribly wrong when updating your information.'
+      if User.where(email: params[:email]).first != @user
+        redirect_to current_user, :notice => '.address_already_used.'
+      else
+        redirect_to current_user, :notice => '.something_went_wrong'
+      end
     end
   end
 
@@ -71,14 +76,18 @@ class UsersController < ApplicationController
     
     if current_user.save
       Invitation.where(:email => current_user.email).destroy
+      flash[:notice] = t('.house_joined')
+      respond_with current_user
+    else
+      flash[:notice] = t('.house_join_fail')
+      redirect_to corkboard_index_url
     end
-    
-    redirect_to '/corkboard'
   end
   
   def reject_invitations
     Invitation.where(:email => current_user.email).destroy
-    redirect_to '/corkboard'
+    flash[:notice] = t('.house_join_declined')
+    redirect_to corkboard_index_url
   end
 
 end

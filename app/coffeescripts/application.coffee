@@ -168,7 +168,7 @@ $('.header_bar a').bind 'click', ->
   
 # // Listens for a hover event on the anchors in the calendar.
 # // Pops up with a list of the corresponding assignments for that day.
-$('#todo a').live 'click', ->
+$('.todo a').live 'click', ->
   $this = $(this)
   $.ajax
     url: $this.attr('href'), 
