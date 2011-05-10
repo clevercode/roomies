@@ -1,5 +1,4 @@
-class RegistrationsController < Devise::RegistrationsController
-
+class RegistrationsController < ApplicationController
 
   def email
     if session[:omniauth]
