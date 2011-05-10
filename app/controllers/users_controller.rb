@@ -76,14 +76,18 @@ class UsersController < ApplicationController
     
     if current_user.save
       Invitation.where(:email => current_user.email).destroy
+      flash[:notice] = t('.house_joined')
+      respond_with current_user
+    else
+      flash[:notice] = t('.house_join_fail')
+      redirect_to corkboard_index_url
     end
-    
-    redirect_to '/corkboard'
   end
   
   def reject_invitations
     Invitation.where(:email => current_user.email).destroy
-    redirect_to '/corkboard'
+    flash[:notice] = t('.house_join_declined')
+    redirect_to corkboard_index_url
   end
 
 end
