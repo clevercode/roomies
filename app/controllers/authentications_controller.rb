@@ -6,6 +6,9 @@ class AuthenticationsController < ApplicationController
 
   def create
 
+    # create a new hash
+    @authhash = Hash.new
+
     omniauth = request.env['omniauth.auth']
     authentication = Authentication.where(:provider => omniauth['provider'], :uid => omniauth['uid']).first
   
@@ -33,21 +36,28 @@ class AuthenticationsController < ApplicationController
       omniauth['uid'] && (omniauth['user_info']['name'] || omniauth['user_info']['nickname'] || 
       (omniauth['user_info']['first_name'] && omniauth['user_info']['last_name']))
       session[:omniauth] = omniauth.except('extra');
+
+      omniauth['user_info']['email'] ? @authhash[:email] =  omniauth['user_info']['email'] : @authhash[:email] = ''
+      omniauth['user_info']['name'] ? @authhash[:name] =  omniauth['user_info']['name'] : @authhash[:name] = ''
+      omniauth['uid'] ? @authhash[:uid] = omniauth['uid'].to_s : @authhash[:uid] = ''
+      omniauth['provider'] ? @authhash[:provider] = omniauth['provider'] : @authhash[:provider] = ''
+      
+
+      render :text => @authhash.to_yaml
+      return
       redirect_to(:controller => 'accounts', :action => 'email')
 
     elsif (omniauth['provider'] == 'facebook')
+
       # debug to output the hash that has been returned when adding new services
-      render :text => omniauth.to_yaml
+      omniauth['extra']['user_hash']['email'] ? @authhash[:email] =  omniauth['extra']['user_hash']['email'] : @authhash[:email] = ''
+      omniauth['extra']['user_hash']['name'] ? @authhash[:name] =  omniauth['extra']['user_hash']['name'] : @authhash[:name] = ''
+      omniauth['extra']['user_hash']['id'] ?  @authhash[:uid] =  omniauth['extra']['user_hash']['id'].to_s : @authhash[:uid] = ''
+      omniauth['provider'] ? @authhash[:provider] = omniauth['provider'] : @authhash[:provider] = ''
+
+      render :text => @authhash.to_yaml
       return
       
-      # # create a new hash
-      # @authhash = Hash.new
-      
-      # omniauth['extra']['user_hash']['email'] ? @authhash[:email] =  omniauth['extra']['user_hash']['email'] : @authhash[:email] = ''
-      # omniauth['extra']['user_hash']['name'] ? @authhash[:name] =  omniauth['extra']['user_hash']['name'] : @authhash[:name] = ''
-      # omniauth['extra']['user_hash']['id'] ?  @authhash[:uid] =  omniauth['extra']['user_hash']['id'].to_s : @authhash[:uid] = ''
-      # omniauth['provider'] ? @authhash[:provider] = omniauth['provider'] : @authhash[:provider] = ''
-
       # user = create_new_omniauth_user(omniauth)
       # user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
       
