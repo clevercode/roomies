@@ -1,4 +1,4 @@
-class RegistrationsController < ApplicationController
+class AccountsController < ApplicationController
 
   def email
     if session[:omniauth]
