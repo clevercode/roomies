@@ -2,6 +2,7 @@ class User
   include Mongoid::Document
   require 'digest/md5'
   
+  before_create :set_invitation_limit
   after_create :send_welcome_email
 
   # Fields
@@ -134,6 +135,10 @@ class User
   private
   def send_welcome_email
     UserMailer.welcome_email(self).deliver
+  end
+
+  def set_invitation_limit
+    self.invitation_limit = 3
   end
   
   protected
