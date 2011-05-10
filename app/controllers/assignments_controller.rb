@@ -92,8 +92,12 @@ class AssignmentsController < ApplicationController
 
   def day
     day = Date.parse(params[:day])
-    @assignments = Assignment.where(due_date: day)
-
+    @assignments = Assignment.where(due_date: day, completed_at: nil)
+    if params[:type] == "task"
+      @assignments = @assignments.where(type: "task")
+    else
+      @assignments = @assignments.where(type: "expense")
+    end
     respond_with(@assignments)
   end
  
