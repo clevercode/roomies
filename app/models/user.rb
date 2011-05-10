@@ -34,14 +34,14 @@ class User
   # user methods
   ###
   
-  def apply_omniauth(omniauth, confirmation)
+  def apply_omniauth(omniauth)
     self.email = omniauth['user_info']['email'] if email.blank?
     # Check if email is already into the database => user exists
-    apply_trusted_services(omniauth, confirmation) if self.new_record?
+    apply_trusted_services(omniauth) if self.new_record?
   end
   
   # Create a new user
-  def apply_trusted_services(omniauth, confirmation)  
+  def apply_trusted_services(omniauth)  
     # Merge user_info && extra.user_info
     user_info = omniauth['user_info']
 
@@ -59,14 +59,16 @@ class User
 
     if self.email.blank?
       self.email = user_info['email'] unless user_info['email'].blank?
+      # if user_info['email'].present?
+      #   self.email = user_info['email'] unless user_info['email'].blank?
+      # else
+      #   self.email = "#{Time.now.to_i}#{rand(777)}@roomieapp.com"
+      # end
     end  
 
     # Set a random password for omniauthenticated users
     self.password, self.password_confirmation = String::RandomString(16)
 
-    if (confirmation) 
-      # self.confirmed_at, self.confirmation_sent_at = Time.now  
-    end 
   end
 
   ###
