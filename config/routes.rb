@@ -24,6 +24,7 @@ Roomies::Application.routes.draw do
   resources :user_mailer
   resources :invitations
   resources :rewards
+  resources :beta_invitations
 
   match '/auth/:provider/callback'      => 'authentications#create'
   match '/auth/failure'                 => 'authentications#failure'
