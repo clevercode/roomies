@@ -210,6 +210,8 @@ $('.todo').each( ->
 # // Listens for a click on the assignee filters and changes the UI accordingly.
 $('#upcoming_filters #assignee_filters li').live 'click', ->
   $this = $(this)
+  console.log($this.data("type"))
+  console.log($('.calendar > div, .centric > div'))
   unless $this.hasClass('active')
     $this.addClass('active').siblings('li').removeClass('active')
     $('.corkboard_view').each( ->
@@ -219,7 +221,6 @@ $('#upcoming_filters #assignee_filters li').live 'click', ->
       else
         $this.addClass('current')
     )
-
 
 # =========================================
 # ========== NEW ASSIGNMENT JAZZ ==========
