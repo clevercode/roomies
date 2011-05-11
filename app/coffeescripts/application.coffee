@@ -31,7 +31,7 @@ $(window).bind 'resize', ->
   stickyFooter()
 
 # // Hides the flash notice if it's visible.
-$('#flash').bind 'click', ->
+$('#flash').live 'click', ->
   $('#flash').fadeOut( ->
     stickyFooter()
   )
@@ -130,17 +130,23 @@ $('.list .assignment').live 'mouseover', ->
     $(this)
       .children('ul')
         .children('li:eq(1)')
-        .stop(true)
-        .animate {paddingRight:'0px'}, _fadeSpeed, ->
-          $(this).next().show().animate {opacity:1}, _fadeSpeed
+          .stop(true)
+          .animate {paddingRight:'0px'}, _fadeSpeed, ->
+            $(this).next().show().animate {opacity:1}, _fadeSpeed
+        .siblings('.type')
+          .removeClass('type')
+          .addClass('check')
         
 $('.list .assignment').live 'mouseleave', ->
     $(this)
       .children('ul')
         .children('li:eq(2)')
-        .stop(true)
-        .animate {opacity:0}, _fadeSpeed, ->
-          $(this).hide().prev().animate {paddingRight:'25px'}, _fadeSpeed
+          .stop(true)
+          .animate {opacity:0}, _fadeSpeed, ->
+            $(this).hide().prev().animate {paddingRight:'25px'}, _fadeSpeed
+        .siblings('.check')
+          .removeClass('check')
+          .addClass('type')
 
 # // Edit assignment on edit icon click.
 $('.edit').live 'click', ->
@@ -219,6 +225,31 @@ $('#upcoming_filters #assignee_filters li').live 'click', ->
       else
         $this.addClass('current')
     )
+
+$('.check').live 'click', ->
+  $this      = $(this)
+  id         = $this.data('assignment_id')
+  $assignment = $this.parent('ul').parent('li')
+  
+  $.ajax
+    type: 'post',
+    url: "/assignments/#{id}/complete",
+    success: (data) ->
+      $assignment.slideUp _slideUpSpeed
+      $("<div id='flash'>
+           <div class='reward'>
+             <p>Congratulations! You completed an assignment! You get cookies.</p>
+           </div>
+         </div>"
+      ).css('opacity',0).animate({opacity:1}).insertBefore('.notifications')
+      if $assignment.siblings().length == 0
+        $("<li class='assignment'>
+             <ul>
+               <li class='purpose'>So far so good...</li>
+             </ul>
+           </li>"
+        ).appendTo $assignment.parent('ul')
+  return false
 
 
 # =========================================
