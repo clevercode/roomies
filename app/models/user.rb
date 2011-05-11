@@ -1,7 +1,11 @@
 class User 
   include Mongoid::Document
   require 'digest/md5'
+
+  validates_presence_of :invitation_id, :message => 'is required'
+  validates_uniqueness_of :invitation_id
   
+  before_create :set_invitation_limit
   after_create :send_welcome_email
 
   # Fields
@@ -10,6 +14,8 @@ class User
   field :points_count, :type => Integer
   field :locale, :type => String, :default => "en"
   field :calendar, :type => String, :default => "centric"
+  field :invitation_id, :type => String
+  field :invitation_limit, :type => Integer
 
   # Associations
   has_many :authentications, :dependent => :delete # User has access to an array of Authentications that have its id for user_id
@@ -18,11 +24,14 @@ class User
   has_many :rewards
   has_many :achievements
 
+  has_many :sent_invitations, :class_name => 'Invitation', :foreign_key => 'sender_id'
+  belongs_to :invitations
+
   # Devise
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
-  devise :invitable, :database_authenticatable, :registerable,
-        :recoverable, :rememberable, :trackable, :validatable
+  devise  :invitable, :database_authenticatable, :registerable, 
+          :recoverable, :rememberable, :trackable, :validatable
 
   validates :email, :presence => true,
                     :uniqueness => { :case_sensitive => false }
@@ -129,6 +138,10 @@ class User
   private
   def send_welcome_email
     UserMailer.welcome_email(self).deliver
+  end
+
+  def set_invitation_limit
+    self.invitation_limit = 3
   end
   
   protected
