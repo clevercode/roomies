@@ -25,7 +25,12 @@
 - if @assignment.respond_to?("completed_at")
   %p
     Completion date:
-    %strong #{@assignment.try(:completed_at)}
+    %strong #{@assignment.try(:completed_at)}i
+- unless @assignment.completor.blank?
+  %p
+    Completed by:
+    %strong #{@assignment.completor.name}
+
 - unless @assignment.completed_at
   %hr
   = button_to "complete this assignment", :action => :complete, :id => @assignment.id

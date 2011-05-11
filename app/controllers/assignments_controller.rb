@@ -78,6 +78,7 @@ class AssignmentsController < ApplicationController
     @assignment = Assignment.find(params[:id])
     if @assignment.completed_at.nil?
       @assignment.completed_at = DateTime.now
+      @assignment.completor_id = current_user.id
       if @assignment.save
         reward(nil,3)
         flash[:notice] = t(:completed, :scope => :assignments)
