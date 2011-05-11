@@ -2,8 +2,8 @@ class User
   include Mongoid::Document
   require 'digest/md5'
 
-  validates_presence_of :invitation_id, :message => 'is required'
-  validates_uniqueness_of :invitation_id
+  # validates_presence_of :invitation_id, :message => 'is required'
+  #invites validates_uniqueness_of :invitation_id
   
   before_create :set_beta_invitation_limit
   after_create :send_welcome_email
