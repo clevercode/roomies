@@ -39,6 +39,7 @@ class AssignmentsController < ApplicationController
 
       house = current_user.house
       assignment = house.assignments.build(params[:assignment])
+      assignment.commissioner = current_user
       
       if assignment.save
         reward(nil, 2)
