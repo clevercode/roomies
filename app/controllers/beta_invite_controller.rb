@@ -1,6 +1,6 @@
 class BetaInviteController < ApplicationController
 
-  respond_with :html
+  respond_to :html
 
   def new
 
