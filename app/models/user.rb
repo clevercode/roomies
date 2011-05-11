@@ -16,6 +16,7 @@ class User
   field :calendar, :type => String, :default => "centric"
   field :invitation_id, :type => String
   field :invitation_limit, :type => Integer
+  field :beta, :type => Boolean, :default => false
 
   # Associations
   has_many :authentications, :dependent => :delete # User has access to an array of Authentications that have its id for user_id
