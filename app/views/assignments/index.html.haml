@@ -1,9 +1,9 @@
-- @main_class = 'all_assignments'
+- @main_class = 'assignments'
 
 - unless @past_due.blank?
   %h1 past due assignments
    
-  %table
+  %table.assignments
     %tr
       %th Purpose
       %th Due date
@@ -24,7 +24,7 @@
 
 %h1 assignments
  
-%table
+%table.assignments
   %tr
     %th Purpose
     %th Due date
@@ -46,7 +46,7 @@
   %hr
   %h1 completed assignments
    
-  %table
+  %table.assignments
     %tr
       %th Purpose
       %th Date completed
