@@ -38,26 +38,27 @@
             +box-shadow(none)
             a:hover
               text-decoration: underline
-            &[title=expense], &[title=bill], &[title=task], &[title=chore]
-              padding: 0
-              width: 13px
-              height: 13px
-              background: #b2cf55
-              margin: 5px 0 0 10px
-              border: 1px solid #fff
-              +box-shadow(#a6ceff 0 0 5px)
-            &[title=task], &[title=chore]
-              background: #95b9e6
+            &.type
+              &[title=expense], &[title=bill], &[title=task], &[title=chore]
+                padding: 0
+                width: 13px
+                height: 13px
+                background: #b2cf55
+                margin: 5px 0 0 10px
+                border: 1px solid #fff
+                +box-shadow(#a6ceff 0 0 5px)
+              &[title=task], &[title=chore]
+                background: #95b9e6
             &.check, &.edit
               padding: 0
               width: 25px
               height: 25px
+              cursor: pointer
               background: url('../images/58.png') 7px 5px no-repeat
             &.edit
               opacity: 0
               display: none
               background: url('../images/139.png') 0 4px no-repeat
-              cursor: pointer
 
   #specials.content
     .list
