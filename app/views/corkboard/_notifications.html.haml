@@ -1,6 +1,6 @@
-- if current_user.invitation_limit > 0
+- if current_user.beta_invitation_limit > 0
   = link_to t('.send_beta_invitation'), new_beta_invitation_path
-  (#{current_user.invitation_limit} left)
+  (#{current_user.beta_invitation_limit} left)
 .notifications
   - if current_user.has_invitations?
     %p 

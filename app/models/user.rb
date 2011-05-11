@@ -5,7 +5,7 @@ class User
   validates_presence_of :invitation_id, :message => 'is required'
   validates_uniqueness_of :invitation_id
   
-  before_create :set_invitation_limit
+  before_create :set_beta_invitation_limit
   after_create :send_welcome_email
 
   # Fields
@@ -14,8 +14,8 @@ class User
   field :points_count, :type => Integer
   field :locale, :type => String, :default => "en"
   field :calendar, :type => String, :default => "centric"
-  field :invitation_id, :type => String
-  field :invitation_limit, :type => Integer
+  field :beta_invitation_id, :type => String
+  field :beta_invitation_limit, :type => Integer
   field :beta, :type => Boolean, :default => false
 
   # Associations
@@ -141,8 +141,8 @@ class User
     UserMailer.welcome_email(self).deliver
   end
 
-  def set_invitation_limit
-    self.invitation_limit = 3
+  def set_beta_invitation_limit
+    self.beta_invitation_limit = 3
   end
   
   protected
