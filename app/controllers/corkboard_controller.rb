@@ -6,9 +6,9 @@ class CorkboardController < ApplicationController
     unless current_user.house
       @all = Assignment.house(House.create(:name => "demo"))
     else
-      @all = Assignment.house(current_user.house)
+      @all = Assignment.house(current_user.house).where(completed_at: nil)
     end
-    @my  = @all.where(assignee_ids: [current_user.id])
+    @my  = @all.where(assignee_ids: [current_user.id]).and(completed_at: nil)
     
     @my_past_due               = @my.past_due
     @my_tasks                  = @my.where(type: "task")
