@@ -1,5 +1,6 @@
 class User 
   include Mongoid::Document
+  include Mongoid::Timestamps::Created
   require 'digest/md5'
 
   # validates_presence_of :invitation_id, :message => 'is required'
@@ -10,7 +11,7 @@ class User
 
   # Fields
   field :name, :type => String
-  field :created_at, :type => DateTime
+  # field :created_at, :type => DateTime
   field :points_count, :type => Integer
   field :locale, :type => String, :default => "en"
   field :calendar, :type => String, :default => "centric"
