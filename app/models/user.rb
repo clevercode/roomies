@@ -1,21 +1,18 @@
 class User 
   include Mongoid::Document
-  include Mongoid::Timestamps::Created
-  require 'digest/md5'
+  include Mongoid::Timestamps
 
-  # validates_presence_of :invitation_id, :message => 'is required'
-  #invites validates_uniqueness_of :invitation_id
+  require 'digest/md5'
   
   before_create :set_beta_invite_limit
   after_create :send_welcome_email
 
   # Fields
   field :name, :type => String
-  # field :created_at, :type => DateTime
   field :points_count, :type => Integer
   field :locale, :type => String, :default => "en"
   field :calendar, :type => String, :default => "centric"
-  field :beta_invite_limit, :type => Integer
+  field :beta_invite_limit, :type => Integer, :default => 0
   field :beta, :type => Boolean, :default => false
 
   # Associations
