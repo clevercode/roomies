@@ -26,13 +26,15 @@ class HousesController < ApplicationController
 
   def create
     @house = House.new(params[:house])
-    current_user.house = @house
 
-    if current_user.save && @house.save
+    if @house.save
+      current_user.house = @house
+      current_user.save
       flash[:notice] = t('.house_created')
-      respond_with current_user
+      redirect_to current_user
     else
-      render :new
+      flash[:error] = t('.house_creation_failure')
+      redirect_to current_user
     end
   end
 
