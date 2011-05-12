@@ -139,6 +139,14 @@ class User
     end
   end
 
+  def invite_token
+    beta_invite.token if beta_invite
+  end
+
+  def invite_token=(token)
+    self.beta_invite = BetaInvite.where(token: token).first
+  end
+
   private
   def send_welcome_email
     UserMailer.welcome_email(self).deliver
