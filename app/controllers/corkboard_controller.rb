@@ -10,10 +10,10 @@ class CorkboardController < ApplicationController
     end
     @my  = @all.where(assignee_ids: [current_user.id]).and(completed_at: nil)
     
-    @my_confirmations          = Assignment.house(current_user.house)
+    @my_confirmations          = current_user.house.assignments
                                    .where(commissioner_id: current_user.id)
-                                   .and(:completed_at.exists => true)
-                                   .excludes(assignee_ids: [current_user.id])
+                                   .and(:completed_at.ne => nil)
+                                   .excludes(completor_id: current_user.id)
     
     @my_past_due               = @my.past_due
     @my_tasks                  = @my.where(type: "task")
