@@ -22,28 +22,29 @@
 
   %hr
 
-%h1 assignments
+- unless @due.blank?
+  %h1 assignments
  
-%table.assignments
-  %tr
-    %th Purpose
-    %th Due date
-    %th Cost
-    %th Assignee(s)
-    %th Frequency
- 
-  - @due.each do |assignment|
+  %table.assignments
     %tr
-      %td= link_to assignment.purpose, assignment
-      %td= assignment.try(:due_date).try(:to_date) || 'none'
-      %td= assignment.cost || 'none'
-      %td none
-      %td= assignment.frequency || 'not repeating'
-      %td= button_to 'complete', :action => :complete, :id => assignment.id
+      %th Purpose
+      %th Due date
+      %th Cost
+      %th Assignee(s)
+      %th Frequency
+ 
+    - @due.each do |assignment|
+      %tr
+        %td= link_to assignment.purpose, assignment
+        %td= assignment.try(:due_date).try(:to_date) || 'none'
+        %td= assignment.cost || 'none'
+        %td none
+        %td= assignment.frequency || 'not repeating'
+        %td= button_to 'complete', :action => :complete, :id => assignment.id
 
+  %hr
 
 - unless @completed.blank?
-  %hr
   %h1 completed assignments
    
   %table.assignments
@@ -62,3 +63,19 @@
         %td none
         %td= assignment.frequency || 'no repeat'
 
+  %hr
+
+- unless @confirmations.blank?
+  %h1 completed assignments
+  %table.assignments
+    %tr
+      %th Purpose
+      %th Completor
+      %th Confirm or Reject
+    - @confirmations.each do |assignment|
+      %tr
+        %td= assignment.purpose
+        %td= assignment.completor || 'ghost'
+        %td
+          = link_to image_tag('58.png'), "/assignments/#{assignment.id}/confirm"
+          = link_to image_tag('46.png'), "/assignments/#{assignment.id}/reject"  
