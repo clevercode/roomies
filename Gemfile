@@ -17,6 +17,7 @@ gem 'barista', '~> 1.0'
 gem "therubyracer-heroku"
 gem 'mongoid', '>= 2.0.0'
 gem 'bson_ext', '>= 1.2.4'
+gem 'mongoid_rails_migrations', '>=0.0.2'
 gem 'jquery-rails'
 gem 'rails3-jquery-autocomplete'
 gem 'haml-rails'

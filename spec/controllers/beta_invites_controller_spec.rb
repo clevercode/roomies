@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe BetaInviteController do
+describe BetaInvitesController do
 
   describe "GET 'new'" do
     it "should be successful" do

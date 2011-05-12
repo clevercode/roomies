@@ -25,11 +25,12 @@ class Assignment
   scope :completed, where(:completed_at.ne => nil).desc(:completed_at)
   scope :house, ->(house) { where(:house_id => house.id) }
 
-  belongs_to :house, :dependent => :delete
+  belongs_to :house  
   belongs_to :category
 
   has_and_belongs_to_many :assignees, :stored_as => :array, :class_name => "User"
   belongs_to :commissioner, :class_name => "User"
+  belongs_to :completor, :class_name => "User"
   belongs_to :validator, :class_name => "User"
 
   validates :purpose, :presence => true

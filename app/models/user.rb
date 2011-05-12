@@ -1,31 +1,33 @@
 class User 
   include Mongoid::Document
+  include Mongoid::Timestamps::Created
   require 'digest/md5'
 
-  validates_presence_of :invitation_id, :message => 'is required'
-  validates_uniqueness_of :invitation_id
+  # validates_presence_of :invitation_id, :message => 'is required'
+  #invites validates_uniqueness_of :invitation_id
   
-  before_create :set_invitation_limit
+  before_create :set_beta_invite_limit
   after_create :send_welcome_email
 
   # Fields
   field :name, :type => String
-  field :created_at, :type => DateTime
+  # field :created_at, :type => DateTime
   field :points_count, :type => Integer
   field :locale, :type => String, :default => "en"
   field :calendar, :type => String, :default => "centric"
-  field :invitation_id, :type => String
-  field :invitation_limit, :type => Integer
+  field :beta_invite_limit, :type => Integer
+  field :beta, :type => Boolean, :default => false
 
   # Associations
   has_many :authentications, :dependent => :delete # User has access to an array of Authentications that have its id for user_id
   belongs_to :house # => User has a house_id
-  has_many :assignees # User has access to an array of Assignees that have its id for user_id
+  has_many :assignments, :foreign_key => 'assignee_ids'
+  # has_many :assignees # User has access to an array of Assignees that have its id for user_id
   has_many :rewards
   has_many :achievements
 
-  has_many :sent_invitations, :class_name => 'Invitation', :foreign_key => 'sender_id'
-  belongs_to :invitations
+  has_many :sent_invites, :class_name => 'BetaInvite', :foreign_key => 'sender_id'
+  belongs_to :beta_invites
 
   # Devise
   # Include default devise modules. Others available are:
@@ -140,8 +142,8 @@ class User
     UserMailer.welcome_email(self).deliver
   end
 
-  def set_invitation_limit
-    self.invitation_limit = 3
+  def set_beta_invite_limit
+    self.beta_invite_limit = 3
   end
   
   protected

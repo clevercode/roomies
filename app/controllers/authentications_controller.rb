@@ -52,7 +52,7 @@ class AuthenticationsController < ApplicationController
     redirect_to authentications_url
   end
 
-  def create_new_omniauwth_user(omniauth)
+  def create_new_omniauth_user(omniauth)
     user = User.where(:email => omniauth['user_info']['email']).first
     unless user
       user = User.new

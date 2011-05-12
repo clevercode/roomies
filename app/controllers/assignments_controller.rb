@@ -39,6 +39,7 @@ class AssignmentsController < ApplicationController
 
       house = current_user.house
       assignment = house.assignments.build(params[:assignment])
+      assignment.commissioner = current_user
       
       if assignment.save
         reward(nil, 2)
@@ -77,6 +78,7 @@ class AssignmentsController < ApplicationController
     @assignment = Assignment.find(params[:id])
     if @assignment.completed_at.nil?
       @assignment.completed_at = DateTime.now
+      @assignment.completor_id = current_user.id
       if @assignment.save
         reward(nil,3)
         flash[:notice] = t(:completed, :scope => :assignments)

@@ -16,8 +16,8 @@
 
 #upcoming_filters
   %ul#assignee_filters
-    %li.left.active= t '.my_assignments'
-    %li.right= t '.everyones_assignments'
+    %li.left.active{ :data => { :type => "my" } }= t '.my_assignments'
+    %li.right{ :data => { :type => "all" }}= t '.everyones_assignments'
   %ul#assignment_filters
     %li.left.active= t '.all'
     %li#task_filter= t '.tasks'
