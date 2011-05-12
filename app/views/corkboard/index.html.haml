@@ -1,7 +1,14 @@
 - @main_class = 'corkboard'
 
 = render :partial => 'notifications'
-- unless @my_past_due.empty? 
+- unless @my_confirmations.empty?
+  .notice
+    %p
+      Some of the assignments you created have been marked as completed. Would like to conform those now?
+    %ul
+      - @my_confirmations.each do |assignment|
+        %li= assignment.purpose
+- unless @my_past_due.empty?
   .error
     %p 
       You have past due assignments and that's just no good. Click here to view them &rarr; 
@@ -16,7 +23,7 @@
     %li#task_filter= t '.tasks'
     %li.right#expense_filter= t '.expenses'
 
-.corkboard_view.current
+.corkboard_view.my.current
   .upcoming_lists.content
     = render :partial => "upcoming", :locals => { :day_of_the_week => t(".today"), :assignments => @my_todays_assignments }
     = render :partial => "upcoming", :locals => { :day_of_the_week => t(".tomorrow"), :assignments => @my_tomorrows_assignments }
@@ -26,7 +33,7 @@
   = render :partial => "centric_calendar", :locals => { :assignments => @my }
   = render :partial => "monthly_calendar", :locals => { :assignments => @my }
             
-.corkboard_view
+.corkboard_view.all
   .upcoming_lists.content
     = render :partial => "upcoming", :locals => { :day_of_the_week => t(".today"), :assignments => @all_todays_assignments }
     = render :partial => "upcoming", :locals => { :day_of_the_week => t(".tomorrow"), :assignments => @all_tomorrows_assignments }

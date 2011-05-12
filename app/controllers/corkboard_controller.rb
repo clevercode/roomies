@@ -10,6 +10,11 @@ class CorkboardController < ApplicationController
     end
     @my  = @all.where(assignee_ids: [current_user.id]).and(completed_at: nil)
     
+    @my_confirmations          = Assignment.house(current_user.house)
+                                   .where(commissioner_id: current_user.id)
+                                   .and(:completed_at.exists => true)
+                                   .excludes(assignee_ids: [current_user.id])
+    
     @my_past_due               = @my.past_due
     @my_tasks                  = @my.where(type: "task")
     @my_expenses               = @my.where(type: "expense")
