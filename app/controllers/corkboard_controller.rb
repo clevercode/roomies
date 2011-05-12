@@ -8,7 +8,7 @@ class CorkboardController < ApplicationController
     else
       @all = Assignment.house(current_user.house)
     end
-    @my  = @all.where(assignee_ids: [current_user.id])
+    @my  = current_user.assignments
     
     @my_past_due               = @my.past_due
     @my_tasks                  = @my.where(type: "task")
