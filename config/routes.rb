@@ -35,5 +35,6 @@ Roomies::Application.routes.draw do
   match '/reject_invitations'           => 'users#reject_invitations'
   match '/assignments/day/:day'         => 'assignments#day'
   match '/past_due'                     => 'assignments#past_due'
+  match '/beta_sign_up/:invite_token'   => 'users#new', :as => :beta_sign_up
 
 end
