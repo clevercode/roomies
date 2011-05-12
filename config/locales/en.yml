@@ -32,6 +32,9 @@ en:
   # general
   add_assignment: "Add Assignment"
   build_house: "Build a House"
+
+  #beta
+  beta_invite_request_sent: "Thank you for signing up, we'll give you a shout out when beta is ready."
   
   # home
   home:
@@ -51,6 +54,7 @@ en:
       play_copy: "Complete tasks and expenses as expected, and you will earn points and receive achievements badges that reward you for being a good roomie."
       save: "Save"
       save_copy: "Stay on top of bills, receive reminders in due time and keep an eye on what you spend. It saves you time, and we all know what time is. Relative...?"
+      sign_up_beta: "Sign Up"
 
   # corkboard
   corkboard:
