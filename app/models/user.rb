@@ -41,7 +41,7 @@ class User
   validates :beta_invite_id, :presence => true
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :email, :password, :remember_me, :locale, :calendar
+  attr_accessible :name, :email, :password, :remember_me, :locale, :calendar, :invite_token
 
   ###
   # user methods
