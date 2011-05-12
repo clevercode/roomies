@@ -2,7 +2,6 @@ class BetaInvite
   include Mongoid::Document
   include Mongoid::Timestamps
   
-  field :sender_id, :type => String
   field :recipient_email, :type => String
   field :token, :type => String
 
