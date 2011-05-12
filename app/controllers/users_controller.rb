@@ -20,7 +20,8 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+    @user = User.new(:invite_token => params[:invite_token])
+    @user.email = @user.beta_invite.recipient_email if @user.beta_invite
     respond_with(@user)
   end
 
