@@ -5,12 +5,12 @@ class AssignmentsController < ApplicationController
   autocomplete :category, :category_name
 
   def index
-    if !current_user.house.blank?
-      @assignments = Assignment.house(current_user.house)
+    unless current_user.house.blank?
+      @assignments = current_user.house.assignments
      
-      @due = @assignments.due
-      @past_due = @assignments.past_due
-      @completed = @assignments.completed
+      @due           = @assignments.due
+      @past_due      = @assignments.past_due
+      @completed     = @assignments.completed
 
       respond_with @assignments
 
@@ -88,7 +88,7 @@ class AssignmentsController < ApplicationController
       end
     else
       flash[:notice] = t(:already_completed, :scope => :assignments)
-      respond_with(@assignment)
+      respond_with @assignment
     end
   end
 
@@ -100,7 +100,39 @@ class AssignmentsController < ApplicationController
     else
       @assignments = @assignments.where(type: "expense")
     end
-    respond_with(@assignments)
+    respond_with @assignments
+  end
+  
+  def confirmations
+    unless current_user.house.blank?
+      @assignments   = current_user.house.assignments
+      @confirmations = @assignments
+                         .where(commissioner_id: current_user.id)
+                         .and(:completed_at.ne => nil)
+                         .excludes(completor_id: current_user.id)
+                         
+      render :index
+    end
+  end
+  
+  def confirm
+    assignment = Assignment.find(params[:id])
+    assignment.validated_at = Time.now
+    assignment.validator    = current_user
+    if assignment.save
+      redirect_to '/corkboard', notice: 'Assignment successfully confirmed.'
+    end
+    
+  end
+
+  def reject
+    assignment = Assignment.find(params[:id])
+    assignment.completor = nil
+    assignment.completed_at = nil
+    if assignment.save
+      redirect_to '/corkboard', notice: 'Assignment successfully rejected.'
+    end
+    
   end
  
 end
