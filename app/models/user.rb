@@ -38,6 +38,8 @@ class User
   validates :email, :presence => true,
                     :uniqueness => { :case_sensitive => false }
 
+  validates :beta_invite_id, :presence => true
+
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :email, :password, :remember_me, :locale, :calendar
 
