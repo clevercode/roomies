@@ -28,12 +28,7 @@ class BetaInvite
   end
 
   def generate_token
-    self.token = randomly_pick(1)
-  end
-
-  def randomly_pick(number)
-    tokens = ["funky-monkey-panties", "popular-pinata-pasta", "row-row-row-your-boat"]
-    tokens.sort_by{ rand }.slice(0...number)
+    self.token = Digest::SHA1.hexdigest([Time.now, rand].join)
   end
 
   def decrement_sender_count
