@@ -1,2 +1,4 @@
-%h1 BetaInvite#new
-%p Find me in app/views/beta_invite/new.html.haml
+- if user_signed_in?
+  = simple_form_for @invite do |f|
+    = f.input :recipient_email, :label => "Friend's Email"
+    = f.submit 'Send Invite'
