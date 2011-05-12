@@ -1,4 +1,5 @@
 = simple_form_for @user do |f|
+  = f.input :invite_token, :as => :hidden
   = f.input :name
   = f.input :email
   = f.input :password, :required => false
