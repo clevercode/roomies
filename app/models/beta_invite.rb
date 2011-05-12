@@ -23,7 +23,7 @@ class BetaInvite
   private
   def sender_has_invites
     unless sender.beta_invite_limit > 0
-      errors.add_to_base('You have sent out all your invites for now.')
+      errors.add(:base, 'You have sent out all your invites for now.')
     end
   end
 
