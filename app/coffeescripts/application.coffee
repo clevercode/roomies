@@ -158,17 +158,36 @@ $('.edit').live 'click', ->
 $('.header_bar a').bind 'click', ->
   unless $(this).hasClass('active')
     $header_bar = $(this).parent().parent().siblings('.header_bar')
-    $header_bar.show().siblings('.header_bar').hide()
+    $('.header_bar').hide()
+    if $header_bar.hasClass('upcoming')
+      $('.header_bar.upcoming').show()
+    else
+      $('.header_bar').show()
+      $('.header_bar.upcoming').hide()
   
     # // Checks to see if the we want to show the full on calendar or not.
     if $header_bar.hasClass('upcoming')
       $('.calendar').slideUp _slideUpSpeed, ->
         $('.centric').slideDown _slideDownSpeed
         stickyFooter()
+        
+      if $('.corkboard_view.current').hasClass('all')
+        $('.corkboard_view.my .calendar').hide()
+        $('.corkboard_view.my .centric').show()
+      else
+        $('.corkboard_view.all .calendar').hide()
+        $('.corkboard_view.all .centric').show()
     else
       $('.centric').slideUp _slideUpSpeed, ->
         $('.calendar').slideDown _slideDownSpeed
         stickyFooter()
+        
+      if $('.corkboard_view.current').hasClass('all')  
+        $('.corkboard_view.my .centric').hide()
+        $('.corkboard_view.my .calendar').show()
+      else  
+        $('.corkboard_view.all .centric').hide()
+        $('.corkboard_view.all .calendar').show()
   
   return false
   
