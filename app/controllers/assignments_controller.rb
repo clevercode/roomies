@@ -94,7 +94,8 @@ class AssignmentsController < ApplicationController
 
   def day
     day = Date.parse(params[:day])
-    @assignments = Assignment.where(due_date: day, completed_at: nil)
+    all = Assignment.where(due_date: day, completed_at: nil)
+    my = current_user.assignments.where(due_date: day, completed_at: nil) 
     if params[:type] == "task"
       @assignments = @assignments.where(type: "task")
     else
