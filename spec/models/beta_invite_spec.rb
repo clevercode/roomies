@@ -1,5 +1,20 @@
 require 'spec_helper'
 
 describe BetaInvite do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before(:each) do
+    @user = User.create!(
+      :name => "Smoggle McSmoggleson",
+      :email => "smoggle@smoggleson.com",
+      :password => "muffins"
+    )
+  end
+
+  it 'should create an invite given proper data' do
+    invite = BetaInvite.new(
+      :recipient_email => "bob@clevercode.net",
+      :sender_id => @user.id,
+      :token => "captain-jack-sparrow")
+
+    invite.should be_valid
+  end
 end
