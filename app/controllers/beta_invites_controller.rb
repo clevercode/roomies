@@ -8,6 +8,7 @@ class BetaInvitesController < ApplicationController
 
   def create
     @invite = BetaInvite.new(params[:beta_invite])
+    @invite.sender = current_user
 
     if @invite.save
       flash[:notice] = t('.beta_invite_sent')
