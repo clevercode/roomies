@@ -23,8 +23,8 @@
     = render :partial => "upcoming", :locals => { :day_of_the_week => l(Date.today + 2, :format => :day), :assignments => @my_next_days_assignments }
 
   = render :partial => "header_bar"
-  = render :partial => "centric_calendar", :locals => { :assignments => @my }
-  = render :partial => "monthly_calendar", :locals => { :assignments => @my }
+  = render :partial => "centric_calendar", :locals => { :assignments => @my, :all => false }
+  = render :partial => "monthly_calendar", :locals => { :assignments => @my, :all => false }
             
 .corkboard_view
   .upcoming_lists.content
@@ -33,7 +33,7 @@
     = render :partial => "upcoming", :locals => { :day_of_the_week => l(Date.today + 2, :format => :day), :assignments => @all_next_days_assignments }
 
   = render :partial => "header_bar"
-  = render :partial => "centric_calendar", :locals => { :assignments => @all }
-  = render :partial => "monthly_calendar", :locals => { :assignments => @all }
+  = render :partial => "centric_calendar", :locals => { :assignments => @all, :all => true }
+  = render :partial => "monthly_calendar", :locals => { :assignments => @all, :all => true }
 
 %ul.detail_day_view
