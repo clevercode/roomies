@@ -34,6 +34,7 @@ en:
   build_house: "Build a House"
 
   #beta
+  beta_invite_sent: "We just sent a little note to your friend. They should receive it soon."
   beta_invite_request_sent: "Thank you for signing up, we'll give you a shout out when beta is ready."
   
   # home
