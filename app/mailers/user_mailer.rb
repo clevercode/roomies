@@ -32,4 +32,14 @@ class UserMailer < ActionMailer::Base
       }
     end
   end
+
+  def beta_invite(invite, url)
+    @invite = invite
+    @url = url
+    mail(
+      :to      => invite.recipient_email,
+      :subject => "Hey look, a Roomies beta invite!",
+    )
+    invite.update_attributes(sent_at: Time.now)
+  end
 end
