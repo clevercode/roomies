@@ -1,4 +1,4 @@
-class BetaInviteController < ApplicationController
+class BetaInvitesController < ApplicationController
 
   respond_to :html
 
