@@ -27,7 +27,7 @@ class User
   has_many :achievements
 
   has_many :sent_invites, :class_name => 'BetaInvite', :foreign_key => 'sender_id'
-  belongs_to :beta_invites
+  belongs_to :beta_invite
 
   # Devise
   # Include default devise modules. Others available are:
