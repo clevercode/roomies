@@ -28,7 +28,9 @@ class Assignment
   belongs_to :house  
   belongs_to :category
 
-  has_and_belongs_to_many :assignees, :stored_as => :array, :class_name => "User"
+  has_and_belongs_to_many :assignees, :class_name => "User"
+
+  # has_and_belongs_to_many :assignees, :stored_as => :array, :class_name => "User"
   belongs_to :commissioner, :class_name => "User"
   belongs_to :completor, :class_name => "User"
   belongs_to :validator, :class_name => "User"
