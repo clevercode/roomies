@@ -56,6 +56,7 @@ class AuthenticationsController < ApplicationController
     user = User.where(:email => omniauth['user_info']['email']).first
     unless user
       user = User.new
+      user.save
       user.apply_omniauth(omniauth)
     end
     user
