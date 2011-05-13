@@ -1,11 +1,14 @@
 - @main_class = 'corkboard'
 
 = render :partial => 'notifications'
-- unless @my_past_due.empty? 
+- unless @my_confirmations.empty?
+  .notice
+    %p
+      = link_to 'Your roomies finally completed some of the assignments you gave them! Woo hoo! Click here to confirm them.', '/confirmations', class: 'ajax'
+- unless @my_past_due.empty?
   .error
     %p 
-      You have past due assignments and that's just no good. Click here to view them &rarr; 
-      = link_to 'past due assignments.', assignments_path
+      = link_to 'You have past due assignments and that\'s just no good. Click here to view them.', assignments_path
 
 #upcoming_filters
   %ul#assignee_filters
@@ -16,7 +19,7 @@
     %li#task_filter= t '.tasks'
     %li.right#expense_filter= t '.expenses'
 
-.corkboard_view.current
+.corkboard_view.my.current
   .upcoming_lists.content
     = render :partial => "upcoming", :locals => { :day_of_the_week => t(".today"), :assignments => @my_todays_assignments }
     = render :partial => "upcoming", :locals => { :day_of_the_week => t(".tomorrow"), :assignments => @my_tomorrows_assignments }
@@ -26,7 +29,7 @@
   = render :partial => "centric_calendar", :locals => { :assignments => @my, :all => false }
   = render :partial => "monthly_calendar", :locals => { :assignments => @my, :all => false }
             
-.corkboard_view
+.corkboard_view.all
   .upcoming_lists.content
     = render :partial => "upcoming", :locals => { :day_of_the_week => t(".today"), :assignments => @all_todays_assignments }
     = render :partial => "upcoming", :locals => { :day_of_the_week => t(".tomorrow"), :assignments => @all_tomorrows_assignments }

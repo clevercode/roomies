@@ -31,7 +31,7 @@ $(window).bind 'resize', ->
   stickyFooter()
 
 # // Hides the flash notice if it's visible.
-$('#flash').bind 'click', ->
+$('#flash').live 'click', ->
   $('#flash').fadeOut( ->
     stickyFooter()
   )
@@ -130,17 +130,23 @@ $('.list .assignment').live 'mouseover', ->
     $(this)
       .children('ul')
         .children('li:eq(1)')
-        .stop(true)
-        .animate {paddingRight:'0px'}, _fadeSpeed, ->
-          $(this).next().show().animate {opacity:1}, _fadeSpeed
+          .stop(true)
+          .animate {paddingRight:'0px'}, _fadeSpeed, ->
+            $(this).next().show().animate {opacity:1}, _fadeSpeed
+        .siblings('.type')
+          .removeClass('type')
+          .addClass('check')
         
 $('.list .assignment').live 'mouseleave', ->
     $(this)
       .children('ul')
         .children('li:eq(2)')
-        .stop(true)
-        .animate {opacity:0}, _fadeSpeed, ->
-          $(this).hide().prev().animate {paddingRight:'25px'}, _fadeSpeed
+          .stop(true)
+          .animate {opacity:0}, _fadeSpeed, ->
+            $(this).hide().prev().animate {paddingRight:'25px'}, _fadeSpeed
+        .siblings('.check')
+          .removeClass('check')
+          .addClass('type')
 
 # // Edit assignment on edit icon click.
 $('.edit').live 'click', ->
@@ -152,17 +158,36 @@ $('.edit').live 'click', ->
 $('.header_bar a').bind 'click', ->
   unless $(this).hasClass('active')
     $header_bar = $(this).parent().parent().siblings('.header_bar')
-    $header_bar.show().siblings('.header_bar').hide()
+    $('.header_bar').hide()
+    if $header_bar.hasClass('upcoming')
+      $('.header_bar.upcoming').show()
+    else
+      $('.header_bar').show()
+      $('.header_bar.upcoming').hide()
   
     # // Checks to see if the we want to show the full on calendar or not.
     if $header_bar.hasClass('upcoming')
       $('.calendar').slideUp _slideUpSpeed, ->
         $('.centric').slideDown _slideDownSpeed
         stickyFooter()
+        
+      if $('.corkboard_view.current').hasClass('all')
+        $('.corkboard_view.my .calendar').hide()
+        $('.corkboard_view.my .centric').show()
+      else
+        $('.corkboard_view.all .calendar').hide()
+        $('.corkboard_view.all .centric').show()
     else
       $('.centric').slideUp _slideUpSpeed, ->
         $('.calendar').slideDown _slideDownSpeed
         stickyFooter()
+        
+      if $('.corkboard_view.current').hasClass('all')  
+        $('.corkboard_view.my .centric').hide()
+        $('.corkboard_view.my .calendar').show()
+      else  
+        $('.corkboard_view.all .centric').hide()
+        $('.corkboard_view.all .calendar').show()
   
   return false
   
@@ -221,6 +246,32 @@ $('#upcoming_filters #assignee_filters li').live 'click', ->
       else
         $this.addClass('current')
     )
+    
+$('.check').live 'click', ->
+  $this      = $(this)
+  id         = $this.data('assignment_id')
+  $assignment = $this.parent('ul').parent('li')
+  
+  $.ajax
+    type: 'post',
+    url: "/assignments/#{id}/complete",
+    success: (data) ->
+      $assignment.slideUp _slideUpSpeed
+      $("<div id='flash'>
+           <div class='reward'>
+             <p>Congratulations! You completed an assignment! You get cookies.</p>
+           </div>
+         </div>"
+      ).css('opacity',0).animate({opacity:1}).insertBefore('.notifications')
+      if $assignment.siblings().length == 0
+        $("<li class='assignment'>
+             <ul>
+               <li class='purpose'>So far so good...</li>
+             </ul>
+           </li>"
+        ).appendTo $assignment.parent('ul')
+  return false
+
 
 # =========================================
 # ========== NEW ASSIGNMENT JAZZ ==========

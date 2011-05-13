@@ -14,8 +14,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @tasks = @user.assignments.where(type: "task")
-    @expenses = @user.assignments.where(type: "expense")
+    @tasks = @user.assignments.where(type: "task", completed_at: nil)
+    @expenses = @user.assignments.where(type: "expense", completed_at: nil)
     respond_with(@user)
   end
 

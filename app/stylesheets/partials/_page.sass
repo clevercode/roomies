@@ -88,10 +88,10 @@ body
 @import header
 
 body.assignments
-  #main.all_assignments
+  #main.assignments
     h1
       border: none
-    table
+    table.assignments
       margin: 0 10px
       tr
         +border-radius(5px)
@@ -122,9 +122,6 @@ body.assignments
         &:first-child
           line-height: 2
           +background-image(linear-gradient(saturate(lighten($blue, 23%), 20%), saturate(lighten($blue, 13%), 25%)))
-
-
-          
 
 #container, .container
   width: 960px

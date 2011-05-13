@@ -1,17 +1,17 @@
 .list
   %h2= day_of_the_week
-  %ul
+  %ul.semantic_shmantic
     - unless assignments.empty?
       - assignments.each do |assignment|
         %li.assignment
           %ul
             - if assignment.type == "task"
-              %li.type{ :title => "task" }
+              %li.type{ :title => "task", :data => { :assignment_id => assignment.id } }
             - else
-              %li.type{ :title => "expense" }
-            %li.purpose= link_to assignment.purpose, assignment_url(assignment)
+              %li.type{ :title => "expense", :data => { :assignment_id => assignment.id } }
+            %li.purpose= link_to assignment.purpose, assignment_url(assignment), :class => 'ajax'
             %li.edit{ :data => { :assignment_id => assignment.id } }
     - else
-      %li{ :class => "task" } 
+      %li.assignment
         %ul
           %li.purpose= t '.no_assignments'

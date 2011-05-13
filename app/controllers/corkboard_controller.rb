@@ -3,12 +3,17 @@ class CorkboardController < ApplicationController
   before_filter :authenticate_user!
   def index
 
-    unless current_user.house
-      @all = Assignment.house(House.create(:name => "demo"))
+    if not current_user.house
+      @all = nil
     else
-      @all = Assignment.house(current_user.house)
+      @all = current_user.house.assignments.where(completed_at: nil)
     end
-    @my  = current_user.assignments
+    @my  = current_user.assignments.where(completed_at: nil)
+    
+    @my_confirmations          = current_user.house.assignments
+                                   .where(commissioner_id: current_user.id)
+                                   .and(:completed_at.ne => nil)
+                                   .excludes(completor_id: current_user.id)
     
     @my_past_due               = @my.past_due
     @my_tasks                  = @my.where(type: "task")
