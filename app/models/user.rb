@@ -16,15 +16,14 @@ class User
   field :beta, :type => Boolean, :default => false
 
   # Associations
-  has_many :authentications, :dependent => :delete # User has access to an array of Authentications that have its id for user_id
   belongs_to :house # => User has a house_id
+  has_many :authentications, :dependent => :delete
   has_many :assignments, :foreign_key => 'assignee_ids'
-  # has_many :assignees # User has access to an array of Assignees that have its id for user_id
   has_many :rewards
   has_many :achievements
 
   has_many :sent_invites, :class_name => 'BetaInvite', :foreign_key => 'sender_id'
-  belongs_to :beta_invite
+  has_one :beta_invite
 
   # Devise
   devise  :invitable, :database_authenticatable, :registerable, 
@@ -33,7 +32,7 @@ class User
   validates :email, :presence => true,
                     :uniqueness => { :case_sensitive => false }
 
-  validates :beta_invite_id, :presence => true, :uniqueness => true
+  validates :beta_invite, :presence => true
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :email, :password, :remember_me, :locale, :calendar, :invite_token
@@ -139,7 +138,8 @@ class User
   end
 
   def invite_token=(token)
-    self.beta_invite = BetaInvite.where(token: token).first
+    invite = BetaInvite.where(token: token).first
+    self.beta_invite = invite
   end
 
   private

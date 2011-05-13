@@ -6,7 +6,7 @@ class BetaInvite
   field :token, :type => String
 
   belongs_to :sender, :class_name => 'User'
-  has_one :recipient, :class_name => 'User'
+  belongs_to :recipient, :class_name => 'User'
 
   validates :recipient_email, :presence => true,
                               :uniqueness => true,
