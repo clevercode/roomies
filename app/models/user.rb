@@ -27,8 +27,6 @@ class User
   belongs_to :beta_invite
 
   # Devise
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable, :lockable and :timeoutable
   devise  :invitable, :database_authenticatable, :registerable, 
           :recoverable, :rememberable, :trackable, :validatable
 
