@@ -1,0 +1,42 @@
+en:
+  errors:
+    messages:
+      not_found: "introuvable"
+      already_confirmed: "a déjà été confirmé"
+      not_locked: "n'a pas été verouillé"
+
+  devise:
+    failure:
+      unauthenticated: "Vous devez vous connectez avant de faire ça. Promis, on mord pas."
+      unconfirmed: "Vous devez confirmer votre compte avant de continuer."
+      locked: "Votre compte est verouillé."
+      invalid: "Email ou mot de passe invalide."
+      invalid_token: "Jeton d'identification invalide."
+      timeout: 'Votre session a expiré, merci de vous connecter à nouveau pour continuer.'
+      inactive: "Votre compte n'a pas encore été activé."
+    sessions:
+      signed_in: "Salut, content de vous revoir !"
+      signed_out: "Á bientôt ;-)"
+    passwords:
+      send_instructions: "Vous allez recevoir un email avec des instructions vous indiquant comment redéfinir votre mot de passe dans quelques minutes."
+      updated: "Votre mot de passe a été modifié avec succès. Vous êtes connecté."
+      new:
+        enter_email: "ex: monemail@domaine.com"
+
+    confirmations:
+      send_instructions: "Vous allez recevoir un email avec des instructions vous indiquant comment confirmer votre compte dans quelques minutes."
+      confirmed: "Votre compte a été confirmé avec succès. Vous êtes connecté."
+    registrations:
+      signed_up: "Salut, bienvenue sur Roomies. Content que vous ayez pu nous rejoindre."
+      updated:
+      destroyed: "Adieu ! Votre compte a été détruit comme vous l'avez demandé. On éspère quand même vous revoir un de ces jours."
+    unlocks:
+      send_instructions: "Vous allez recevoir un email avec des instructions vous indiquant comment déverouiller votre compte dans quelques minutes."
+      unlocked: "Votre compte a été déverouillé avec succès. Vous êtes connecté."
+    mailer:
+      confirmation_instructions:
+        subject: "Instructions de confirmation"
+      reset_password_instructions:
+        subject: "Instruction pour remise à zéro de mot de passe"
+      unlock_instructions:
+        subject: "Instruction pour déverouillage de compte"

@@ -22,6 +22,8 @@ en:
   back_to_assignments: "Back to Assignments"
   back_to_corkboard: "Back to Corkboard"
 
+  point: "point"
+
   # footer
   all_rights_reserved: "All Rights Reserved."
   about_us: "About Us"
@@ -54,7 +56,7 @@ en:
       play: "Play"
       play_copy: "Complete tasks and expenses as expected, and you will earn points and receive achievements badges that reward you for being a good roomie."
       save: "Save"
-      save_copy: "Stay on top of bills, receive reminders in due time and keep an eye on what you spend. It saves you time, and we all know what time is. Relative...?"
+      save_copy: "Stay on top of bills, receive reminders in due time and keep an eye on what you spend. It saves you time, and we all know that time is... relative?"
       sign_up_beta: "Sign Up"
 
   # corkboard

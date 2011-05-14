@@ -1,16 +1,32 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+# French translations for Ruby on Rails
+# by Christian Lescuyer (christian@flyingcoders.com)
+# contributors:
+#  - Sebastien Grosjean - ZenCocoon.com
+#  - Bruno Michel - http://github.com/nono
+#  - Tsutomu Kuroda - http://github.com/kuroda (t-kuroda@oiax.jp)
 
 fr:
   # forms & actions
   sign_in: "Connexion"
   sign_out: "Déconnexion"
+  signed_in: "Content de vous revoir sur Roomies!"
   sign_up: "Inscription"
   or_sign_in_with: "ou connectez-vous avec"
   or: "ou"
   forgot_password: "Oublié votre mot de passe?"
   email: "Email"
   password: "Mot de passe"
+  house_updated: "Votre maison a été mise à jour."
+  house_created: "Votre maison a été créée."
+  house_destroyed: "Vous avez déménagé de votre maison, bonne chance pour trouver la prochaine ;-)"
+  house_joined: "Vous avez rejoint une nouvelle maison, dites bonjour à vous nouveaux roomies pour nous."
+  house_join_fail: "On vous a perdu sur le chemin de la nouvelle maison à laquelle vous avez été invité, envoyez nous un message et on s'en occupera aussi vite que possible. Pardon."
+  house_join_declined: "Vous avez refusé de rejoindre une maison à laquelle vous aviez été invité. Ils vont faire la tronche, mais on peut pas faire plaisir à tout le monde."
+
+  back_to_assignments: "Retour aux Tâches"
+  back_to_corkboard: "Retour au Corkboard"
+
+  point: "point"
 
   # footer
   all_rights_reserved: "Tous droits réservés."
@@ -23,6 +39,9 @@ fr:
   add_assignment: "Ajouter un tâche"
   build_house: "Construire une Maison"
 
+  #beta
+  beta_invite_sent: "On vient d'envoyer une petite note à votre ami. Ca devrait leur parvenir très bientôt."
+  beta_invite_request_sent: "Sympa de vous être inscrit, on vous previendra dès que la beta sera prête."
   
   # home
   home:
@@ -33,15 +52,16 @@ fr:
       easier: "facilement"
       email_example: "exemple@domaine.com"
       or_sign_up_with: "or sign up with"
-      free_for_30_days: "Free for 30 days, cheap after"
-      type_your_password: "choose your own password..."
-      generate_one: "let us generate one for you"
+      free_for_30_days: "Gratuit pour 30 jours, abordable après ça."
+      type_your_password: "choisissez vôtre propre mot de passe..."
+      generate_one: "laissez-nous vous en fabriquer un"
       relax: "Relax"
-      relax_copy: "At school, work, home, or out in the world, Roomies makes it easy to keep it touch with your roommates and the stuff you have to do everyday."
-      play: "Play"
-      play_copy: "Complete tasks and expenses as expected, and you will earn points and receive achievements badges that reward you for being a good roomie."
-      save: "Save"
-      save_copy: "Stay on top of bills, receive reminders in due time and keep an eye on what you spend. It saves you time, and we all know what time is. Relative...?"
+      relax_copy: "Á l'école, au boulot, à la maison ou n'importe où dans le monde, Roomies vous permet de rester facilement en contact avec vos collocs et les tâches de tous les jours."
+      play: "Sympa"
+      play_copy: "Complétez vos tâches et vos dépenses comme prévu et vous accumulerez au fur et à mesure des points. Vous receverez des récompenses vous inçitant à rester un bon colloc."
+      save: "Utile"
+      save_copy: "Restez à la surface de vos piles de factures grace aux notifications et rappels en temps et en heure. Ça vous épargne du temps, et on sait tous ce que le temps c'est... relatif?"
+      sign_up_beta: "Inscription"
 
   # corkboard
   corkboard:
@@ -58,165 +78,231 @@ fr:
       upcoming: "Bientôt"
       monthly: "Mensuel"
     upcoming:
-      no_assignments: "So far so good..."
+      no_assignments: "Jusqu'ici tout va bien..."
 
   # assignments
   assignments:
-    completed: "Nice job, this assignment was marked as completed!"
-    cant_complete: "We somehow couldn't mark this assignment as complete, I blame Narwhals. But drop us a line, we'll fix it and give you a gift."
-    already_completed: "This assignments was already completed, you sneaky face."
+    completed: "Bien joué, cette tâche est complétée !"
+    cant_complete: "Nous n'avons pas pu compléter cette tâche, surement faute de Narwhals. Envoyez nous un message, on s'en occupera et on vous fera un cadeau."
+    already_completed: "Cette tâche avait déjà été complétée, c'est malin."
   
   # profile
   profile:
-    youre_homeless: "Oh no! It seems you're homeless! Want to "
-    build_house: "build a house"
-    homeless_roomie: "That roomie is homeless."
-    no_tasks: "No tasks"
-    name: "Name"
-    progress: "Progress"
-    next_level: "Next level"
-    more_achievements: "More achievements"
-    achievements: "Achievements"
-    roomie_battle: "Roomie Battle"
-    you: "You"
-    task: "Task"
-    expense: "Expense"
-    edit_profile: "Edit profile"
+    youre_homeless: "Oh la la ! On dirait que vous avez plus de maison ! Vous voulez "
+    build_house: "créer une maison"
+    homeless_roomie: "Ce roomie est sans-maison."
+    no_tasks: "Aucune tâche"
+    name: "Nom"
+    progress: "Progrès"
+    next_level: "Prochain niveau"
+    more_achievements: "Plus de récompenses"
+    achievements: "Récompenses"
+    roomie_battle: "Bataille de Roomies"
+    you: "Vous"
+    task: "Tâche"
+    expense: "Dépense"
+    edit_profile: "Éditer votre profil"
     points: "points"
-    hi_there: "Hi there"
-    new_roomie: "new roomie"
+    hi_there: "Salut"
+    new_roomie: "nouveau roomie"
 
 
   # rewards
   rewards:
-    sessions_create: "signing in"
-    assignments_create: "creating an assignment"
-    assignments_complete: "completing an assignment"
+    sessions_create: "se connectant"
+    assignments_create: "creant une tâche"
+    assignments_complete: "complétant une tâche"
 
   hello: 'Hello world'
-  auth_success: 'Authentication successful.'
-  auth_fail: 'Authentication failed.'
-  auth_destroy: 'Successfully destroyed authentication.'
-  welcome: 'Welcome.'
+  auth_success: 'Identification réussie.'
+  auth_fail: 'Identification ratée.'
+  auth_destroy: 'Identification détruite avec succès.'
+  welcome: 'Bienvenue.'
   formtastic:
     placeholders:
       user:
-        email: "youremail@domain.com"
-    submit: "Submit"
+        email: "monemail@domaine.com"
+    submit: "Ok"
 
   date:
     formats:
-      default: "%B %d, %Y"
-      short: "%b %d"
-      long: "%A %B %d, %Y"
+      default: "%d/%m/%Y"
+      short: "%e %b"
+      long: "%e %B %Y"
       day: "%A"
       short_day: "%a"
 
+    day_names: [dimanche, lundi, mardi, mercredi, jeudi, vendredi, samedi]
+    abbr_day_names: [dim, lun, mar, mer, jeu, ven, sam]
 
-    day_names: [Dimanche, Lundi, Mardi, Mercredi, Jeudi, Vendredi, Samedi]
-    abbr_day_names: [Sun, Mon, Tue, Wed, Thu, Fri, Sat]
-
-    month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
-    abbr_month_names: [~, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+    month_names: [~, janvier, février, mars, avril, mai, juin, juillet, août, septembre, octobre, novembre, décembre]
+    abbr_month_names: [~, jan., fév., mar., avr., mai, juin, juil., août, sept., oct., nov., déc.]
     order:
-      - :year
-      - :month
       - :day
-
+      - :month
+      - :year
   time:
     formats:
-      default: "%B %d, %Y at %I:%M%p"
+      default: "%d %B %Y %H:%M:%S"
       short: "%d %b %H:%M"
-      long: "%B %d, %Y %H:%M"
-    am: "am"
-    pm: "pm"
-
-  number:
-    format:
-      separator: "."
-      delimiter: ","
-      precision: 3
-      significant: false
-      strip_insignificant_zeros: false
-
-  currency:
-    format:
-      format: "%u%n"
-      unit: "$"
-      separator: "."
-      delimiter: ","
-      precision: 2
-      significant: false
-      strip_insignificant_zeros: false
-
-  human:
-    format:
-      delimiter: ""
-      precision: 3
-      significant: true
-      strip_insignificant_zeros: true
-    storage_units:
-      format: "%n %u"
-      units:
-        byte:
-          one:   "Byte"
-          other: "Bytes"
-        kb: "KB"
-        mb: "MB"
-        gb: "GB"
-        tb: "TB"
-    decimal_units:
-      format: "%n %u"
-      units:
-        unit: ""
-        thousand: Thousand
-        million: Million
-        billion: Billion
-        trillion: Trillion
-        quadrillion: Quadrillion
+      long: "%A %d %B %Y %H:%M"
+    am: 'am'
+    pm: 'pm'
 
   datetime:
     distance_in_words:
-      half_a_minute: "half a minute"
+      half_a_minute: "une demi-minute"
       less_than_x_seconds:
-        one:   "less than 1 second"
-        other: "less than %{count} seconds"
+        zero:  "moins d'une seconde"
+        one:   "moins d'une seconde"
+        other: "moins de %{count} secondes"
       x_seconds:
-        one:   "1 second"
-        other: "%{count} seconds"
+        one:   "1 seconde"
+        other: "%{count} secondes"
       less_than_x_minutes:
-        one:   "less than a minute"
-        other: "less than %{count} minutes"
+        zero:  "moins d'une minute"
+        one:   "moins d'une minute"
+        other: "moins de %{count} minutes"
       x_minutes:
-        one:   "1 minute"
-        other: "%{count} minutes"
+        one:   "1 minute"
+        other: "%{count} minutes"
       about_x_hours:
-        one:   "about 1 hour"
-        other: "about %{count} hours"
+        one:   "environ une heure"
+        other: "environ %{count} heures"
       x_days:
-        one:   "1 day"
-        other: "%{count} days"
+        one:   "1 jour"
+        other: "%{count} jours"
       about_x_months:
-        one:   "about 1 month"
-        other: "about %{count} months"
+        one:   "environ un mois"
+        other: "environ %{count} mois"
       x_months:
-        one:   "1 month"
-        other: "%{count} months"
+        one:   "1 mois"
+        other: "%{count} mois"
       about_x_years:
-        one:   "about 1 year"
-        other: "about %{count} years"
+        one:   "environ un an"
+        other: "environ %{count} ans"
       over_x_years:
-        one:   "over 1 year"
-        other: "over %{count} years"
+        one:   "plus d'un an"
+        other: "plus de %{count} ans"
       almost_x_years:
-        one:   "almost 1 year"
-        other: "almost %{count} years"
+        one:   "presqu'un an"
+        other: "presque %{count} ans"
     prompts:
-      year:   "Year"
-      month:  "Month"
-      day:    "Day"
-      hour:   "Hour"
+      year:   "Année"
+      month:  "Mois"
+      day:    "Jour"
+      hour:   "Heure"
       minute: "Minute"
-      second: "Seconds"
+      second: "Seconde"
+
+  number:
+    format:
+      separator: ","
+      delimiter: " "
+      precision: 3
+      significant: false
+      strip_insignificant_zeros: false
+    currency:
+      format:
+        format: "%n %u"
+        unit: "€"
+        separator: ","
+        delimiter: " "
+        precision: 2
+        significant: false
+        strip_insignificant_zeros: false
+    percentage:
+      format:
+        delimiter: ""
+    precision:
+      format:
+        delimiter: ""
+    human:
+      format:
+        delimiter: ""
+        precision: 2
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one:   "octet"
+            other: "octets"
+          kb: "ko"
+          mb: "Mo"
+          gb: "Go"
+          tb: "To"
+      decimal_units:
+        format: "%n %u"
+        units:
+          unit: ""
+          thousand: "millier"
+          million: "million"
+          billion: "milliard"
+          trillion: "billion"
+          quadrillion: "million de milliards"
+
+  # support:
+  #   array:
+  #     words_connector: ", "
+  #     two_words_connector: " et "
+  #     last_word_connector: " et "
+  #   select:
+  #     prompt: "Veuillez sélectionner"
+
+  helpers:
+    select:
+      prompt: "Veuillez sélectionner"
+    submit:
+      create: "Créer un %{model}"
+      update: "Modifier ce %{model}"
+      submit: "Enregistrer ce %{model}"
+
+  attributes:
+    created_at: "Créé le"
+    updated_at: "Modifié le"
+
+  errors:
+    format: "Le %{attribute} %{message}"
+    messages: &errors_messages
+      inclusion: "n'est pas inclus(e) dans la liste"
+      exclusion: "n'est pas disponible"
+      invalid: "n'est pas valide"
+      confirmation: "ne concorde pas avec la confirmation"
+      accepted: "doit être accepté(e)"
+      empty: "doit être rempli(e)"
+      blank: "doit être rempli(e)"
+      too_long: "est trop long (pas plus de %{count} caractères)"
+      too_short: "est trop court (au moins %{count} caractères)"
+      wrong_length: "ne fait pas la bonne longueur (doit comporter %{count} caractères)"
+      not_a_number: "n'est pas un nombre"
+      not_an_integer: "doit être un nombre entier"
+      greater_than: "doit être supérieur à %{count}"
+      greater_than_or_equal_to: "doit être supérieur ou égal à %{count}"
+      equal_to: "doit être égal à %{count}"
+      less_than: "doit être inférieur à %{count}"
+      less_than_or_equal_to: "doit être inférieur ou égal à %{count}"
+      odd: "doit être impair"
+      even: "doit être pair"
+    template: &errors_template
+      header:
+        one:   "Impossible d'enregistrer ce %{model} : 1 erreur"
+        other: "Impossible d'enregistrer ce %{model} : %{count} erreurs"
+      body: "Veuillez vérifier les champs suivants : "
+
+  activerecord:
+    errors:
+      messages:
+        taken: "n'est pas disponible"
+        record_invalid: "La validation a échoué : %{errors}"
+        <<: *errors_messages
+      template:
+        <<: *errors_template
+      full_messages:
+        format: "%{attribute} %{message}"
+      hour:   "Heure"
+      minute: "Minute"
+      second: "Secondes"
 
 
