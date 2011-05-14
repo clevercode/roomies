@@ -22,6 +22,9 @@ class UsersController < ApplicationController
   def new
     @user = User.new(:invite_token => params[:invite_token])
     @user.email = @user.beta_invite.recipient_email if @user.beta_invite
+    if params[:invite_token]
+      flash[:notice] = "Hi there, beta tester!"
+    end
     respond_with(@user)
   end
 
