@@ -4,6 +4,7 @@ class BetaInvite
   
   field :recipient_email, :type => String
   field :token, :type => String
+  field :used, :type => Boolean, :default => false
 
   belongs_to :sender, :class_name => 'User'
   belongs_to :recipient, :class_name => 'User'
