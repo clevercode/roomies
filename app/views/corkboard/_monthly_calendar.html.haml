@@ -20,12 +20,12 @@
               - expenses = assignments.where(due_date: date.to_s).and(type: "expense")
               - unless tasks.count == 0
                 - if all
-                  =link_to tasks.count, "/assignments/day/#{date}.json?type=task&all", :class => "tasks"
+                  =link_to tasks.count, "/assignments/day/#{date}.json?type=task&all=true", :class => "tasks"
                 - else
                   =link_to tasks.count, "/assignments/day/#{date}.json?type=task", :class => "tasks"
               - unless expenses.count == 0
                 - if all
-                  =link_to expenses.count, "/assignments/day/#{date}.json?type=expense&all", :class => "expenses"
+                  =link_to expenses.count, "/assignments/day/#{date}.json?type=expense&all=true", :class => "expenses"
                 - else
                   =link_to expenses.count, "/assignments/day/#{date}.json?type=expense", :class => "expenses"
               -# =link_to '0', '#', :class => "expenses" 
