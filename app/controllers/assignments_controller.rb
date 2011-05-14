@@ -98,16 +98,15 @@ class AssignmentsController < ApplicationController
 
   def day
     day = Date.parse(params[:day])
-    all = Assignment.where(due_date: day, completed_at: nil)
+    all = current_user.house.assignments.where(due_date: day, completed_at: nil)
     my = current_user.assignments.where(due_date: day, completed_at: nil) 
     if params[:type] == "task"
         if params[:all] == true
-          logger.debug(params[:all])
           @assignments = all.where(type: "task")
         else
           @assignments = my.where(type: "task")
         end
-    else
+    elsif params[:type] == "expense"
       if params[:all] == true
         @assignments = all.where(type: "expense")
       else
