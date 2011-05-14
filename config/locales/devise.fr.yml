@@ -33,6 +33,7 @@ en:
     unlocks:
       send_instructions: "Vous allez recevoir un email avec des instructions vous indiquant comment déverouiller votre compte dans quelques minutes."
       unlocked: "Votre compte a été déverouillé avec succès. Vous êtes connecté."
+      no_unlock_instructions:
     mailer:
       confirmation_instructions:
         subject: "Instructions de confirmation"
