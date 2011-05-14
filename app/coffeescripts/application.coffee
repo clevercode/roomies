@@ -328,9 +328,9 @@ do superDate = ->
 # =========================================
 
 signup_ready = false
-$('#user_new #user_submit').bind 'click', ->
-  $('#user_new .input:eq(0)').fadeOut( -> 
-    $('#password_junk').fadeIn()
+$('.home #user_new #user_submit').bind 'click', ->
+  $('.home #user_new .input:eq(0)').fadeOut( -> 
+    $('.home #password_junk').fadeIn()
     signup_ready = true
   )
   $('.other_auths').fadeOut( -> 

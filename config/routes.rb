@@ -40,4 +40,6 @@ Roomies::Application.routes.draw do
   match '/assignments/:id/confirm'      => 'assignments#confirm'
   match '/assignments/:id/reject'       => 'assignments#reject'
 
+  match '/:locale' => 'home#index'
+
 end
