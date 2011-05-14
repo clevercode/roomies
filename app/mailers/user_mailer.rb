@@ -22,4 +22,17 @@ class UserMailer < ActionMailer::Base
     )
     invite.update_attributes(sent_at: Time.now)
   end
+
+  def assignment_created(assignment, url)
+    @assignment = assignment
+    @url = url
+    recipients = Array.new
+    assignment.assignees.each do |user|
+      recipients << user.email.to_s
+    end
+    mail(
+      :to => recipients,
+      :subject => "Stuff to do from a Roomie"
+    )
+  end
 end

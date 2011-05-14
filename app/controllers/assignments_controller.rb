@@ -43,6 +43,10 @@ class AssignmentsController < ApplicationController
       
       if assignment.save
         reward(nil, 2)
+        unless assignment.assignees.include?(current_user) &&\
+               assignment.assignees.length <= 1
+          UserMailer.assignment_created(assignment, corkboard_index_url(assignment.id)).deliver
+        end
         redirect_to '/corkboard'
       else
         redirect_to '/corkboard', :notice => "Your assignment couldn't be created, try again."
