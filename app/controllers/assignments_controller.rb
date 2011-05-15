@@ -42,24 +42,44 @@ class AssignmentsController < ApplicationController
       assignment.commissioner = current_user
       
       if assignment.save
+        # assignment doesn't include current_user & other assignees
         if !assignment.assignees.include?(current_user) && assignment.assignees.length >= 1
+          recipients = []
+          assignment.assignees.each do |user|
+            recipients << user.email.to_s
+          end
+          UserMailer.assignment_created(assignment, recipients, corkboard_index_url(assignment.id)).deliver
           reward(nil, 2)
-          UserMailer.assignment_created(assignment, corkboard_index_url(assignment.id)).deliver
           flash[:notice] = "Look at you, creating assignment for other people. How about you give a hand too?"
-          redirect_to '/corkboard'
-        elsif assignment.assignees.length == 1 && assignment.assignees.include?(current_user)
+
+        # assignment includes current_user & other assignees
+        elsif assignment.assignees.include?(current_user) && assignment.assignees.length > 1
+          recipients = []
+          assignment.assignees.each do |user|
+            unless user == current_user
+              recipients << user.email.to_s
+            end
+          end
+          UserMailer.assignment_created(assignment, recipients, corkboard_index_url(assignment.id)).deliver
+          reward(nil, 2)
+          flash[:notice] = "Sharing the workload, good thinking."
+
+        # only assignee is current_user
+        elsif assignment.assignees.include?(current_user) && assignment.assignees.length == 1
           reward(nil, 2)
           if current_user.house.users.count > 1
             flash[:notice] = "You assigned this to yourself, nice job. Give some work to your roomies, too ;-)"
           else
             flash[:notice] = "You assigned this to yourself, nice job."
           end
-          redirect_to '/corkboard'
-        else
 
+        # validating for presence_of assignees so this shouldn't be needed
+        else
+          flash[:error] = "You didn't assign anyone, let's try this again."
         end
+        redirect_to '/corkboard'
       else
-        redirect_to '/corkboard', :notice => "Your assignment couldn't be created, try again."
+        redirect_to '/corkboard', :error => "Your assignment couldn't be created, try again."
       end
 
     else
