@@ -95,6 +95,7 @@ en:
     build_house: "build a house"
     homeless_roomie: "That roomie is homeless."
     no_tasks: "No tasks"
+    no_expenses: "No expenses"
     name: "Name"
     progress: "Progress"
     next_level: "Next level"
