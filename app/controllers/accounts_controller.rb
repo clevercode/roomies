@@ -25,11 +25,4 @@ class AccountsController < ApplicationController
       redirect_to new_user_registration_url
     end
   end
-
-  protected
-  def after_sign_up_path_for(resource)
-    '/corkboard'
-  end
-
-  
 end
