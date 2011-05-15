@@ -1,6 +1,10 @@
 Roomies::Application.routes.draw do
 
-  root :to => 'home#index'
+  if Rails.env == "production"
+    root :to => 'home#beta'
+  else
+    root :to => 'home#index'
+  end
 
   devise_for :users
   devise_scope :user do
@@ -9,6 +13,8 @@ Roomies::Application.routes.draw do
   end
 
   resources :users
+  resources :pages
+  resources :support
   resources :authentications
   resources :assignments do
     member do
@@ -19,8 +25,6 @@ Roomies::Application.routes.draw do
   resources :achievements
   resources :houses
   resources :corkboard
-  resources :pages
-  resources :support
   resources :user_mailer
   resources :invitations
   resources :rewards
@@ -39,7 +43,5 @@ Roomies::Application.routes.draw do
   match '/confirmations'                => 'assignments#confirmations'
   match '/assignments/:id/confirm'      => 'assignments#confirm'
   match '/assignments/:id/reject'       => 'assignments#reject'
-
-  match '/:locale' => 'home#index'
 
 end
