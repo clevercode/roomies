@@ -1,0 +1,5 @@
+#signup
+  = simple_form_for BetaInvite.new do |f|
+    = f.input :recipient_email, :label => false, :input_html => { :placeholder => t(:email_example) }
+    = f.submit t(:sign_up), :class => 'green'
+
