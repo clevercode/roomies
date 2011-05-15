@@ -31,8 +31,9 @@
     %p#level amazing roomie
     - if @user.house
       %p#house
-        #{@user.house.name} &mdash;
+        #{@user.house.name}
         - if signed_in? && current_user == @user
+          &mdash;
           = link_to 'change house name', edit_house_path(@user.house), :class => 'ajax'
           or
           = link_to 'add roomies', new_invitation_path, :class => 'ajax'
