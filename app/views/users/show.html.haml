@@ -15,7 +15,7 @@
         %h1= t(:new_roomie, :scope => :profile)
       -else
         %h1  #{@user.name}
-    %p 455/500 #{t(:points)}
+    %p you have #{pluralize(@user.points, t(:point))}
     %p= t(:next_level, :scope => :profile)
   #hud
     #roomie_bar
