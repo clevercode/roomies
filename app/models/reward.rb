@@ -29,7 +29,7 @@ class Reward
   end
 
   after_create do
-    self.user.inc(:points_count, self.points)
+    self.user.inc(:points, self.points)
 
     self.user.check_for_achievements
   end

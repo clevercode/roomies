@@ -9,7 +9,7 @@ class User
 
   # Fields
   field :name, :type => String
-  field :points_count, :type => Integer
+  field :points, :type => Integer
   field :locale, :type => String, :default => "en"
   field :calendar, :type => String, :default => "centric"
   field :beta_invite_limit, :type => Integer, :default => 0
@@ -128,7 +128,7 @@ class User
   end
 
   def check_for_achievements
-    if self.points_count > 50
+    if self.points > 50
       self.achievements.create(name: "Megatop Roomie")
     end
   end
