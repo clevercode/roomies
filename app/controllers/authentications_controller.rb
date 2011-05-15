@@ -1,11 +1,9 @@
 class AuthenticationsController < ApplicationController
   def index
     @authentications = current_user.authentications if current_user
-    @u = current_user ||= "none"
   end
 
   def create
-
     omniauth = request.env['omniauth.auth']
     authentication = Authentication.where(:provider => omniauth['provider'], :uid => omniauth['uid']).first
   
@@ -19,22 +17,17 @@ class AuthenticationsController < ApplicationController
       # Add authentication to signed in user
       # User is logged in      
       current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
-      flash[:notice] = t(:auth_success)
+      flash[:notice] = t('.auth_success')
       redirect_to authentications_url
-    
-    elsif omniauth['provider'] != "twitter"
-      user = create_new_omniauth_user(omniauth)
-      if not user.new_record?
-        flash[:notice] = "#{omniauth['provider'].titleize} " + t('.new_login_provider')
-      else
-        flash[:notice] = t('.welcome_back')
-      end
+
+    elsif omniauth['provider'] != 'twitter' && omniauth['provider'] != 'linked_in' && user = create_new_omniauth_user(omniauth)
       user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
       # Create a new User through omniauth
       # Register the new user + create new authentication
+      flash[:notice] = t('.welcome')
       sign_in_and_redirect(:user, user)
-    
-    elsif omniauth['provider'] == "twitter"
+
+    elsif (omniauth['provider'] == 'twitter' || omniauth['provider'] == 'linked_in') && 
       omniauth['uid'] && (omniauth['user_info']['name'] || omniauth['user_info']['nickname'] || 
       (omniauth['user_info']['first_name'] && omniauth['user_info']['last_name']))
       session[:omniauth] = omniauth.except('extra');
@@ -45,6 +38,7 @@ class AuthenticationsController < ApplicationController
     end
   end
 
+  # Destroy an authentication
   def destroy
     @authentication = current_user.authentications.find(params[:id])
     @authentication.destroy
@@ -53,13 +47,13 @@ class AuthenticationsController < ApplicationController
   end
 
   def create_new_omniauth_user(omniauth)
-    user = User.where(:email => omniauth['user_info']['email']).first
-    unless user
-      user = User.new
-      user.save
-      user.apply_omniauth(omniauth)
+    user = User.new
+    user.apply_omniauth(omniauth)
+    if user.save
+      user
+    else
+      nil
     end
-    user
   end
 
   def failure
