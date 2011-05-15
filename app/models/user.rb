@@ -26,8 +26,8 @@ class User
   has_one :beta_invite
 
   # Devise
-  devise  :invitable, :database_authenticatable, :registerable, 
-          :recoverable, :rememberable, :trackable, :validatable
+  devise  :database_authenticatable, :registerable, :recoverable, 
+          :rememberable, :trackable, :validatable, :invitable
 
   validates :email, :presence => true,
                     :uniqueness => { :case_sensitive => false }
