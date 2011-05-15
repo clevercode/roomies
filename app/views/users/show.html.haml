@@ -1,7 +1,11 @@
 - @main_class = 'profile'
 
 #about.content
-  %img{ :src => "#{@user.gravatar}", :alt => "profile picture" }
+  - if @user.gravatar
+    = image_tag "#{@user.gravatar}", :alt => "profile picture"
+  - else
+    = image_tag "profile_default.png", :alt => "profile picture"
+
   #about_header
     - if signed_in? && current_user == @user
       - if @user.name.blank?
