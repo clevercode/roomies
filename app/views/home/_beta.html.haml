@@ -2,4 +2,5 @@
   = simple_form_for BetaInvite.new do |f|
     = f.input :recipient_email, :label => false, :input_html => { :placeholder => t(:email_example) }
     = f.submit t(:sign_up), :class => 'green'
-
+  %p.other_auths
+    Roomies is currently in private beta. Please sign up if you'd like to participate.
