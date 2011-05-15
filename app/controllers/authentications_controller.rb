@@ -32,10 +32,13 @@ class AuthenticationsController < ApplicationController
       (omniauth['user_info']['first_name'] && omniauth['user_info']['last_name']))
       session[:omniauth] = omniauth.except('extra');
       redirect_to(:controller => 'accounts', :action => 'email')
-      
     else
-      render :text, user.errors
+      debugger; 'blah'
+      # New user data not valid, try again
+      flash[:alert] = t('.fail')
+      redirect_to new_user_registration_url
     end
+    
   end
 
   # Destroy an authentication
