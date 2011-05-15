@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   def set_locale
     logger.debug "set_locale is passed options: #{params[:locale]}\n"
     # if params[:locale] is nil then I18n.default_locale will be used
-    I18n.locale = current_user && current_user.locale || "en"
+    I18n.locale = params[:locale] || current_user && current_user.locale || "en"
   end
 
   protected
