@@ -48,9 +48,6 @@ en:
       together: "together"
       made: "made"
       easier: "easier"
-      free_for_30_days: "Free for 30 days, cheap after"
-      type_your_password: "choose your own password..."
-      generate_one: "let us generate one for you"
       relax: "Relax"
       relax_copy: "At school, work, home, or out in the world, Roomies makes it easy to keep it touch with your roommates and the stuff you have to do everyday."
       play: "Play"
@@ -58,6 +55,11 @@ en:
       save: "Save"
       save_copy: "Stay on top of bills, receive reminders in due time and keep an eye on what you spend. It saves you time, and we all know that time is... relative?"
       sign_up_beta: "Sign Up"
+    signup:
+      type_your_password: "choose your own password..."
+      generate_one: "let us generate one for you"
+      free_for_30_days: "Free for 30 days, cheap after"
+
 
   # corkboard
   corkboard:
