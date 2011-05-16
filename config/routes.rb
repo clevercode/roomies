@@ -28,6 +28,7 @@ Roomies::Application.routes.draw do
 
   match '/auth/:provider/callback'      => 'authentications#create'
   match '/auth/failure'                 => 'authentications#failure'
+  match '/auth/facebook/setup'          => 'facebook#setup'
   match '/registrations'                => 'accounts#email'
   match '/user/:id/homeless/:house_id'  => 'houses#destroy_roomie', :as => :homeless
   match '/support/index'                => 'support#submit_request'
