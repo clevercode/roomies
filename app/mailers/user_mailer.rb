@@ -23,7 +23,7 @@ class UserMailer < ActionMailer::Base
     invite.update_attributes(sent_at: Time.now)
   end
 
-  def assignment_created(assignment, url, recipients)
+  def assignment_created(assignment, recipients, url)
     @assignment = assignment
     @url = url
     @recipients = recipients
