@@ -1,14 +1,6 @@
 - @main_class = 'corkboard'
 - if current_user.house
   = render :partial => 'notifications'
-  - unless @my_confirmations.empty?
-    .notice
-      %p
-        = link_to 'Your roomies finally completed some of the assignments you gave them! Woo hoo! Click here to confirm them.', '/confirmations', class: 'ajax'
-  - unless @my_past_due.empty?
-    .error
-      %p 
-        = link_to 'You have past due assignments and that\'s just no good. Click here to view them.', assignments_path
 
   #upcoming_filters
     %ul#assignee_filters
