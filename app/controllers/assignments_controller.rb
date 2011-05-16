@@ -48,7 +48,7 @@ class AssignmentsController < ApplicationController
           assignment.assignees.each do |user|
             recipients << user.email.to_s
           end
-          UserMailer.assignment_created(assignment, recipients, assignment_url(assignment.id)).deliver
+          UserMailer.assignment_created(assignment, recipients, "#{corkboard_index_url}/?assignment=#{assignment.id}").deliver
           reward(nil, 2)
           flash[:notice] = "Look at you, creating assignment for other people. How about you give a hand too?"
 
@@ -60,7 +60,7 @@ class AssignmentsController < ApplicationController
               recipients << user.email.to_s
             end
           end
-          UserMailer.assignment_created(assignment, recipients, assignment_url(assignment.id)).deliver
+          UserMailer.assignment_created(assignment, recipients, "#{corkboard_index_url}/?assignment=#{assignment.id}").deliver
           reward(nil, 2)
           flash[:notice] = "Sharing the workload, good thinking."
 
