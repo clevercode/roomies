@@ -27,10 +27,6 @@ class UserMailer < ActionMailer::Base
     @assignment = assignment
     @url = url
     @recipients = recipients
-    Array.new
-    assignment.assignees.each do |user|
-      recipients << user.email.to_s
-    end
     mail(
       :to => @recipients,
       :subject => "Stuff to do from a Roomie"
