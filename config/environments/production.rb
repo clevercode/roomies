@@ -50,7 +50,9 @@ Roomies::Application.configure do
   config.action_mailer.default_url_options = { :host => 'roomiesapp.com' }
   # ActionMailer Config
   # Setup for production - deliveries, no errors raised
-  config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method   = :postmark
+  config.action_mailer.postmark_settings = { :api_key => "b8bae627-4ecf-4713-9335-08fd1aa7b84f" }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default :charset => "utf-8"
