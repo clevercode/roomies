@@ -1,10 +1,6 @@
 Roomies::Application.routes.draw do
 
-  if Rails.env == "production"
-    root :to => 'home#beta'
-  else
-    root :to => 'home#index'
-  end
+  root :to => 'home#index'
 
   devise_for :users
   devise_scope :user do
