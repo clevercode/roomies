@@ -8,9 +8,9 @@
 #screencast
   <iframe src="http://player.vimeo.com/video/23326086?title=0&amp;byline=0&amp;portrait=0" width="460" height="340" frameborder="0"></iframe>
 
-- if Rails.env == "production"
+- if params[:beta] || Rails.env == "production" 
   = render :partial => "beta"
-- elsif Rails.env == "development" || params[:default]
+- elsif params[:default] || Rails.env == "development" 
   = render :partial => "signup"
 
 .benefit
