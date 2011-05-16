@@ -50,8 +50,16 @@ class AuthenticationsController < ApplicationController
   end
 
   def create_new_omniauth_user(omniauth)
-    user = User.new
+    if not omniauth['user_info']['email'].blank?
+      user = User.where(email: omniauth['user_info']['email']).first
+    end
+
+    if user.blank?
+      user = User.new
+    end
+
     user.apply_omniauth(omniauth)
+
     if user.save
       user
     else
