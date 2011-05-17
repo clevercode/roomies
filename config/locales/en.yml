@@ -75,9 +75,9 @@ en:
       this_coming_month: "This coming month"
       upcoming: "Upcoming"
       monthly: "Monthly"
-      youre_homeless: "Oh no! It seems you're homeless! Want to "
-      build_house?: "build a house?"
     notifications:
+      build_house?: "build a house?"
+      youre_homeless: "Oh no! It seems you're homeless! Want to "
       change_password_and_name: "Hi there! If you'd like to change your password or possibly tell us your name, go ahead and click here."
       move_in_invite_accept: "Accept house invitation and start living easier with more roomies."
       move_in_invite_refuse: "Refuse house invitation."
