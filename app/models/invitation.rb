@@ -5,9 +5,7 @@ class Invitation
   
   # Fields
   field :email
-  # field :inviter_id
-
-  belongs_to :inviter, :class_name => "User"
+  field :inviter_id
 
   private
   def send_invitation_email
