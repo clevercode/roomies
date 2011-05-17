@@ -1,5 +1,5 @@
 = link_to "Beta Invites (#{current_user.invitation_limit})", new_user_invitation_path
-- if not current_user.house
+- if @all == nil
   - if current_user.has_house_invitations?
     .notifications
       %p 
