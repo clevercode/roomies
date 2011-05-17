@@ -5,6 +5,7 @@ class User
   require 'digest/md5'
   
   # after_create :send_welcome_email
+  after_create :set_invitation_limit
 
   # Fields
   field :name, :type => String
@@ -129,6 +130,10 @@ class User
   private
   def send_welcome_email
     UserMailer.welcome_email(self).deliver
+  end
+
+  def set_invitation_limit
+    self.invitation_limit = 3
   end
   
   protected
