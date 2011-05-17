@@ -5,7 +5,7 @@ class User
   require 'digest/md5'
   
   # after_create :send_welcome_email
-  after_create :set_invitation_limit
+  before_create :set_invitation_limit
 
   # Fields
   field :name, :type => String
