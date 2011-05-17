@@ -3,7 +3,7 @@
 Devise.setup do |config|
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in DeviseMailer.
-  config.mailer_sender = "littlerobot@roomiesapp.com"
+  config.mailer_sender = "roomies@clevercode.net"
 
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
