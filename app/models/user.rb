@@ -4,7 +4,7 @@ class User
 
   require 'digest/md5'
   
-  before_create :set_beta_invite_limit
+  # before_create :set_beta_invite_limit
   after_create :send_welcome_email
 
   # Fields
@@ -12,8 +12,8 @@ class User
   field :points, :type => Integer
   field :locale, :type => String, :default => "en"
   field :calendar, :type => String, :default => "centric"
-  field :beta_invite_limit, :type => Integer, :default => 0
-  field :beta, :type => Boolean, :default => false
+  # field :beta_invite_limit, :type => Integer, :default => 0
+  # field :beta, :type => Boolean, :default => false
 
   # Associations
   belongs_to :house # => User has a house_id
@@ -22,8 +22,8 @@ class User
   has_many :rewards
   has_many :achievements
 
-  has_many :sent_invites, :class_name => 'BetaInvite', :foreign_key => 'sender_id'
-  has_one :beta_invite
+  # has_many :sent_invites, :class_name => 'BetaInvite', :foreign_key => 'sender_id'
+  # has_one :beta_invite
 
   # Devise
   devise  :database_authenticatable, :registerable, :recoverable, 
