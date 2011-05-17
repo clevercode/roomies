@@ -13,8 +13,10 @@ class ApplicationController < ActionController::Base
 
   protected
   def after_sign_in_path_for(user)
-    puts "called from after_sign_in_path"
-    reward(:sign_in)
+    logger.debug "called from after_sign_in_path"
+    unless self.controller_name == "invitations"
+      reward(:sign_in)
+    end
     corkboard_index_url
   end
   
