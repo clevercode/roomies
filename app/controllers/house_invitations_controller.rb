@@ -24,7 +24,7 @@ class HouseInvitationsController < ApplicationController
     @house_invitation = HouseInvitation.new(params[:house_invitation])
     house_invitee = User.where(:email => @house_invitation.email).first || User.new
 
-    unless invitee.house == current_user.house
+    unless house_invitee.house == current_user.house
       respond_to do |format|
         if @house_invitation.save
           format.html { redirect_to current_user, :notice => 'House invitation was successfully sent.' }
