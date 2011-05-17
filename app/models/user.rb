@@ -4,16 +4,13 @@ class User
 
   require 'digest/md5'
   
-  # before_create :set_beta_invite_limit
-  after_create :send_welcome_email
+  # after_create :send_welcome_email
 
   # Fields
   field :name, :type => String
   field :points, :type => Integer
   field :locale, :type => String, :default => "en"
   field :calendar, :type => String, :default => "centric"
-  # field :beta_invite_limit, :type => Integer, :default => 0
-  # field :beta, :type => Boolean, :default => false
 
   # Associations
   belongs_to :house # => User has a house_id
@@ -22,9 +19,6 @@ class User
   has_many :rewards
   has_many :achievements
 
-  # has_many :sent_invites, :class_name => 'BetaInvite', :foreign_key => 'sender_id'
-  # has_one :beta_invite
-
   # Devise
   devise  :database_authenticatable, :registerable, :recoverable, 
           :rememberable, :trackable, :validatable, :invitable
@@ -32,10 +26,8 @@ class User
   validates :email, :presence => true,
                     :uniqueness => { :case_sensitive => false }
 
-  # validates :beta_invite, :presence => true, :on => :create
-
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :email, :password, :remember_me, :locale, :calendar, :invite_token
+  attr_accessible :name, :email, :password, :remember_me, :locale, :calendar
 
   ###
   # user methods
@@ -117,15 +109,16 @@ class User
       image_src = "http://www.gravatar.com/avatar/#{hash}?s=130"
     end
   end
-  
-  def has_invitations?
-    @invitation = Invitation.where(:email => self.email).first
-    unless @invitation.nil?
+
+ def has_house_invitations?
+    @house_invitation = HouseInvitation.where(:email => self.email).first
+    unless @house_invitation.nil?
       true
     else
       false
     end
   end
+  
 
   def check_for_achievements
     if self.points > 50
@@ -133,22 +126,9 @@ class User
     end
   end
 
-  def invite_token
-    beta_invite.token if beta_invite
-  end
-
-  def invite_token=(token)
-    invite = BetaInvite.where(token: token).first
-    self.beta_invite = invite
-  end
-
   private
   def send_welcome_email
     UserMailer.welcome_email(self).deliver
-  end
-
-  def set_beta_invite_limit
-    self.beta_invite_limit = 3
   end
   
   protected

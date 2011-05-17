@@ -1,0 +1,19 @@
+%h1 Listing house invitations
+
+%table
+  %tr
+    %th
+    %th
+    %th
+
+  - @house_invitations.each do |house_invitation|
+    %tr
+      -# %td= invitation.type
+      %td= house_invitation.email
+      %td= link_to 'Show', invihouse_invitationtation
+      %td= link_to 'Edit', edit_house_invitation_path(house_invitation)
+      %td= link_to 'Destroy', house_invitation, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New House Invitation', new_house_invitation_path

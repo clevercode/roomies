@@ -22,11 +22,7 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new(:invite_token => params[:invite_token])
-    @user.email = @user.beta_invite.recipient_email if @user.beta_invite
-    if params[:invite_token]
-      flash[:notice] = "Hi there, beta tester!"
-    end
+    @user = User.new
     respond_with(@user)
   end
 
@@ -70,13 +66,13 @@ class UsersController < ApplicationController
     render :index
   end
 
-  def accept_invitation
-    invitation = Invitation.where(:email => current_user.email).first
-    inviter = User.find(invitation.inviter_id)
-    current_user.house = inviter.house
+  def accept_house_invitation
+    house_invitation = HouseInvitation.where(:email => current_user.email).first
+    house_inviter = User.find(house_invitation.house_inviter_id)
+    current_user.house = house_inviter.house
     
     if current_user.save
-      Invitation.where(:email => current_user.email).destroy
+      HouseInvitation.where(:email => current_user.email).destroy
       flash[:notice] = t('.house_joined')
       respond_with current_user
     else
@@ -85,8 +81,8 @@ class UsersController < ApplicationController
     end
   end
   
-  def reject_invitations
-    Invitation.where(:email => current_user.email).destroy
+  def reject_house_invitations
+    HouseInvitation.where(:email => current_user.email).destroy
     flash[:notice] = t('.house_join_declined')
     redirect_to corkboard_index_url
   end

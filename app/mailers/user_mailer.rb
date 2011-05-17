@@ -7,9 +7,9 @@ class UserMailer < ActionMailer::Base
     )
   end
 
-  def invitation_email(params)
+  def house_invitation_email(params)
     mail(:to      => params[:email],
-         :subject => "You have a new invitation from a friend at Roomies!"
+         :subject => "You have a new house invitation from a friend at Roomies!"
     )
   end
 

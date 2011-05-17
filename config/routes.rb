@@ -22,9 +22,8 @@ Roomies::Application.routes.draw do
   resources :houses
   resources :corkboard
   resources :user_mailer
-  # resources :invitations
+  resources :house_invitations
   resources :rewards
-  # resources :beta_invites
 
   match '/auth/:provider/callback'      => 'authentications#create'
   match '/auth/failure'                 => 'authentications#failure'
@@ -32,11 +31,10 @@ Roomies::Application.routes.draw do
   match '/registrations'                => 'accounts#email'
   match '/user/:id/homeless/:house_id'  => 'houses#destroy_roomie', :as => :homeless
   match '/support/index'                => 'support#submit_request'
-  match '/accept_invitation'            => 'users#accept_invitation'
-  match '/reject_invitations'           => 'users#reject_invitations'
+  match '/accept_house_invitation'      => 'users#accept_house_invitation'
+  match '/reject_house_invitations'     => 'users#reject_house_invitations'
   match '/assignments/day/:day'         => 'assignments#day'
   match '/past_due'                     => 'assignments#past_due'
-  # match '/beta_sign_up/:invite_token'   => 'users#new', :as => :beta_sign_up
   match '/confirmations'                => 'assignments#confirmations'
   match '/assignments/:id/confirm'      => 'assignments#confirm'
   match '/assignments/:id/reject'       => 'assignments#reject'
