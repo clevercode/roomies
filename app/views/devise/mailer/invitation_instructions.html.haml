@@ -1,10 +1,26 @@
 %h1 Hi there, #{@resource.email}!
-%p You've been invited to the private beta of #{root_url}. You have two days to accept it.
-%p If you find any issues during your stay, don't hesitate to drop us a hint at <a href='mailto:roomies@clevercode.net'>roomies@clevercode.net</a>.
+%p 
+  You've been invited to the private beta of <strong>Roomies</strong>.
+  %br We can't wait to hear what you think.
 
-%p You can accept the invitation with the link below.
+%p Here's a <a href="http://vimeo.com/23836794">little video</a> we made describing the stuff you should expect in this beta.
 
-%p= link_to 'Accept invitation', accept_invitation_url(@resource, :invitation_token => @resource.invitation_token)
+%p 
+  If you find any issues during your stay, don't hesitate to drop us a hint at <a href='mailto:roomies@clevercode.net'>roomies@clevercode.net</a> or on Twitter <a href='http://twitter.com/roomiesapp/'>@roomiesapp</a>.
+  
+%p We appreciate any help, whether you can send us your feedback and first impressions, copy/paste the error messages you encounter, or send us screenshots or even video describing what you find weird or interesting. We've given you three invites to share with friends if you want to, so you can tryout the app with your actual roommates for instance. Go ahead, and tell us what they think too.
 
-%p If you don't want to accept the invitation, please ignore this email.
-%p Your account won't be created until you access the link above and set your password.
+%p If you would like to participate more actively and own a <a href="http://github.com">GitHub account</a>, shoot us a quick email with your username there.
+
+%p 
+  You can accept the invitation with the link below.
+  %br= link_to 'Accept invitation', accept_invitation_url(@resource, :invitation_token => @resource.invitation_token)
+
+%p 
+  If you don't want to accept the invitation, please ignore this email.
+  %br Your account won't be created until you access the link above and set your password.
+%p 
+  Thanks for helping, it matters a lot,
+  %br <strong>Olivier, Zach &amp; Andrew.</strong>
+%p cleverCode LLC
+
