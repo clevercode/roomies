@@ -8,10 +8,10 @@
 #screencast
   <iframe src="http://player.vimeo.com/video/23836794?title=0&amp;byline=0&amp;portrait=0" width="460" height="340" frameborder="0"></iframe>
 
-- if params[:beta] || Rails.env == "production" 
-  = render :partial => "beta"
-- elsif params[:default] || Rails.env == "development" 
+- if params[:default]
   = render :partial => "signup"
+- else
+  = render :partial => "beta"
 
 .benefit
   %h2= t '.relax'
