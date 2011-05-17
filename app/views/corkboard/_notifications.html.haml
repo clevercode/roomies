@@ -1,10 +1,9 @@
 = link_to "Beta Invites (#{current_user.invitation_limit})", new_user_invitation_path
 .notifications
   - if current_user.has_house_invitations?
-    %p
-      = t('.move_in_invite') + "<a href='/accept_house_invitation'>here</a>" + |
-      = t('.move_in_invite_accept') + "<a href='/reject_house_invitations'>here</a>" + |
-      = t('.move_in_invite_refuse') |
+    %p 
+      = link_to t('.move_in_invite_accept'), '/accept_house_invitation'
+      = link_to t('.move_in_invite_refuse'), '/reject_house_invitations'
     - if not current_user.house.nil?
       %p= t('.house_move_warning')
   - unless current_user.name?

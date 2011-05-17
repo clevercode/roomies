@@ -79,9 +79,8 @@ en:
       build_house?: "build a house?"
     notifications:
       change_password_and_name: "Hi there! If you'd like to change your password or possibly tell us your name, go ahead and click here."
-      move_in_invite: "Hey you, guess what?! You've got an invitation to move in to another roomie's house! Go ahead and click"
-      move_in_invite_accept: "to accept the invitation and start living together easier, or click"
-      move_in_invite_refuse: "to reject it. Have a fantastic day."
+      move_in_invite_accept: "Accept house invitation and start living easier with more roomies."
+      move_in_invite_refuse: "Refuse house invitation."
       house_move_warning: "Warning: Clicking the link above will remove you from the house you currently belong to and let you join the new one."
     upcoming:
       no_assignments: "So far so good..."
