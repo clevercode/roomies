@@ -1,5 +1,5 @@
 = simple_form_for @user do |f|
-  = f.input :name
+  = f.input :name, autofocus: true
   = f.input :email
   = f.input :password, :required => false
   - if controller.action_name == "edit"

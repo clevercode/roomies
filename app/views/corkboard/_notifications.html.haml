@@ -1,8 +1,11 @@
+
 = link_to "Beta Invites (#{current_user.invitation_limit})", new_user_invitation_path
 - if @all == nil
-  - if current_user.has_house_invitations?
+  - if current_user.house_invitation.nil?
     .notifications
       %p 
+        Invitation from
+        = User.find(current_user.house_invitation.inviter_id).name
         = link_to t('.move_in_invite_accept'), '/accept_house_invitation'
         = link_to t('.move_in_invite_refuse'), '/reject_house_invitations'
       - if not current_user.house.nil?
@@ -13,11 +16,3 @@
 - unless current_user.name?
   .notifications
     %p= link_to t('.change_password_and_name'), edit_user_path(current_user), :class => 'ajax'
-
-
-- else
-  .notifications
-    - if @my_confirmations && !@my_confirmations.empty?
-      %p= link_to "Your roomies finally completed some of the assignments you gave them! Woo hoo! Click here to confirm them.", '/confirmations', class: 'ajax'
-    - if @my_past_due && !@my_past_due.empty?
-      %p= link_to "You have past due assignments and that\'s just no good. Click here to view them.", assignments_path

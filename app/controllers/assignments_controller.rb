@@ -9,7 +9,6 @@ class AssignmentsController < ApplicationController
       @assignments = current_user.house.assignments
      
       @due           = @assignments.due
-      @past_due      = @assignments.past_due
       @completed     = @assignments.completed
 
       respond_with @assignments
@@ -145,11 +144,18 @@ class AssignmentsController < ApplicationController
     end
     respond_with @assignments
   end
+
+  def past_due_assignments
+    unless current_user.house.blank?
+      @past_due = current_user.assignments.past_due
+
+      render :index
+    end
+  end
   
   def confirmations
     unless current_user.house.blank?
-      @assignments   = current_user.house.assignments
-      @confirmations = @assignments
+      @confirmations = current_user.assignments
                          .where(commissioner_id: current_user.id)
                          .and(:completed_at.ne => nil)
                          .excludes(completor_id: current_user.id)

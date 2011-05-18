@@ -1,6 +1,7 @@
 = simple_form_for @assignment do |f|
   = f.input :purpose, 
-            :placeholder => "What is this for?"
+            :placeholder => "What is this for?",
+            :autofocus => true
 
   .assignees
     = f.association :assignees, :collection => roomies_list, :as => :check_boxes 

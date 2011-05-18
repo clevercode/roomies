@@ -111,13 +111,13 @@ class User
       image_src = "http://www.gravatar.com/avatar/#{hash}?s=130"
     end
   end
-
- def has_house_invitations?
+  
+  def house_invitation
     @house_invitation = HouseInvitation.where(:email => self.email).first
     unless @house_invitation.nil?
-      true
+      @house_invitation
     else
-      false
+      nil
     end
   end
   
