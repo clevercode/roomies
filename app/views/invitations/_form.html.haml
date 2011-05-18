@@ -1,4 +1,4 @@
 = simple_form_for(@invitation) do |f|
   = f.input :inviter_id, :label => false, :input_html => { :type => 'hidden', :value => current_user.id }
-  = f.input :email
+  = f.input :email, autofocus: true
   = f.button :submit, :class => 'green'
