@@ -31,20 +31,18 @@ $(window).bind 'resize', ->
 
 # // Hides the flash notice if it's visible.
 $('#flash').live 'click', ->
-  $('#flash').fadeOut( ->
+  $('#flash').hide 'fast', ->
     stickyFooter()
-  )
 
 # // Hides the flash notice after 20 seconds if the user hasn't clicked on it yet.
 setTimeout( ->
-  $('#flash').fadeOut( ->
+  $('#flash').hide 'fast', ->
     stickyFooter()
-  )
 , 20000)
   
 hideModal = (event) ->
-  $darknessification.css('opacity','.75').hide()
-  $modal.fadeOut _fadeSpeed
+  $darknessification.css('opacity','.75').hide 'fast'
+  $modal.hide 'fast'
 
 # // Provides requestAnimationFrame in a cross browser way.
 # // @author paulirish / http://paulirish.com/
