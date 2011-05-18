@@ -27,7 +27,7 @@ class User
   validates :email, :presence => true,
                     :uniqueness => { :case_sensitive => false }
 
-  validates :invitation_token, :presence => true
+  validates :invitation_token, :presence => true, :on => :create
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :email, :password, :remember_me, :locale, :calendar
