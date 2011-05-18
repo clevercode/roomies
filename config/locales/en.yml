@@ -6,6 +6,7 @@ en:
   email_example: "example@domain.com"
   sign_in: "Sign In"
   signed_in: "Welcome back to Roomies!"
+  signed_out: "See you soon ;-)"
   sign_out: "Sign Out"
   sign_up: "Sign Up"
   or_sign_in_with: "or sign in with"

@@ -16,7 +16,7 @@ en:
       inactive: "Votre compte n'a pas encore été activé."
     sessions:
       signed_in: "Salut, content de vous revoir !"
-      signed_out: "Á bientôt ;-)"
+      # signed_out: "Á bientôt ;-)"
     passwords:
       send_instructions: "Vous allez recevoir un email avec des instructions vous indiquant comment redéfinir votre mot de passe dans quelques minutes."
       updated: "Votre mot de passe a été modifié avec succès. Vous êtes connecté."
