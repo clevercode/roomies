@@ -5,5 +5,5 @@
       - @house.errors.full_messages.each do |msg|
         %li= msg
 = simple_form_for @house do |f|
-  = f.input :name
+  = f.input :name, autofocus: true
   = f.submit 'submit', :class => 'green'
