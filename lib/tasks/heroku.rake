@@ -15,4 +15,11 @@ namespace :stats do
 
   task :all => [:visiters, :never]
 
+  desc "Returns all uninvited users"
+  task :uninvited => :environment do
+    User.where(invitation_sent_at: nil).each do |u|
+      puts "#{u.name} - #{u.email} - created: #{u.created_at}"
+    end
+  end
+
 end
