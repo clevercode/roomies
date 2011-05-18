@@ -69,4 +69,20 @@ body
             &:active
               img
                 +box-shadow(#bfdcff -1px -1px 0, #7490b2 1px 1px 0)
-
+        li.notification
+          a
+            width: 27px
+            height: 32px
+            padding: 9px 10px
+            text-indent: -9999px
+            background: url('../images/70.png') no-repeat 10px 10px
+            &:hover, &:focus
+              background-color: $skyblue
+              +box-shadow(rgba(0,0,0,0.3) 0 0 3px 1px inset)
+              +text-shadow(rgba(0,0,0,0.5) 0 1px 1px, rgba(0,0,0,0.2) 0 0 3px)
+            &:active  
+              +box-shadow(rgba(0,0,0,0.5) 0 0 3px 1px inset)
+              +text-shadow(rgba(0,0,0,0.7) 0 1px 1px, rgba(0,0,0,0.4) 0 0 3px)
+        li.confirm
+          a
+            background: url('../images/58_32px.png') no-repeat 13px 15px
