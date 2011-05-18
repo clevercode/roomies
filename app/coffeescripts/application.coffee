@@ -327,7 +327,7 @@ $('.generate').bind 'click', ->
     
   $('#password_junk input').attr('value',random_string)
   $darknessification.fadeIn _fadeSpeed
-  $modal.children('#ajaxed').empty()
+  $ajaxed.empty()
   
   $("<h1>generated password</h1>
      <p class='pass'>#{random_string}</p>
