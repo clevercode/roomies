@@ -27,15 +27,16 @@ class HouseInvitationsController < ApplicationController
     unless house_invitee.house == current_user.house
       respond_to do |format|
         if @house_invitation.save
-          format.html { redirect_to current_user, :notice => 'House invitation was successfully sent.' }
-          format.xml  { render :xml => @house_invitation, :status => :created, :location => @house_invitation }
+          flash[:notice] = t('.house_invitation_sent')
+          redirect_to current_user
         else
-          format.html { render :action => "new" }
-          format.xml  { render :xml => @house_invitation.errors, :status => :unprocessable_entity }
+          flash[:error] = t(:oops)
+          redirect_to current_user
         end
       end
     else
-      redirect_to current_user, :notice => "Sorry, the person you invited already lives with you."
+      flash[:notice] = t('.already_roomie')
+      redirect_to current_user
     end
   end
 
