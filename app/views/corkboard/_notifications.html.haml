@@ -1,4 +1,4 @@
-- if current_user.invitation_limit > 0
+- if current_user.invitation_limit and current_user.invitation_limit > 0
   = link_to "Beta Invites (#{current_user.invitation_limit})", new_user_invitation_path
 - if @all == nil
   - unless current_user.house_invitation.nil?
