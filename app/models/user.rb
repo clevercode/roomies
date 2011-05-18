@@ -118,12 +118,12 @@ class User
     end
   end
   
-  def has_invitations?
+  def invitation
     @invitation = Invitation.where(:email => self.email).first
     unless @invitation.nil?
-      true
+      @invitation
     else
-      false
+      nil
     end
   end
 
