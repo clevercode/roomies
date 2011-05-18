@@ -37,6 +37,12 @@ en:
   # general
   add_assignment: "Add Assignment"
   build_house: "Build a House"
+  profile_updated: "Your profile was successfully updated. Now go do useful stuff ;-)"
+  address_used: "Sorry but this email address is already used by another user. If this doesn't make any sense, shoot us a line so we investigate."
+
+  
+  #errors
+  oops: "Something went wrong. We can't promise we'll send you free stuff but if you want to come talk to us about it, we promise we'll help. :-)"
 
   #beta
   beta_invite_sent: "We just sent a little note to your friend. They should receive it soon."
@@ -152,8 +158,9 @@ en:
       build_house?: "build a house?"
       youre_homeless: "Oh no! It seems you're homeless! Want to "
       change_password_and_name: "Hi there! If you'd like to change your password or possibly tell us your name, go ahead and click here."
-      move_in_invite_accept: "Accept house invitation and start living easier with more roomies."
-      move_in_invite_refuse: "Refuse house invitation."
+      house_invitation: "You received a house invitation from "
+      move_in_invite_accept: "Accept."
+      move_in_invite_refuse: "Refuse."
       house_move_warning: "Warning: Clicking the link above will remove you from the house you currently belong to and let you join the new one."
     upcoming:
       no_assignments: "So far so good..."
@@ -184,7 +191,6 @@ en:
     points: "points"
     hi_there: "Hi there"
     new_roomie: "new roomie"
-
 
   # rewards
   rewards:
