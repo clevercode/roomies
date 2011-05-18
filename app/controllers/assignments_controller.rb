@@ -9,7 +9,6 @@ class AssignmentsController < ApplicationController
       @assignments = current_user.house.assignments
      
       @due           = @assignments.due
-      @past_due      = @assignments.past_due
       @completed     = @assignments.completed
 
       respond_with @assignments
