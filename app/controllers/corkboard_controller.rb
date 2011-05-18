@@ -8,13 +8,7 @@ class CorkboardController < ApplicationController
     else
       @all = current_user.house.assignments.where(completed_at: nil)
       @my  = current_user.assignments.where(completed_at: nil)
-    
-      @my_confirmations          = current_user.house.assignments
-                                     .where(commissioner_id: current_user.id)
-                                     .and(:completed_at.ne => nil)
-                                     .excludes(completor_id: current_user.id)
-      
-      @my_past_due               = @my.past_due
+            
       @my_tasks                  = @my.where(type: "task")
       @my_expenses               = @my.where(type: "expense")
       @my_todays_assignments     = @my.where(due_date: Date.today.to_s)
