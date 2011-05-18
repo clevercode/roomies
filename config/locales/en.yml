@@ -41,6 +41,78 @@ en:
   #beta
   beta_invite_sent: "We just sent a little note to your friend. They should receive it soon."
   beta_invite_request_sent: "Thank you for signing up, we'll give you a shout out when beta is ready."
+
+  errors:
+    messages:
+      not_found: "not found"
+      already_confirmed: "was already confirmed"
+      not_locked: "was not locked"
+
+  devise:
+    failure:
+      unauthenticated: "You need to sign in or sign up before doing that. Promise, we won't bite."
+      unconfirmed: 'You have to confirm your account before continuing.'
+      locked: 'Your account is locked.'
+      invalid: 'Invalid email or password.'
+      invalid_token: 'Invalid authentication token.'
+      timeout: 'Your session expired, please sign in again to continue.'
+      inactive: 'Your account was not activated yet.'
+    sessions:
+      signed_in: "Hey there, welcome back!"
+      signed_out: "See you soon ;-)"
+    passwords:
+      send_instructions: 'You will receive an email with instructions about how to reset your password in a few minutes.'
+      updated: 'Your password was changed successfully. You are now signed in.'
+      new:
+        enter_email: "e.g. myemail@domain.com"
+    invitations:
+      send_instructions: 'An invitation email has been sent to %{email}.'
+      invitation_token_invalid: 'The invitation token provided is not valid!'
+      updated: 'Your password was set successfully. You are now signed in.'
+      no_invitations_remaining: "No invitations remaining. Patience, we'll give you some more soon."
+    confirmations:
+      send_instructions: 'You will receive an email with instructions about how to confirm your account in a few minutes.'
+      confirmed: 'Your account was successfully confirmed. You are now signed in.'
+    registrations:
+      signed_up: "Hey, welcome to Roomies. Glad you could join us."
+      updated:
+      destroyed: 'Bye! Your account was successfully cancelled. We hope to see you again soon.'
+    unlocks:
+      send_instructions: 'You will receive an email with instructions about how to unlock your account in a few minutes.'
+      unlocked: 'Your account was successfully unlocked. You are now signed in.'
+      no_unlock_instructions: "Didn't receive unlock instructions?"
+    mailer:
+      confirmation_instructions:
+        subject: 'Confirmation instructions'
+      reset_password_instructions:
+        subject: 'Roomies reset password instructions'
+      unlock_instructions:
+        subject: 'Roomies unlock Instructions'
+      invitation_instructions:
+        subject: 'Roomies beta invite'
+
+  simple_form:
+    "yes": 'Yes'
+    "no": 'No'
+    required:
+      text: 'required'
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: "Some errors were found, please take a look:"
+    # Labels and hints examples
+    # labels:
+    #   password: 'Password'
+    #   user:
+    #     new:
+    #       email: 'E-mail para efetuar o sign in.'
+    #     edit:
+    #       email: 'E-mail.'
+    # hints:
+    #   username: 'User name to sign in.'
+    #   password: 'No special characters, please.'
   
   # home
   home:

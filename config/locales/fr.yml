@@ -10,6 +10,7 @@ fr:
   sign_in: "Connexion"
   sign_out: "Déconnexion"
   signed_in: "Content de vous revoir sur Roomies!"
+  signed_out: "A bientôt ;-)"
   sign_up: "Inscription"
   or_sign_in_with: "ou connectez-vous avec"
   or: "ou"
@@ -42,6 +43,79 @@ fr:
   #beta
   beta_invite_sent: "On vient d'envoyer une petite note à votre ami. Ca devrait leur parvenir très bientôt."
   beta_invite_request_sent: "Sympa de vous être inscrit, on vous previendra dès que la beta sera prête."
+
+  errors:
+    messages:
+      not_found: "introuvable"
+      already_confirmed: "a déjà été confirmé"
+      not_locked: "n'a pas été verouillé"
+
+  devise:
+    failure:
+      unauthenticated: "Vous devez vous connectez avant de faire ça. Promis, on mord pas."
+      unconfirmed: "Vous devez confirmer votre compte avant de continuer."
+      locked: "Votre compte est verouillé."
+      invalid: "Email ou mot de passe invalide."
+      invalid_token: "Jeton d'identification invalide."
+      timeout: 'Votre session a expiré, merci de vous connecter à nouveau pour continuer.'
+      inactive: "Votre compte n'a pas encore été activé."
+    sessions:
+      signed_in: "Salut, content de vous revoir !"
+      signed_out: "Á bientôt ;-)"
+    passwords:
+      send_instructions: "Vous allez recevoir un email avec des instructions vous indiquant comment redéfinir votre mot de passe dans quelques minutes."
+      updated: "Votre mot de passe a été modifié avec succès. Vous êtes connecté."
+      new:
+        enter_email: "ex: monemail@domaine.com"
+    invitations:
+      send_instructions: "Un email d'invitation a été envoyé à %{email}."
+      invitation_token_invalid: "Le jeton d'invitation fourni n'est pas valide !"
+      updated: "Votre mot de passe a été enregistré avec succès. Vous êtes connecté."
+      no_invitations_remaining: "Vous n'avez plus d'invitations à envoyer. Un peu de patience, on vous en donnera d'autres bientôt."
+    confirmations:
+      send_instructions: "Vous allez recevoir un email avec des instructions vous indiquant comment confirmer votre compte dans quelques minutes."
+      confirmed: "Votre compte a été confirmé avec succès. Vous êtes connecté."
+    registrations:
+      signed_up: "Salut, bienvenue sur Roomies. Content que vous ayez pu nous rejoindre."
+      updated:
+      destroyed: "Adieu ! Votre compte a été détruit comme vous l'avez demandé. On éspère quand même vous revoir un de ces jours."
+    unlocks:
+      send_instructions: "Vous allez recevoir un email avec des instructions vous indiquant comment déverouiller votre compte dans quelques minutes."
+      unlocked: "Votre compte a été déverouillé avec succès. Vous êtes connecté."
+      no_unlock_instructions:
+    mailer:
+      confirmation_instructions:
+        subject: "Roomies - confirmation de compte"
+      reset_password_instructions:
+        subject: "Roomies - remise à zéro de mot de passe"
+      unlock_instructions:
+        subject: "Roomies - déverouillage de compte"
+      invitation_instructions:
+        subject: "Roomies - invitation au beta test"
+
+  simple_form:
+    "yes": 'Oui'
+    "no": 'Non'
+    required:
+      text: 'requis'
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: "On a trouvés quelques erreurs, merci d'y jetter un oeil:"
+    # Labels and hints examples
+    # labels:
+    #   password: 'Password'
+    #   user:
+    #     new:
+    #       email: 'E-mail para efetuar o sign in.'
+    #     edit:
+    #       email: 'E-mail.'
+    # hints:
+    #   username: 'User name to sign in.'
+    #   password: 'No special characters, please.'
+
   
   # home
   home:
