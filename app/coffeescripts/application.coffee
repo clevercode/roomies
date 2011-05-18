@@ -160,36 +160,23 @@ $('.edit').live 'click', ->
 $('.header_bar a').bind 'click', ->
   unless $(this).hasClass('active')
     $header_bar = $(this).parent().parent().siblings('.header_bar')
-    $('.header_bar').hide()
-    if $header_bar.hasClass('upcoming')
-      $('.header_bar.upcoming').show()
-    else
-      $('.header_bar').show()
-      $('.header_bar.upcoming').hide()
-  
+    $('.header_bar.monthly, .header_bar.upcoming').hide()
+    
     # // Checks to see if the we want to show the full on calendar or not.
     if $header_bar.hasClass('upcoming')
-      $('.calendar').slideUp _slideUpSpeed, ->
-        $('.centric').slideDown _slideDownSpeed
+      $('.header_bar.upcoming').show()
+      $('.calendar').hide 'fast', ->
+        $('.centric').show 'fast'
         stickyFooter()
-        
-      if $('.corkboard_view.current').hasClass('all')
-        $('.corkboard_view.my .calendar').hide()
-        $('.corkboard_view.my .centric').show()
-      else
-        $('.corkboard_view.all .calendar').hide()
-        $('.corkboard_view.all .centric').show()
     else
-      $('.centric').slideUp _slideUpSpeed, ->
-        $('.calendar').slideDown _slideDownSpeed
+      $('.header_bar.monthly').show()
+      $('.centric').hide 'fast', ->
+        $('.calendar').show 'fast'
         stickyFooter()
         
-      if $('.corkboard_view.current').hasClass('all')  
-        $('.corkboard_view.my .centric').hide()
-        $('.corkboard_view.my .calendar').show()
-      else  
-        $('.corkboard_view.all .centric').hide()
-        $('.corkboard_view.all .calendar').show()
+    if   $('.corkboard_view.current').hasClass('all')
+    then $('.corkboard_view.my').children('.calendar, .centric').hide()
+    else $('.corkboard_view.all').children('.calendar, .centric').hide()
   
   return false
   
@@ -197,34 +184,35 @@ $('.header_bar a').bind 'click', ->
 # // Pops up with a list of the corresponding assignments for that day.
 $('.todo a').live 'click', ->
   $this = $(this)
-  $.ajax
-    url: $this.attr('href'), 
-    success: (data) ->
-      $detailList.empty()
-      $(data).each( ->
-        $("<li>
-            <a href='/assignments/#{this._id}'>#{this.purpose}</a>
-          </li>").appendTo('.detail_day_view')
-      )
+  
+  results = $('<div />').load($this.attr('href'), ->
+    data = $.parseJSON($(results[0]).text())
+    $detailList.empty()
+    $(data).each( ->
+      $("<li>
+          <a href='/assignments/#{this._id}'>#{this.purpose}</a>
+        </li>").appendTo $detailList
+    )
 
-      # // Sets the top to just above the anchor and the left to the anchor's left.
-      top = $this.offset().top - $detailList.outerHeight() - 10
-      $darknessification.css('opacity','0').show()
-      $detailList.css({top: top, left: $this.offset().left}).fadeIn _fadeSpeed
+    # // Sets the top to just above the anchor and the left to the anchor's left.
+    top = $this.offset().top - $detailList.outerHeight() - 10
+    $darknessification.css('opacity','0').show()
+    $detailList.css({top: top, left: $this.offset().left}).fadeIn _fadeSpeed
 
-      listPlacement = $detailList.offset().left + $detailList.outerWidth()
-      mainWidth     = $main.offset().left + $main.width()
+    listPlacement = $detailList.offset().left + $detailList.outerWidth()
+    mainWidth     = $main.offset().left + $main.width()
 
-      # // Checks to see if the popup needs to go the other direction or not.
-      if listPlacement > mainWidth
-        left = ($this.offset().left + $this.outerWidth()) - $detailList.outerWidth()
-        $detailList.css('left',left)
+    # // Checks to see if the popup needs to go the other direction or not.
+    if listPlacement > mainWidth
+      left = ($this.offset().left + $this.outerWidth()) - $detailList.outerWidth()
+      $detailList.css('left',left)
+  )
         
   return false
 
 # // Listens for the mouse leave event on our list of assignments.
 $detailList.live 'mouseleave', ->
-  $detailList.fadeOut _fadeSpeed
+  $detailList.hide('fast')
   $darknessification.css('opacity','.75').hide()
 
 # // Loops through each assignment badge block on the days and center
