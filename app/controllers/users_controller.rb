@@ -49,12 +49,15 @@ class UsersController < ApplicationController
     if @user.update_attributes(params[:user])
 
       sign_in(@user, :bypass => true)
-      redirect_to current_user, :notice => '.profile_successfully_updated'
+      flash[:notice] = t(:profile_updated)
+      redirect_to current_user
     else
       if User.where(email: params[:email]).first != @user
-        redirect_to current_user, :notice => '.address_already_used.'
+        flash[:notice] = t(:address_used)
+        redirect_to current_user
       else
-        redirect_to current_user, :notice => '.something_went_wrong'
+        flash[:error] = t(:oops)
+        redirect_to current_user
       end
     end
   end
