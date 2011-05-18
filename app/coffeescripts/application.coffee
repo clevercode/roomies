@@ -137,28 +137,18 @@ $('#modal h1 span').live 'click', ->
 # =============== CORKBOARD ===============
 # =========================================
 
-# // Handles mouseover and mouseout for the corkboard lists.
-$('.list .assignment').live 'mouseover', ->
-    $(this)
-      .children('ul')
-        .children('li:eq(1)')
-          .stop(true)
-          .animate {paddingRight:'0px'}, _fadeSpeed, ->
-            $(this).next().show().animate {opacity:1}, _fadeSpeed
-        .siblings('.type')
-          .removeClass('type')
-          .addClass('check')
-        
+# // Handles mouseenter and mouseleave for the corkboard lists.
+$('.list .assignment').live 'mouseenter', ->
+  $(this)
+    .find('li:eq(1)').animate {paddingRight:'0px'}, 'fast', ->
+      $(this).next().stop(true).show 'fast'
+    .siblings('.type').removeClass('type').addClass('check')
+
 $('.list .assignment').live 'mouseleave', ->
-    $(this)
-      .children('ul')
-        .children('li:eq(2)')
-          .stop(true)
-          .animate {opacity:0}, _fadeSpeed, ->
-            $(this).hide().prev().animate {paddingRight:'25px'}, _fadeSpeed
-        .siblings('.check')
-          .removeClass('check')
-          .addClass('type')
+  $(this)
+    .find('li:eq(2)').fadeOut 'fast', ->
+      $(this).hide().prev().stop(true).animate {paddingRight:'25px'}, 'fast'
+    .siblings('.check').removeClass('check').addClass('type')
 
 # // Edit assignment on edit icon click.
 $('.edit').live 'click', ->
