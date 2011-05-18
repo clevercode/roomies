@@ -10,10 +10,9 @@ $body              = $('body')
 $main              = $('#main')
 $footer            = $('footer')
 $modal             = $('#modal')
-$names             = $('#names')
-$easy_button       = $('#easy_button')
 $detailList        = $('.detail_day_view')
 $darknessification = $('#darknessification')
+$ajaxed            = $modal.children('#ajaxed')
 
 # =========================================
 # =========== Functions & Stuff ===========
