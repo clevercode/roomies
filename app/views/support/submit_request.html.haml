@@ -1,0 +1,4 @@
+%h1 Someone said something about Roomies!
+%h2 It seems you've gotten a new message from a loyal follower at roomies. Yay for you!
+%h3 Sent by <a href="#{@request[:email]}">#{@request[:name] || @request[:email]}</a>
+%p= @request[:message]
