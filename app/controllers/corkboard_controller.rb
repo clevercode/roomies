@@ -3,7 +3,7 @@ class CorkboardController < ApplicationController
   before_filter :authenticate_user!
   def index
 
-    if not current_user.house
+    if current_user.house.nil?
       @all = nil
     else
       @all = current_user.house.assignments.where(completed_at: nil)
