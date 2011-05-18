@@ -3,7 +3,7 @@ namespace :stats do
   task :visiters => :environment do
     puts "===== users who showed up at least once ====="
     User.where(:sign_in_count.ne => 0).each do |u|
-      puts "#{u.name} - #{u.email} - last seen: #{u.last_sign_in_at}, invited: #{u.invitation_sent_at}"
+      puts "- #{u.name} - #{u.email} - last seen: #{u.last_sign_in_at.to_s(:long_ordinal) if u.last_sign_in_at}, invited: #{u.invitation_sent_at.to_s(:long_ordinal) if u.invitation_sent_at}"
     end
   end
 
@@ -11,7 +11,7 @@ namespace :stats do
   task :never => :environment do
     puts "===== users who never signed in ====="
     User.where(sign_in_count: 0).each do |u|
-      puts "#{u.name} - #{u.email} - invited: #{u.invitation_sent_at}"
+      puts "- #{u.name} - #{u.email} - invited: #{u.invitation_sent_at.to_s(:long_ordinal) if u.invitation_sent_at}"
     end
   end
 
@@ -20,7 +20,7 @@ namespace :stats do
   task :uninvited => :environment do
     puts "===== uninvited users ====="
     User.where(invitation_sent_at: nil).each do |u|
-      puts "* #{u.name || "unnamed"} - #{u.email} - created: #{u.created_at}"
+      puts "- #{u.name || "unnamed"} - #{u.email} - created: #{u.created_at.to_s(:long_ordinal) if u.created_at}"
     end
   end
 
