@@ -1,14 +1,14 @@
-
-= link_to "Beta Invites (#{current_user.invitation_limit})", new_user_invitation_path
+- if current_user.invitation_limit > 0
+  = link_to "Beta Invites (#{current_user.invitation_limit})", new_user_invitation_path
 - if @all == nil
-  - if current_user.house_invitation.nil?
+  - unless current_user.house_invitation.nil?
     .notifications
       %p 
-        Invitation from
-        = User.find(current_user.house_invitation.inviter_id).name
+        = t('.house_invitation')
+        #{User.find(current_user.house_invitation.house_inviter_id).email}.
         = link_to t('.move_in_invite_accept'), '/accept_house_invitation'
         = link_to t('.move_in_invite_refuse'), '/reject_house_invitations'
-      - if not current_user.house.nil?
+      - unless current_user.house.nil?
         %p= t('.house_move_warning')
 
   .error
