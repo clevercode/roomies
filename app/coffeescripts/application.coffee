@@ -80,37 +80,52 @@ Clouds.animate()
 
 
 # =========================================
+# ========== HEADER NOTIFICATION ==========
+# =========================================
+
+$('nav li.notification a').bind 'click', -> return false
+
+$('nav li.notification a').bind 'mouseover', ->
+  $this = $(this)
+  $pastDueLabel = $("<span class='notification_title'>#{$this.text()}</span>")
+  $pastDueLabel.hide().appendTo('header')
+  
+  l = $this.offset().left - (($pastDueLabel.outerWidth() - $this.outerWidth()) / 2)
+  t = $this.offset().top + $this.outerHeight() + 5
+  
+  $pastDueLabel.css({left:l,top:t}).slideDown('fast').fadeIn()
+
+$('nav li.notification a').bind 'mouseout', ->
+  $('.notification_title').fadeOut(-> $(this).remove())
+
+
+# =========================================
 # ================= MODAL =================
 # =========================================
 
 # // Listens for a click on any anchor with a class of ajax.
 # // Knabs the anchor's href and ajaxes it in to the modal.
 $('a.ajax').bind 'click', ->
-  $.ajax 
-    url: $(this).attr('href'), 
-    success: (data) -> 
-      $modal.children('#ajaxed').empty()
-      $(data).appendTo('#modal #ajaxed')
-      $('<span>x</span>').appendTo('#modal h1')
-      $darknessification.fadeIn _fadeSpeed
-      superDate()
-      modal_left = ($('html').outerWidth()/2) - ($modal.outerWidth()/2)
-      modal_top = ($(window).height()/2) - ($modal.outerHeight()/2)
-      modal_top = 0 if modal_top < 0
-      $modal.css({left: modal_left, top: modal_top}).fadeIn _fadeSpeed
-      $modal.find("form > .string > input").not("input[type=hidden]").first().focus()
+  $ajaxed.empty().load($(this).attr('href'), ->
+    $('<span>x</span>').appendTo('#modal h1')
+    superDate()
+    modal_left = ($('html').outerWidth()/2) - ($modal.outerWidth()/2)
+    modal_top = ($(window).height()/2) - ($modal.outerHeight()/2)
+    modal_top = 0 if modal_top < 0
+    $darknessification.fadeIn _fadeSpeed
+    $modal.css({left: modal_left, top: modal_top}).fadeIn _fadeSpeed
+  )
   return false
 
 # // Listens for a click on the overlay when the modal or detail list is up.
 $darknessification.live 'click', ->
+  $detailList.hide 'fast'
   hideModal()
-  $detailList.fadeOut _fadeSpeed
-  return false
   
 # // Watches for an escape keypress and hides the modal, overlay, and detail list.
 $(window).bind 'keyup', ->
   if event.keyCode == 27
-    $detailList.fadeOut _fadeSpeed
+    $detailList.hide 'fast'
     hideModal()
 
 # // Watches for a click on the 'x' and hides the modal and overlay.
