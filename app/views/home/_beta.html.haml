@@ -1,6 +1,6 @@
 #signup
-  = simple_form_for BetaInvite.new do |f|
-    = f.input :recipient_email, :label => false, :input_html => { :placeholder => t(:email_example) }
-    = f.submit t(:sign_up), :class => 'green'
+  -# = form_tag(new_invitation_path) do |f|
+  -#   = email_field_tag :recipient_email
+  -#   = submit_tag "Sign Up", :class => 'green'
   %p.other_auths
-    Roomies is currently in private beta. Please sign up if you'd like to participate.
+    Roomies is currently in private beta. Please <a href="http://roomiesapp.com">sign up</a> if you'd like to participate.

@@ -3,22 +3,23 @@
             :placeholder => "What is this for?",
             :autofocus => true
 
-  = f.association :assignees, :collection => roomies_list, :as => :check_boxes 
+  .assignees
+    = f.association :assignees, :collection => roomies_list, :as => :check_boxes 
   #picker
   = f.input :due_date,
             :placeholder => "Type (e.g. 'next friday') or select a date above.", 
             :input_html => { :class => 'superdate', :value => ((@assignment.due_date.blank?) ? '' : l(@assignment.due_date.to_date)) }
   = f.input :cost, :placeholder => "Enter the cost if there is one."
 
-  .label.boolean.optional
-    = label_tag "repeating", "Will this repeat in the future?"
-    = check_box_tag "repeating", "yes", false, :value => "yes"
+  -# .label.boolean.optional
+  -#   = label_tag "repeating", "Will this repeat in the future?"
+  -#   = check_box_tag "repeating", "yes", false, :value => "yes"
 
-  = f.input :frequency,
-            :collection => ["Daily","Weekly","Monthly"],
-            :prompt => "Choose a frequency"
+  -# = f.input :frequency,
+  -#           :collection => ["Daily","Weekly","Monthly"],
+  -#           :prompt => "Choose a frequency"
 
-  = f.input :category, :collection => Category.all, :prompt => "Choose a category"
+  -# = f.input :category, :collection => Category.all, :prompt => "Choose a category"
 
   = f.button :submit, 
               :disable_with => "Please wait...", 

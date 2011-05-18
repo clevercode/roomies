@@ -34,7 +34,4 @@
   %ul.detail_day_view
 
 - else
-  .error
-    %p
-      = t('.youre_homeless')
-      = link_to t('.build_house?'), new_house_path, :class => "ajax"
+  = render :partial => 'notifications'

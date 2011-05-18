@@ -22,5 +22,5 @@ class CorkboardController < ApplicationController
       @all_next_days_assignments = @all.where(due_date: Date.tomorrow.tomorrow.to_s)
       
     end
-      end
+  end
 end

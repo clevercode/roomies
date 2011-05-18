@@ -1,0 +1,12 @@
+%h1 new house invitation
+- if @house_invitation.errors.any?
+  #error_explanation
+    %h2
+      = pluralize(@house_invitation.errors.count, "error")
+      prohibited this house invitation from being saved:
+
+    %ul
+      - @house_invitation.errors.full_messages.each do |msg|
+        %li= msg
+
+= render 'form'

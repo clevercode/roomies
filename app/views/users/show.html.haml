@@ -36,7 +36,7 @@
           &mdash;
           = link_to 'change house name', edit_house_path(@user.house), :class => 'ajax'
           or
-          = link_to 'add roomies', new_invitation_path, :class => 'ajax'
+          = link_to 'add roomies to your house', new_house_invitation_path, :class => 'ajax'
           |
           = link_to 'move out', homeless_url(:id => @user.id, :house_id => @user.house)
     - else

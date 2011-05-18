@@ -6,11 +6,11 @@
   %p= t('.easier')
   
 #screencast
-  <iframe src="http://player.vimeo.com/video/23326086?title=0&amp;byline=0&amp;portrait=0" width="460" height="340" frameborder="0"></iframe>
+  <iframe src="http://player.vimeo.com/video/23836794?title=0&amp;byline=0&amp;portrait=0" width="460" height="340" frameborder="0"></iframe>
 
-- if params[:beta] || Rails.env == "production" 
+- if Rails.env == "production"
   = render :partial => "beta"
-- elsif params[:default] || Rails.env == "development" 
+- else
   = render :partial => "signup"
 
 .benefit
