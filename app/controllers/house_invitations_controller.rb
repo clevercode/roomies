@@ -3,7 +3,7 @@ class HouseInvitationsController < ApplicationController
   respond_to :html, :json
 
   def index
-    @house_invitations = HouseInvitation.all
+    @house_invitations = HouseInvitation.where(email: current_user.email)
 
     respond_with @house_invitations
   end
