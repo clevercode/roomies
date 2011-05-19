@@ -39,6 +39,6 @@ Roomies::Application.routes.draw do
   match '/past_due_assignments'         => 'assignments#past_due_assignments'
   match '/assignments/:id/confirm'      => 'assignments#confirm'
   match '/assignments/:id/reject'       => 'assignments#reject'
-  match '/payment/callback/'            => 'payments#handler'
+  match '/payment/callback/'            => 'payments#handle'
 
 end
