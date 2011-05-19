@@ -25,14 +25,12 @@ class HouseInvitationsController < ApplicationController
     house_invitee = User.where(:email => @house_invitation.email).first || User.new
 
     unless house_invitee.house == current_user.house
-      respond_to do |format|
-        if @house_invitation.save
-          flash[:notice] = t('.house_invitation_sent')
-          redirect_to current_user
-        else
-          flash[:error] = t(:oops)
-          redirect_to current_user
-        end
+      if @house_invitation.save
+        flash[:notice] = t('.house_invitation_sent')
+        redirect_to current_user
+      else
+        flash[:error] = t(:oops)
+        redirect_to current_user
       end
     else
       flash[:notice] = t('.already_roomie')
