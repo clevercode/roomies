@@ -3,6 +3,8 @@ class User
   include Mongoid::Timestamps
 
   require 'digest/md5'
+  require 'open-uri'
+  require 'json'
   
   # after_create :send_welcome_email
   before_create :set_invitation_limit
@@ -12,6 +14,7 @@ class User
   field :points, :type => Integer
   field :locale, :type => String, :default => "en"
   field :calendar, :type => String, :default => "centric"
+  field :secret, :type => String
 
   # Associations
   belongs_to :house # => User has a house_id
@@ -126,6 +129,18 @@ class User
   def check_for_achievements
     if self.points > 50
       self.achievements.create(name: "Megatop Roomie")
+      if self.points < stuff && self.points > stuff
+        Achievement.create(user_id: self.id, )
+      end
+    end
+  end
+
+  def check_payment
+    if self.secret
+      url = "http://www.pintpay.com/api/1/subscriptions"
+      result = JSON.parse(
+        open("#{url}/#{self.secret}?api_key=#{ENV['PINTPAY_API_KEY']}&api_secret=#{ENV['PINTPAY_API_SECRET']}").read
+      )
     end
   end
 
