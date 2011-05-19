@@ -123,7 +123,7 @@ $darknessification.live 'click', ->
   hideModal()
   
 # // Watches for an escape keypress and hides the modal, overlay, and detail list.
-$(window).bind 'keyup', ->
+$(window).bind 'keyup', (event) ->
   if event.keyCode == 27
     $detailList.hide 'fast'
     hideModal()
