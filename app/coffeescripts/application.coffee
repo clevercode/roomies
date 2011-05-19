@@ -268,7 +268,7 @@ do superDate = ->
       date = Date.parse( val )
 
       # // making the date more legible and concise
-      date = date.toString('MMMM d, yyyy')
+      date = date.toString('MMMM d, yyyy') if date
 
       # // updating the datepicker
       $picker.datepicker('setDate', date)
@@ -277,7 +277,7 @@ do superDate = ->
     val = $(this).val()
     if val?
       date = Date.parse( val )
-      date = date.toString('MMMM d, yyyy')
+      date = date.toString('MMMM d, yyyy') if date
       $(this).val(date)
       $picker.datepicker('setDate', date)
 
