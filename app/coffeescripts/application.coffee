@@ -236,20 +236,7 @@ $('.check').live 'click', ->
     type: 'post',
     url: "/assignments/#{id}/complete",
     success: (data) ->
-      $assignment.slideUp _slideUpSpeed
-      $("<div id='flash'>
-           <div class='reward'>
-             <p>Congratulations! You completed an assignment! You get cookies.</p>
-           </div>
-         </div>"
-      ).css('opacity',0).animate({opacity:1}).insertBefore('.notifications')
-      if $assignment.siblings().length == 0
-        $("<li class='assignment'>
-             <ul>
-               <li class='purpose'>So far so good...</li>
-             </ul>
-           </li>"
-        ).appendTo $assignment.parent('ul')
+      $assignment.removeClass('assignment').addClass('completed').find('.type').removeClass().addClass('check')
   return false
 
 
