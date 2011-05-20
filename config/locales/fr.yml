@@ -147,6 +147,15 @@ fr:
       all: "Tout"
       tasks: "Tâches"
       expenses: "Dépenses"
+    notifications:
+      build_house?: "build a house?"
+      youre_homeless: "Oh no! It seems you're homeless! Want to "
+      change_password_and_name: "Hi there! If you'd like to change your password or possibly tell us your name, go ahead and click here."
+      house_invitation: "You received a house invitation from "
+      move_in_invite_accept: "Accept."
+      move_in_invite_refuse: "Refuse."
+      house_move_warning: "Warning: Clicking the link above will remove you from the house you currently belong to and let you join the new one."
+    header_bar:
       these_coming_days: "Les jours qui viennent"
       this_coming_month: "Le mois prochain"
       upcoming: "Bientôt"
