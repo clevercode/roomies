@@ -4,19 +4,16 @@ class HouseInvitationsController < ApplicationController
 
   def index
     @house_invitations = HouseInvitation.where(email: current_user.email)
-
     respond_with @house_invitations
   end
 
   def show
     @house_invitation = HouseInvitation.find(params[:id])
-
     respond_with @house_invitation
   end
 
   def new
     @house_invitation = HouseInvitation.new
-
     respond_with @house_invitation
   end
 
@@ -27,11 +24,8 @@ class HouseInvitationsController < ApplicationController
     unless house_invitee.house == current_user.house
       if @house_invitation.save
         flash[:notice] = t('.house_invitation_sent')
-        redirect_to current_user
-      else
-        flash[:error] = t(:oops)
-        redirect_to current_user
       end
+      respond_with @house_invitation, location: current_user
     else
       flash[:notice] = t('.already_roomie')
       redirect_to current_user
@@ -43,6 +37,6 @@ class HouseInvitationsController < ApplicationController
     @house_invitation.destroy
     
     flash[:notice] = t('.house_invitation_destroyed')
-    redirect_to house_invitations_url
+    respond_with @house_invitation, location: current_user
   end
 end
