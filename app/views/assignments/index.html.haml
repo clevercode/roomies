@@ -7,17 +7,12 @@
     %tr
       %th Purpose
       %th Due date
-      %th Cost
-      %th Assignee(s)
-      %th Frequency
+      %th Complete
    
     - @past_due.each do |assignment|
       %tr
         %td= link_to assignment.purpose, assignment
         %td= assignment.due_date.to_date || 'none'
-        %td= assignment.cost || 'none'
-        %td none
-        %td= assignment.frequency || 'not repeating'
         %td= button_to 'complete', :action => :complete, :id => assignment.id
 
   %hr
@@ -71,7 +66,7 @@
     %tr
       %th Purpose
       %th Completor
-      %th Confirm or Reject
+      %th Confirm?
     - @confirmations.each do |assignment|
       %tr
         %td= assignment.purpose

@@ -26,6 +26,8 @@
         border-top: none 
         +background-image(linear-gradient(#d9eaff, #f2f8ff))
         +box-shadow(#fff 1px 1px 0 inset, #fff -1px -1px 0 inset)
+        &.completed
+          opacity: 0.55
 
         ul
           li
@@ -162,7 +164,7 @@
           +box-shadow(transparentize(darken(saturate($green, 60%), 20%), 0.5) 0 0 1px 1px inset)
 
           &.tasks
-            +linear-gradient(color-stops($lightblue, $blue), top)
+            +background-image(linear-gradient(lighten($lightblue, 0%), saturate($blue, 20%)))
             +box-shadow(transparentize(darken(saturate($blue, 20%), 20%), 0.5) 0 0 1px 1px inset)
 
   .centric
@@ -233,7 +235,7 @@
       border: 1px solid #000
       +text-shadow(#000 1px 1px 0)
       +box-shadow(#555 0px 1px 1px inset)
-      +linear-gradient(color-stops(#333, #262626))
+      +background-image(linear-gradient(#333, #262626))
       a
         display: block
         padding: 5px 20px

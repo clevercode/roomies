@@ -115,7 +115,7 @@ class AssignmentsController < ApplicationController
       if @assignment.save
         reward(nil,3)
         flash[:notice] = t(:completed, :scope => :assignments)
-        respond_with(@assignment)
+        redirect_to '/corkboard'
       else
         flash[:notice] = t(:cant_complete, :scope => :assignments)
       end
@@ -165,10 +165,10 @@ class AssignmentsController < ApplicationController
   end
   
   def confirm
-    assignment = Assignment.find(params[:id])
-    assignment.validated_at = Time.now
-    assignment.validator    = current_user
-    if assignment.save
+    @assignment = Assignment.find(params[:id])
+    @assignment.validated_at = Time.now
+    @assignment.validator    = current_user
+    if @assignment.save
       redirect_to '/corkboard', notice: 'Assignment successfully confirmed.'
     end
     

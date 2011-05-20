@@ -31,10 +31,10 @@ form
       cursor: pointer
       font-weight: bold
       padding: 7px 5px 5px
-      +linear-gradient(color-stops(#f2f8ff, #d9eaff))
+      +background-image(linear-gradient(#f2f8ff, #d9eaff))
       &:hover
-        +linear-gradient(color-stops(lighten(#f2f8ff,10%), #d9eaff))
+        +background-image(linear-gradient(lighten(#f2f8ff,10%), #d9eaff))
       &:active
         +box-shadow(darken(#d9eaff,10%) 0 0 5px 1px inset)
-        +linear-gradient(color-stops(darken(#d9eaff,1%), #d9eaff))
+        +background-image(linear-gradient(darken(#d9eaff,1%), #d9eaff))
 

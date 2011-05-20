@@ -54,7 +54,7 @@
         font-weight: bold
         +border-radius(10px)
         border: 1px solid saturate(#a8d977,20%)
-        +linear-gradient(color-stops(#d7ff8c, #a8d977))
+        +background-image(linear-gradient(#d7ff8c, #a8d977))
         +text-shadow(rgba(0,0,0,0.5) 2px 2px 5px, darken($green,10%) 1px 1px 0)
         +box-shadow(rgba(93,76,42,0.85) 0 2px 2px, saturate(#90ce66,20%) -5px -10px 20px inset, saturate(#90ce66,20%) 5px -10px 20px inset)
     #avatar
@@ -68,7 +68,7 @@
           display: block
         img
           border: 10px solid #fff
-          +box-shadow(rgba(0,0,0,0.2),1px,1px,1px,0px)
+          +box-shadow(rgba(0,0,0,0.2) 1px 1px 1px 0px)
     form
       margin-right: 10px
       .input
@@ -89,13 +89,26 @@
     table.assignments
       width: 100%
       tr
-        background: $skyblue
-        border: 1px solid $sunblue
+        width: 440px
+        font-size: 16px
+        line-height: 25px
+        margin-right: 0px
+        color: $font-color
+        +border-radius(5px)
+        +background-image(linear-gradient(#d9eaff, #f2f8ff))
+        +background-image(linear-gradient(saturate(lighten($blue, 18%), 40%), saturate(lighten($blue, 23%), 20%)))
+        +box-shadow(transparentize(white, .5) 0 1px 0 inset, transparentize($blue, .2) 0 0 0 1px inset )
       th, td
-        padding: 5px
+        +column(2)
+        padding: 7px 0
         text-align: center
+        vertical-align: middle
+        form
+          width: auto
       td:first-child
         text-align: left
+      th:nth-child(3n), td:nth-child(3n)
+        +column(1)
       td
         a
           margin: 0 5px
