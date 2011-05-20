@@ -170,6 +170,25 @@ en:
     completed: "Nice job, this assignment was marked as completed!"
     cant_complete: "We somehow couldn't mark this assignment as complete, I blame Narwhals. But drop us a line, we'll fix it and give you a gift."
     already_completed: "This assignments was already completed, you sneaky face."
+    create:
+      build_house_before: "You need to build a house before you can create an assignment."
+      no_assignees: "You're gonna have to assign this to someone. Try again."
+      self_assigned: "You assigned this to yourself, nice job. Give some work to your roomies, too ;-)"
+      self_assigned_no_roomies: "You assigned this to yourself, nice job."
+      roomies_assigned: "Look at you, creating assignment for other people. How about you give a hand too?"
+      everyone_assigned: "Sharing the workload, good thinking."
+    update:
+      updated: "Your assignment was successfully updated."
+    destroy:
+      destroyed: "Your assignment was successfully destroyed"
+    complete:
+      completed: "Nice job, you completed an assignments!"
+      already_completed: "This assignment was already completed, nice try ;-)"
+    confirm:
+      confirmed: "Assignment successfully confirmed."
+    reject:
+      rejected: "Assignment successfully rejected."
+
   
   # profile
   profile:
@@ -197,6 +216,10 @@ en:
     sign_in: "signing in"
     assignments_create: "creating an assignment"
     assignments_complete: "completing an assignment"
+
+  support:
+    create:
+      sent: "Your support message was successfully sent. We'll get back to you as soon we're done watching that monkey in a three-piece suit smoking a cigar. Classy fella."
 
   hello: 'Hello world'
   auth_success: 'Authentication successful.'
