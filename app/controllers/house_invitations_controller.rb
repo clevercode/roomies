@@ -3,7 +3,7 @@ class HouseInvitationsController < ApplicationController
   respond_to :html, :json
 
   def index
-    @house_invitations = HouseInvitation.all
+    @house_invitations = HouseInvitation.where(email: current_user.email)
 
     respond_with @house_invitations
   end
@@ -25,14 +25,12 @@ class HouseInvitationsController < ApplicationController
     house_invitee = User.where(:email => @house_invitation.email).first || User.new
 
     unless house_invitee.house == current_user.house
-      respond_to do |format|
-        if @house_invitation.save
-          flash[:notice] = t('.house_invitation_sent')
-          redirect_to current_user
-        else
-          flash[:error] = t(:oops)
-          redirect_to current_user
-        end
+      if @house_invitation.save
+        flash[:notice] = t('.house_invitation_sent')
+        redirect_to current_user
+      else
+        flash[:error] = t(:oops)
+        redirect_to current_user
       end
     else
       flash[:notice] = t('.already_roomie')

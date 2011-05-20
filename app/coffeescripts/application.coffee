@@ -46,37 +46,37 @@ hideModal = (event) ->
 
 # // Provides requestAnimationFrame in a cross browser way.
 # // @author paulirish / http://paulirish.com/
-unless window.requestAnimationFrame
-  window.requestAnimationFrame =
-    window.webkitRequestAnimationFrame or
-    window.mozRequestAnimationFrame or
-    window.oRequestAnimationFrame or
-    window.msRequestAnimationFrame or
-    (callback, element) ->
-      window.setTimeout( callback, 1000 / 60 )
+# unless window.requestAnimationFrame
+#   window.requestAnimationFrame =
+#     window.webkitRequestAnimationFrame or
+#     window.mozRequestAnimationFrame or
+#     window.oRequestAnimationFrame or
+#     window.msRequestAnimationFrame or
+#     (callback, element) ->
+#       window.setTimeout( callback, 1000 / 60 )
 
-Clouds = 
-  # // Initialize the counter
-  xPosition: 0
+# Clouds = 
+#   # // Initialize the counter
+#   xPosition: 0
 
-  # // Cache the element
-  element: $('#clouds')
+#   # // Cache the element
+#   element: $('#clouds')
 
-  # // Animation Logic
-  animate: ->
-    # // Create a binded version of this method
-    @_bindedAnimate ||= _(@animate).bind(this)
+#   # // Animation Logic
+#   animate: ->
+#     # // Create a binded version of this method
+#     @_bindedAnimate ||= _(@animate).bind(this)
 
-    # // Queue up another call of this method
-    window.requestAnimationFrame(@_bindedAnimate)
+#     # // Queue up another call of this method
+#     window.requestAnimationFrame(@_bindedAnimate)
 
-    # // Update our internal counter 
-    @xPosition -= 0.25
+#     # // Update our internal counter 
+#     @xPosition -= 0.25
 
-    # // Set CSS to new the new counter value
-    @element.css("background-position", @xPosition+"px 0")
+#     # // Set CSS to new the new counter value
+#     @element.css("background-position", @xPosition+"px 0")
 
-Clouds.animate()
+# Clouds.animate()
 
 
 # =========================================
@@ -123,7 +123,7 @@ $darknessification.live 'click', ->
   hideModal()
   
 # // Watches for an escape keypress and hides the modal, overlay, and detail list.
-$(window).bind 'keyup', ->
+$(window).bind 'keyup', (event) ->
   if event.keyCode == 27
     $detailList.hide 'fast'
     hideModal()
@@ -255,7 +255,7 @@ do superDate = ->
       date = Date.parse( val )
 
       # // making the date more legible and concise
-      date = date.toString('MMMM d, yyyy')
+      date = date.toString('MMMM d, yyyy') if date
 
       # // updating the datepicker
       $picker.datepicker('setDate', date)
@@ -264,7 +264,7 @@ do superDate = ->
     val = $(this).val()
     if val?
       date = Date.parse( val )
-      date = date.toString('MMMM d, yyyy')
+      date = date.toString('MMMM d, yyyy') if date
       $(this).val(date)
       $picker.datepicker('setDate', date)
 
