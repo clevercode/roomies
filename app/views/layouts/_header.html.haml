@@ -19,11 +19,11 @@
         %li.notification
           = link_to "#{pasts.count} past due", '/past_due_assignments', class: 'ajax'
       %li.profile
-        = link_to image_tag(current_user.gravatar('small'), :width => 34, :height => 34), current_user
+        = link_to image_tag(current_user.gravatar('small'), width: 34, height: 34), current_user
       %li
         - if current_user.house.nil?
-          = link_to t(:build_house), new_house_path, :id => 'easy_button', :class => 'ajax'
+          = link_to t(:build_house), new_house_path, id: 'easy_button', class: 'ajax'
         - else
-          = link_to t(:add_assignment), new_assignment_path, :id => 'easy_button', :class => 'ajax'
+          = link_to t(:add_assignment), new_assignment_path, id: 'easy_button', class: 'ajax'
   - else
-    = link_to t(:sign_in), user_session_path, :class => 'ajax'
+    = link_to t(:sign_in), user_session_path, class: 'ajax'
