@@ -6,7 +6,8 @@ class SupportController < ApplicationController
   
   def create
     Support.submit_request(params).deliver
-    render :index, :notice => 'Message sent successfully.'
+    flash[:notice] = t(:sent, scope: [:support, :create])
+    render :index
   end
 
   def show
