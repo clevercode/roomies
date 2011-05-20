@@ -1,18 +1,5 @@
-- if current_user.invitation_limit > 0
+- if current_user.invitation_limit and current_user.invitation_limit > 0
   = link_to "Beta Invites (#{current_user.invitation_limit})", new_user_invitation_path
-- if @all == nil
-  - unless current_user.house_invitation.nil?
-    .notifications
-      %p 
-        = t('.house_invitation')
-        #{User.find(current_user.house_invitation.house_inviter_id).email}.
-        = link_to t('.move_in_invite_accept'), '/accept_house_invitation'
-        = link_to t('.move_in_invite_refuse'), '/reject_house_invitations'
-      - unless current_user.house.nil?
-        %p= t('.house_move_warning')
-
-  .error
-    %p= link_to  t('.youre_homeless') + t('.build_house?'), new_house_path, :class => "ajax"
 - unless current_user.name?
   .notifications
     %p= link_to t('.change_password_and_name'), edit_user_path(current_user), :class => 'ajax'
