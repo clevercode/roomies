@@ -165,10 +165,10 @@ class AssignmentsController < ApplicationController
   end
   
   def confirm
-    assignment = Assignment.find(params[:id])
-    assignment.validated_at = Time.now
-    assignment.validator    = current_user
-    if assignment.save
+    @assignment = Assignment.find(params[:id])
+    @assignment.validated_at = Time.now
+    @assignment.validator    = current_user
+    if @assignment.save
       redirect_to '/corkboard', notice: 'Assignment successfully confirmed.'
     end
     
