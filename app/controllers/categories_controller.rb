@@ -1,4 +1,7 @@
 class CategoriesController < ApplicationController
+
+  respond_to :html, :json
+
   def index
     if params[:search]
       @categories = Category.find(:all, :conditions => { :name => params[:search] }) 
@@ -6,9 +9,6 @@ class CategoriesController < ApplicationController
       @categories = Category.all
     end
 
-    respond_to do |format|
-      format.html 
-      format.js
-    end
+    respond_with @categories
   end
 end
