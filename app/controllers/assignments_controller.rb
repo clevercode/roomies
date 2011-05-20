@@ -7,30 +7,26 @@ class AssignmentsController < ApplicationController
   def index
     unless current_user.house.blank?
       @assignments = current_user.house.assignments
-     
       @due           = @assignments.due
       @completed     = @assignments.completed
-
       respond_with @assignments
-
     end
     
   end
  
   def show
     @assignment = Assignment.find(params[:id])
- 
     respond_with @assignment
   end
  
   def new
     @assignment = Assignment.new
-
     respond_with @assignment
   end
  
   def edit
     @assignment = Assignment.find(params[:id])
+    respond_with @assignment
   end
  
   def create
@@ -49,7 +45,7 @@ class AssignmentsController < ApplicationController
           end
           UserMailer.assignment_created(assignment, recipients, "#{corkboard_index_url}/?assignment=#{assignment.id}").deliver
           reward(nil, 2)
-          flash[:notice] = "Look at you, creating assignment for other people. How about you give a hand too?"
+          flash[:notice] = t(:roomies_assigned, scope: [:assignments, :create])
 
         # assignment includes current_user & other assignees
         elsif assignment.assignees.include?(current_user) && assignment.assignees.length > 1
@@ -61,28 +57,25 @@ class AssignmentsController < ApplicationController
           end
           UserMailer.assignment_created(assignment, recipients, "#{corkboard_index_url}/?assignment=#{assignment.id}").deliver
           reward(nil, 2)
-          flash[:notice] = "Sharing the workload, good thinking."
+          flash[:notice] = t(:everyone_assigned, scope: [:assignments, :create])
 
         # only assignee is current_user
         elsif assignment.assignees.include?(current_user) && assignment.assignees.length == 1
           reward(nil, 2)
           if current_user.house.users.count > 1
-            flash[:notice] = "You assigned this to yourself, nice job. Give some work to your roomies, too ;-)"
+            flash[:notice] = t(:self_assigned,scope: [:assignments, :create])
           else
-            flash[:notice] = "You assigned this to yourself, nice job."
+            flash[:notice] = t(:self_assigned_no_roomies, scope: [:assignments, :create])
           end
 
         # validating for presence_of assignees so this shouldn't be needed
         else
-          flash[:error] = "You didn't assign anyone, let's try this again."
+          flash[:error] = t(:no_assignees, scope: [:assignments, :create])
         end
-        redirect_to '/corkboard'
-      else
-        redirect_to '/corkboard', :error => "Your assignment couldn't be created, try again."
       end
-
+      respond_with assignment, location: corkboard_index_url
     else
-      redirect_to current_user, :notice => 'Sorry, you need to build a house before you can create assignments.'
+      redirect_to current_user, notice: t(:build_house_before, scope: [:assignments, :create])
     end
   end
  
@@ -90,20 +83,17 @@ class AssignmentsController < ApplicationController
     @assignment = Assignment.find(params[:id])
     
     if @assignment.update_attributes(params[:assignment])
-      flash[:notice] = "Your assignment was successfully updated."
-    else
-      flash[:notice] = "Your assignment couldn't be updated, try again."
+      flash[:notice] = t(:updated, scope: [:assignments, :update])
     end
 
-    respond_with @assignment
+    respond_with @assignment, location: corkboard_index_url
   end
  
   def destroy
     @assignment = Assignment.find(params[:id])
     @assignment.destroy
 
-    flash[:notice] = "Your assignment was successfully destroyed"
-
+    flash[:notice] = t(:destroyed, scope: [:assignments, :destroy])
     respond_with @assignment
   end
 
@@ -114,14 +104,12 @@ class AssignmentsController < ApplicationController
       @assignment.completor_id = current_user.id
       if @assignment.save
         reward(nil,3)
-        flash[:notice] = t(:completed, :scope => :assignments)
-        redirect_to '/corkboard'
-      else
-        flash[:notice] = t(:cant_complete, :scope => :assignments)
+        flash[:notice] = t(:completed, scope: [:assignments, :complete])
       end
+      respond_with @assignment, location: corkboard_index_url
     else
-      flash[:notice] = t(:already_completed, :scope => :assignments)
-      respond_with @assignment
+      flash[:notice] = t(:already_completed, scope: [:assignments, :complete])
+      respond_with @assignment, location: corkboard_index_url
     end
   end
 
@@ -148,7 +136,6 @@ class AssignmentsController < ApplicationController
   def past_due_assignments
     unless current_user.house.blank?
       @past_due = current_user.assignments.past_due
-
       render :index
     end
   end
@@ -159,7 +146,6 @@ class AssignmentsController < ApplicationController
                          .where(commissioner_id: current_user.id)
                          .and(:completed_at.ne => nil)
                          .excludes(completor_id: current_user.id)
-                         
       render :index
     end
   end
@@ -169,18 +155,20 @@ class AssignmentsController < ApplicationController
     @assignment.validated_at = Time.now
     @assignment.validator    = current_user
     if @assignment.save
-      redirect_to '/corkboard', notice: 'Assignment successfully confirmed.'
+      flash[:notice] = t(:confirmed, scope: [:assignments, :confirm])
     end
-    
+
+    respond_with @assignment, location: corkboard_index_url
   end
 
   def reject
-    assignment = Assignment.find(params[:id])
-    assignment.completor = nil
-    assignment.completed_at = nil
-    if assignment.save
-      redirect_to '/corkboard', notice: 'Assignment successfully rejected.'
+    @assignment = Assignment.find(params[:id])
+    @assignment.completor = nil
+    @assignment.completed_at = nil
+    if @assignment.save
+      flash[:notice] = t(:rejected, scope: [:assignments, :reject])
     end
+    respond_with @assignment, location: corkboard_index_url
     
   end
  
