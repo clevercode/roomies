@@ -4,19 +4,16 @@ class HousesController < ApplicationController
 
   def index
     @houses = House.all
-
     respond_with @houses
   end
 
   def show
     @house = House.find(params[:id])
-    
     respond_with @house
   end
 
   def new
     @house = House.new
-
     respond_with @house
   end
 
@@ -31,11 +28,8 @@ class HousesController < ApplicationController
       current_user.house = @house
       current_user.save
       flash[:notice] = t('.house_created')
-      redirect_to current_user
-    else
-      flash[:error] = t('.house_creation_failure')
-      redirect_to current_user
     end
+    respond_with @house, location: current_user
   end
 
   def update
@@ -48,11 +42,8 @@ class HousesController < ApplicationController
 
     if @house.update_attributes(params[:house])
       flash[:notice] = t('.house_updated')
-      respond_with current_user
-    else
-      flash[:error] = t('.house_not_updated')
-      render :edit
     end
+    respond_with @house, location: current_user
 
   end
 
@@ -61,7 +52,7 @@ class HousesController < ApplicationController
     @house.destroy
 
     flash[:notice] = t('.house_destroyed')
-    redirect_to houses_url
+    respond_with @house, location: current_user
   end
 
   def destroy_roomie
