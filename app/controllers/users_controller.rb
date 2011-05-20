@@ -43,8 +43,8 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     
-    @user.locale = params[:user][:locale]
-    @user.save
+    # @user.locale = params[:user][:locale]
+    # @user.save
 
     if @user.update_attributes(params[:user])
 
