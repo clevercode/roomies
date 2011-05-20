@@ -115,7 +115,7 @@ class AssignmentsController < ApplicationController
       if @assignment.save
         reward(nil,3)
         flash[:notice] = t(:completed, :scope => :assignments)
-        respond_with(@assignment)
+        redirect_to '/corkboard'
       else
         flash[:notice] = t(:cant_complete, :scope => :assignments)
       end
