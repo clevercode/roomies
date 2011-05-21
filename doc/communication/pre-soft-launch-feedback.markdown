@@ -18,3 +18,12 @@ Moving out:
 
 Editing:
 - ensure hover intent
+
+Notices:
+- Absolute position them on top of everything so they don't make the content jolt back up when they disappear.
+
+## Gus
+- Redirect users to corkboard after house creation
+- Tabindex on the assignment form, skip the date picker and go straight to the date input field after the assignees selection.
+- Make the mini profile picture less button-y or make it straight text. It's not intuitive and people click around a lot not knowing what they
+- Gravatar default image looks like a power button, get rid of that shit!
