@@ -29,7 +29,7 @@ class HousesController < ApplicationController
       current_user.save
       flash[:notice] = t('.house_created')
     end
-    respond_with @house, location: current_user
+    respond_with @house, location: corkboard_index_url
   end
 
   def update
