@@ -25,19 +25,13 @@
       %p #{@user.name || "This roomie"} has #{pluralize(@user.points, t(:point))}
       %p= t(:next_level, :scope => :profile)
   #hud
-    #roomie_bar
-      %span
-      %span
-    %p#level amazing roomie
+
     - if @user.house
-      %p#house
-        #{@user.house.name}
+      #house
+        .current_house #{@user.house.name}
         - if signed_in? && current_user == @user
-          &mdash;
           = link_to 'change house name', edit_house_path(@user.house), :class => 'ajax'
-          or
           = link_to 'add roomies to your house', new_house_invitation_path, :class => 'ajax'
-          |
           = link_to 'move out', homeless_url(:id => @user.id, :house_id => @user.house)
     - else
       %p#house
@@ -47,6 +41,7 @@
           ?
         - else
           = t(:homeless_roomie, :scope => :profile)
+
     %p#tasks_expenses
       %span
       - if @tasks
