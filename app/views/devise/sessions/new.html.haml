@@ -1,9 +1,9 @@
 = simple_form_for :user, :url => session_path(:user) do |f|
-  = f.input :email, :input_html => { :placeholder => t(:email) }
-  = f.input :password, :input_html => { :placeholder => t(:password) }
+  = f.input :email, :label => false, :placeholder => t(:email)
+  = f.input :password, :label => false, :placeholder => t(:password)
   - if devise_mapping.rememberable?
     = f.input :remember_me, :as => :boolean
-  = f.submit t(:sign_in)
+  = f.submit t(:lets_go)
 
 = render :partial => "devise/shared/links"
 %p.auths 
