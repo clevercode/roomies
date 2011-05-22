@@ -76,7 +76,7 @@ $('nav li.notification a').bind 'mouseout', ->
 
 # // Listens for a click on any anchor with a class of ajax.
 # // Knabs the anchor's href and ajaxes it in to the modal.
-$('a.ajax').bind 'click', ->
+$('a.ajax').live 'click', ->
   $ajaxed.empty().load($(this).attr('href'), ->
     $('<span>x</span>').appendTo('#modal h1')
     superDate()
