@@ -107,23 +107,32 @@ $('#modal h1 span').live 'click', ->
 # =============== CORKBOARD ===============
 # =========================================
 
+$('.assignment[data-completed=true]').removeClass('assignment')
+
 # // Handles mouseenter and mouseleave for the corkboard lists.
 $('.list .assignment').live 'mouseenter', ->
   $(this)
-    .find('li:eq(1)').animate {paddingRight:'0px'}, 'fast', ->
-      $(this).next().stop(true).show 'fast'
+    .find('li:eq(2)').animate {paddingRight:'0px'}, 'fast', ->
+      $(this).prev().stop(true).show 'fast'
     .siblings('.type').removeClass('type').addClass('check')
 
 $('.list .assignment').live 'mouseleave', ->
   $(this)
-    .find('li:eq(2)').fadeOut 'fast', ->
-      $(this).hide().prev().stop(true).animate {paddingRight:'25px'}, 'fast'
+    .find('li:eq(1)').fadeOut 'fast', ->
+      $(this).hide().next().stop(true).animate {paddingRight:'25px'}, 'fast'
     .siblings('.check').removeClass('check').addClass('type')
 
 # // Edit assignment on edit icon click.
 $('.edit').live 'click', ->
   id = $(this).data("assignment_id")
-  window.location.href = "/assignments/#{id}/edit"
+  $ajaxed.load "/assignments/#{id}/edit", ->
+    $('<span>x</span>').appendTo('#modal h1')
+    superDate()
+    modal_left = ($('html').outerWidth()/2) - ($modal.outerWidth()/2)
+    modal_top = ($(window).height()/2) - ($modal.outerHeight()/2)
+    modal_top = 0 if modal_top < 0
+    $darknessification.fadeIn _fadeSpeed
+    $modal.css({left: modal_left, top: modal_top}).fadeIn _fadeSpeed
   return false
   
 # // Listens for a click on the calendar view option links.
