@@ -4,7 +4,9 @@
 en:
   # forms & actions
   email_example: "example@domain.com"
+  name: "Your name"
   sign_in: "Sign In"
+  lets_go: "Let's Go"
   signed_in: "Welcome back to Roomies!"
   signed_out: "See you soon ;-)"
   sign_out: "Sign Out"
@@ -12,7 +14,7 @@ en:
   or_sign_in_with: "or sign in with"
   or_sign_up_with: "or sign up with"
   or: "or"
-  forgot_password: "Need a hand with that password? :-)"
+  forgot_password: "Need a hand with that password?"
   email: "Email"
   password: "Password"
   house_updated: "Your house was updated successfully."
@@ -164,6 +166,9 @@ en:
       house_move_warning: "Warning: Clicking the link above will remove you from the house you currently belong to and let you join the new one."
     upcoming:
       no_assignments: "So far so good..."
+    header_bar:
+      these_coming_days: "Upcoming 14 days"
+      this_coming_month: "Upcoming month"
 
   # assignments
   assignments:
@@ -225,6 +230,12 @@ en:
   support:
     create:
       sent: "Your support message was successfully sent. We'll get back to you as soon we're done watching that monkey in a three-piece suit smoking a cigar. Classy fella."
+
+  activerecord:
+    attributes:
+      user:
+        invite_token: "INNNNNNVITTTEE"
+    
 
   hello: 'Hello world'
   auth_success: 'Authentication successful.'
