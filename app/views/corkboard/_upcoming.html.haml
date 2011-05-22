@@ -3,14 +3,14 @@
   %ul.semantic_shmantic
     - unless assignments.empty?
       - assignments.each do |assignment|
-        %li.assignment
+        %li.assignment{:class => "#{assignment.type}", data: {completed: "#{!!assignment.completed_at}"}}
           %ul
             - if assignment.type == "task"
               %li.type{ :title => "task", :data => { :assignment_id => assignment.id } }
             - else
               %li.type{ :title => "expense", :data => { :assignment_id => assignment.id } }
-            %li.purpose= link_to assignment.purpose, assignment_url(assignment), :class => 'ajax'
             %li.edit{ :data => { :assignment_id => assignment.id } }
+            %li.purpose= link_to assignment.purpose, assignment_url(assignment), :class => 'ajax'
     - else
       %li.assignment
         %ul
