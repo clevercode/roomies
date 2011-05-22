@@ -23,6 +23,8 @@ gem 'rails3-jquery-autocomplete'
 gem 'haml-rails'
 gem 'hoptoad_notifier'
 gem 'dalli'
+gem 'rake', '0.8.7'
+
 
 # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
 # gem 'ruby-debug'
