@@ -125,14 +125,13 @@ class User
     end
   end
   
-
   def check_for_achievements
-    if self.points > 50
-      self.achievements.create(name: "Megatop Roomie")
-      if self.points < stuff && self.points > stuff
-        Achievement.create(user_id: self.id, )
-      end
-    end
+  #   if self.points > 50
+  #     self.achievements.create(name: "Megatop Roomie")
+  #     if self.points < stuff && self.points > stuff
+  #       Achievement.create(user_id: self.id, )
+  #     end
+  #   end
   end
 
   def check_payment
