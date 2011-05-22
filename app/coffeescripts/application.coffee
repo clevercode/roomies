@@ -159,52 +159,79 @@ $('.header_bar a').bind 'click', ->
   
   return false
   
-# // Listens for a hover event on the anchors in the calendar.
+# // Listens for a click, hover, and leave event on the anchors in the calendar.
 # // Pops up with a list of the corresponding assignments for that day.
-$('.todo a').live 'click', ->
+$('.todo a').live 'click',      -> return false
+$('.todo a').live 'mouseleave', -> hovering_over = null
+$('.todo a').live 'mouseenter', ->
+
   $this = $(this)
+  $('.detail_day_view').hide 'fast'
+  day_number = $(this).parent('.todo').parent('.day').data('number')
+  hovering_over = day_number
   
-  results = $('<div />').load($this.attr('href'), ->
-    data = $.parseJSON($(results[0]).text())
-    $detailList.empty()
-    $(data).each( ->
-      $("<li>
-          <a href='/assignments/#{this._id}'>#{this.purpose}</a>
-        </li>").appendTo $detailList
-    )
+  # // Sets a delay on animating in the list of assignments, then positions
+  # // it perfectly where we want it.
+  setTimeout( ->
+    if hovering_over == day_number
+      $('.detail_day_view').each ->
+        $detailList = $(this)
+        if $detailList.data('number') == day_number && $detailList.data('type') == $this.hasClass('tasks')
+          $('.detail_day_view').hide 'fast'
+          # // Sets the top to just above the anchor and the left to the anchor's left.
+          top = $this.offset().top - $detailList.outerHeight() - 10
+          $detailList.css({top: top, left: $this.offset().left}).fadeIn 'fast'
 
-    # // Sets the top to just above the anchor and the left to the anchor's left.
-    top = $this.offset().top - $detailList.outerHeight() - 10
-    $darknessification.css('opacity','0').show()
-    $detailList.css({top: top, left: $this.offset().left}).fadeIn _fadeSpeed
+          listPlacement = $detailList.offset().left + $detailList.outerWidth()
+          mainWidth     = $main.offset().left + $main.width()
 
-    listPlacement = $detailList.offset().left + $detailList.outerWidth()
-    mainWidth     = $main.offset().left + $main.width()
+          # // Checks to see if the popup needs to go the other direction or not.
+          if listPlacement > mainWidth
+            left = ($this.offset().left + $this.outerWidth()) - $detailList.outerWidth()
+            $detailList.css('left',left)
+  , 500)
 
-    # // Checks to see if the popup needs to go the other direction or not.
-    if listPlacement > mainWidth
-      left = ($this.offset().left + $this.outerWidth()) - $detailList.outerWidth()
-      $detailList.css('left',left)
-  )
-        
-  return false
+# // Listens for the mouse leave event on our list of assignments
+# // and hides them when detected.
+$('.detail_day_view').live 'mouseleave', ->
+  $('.detail_day_view').hide 'fast'
 
-# // Listens for the mouse leave event on our list of assignments.
-$detailList.live 'mouseleave', ->
-  $detailList.hide('fast')
-  $darknessification.css('opacity','.75').hide()
+# // Loops through all todo badges on each day and generates a detailed list.
+generateDetailLists = ->
+  $('.corkboard_view.current .calendar .todo').each ->
+    $this = $(this)
+    $badges = $this.children('a')
+    $('.detail_day_view').remove()
+  
+    if $badges.length < 2
+      $badges.css('marginLeft','13px')
+  
+    day_number = $this.parent('.day').data('number')
+  
+    $badges.each ->
+      $this = $(this)    
+      type =  $this.hasClass('tasks')
+    
+      $detailList = $("<div class='detail_day_view' data-number='#{day_number}' data-type='#{type}' />")
+  
+      $.ajax
+        url: $this.attr('href'),
+        success: (data) ->
+          $(data).each ->
+            $("<li>
+                <a href='/assignments/#{this._id}' class='ajax'>#{this.purpose}</a>
+              </li>").appendTo $detailList
 
-# // Loops through each assignment badge block on the days and center
-# // it if there is only one of them.
-$('.todo').each( ->
-  if $(this).children('a').length < 2
-    $(this).children('a').css('marginLeft','13px')
-)
+          $detailList.appendTo $main
+
+generateDetailLists()
 
 # // Listens for a click on the assignee filters and changes the UI accordingly.
 $('#upcoming_filters #assignee_filters li').live 'click', ->
-  $(this).siblings().andSelf().toggleClass('active')
-  $('.corkboard_view').toggleClass('current')
+  unless $(this).hasClass('active')
+    $(this).siblings().andSelf().toggleClass('active')
+    $('.corkboard_view').toggleClass('current')
+    generateDetailLists()
     
 $('.check').live 'click', ->
   $this      = $(this)
@@ -215,8 +242,30 @@ $('.check').live 'click', ->
     type: 'post',
     url: "/assignments/#{id}/complete",
     success: (data) ->
-      $assignment.removeClass('assignment').addClass('completed').find('.type').removeClass().addClass('check')
+      $assignment.removeClass().addClass('completed').find('.type').removeClass().addClass('check')
   return false
+
+$('#assignment_filters').bind 'click', (event) ->
+  $this = $(event.target)
+  unless $this.hasClass('active')
+    $this.addClass('active').siblings().removeClass('active')
+    $('.corkboard_view.current .assignment').slideDown 'fast'
+    $(".corkboard_view.current .#{$this.data('filter')}").slideUp 'fast', ->
+      stickyFooter()
+
+max_list_height = 0
+$('.semantic_shmantic').each ->
+  $this = $(this)
+  max_list_height = $this.height() if $this.height() > max_list_height
+  $this.css('height',max_list_height)
+
+# // Listens for a click on the body and closes the detailed list of
+# // assignments that's what it should be doing.
+$body.bind 'click', (event) ->
+  $clicky = $(event.target)
+  if $clicky.parent('.todo').length < 1 && !$clicky.hasClass('detail_day_view')
+    if $('.detail_day_view').length > 0
+      $('.detail_day_view').hide 'fast'
 
 
 # =========================================
