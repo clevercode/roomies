@@ -27,10 +27,13 @@ class User
   devise  :database_authenticatable, :registerable, :recoverable, 
           :rememberable, :trackable, :validatable, :invitable
 
-  validates :email, :presence => true,
-                    :uniqueness => { :case_sensitive => false }
+  validates :email, 
+            :presence => true,
+            :uniqueness => { :case_sensitive => false }
 
-  validates :invitation_token, :presence => true, :on => :create
+  validates_presence_of :invitation_token, 
+                        :on => :create, 
+                        :message => "misssing, signing up for now."
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :email, :password, :remember_me, :locale, :calendar
