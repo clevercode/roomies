@@ -306,12 +306,7 @@ do superDate = ->
       $superdate.val(date)
   )
   
-  $('#repeating').parent('div').next().hide()
-  $('#repeating').bind 'change', (event) ->
-    if event.currentTarget.checked
-      $(this).parent('div').next().show()
-    else
-      $(this).parent('div').next().hide()
+  stickyFooter()
 
 # $('#assignment_due_date').live 'keyup', (event) ->
 #   unless megadate == "unknown"
