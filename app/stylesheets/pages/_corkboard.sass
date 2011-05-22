@@ -9,13 +9,15 @@
         font-weight: bold
 
   .list
+    +column(4)
     padding: 0
     float: left
-    +column(4)
     &:last-child
       +column(4, true)
 
     ul
+      +background-image(linear-gradient(#d9eaff, #f2f8ff))
+      +box-shadow(#7490b3 0 0 0 1px inset)
       li
         +clearfix
         font-size: 16px
@@ -26,21 +28,23 @@
         border-top: none 
         +background-image(linear-gradient(#d9eaff, #f2f8ff))
         +box-shadow(#fff 1px 1px 0 inset, #fff -1px -1px 0 inset)
-        &.completed
+        &.completed, &[data-completed=true]
           opacity: 0.55
+          text-decoration: line-through
 
         ul
           li
-            float: right
+            padding: 0
+            float: left
             width: 225px
             border: none
             background: none
             line-height: 25px
-            padding: 0 25px 0 0
             +box-shadow(none)
             a:hover
               text-decoration: underline
             &.type
+              float: right
               &[title=expense], &[title=bill], &[title=task], &[title=chore]
                 padding: 0
                 width: 13px
@@ -55,6 +59,7 @@
               padding: 0
               width: 25px
               height: 25px
+              float: right
               cursor: pointer
               background: url('../images/58.png') 7px 5px no-repeat
             &.edit
@@ -219,6 +224,7 @@
     z-index: 50
     padding: 5px
     display: none
+    list-style: none
     overflow: hidden
     position: absolute
     text-align: center

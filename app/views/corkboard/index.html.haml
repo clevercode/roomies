@@ -7,9 +7,9 @@
       %li.left.active{ :data => { :type => "my" } }= t '.my_assignments'
       %li.right{ :data => { :type => "all" }}= t '.everyones_assignments'
     %ul#assignment_filters
-      %li.left.active= t '.all'
-      %li#task_filter= t '.tasks'
-      %li.right#expense_filter= t '.expenses'
+      %li.left.active{:data => {:filter => 'all'}}= t '.all'
+      %li#task_filter{:data => {:filter => 'expense'}}= t '.tasks'
+      %li.right#expense_filter{:data => {:filter => 'task'}}= t '.expenses'
 
   .corkboard_view.my.current
     .upcoming_lists.content

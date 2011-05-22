@@ -5,12 +5,12 @@
 _fadeSpeed         = 100
 _slideDownSpeed    = 200
 _slideUpSpeed      = 250
+hovering_over      = null
 $                  = jQuery
 $body              = $('body')
 $main              = $('#main')
 $footer            = $('footer')
 $modal             = $('#modal')
-$detailList        = $('.detail_day_view')
 $darknessification = $('#darknessification')
 $ajaxed            = $modal.children('#ajaxed')
 
@@ -38,45 +38,16 @@ $('#flash').live 'click', ->
 setTimeout( ->
   $('#flash').hide 'fast', ->
     stickyFooter()
-, 20000)
+, 10000)
+
+if $('#flash > div').length > 0
+  top    = $('#flash > div:eq(0)').offset().top
+  height = $('#flash > div:eq(0)').outerHeight()
+  $('#flash > div:eq(1)').css({top:top+height+20})
   
 hideModal = (event) ->
-  $darknessification.css('opacity','.75').hide 'fast'
+  $darknessification.hide 'fast'
   $modal.hide 'fast'
-
-# // Provides requestAnimationFrame in a cross browser way.
-# // @author paulirish / http://paulirish.com/
-# unless window.requestAnimationFrame
-#   window.requestAnimationFrame =
-#     window.webkitRequestAnimationFrame or
-#     window.mozRequestAnimationFrame or
-#     window.oRequestAnimationFrame or
-#     window.msRequestAnimationFrame or
-#     (callback, element) ->
-#       window.setTimeout( callback, 1000 / 60 )
-
-# Clouds = 
-#   # // Initialize the counter
-#   xPosition: 0
-
-#   # // Cache the element
-#   element: $('#clouds')
-
-#   # // Animation Logic
-#   animate: ->
-#     # // Create a binded version of this method
-#     @_bindedAnimate ||= _(@animate).bind(this)
-
-#     # // Queue up another call of this method
-#     window.requestAnimationFrame(@_bindedAnimate)
-
-#     # // Update our internal counter 
-#     @xPosition -= 0.25
-
-#     # // Set CSS to new the new counter value
-#     @element.css("background-position", @xPosition+"px 0")
-
-# Clouds.animate()
 
 
 # =========================================
@@ -105,7 +76,7 @@ $('nav li.notification a').bind 'mouseout', ->
 
 # // Listens for a click on any anchor with a class of ajax.
 # // Knabs the anchor's href and ajaxes it in to the modal.
-$('a.ajax').bind 'click', ->
+$('a.ajax').live 'click', ->
   $ajaxed.empty().load($(this).attr('href'), ->
     $('<span>x</span>').appendTo('#modal h1')
     superDate()
@@ -119,13 +90,12 @@ $('a.ajax').bind 'click', ->
 
 # // Listens for a click on the overlay when the modal or detail list is up.
 $darknessification.live 'click', ->
-  $detailList.hide 'fast'
   hideModal()
   
 # // Watches for an escape keypress and hides the modal, overlay, and detail list.
 $(window).bind 'keyup', (event) ->
   if event.keyCode == 27
-    $detailList.hide 'fast'
+    $('.detail_day_view').hide 'fast'
     hideModal()
 
 # // Watches for a click on the 'x' and hides the modal and overlay.
@@ -137,23 +107,32 @@ $('#modal h1 span').live 'click', ->
 # =============== CORKBOARD ===============
 # =========================================
 
+$('.assignment[data-completed=true]').removeClass('assignment')
+
 # // Handles mouseenter and mouseleave for the corkboard lists.
 $('.list .assignment').live 'mouseenter', ->
   $(this)
-    .find('li:eq(1)').animate {paddingRight:'0px'}, 'fast', ->
-      $(this).next().stop(true).show 'fast'
+    .find('li:eq(2)').animate {paddingRight:'0px'}, 'fast', ->
+      $(this).prev().stop(true).show 'fast'
     .siblings('.type').removeClass('type').addClass('check')
 
 $('.list .assignment').live 'mouseleave', ->
   $(this)
-    .find('li:eq(2)').fadeOut 'fast', ->
-      $(this).hide().prev().stop(true).animate {paddingRight:'25px'}, 'fast'
+    .find('li:eq(1)').fadeOut 'fast', ->
+      $(this).hide().next().stop(true).animate {paddingRight:'25px'}, 'fast'
     .siblings('.check').removeClass('check').addClass('type')
 
 # // Edit assignment on edit icon click.
 $('.edit').live 'click', ->
   id = $(this).data("assignment_id")
-  window.location.href = "/assignments/#{id}/edit"
+  $ajaxed.load "/assignments/#{id}/edit", ->
+    $('<span>x</span>').appendTo('#modal h1')
+    superDate()
+    modal_left = ($('html').outerWidth()/2) - ($modal.outerWidth()/2)
+    modal_top = ($(window).height()/2) - ($modal.outerHeight()/2)
+    modal_top = 0 if modal_top < 0
+    $darknessification.fadeIn _fadeSpeed
+    $modal.css({left: modal_left, top: modal_top}).fadeIn _fadeSpeed
   return false
   
 # // Listens for a click on the calendar view option links.
@@ -180,52 +159,79 @@ $('.header_bar a').bind 'click', ->
   
   return false
   
-# // Listens for a hover event on the anchors in the calendar.
+# // Listens for a click, hover, and leave event on the anchors in the calendar.
 # // Pops up with a list of the corresponding assignments for that day.
-$('.todo a').live 'click', ->
+$('.todo a').live 'click',      -> return false
+$('.todo a').live 'mouseleave', -> hovering_over = null
+$('.todo a').live 'mouseenter', ->
+
   $this = $(this)
+  $('.detail_day_view').hide 'fast'
+  day_number = $(this).parent('.todo').parent('.day').data('number')
+  hovering_over = day_number
   
-  results = $('<div />').load($this.attr('href'), ->
-    data = $.parseJSON($(results[0]).text())
-    $detailList.empty()
-    $(data).each( ->
-      $("<li>
-          <a href='/assignments/#{this._id}'>#{this.purpose}</a>
-        </li>").appendTo $detailList
-    )
+  # // Sets a delay on animating in the list of assignments, then positions
+  # // it perfectly where we want it.
+  setTimeout( ->
+    if hovering_over == day_number
+      $('.detail_day_view').each ->
+        $detailList = $(this)
+        if $detailList.data('number') == day_number && $detailList.data('type') == $this.hasClass('tasks')
+          $('.detail_day_view').hide 'fast'
+          # // Sets the top to just above the anchor and the left to the anchor's left.
+          top = $this.offset().top - $detailList.outerHeight() - 10
+          $detailList.css({top: top, left: $this.offset().left}).fadeIn 'fast'
 
-    # // Sets the top to just above the anchor and the left to the anchor's left.
-    top = $this.offset().top - $detailList.outerHeight() - 10
-    $darknessification.css('opacity','0').show()
-    $detailList.css({top: top, left: $this.offset().left}).fadeIn _fadeSpeed
+          listPlacement = $detailList.offset().left + $detailList.outerWidth()
+          mainWidth     = $main.offset().left + $main.width()
 
-    listPlacement = $detailList.offset().left + $detailList.outerWidth()
-    mainWidth     = $main.offset().left + $main.width()
+          # // Checks to see if the popup needs to go the other direction or not.
+          if listPlacement > mainWidth
+            left = ($this.offset().left + $this.outerWidth()) - $detailList.outerWidth()
+            $detailList.css('left',left)
+  , 500)
 
-    # // Checks to see if the popup needs to go the other direction or not.
-    if listPlacement > mainWidth
-      left = ($this.offset().left + $this.outerWidth()) - $detailList.outerWidth()
-      $detailList.css('left',left)
-  )
-        
-  return false
+# // Listens for the mouse leave event on our list of assignments
+# // and hides them when detected.
+$('.detail_day_view').live 'mouseleave', ->
+  $('.detail_day_view').hide 'fast'
 
-# // Listens for the mouse leave event on our list of assignments.
-$detailList.live 'mouseleave', ->
-  $detailList.hide('fast')
-  $darknessification.css('opacity','.75').hide()
+# // Loops through all todo badges on each day and generates a detailed list.
+generateDetailLists = ->
+  $('.corkboard_view.current .calendar .todo').each ->
+    $this = $(this)
+    $badges = $this.children('a')
+    $('.detail_day_view').remove()
+  
+    if $badges.length < 2
+      $badges.css('marginLeft','13px')
+  
+    day_number = $this.parent('.day').data('number')
+  
+    $badges.each ->
+      $this = $(this)    
+      type =  $this.hasClass('tasks')
+    
+      $detailList = $("<div class='detail_day_view' data-number='#{day_number}' data-type='#{type}' />")
+  
+      $.ajax
+        url: $this.attr('href'),
+        success: (data) ->
+          $(data).each ->
+            $("<li>
+                <a href='/assignments/#{this._id}' class='ajax'>#{this.purpose}</a>
+              </li>").appendTo $detailList
 
-# // Loops through each assignment badge block on the days and center
-# // it if there is only one of them.
-$('.todo').each( ->
-  if $(this).children('a').length < 2
-    $(this).children('a').css('marginLeft','13px')
-)
+          $detailList.appendTo $main
+
+generateDetailLists()
 
 # // Listens for a click on the assignee filters and changes the UI accordingly.
 $('#upcoming_filters #assignee_filters li').live 'click', ->
-  $(this).siblings().andSelf().toggleClass('active')
-  $('.corkboard_view').toggleClass('current')
+  unless $(this).hasClass('active')
+    $(this).siblings().andSelf().toggleClass('active')
+    $('.corkboard_view').toggleClass('current')
+    generateDetailLists()
     
 $('.check').live 'click', ->
   $this      = $(this)
@@ -236,8 +242,30 @@ $('.check').live 'click', ->
     type: 'post',
     url: "/assignments/#{id}/complete",
     success: (data) ->
-      $assignment.removeClass('assignment').addClass('completed').find('.type').removeClass().addClass('check')
+      $assignment.removeClass().addClass('completed').find('.type').removeClass().addClass('check')
   return false
+
+$('#assignment_filters').bind 'click', (event) ->
+  $this = $(event.target)
+  unless $this.hasClass('active')
+    $this.addClass('active').siblings().removeClass('active')
+    $('.corkboard_view.current .assignment').slideDown 'fast'
+    $(".corkboard_view.current .#{$this.data('filter')}").slideUp 'fast', ->
+      stickyFooter()
+
+max_list_height = 0
+$('.semantic_shmantic').each ->
+  $this = $(this)
+  max_list_height = $this.height() if $this.height() > max_list_height
+  $this.css('height',max_list_height)
+
+# // Listens for a click on the body and closes the detailed list of
+# // assignments that's what it should be doing.
+$body.bind 'click', (event) ->
+  $clicky = $(event.target)
+  if $clicky.parent('.todo').length < 1 && !$clicky.hasClass('detail_day_view')
+    if $('.detail_day_view').length > 0
+      $('.detail_day_view').hide 'fast'
 
 
 # =========================================
@@ -278,12 +306,7 @@ do superDate = ->
       $superdate.val(date)
   )
   
-  $('#repeating').parent('div').next().hide()
-  $('#repeating').bind 'change', (event) ->
-    if event.currentTarget.checked
-      $(this).parent('div').next().show()
-    else
-      $(this).parent('div').next().hide()
+  stickyFooter()
 
 # $('#assignment_due_date').live 'keyup', (event) ->
 #   unless megadate == "unknown"

@@ -36,7 +36,3 @@
 - unless @assignment.completed_at
   %hr
   = button_to "complete this assignment", :action => :complete, :id => @assignment.id
-
-%hr
-= link_to 'Edit Assignment', edit_assignment_path(@assignment)
-= link_to 'Back to Assignments', assignments_path

@@ -6,8 +6,8 @@ class CorkboardController < ApplicationController
     if current_user.house.nil?
       @all = nil
     else
-      @all = current_user.house.assignments.where(completed_at: nil)
-      @my  = current_user.assignments.where(completed_at: nil)
+      @all = current_user.house.assignments
+      @my  = current_user.assignments
             
       @my_tasks                  = @my.where(type: "task")
       @my_expenses               = @my.where(type: "expense")
