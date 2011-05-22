@@ -5,12 +5,12 @@
 _fadeSpeed         = 100
 _slideDownSpeed    = 200
 _slideUpSpeed      = 250
+hovering_over      = null
 $                  = jQuery
 $body              = $('body')
 $main              = $('#main')
 $footer            = $('footer')
 $modal             = $('#modal')
-$detailList        = $('.detail_day_view')
 $darknessification = $('#darknessification')
 $ajaxed            = $modal.children('#ajaxed')
 
