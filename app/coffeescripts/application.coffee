@@ -38,45 +38,16 @@ $('#flash').live 'click', ->
 setTimeout( ->
   $('#flash').hide 'fast', ->
     stickyFooter()
-, 20000)
+, 10000)
+
+if $('#flash > div').length > 0
+  top    = $('#flash > div:eq(0)').offset().top
+  height = $('#flash > div:eq(0)').outerHeight()
+  $('#flash > div:eq(1)').css({top:top+height+20})
   
 hideModal = (event) ->
-  $darknessification.css('opacity','.75').hide 'fast'
+  $darknessification.hide 'fast'
   $modal.hide 'fast'
-
-# // Provides requestAnimationFrame in a cross browser way.
-# // @author paulirish / http://paulirish.com/
-# unless window.requestAnimationFrame
-#   window.requestAnimationFrame =
-#     window.webkitRequestAnimationFrame or
-#     window.mozRequestAnimationFrame or
-#     window.oRequestAnimationFrame or
-#     window.msRequestAnimationFrame or
-#     (callback, element) ->
-#       window.setTimeout( callback, 1000 / 60 )
-
-# Clouds = 
-#   # // Initialize the counter
-#   xPosition: 0
-
-#   # // Cache the element
-#   element: $('#clouds')
-
-#   # // Animation Logic
-#   animate: ->
-#     # // Create a binded version of this method
-#     @_bindedAnimate ||= _(@animate).bind(this)
-
-#     # // Queue up another call of this method
-#     window.requestAnimationFrame(@_bindedAnimate)
-
-#     # // Update our internal counter 
-#     @xPosition -= 0.25
-
-#     # // Set CSS to new the new counter value
-#     @element.css("background-position", @xPosition+"px 0")
-
-# Clouds.animate()
 
 
 # =========================================
