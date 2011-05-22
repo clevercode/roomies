@@ -90,13 +90,12 @@ $('a.ajax').live 'click', ->
 
 # // Listens for a click on the overlay when the modal or detail list is up.
 $darknessification.live 'click', ->
-  $detailList.hide 'fast'
   hideModal()
   
 # // Watches for an escape keypress and hides the modal, overlay, and detail list.
 $(window).bind 'keyup', (event) ->
   if event.keyCode == 27
-    $detailList.hide 'fast'
+    $('.detail_day_view').hide 'fast'
     hideModal()
 
 # // Watches for a click on the 'x' and hides the modal and overlay.
