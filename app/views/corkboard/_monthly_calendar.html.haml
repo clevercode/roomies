@@ -35,7 +35,7 @@
     - current_day = (date == Date.today) ? 'current_day' : nil
     - if (date.wday != 0 && date.cweek == Date.today.cweek) || (Date.today.wday == 0 && date.wday != 0 && date.cweek == Date.tomorrow.cweek)
       - current_week = 'current_week'
-    .day{ :class => "#{current_day} #{current_week}" }
+    .day{ :class => "#{current_day} #{current_week}", :data => {:number => i}}
       %p.day_name= l(date, :format => :short_day)
       %p.day_number= date.day
       - unless assignments.where(:due_date => date.to_s).count <= 0
