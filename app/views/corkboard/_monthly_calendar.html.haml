@@ -11,7 +11,7 @@
     - (0..weekday_number).map do |i|
       - date = Date.today - weekday_number + i.days 
       - unless date == Date.today
-        .day.past
+        .day.past{:data => {:number => i}}
           %p.day_name= l(date, :format => :short_day)
           %p.day_number= date.day
           - unless assignments.where(:due_date => date.to_s).count == 0
