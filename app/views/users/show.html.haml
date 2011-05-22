@@ -22,8 +22,7 @@
     - if signed_in? && current_user == @user
       %p you have #{pluralize(@user.points, t(:point))}
     - else
-      %p #{@user.name || "This roomie"} has #{pluralize(@user.points, t(:point))}
-      %p= t(:next_level, :scope => :profile)
+      %p #{(current_user == @user) ? t('.you_have') : t('.this_roomie_has')} #{pluralize(@user.points, t(:point))}
   #hud
 
     - if @user.house

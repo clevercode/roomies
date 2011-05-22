@@ -210,6 +210,11 @@ en:
     points: "points"
     hi_there: "Hi there"
     new_roomie: "new roomie"
+  
+  users:
+    show:
+      you_have: "You have"
+      this_roomie_has: "This roomie has"
 
   # rewards
   rewards:
