@@ -32,19 +32,21 @@ body
         padding: 7px 13px
         font-weight: bold
         background: white
-        color: $font-color
+        color: lighten($font-color, 10%)
         +text-shadow(none)
         +border-radius(3px)
         text-decoration: none
-        +box-shadow(rgba(0,0,0,0.2) 0 0 3px 1px inset)
+        // +box-shadow(rgba(0,0,0,0.2) 0 0 3px 1px inset)
+        +gradient-button(lighten($lightblue, 25%))
+        +text-shadow(none)
         &:hover, &:focus
-          color: white
-          background: $skyblue
-          +box-shadow(rgba(0,0,0,0.3) 0 0 3px 1px inset)
-          +text-shadow(rgba(0,0,0,0.5) 0 1px 1px, rgba(0,0,0,0.2) 0 0 3px)
+          color: $font-color
+          // +background-image(linear-gradient(lighten($lightblue, 10%),lighten($lightblue, 5%)))
+          // +box-shadow(rgba(0,0,0,0.3) 0 0 3px 1px inset)
+          +text-shadow(none)
         &:active  
-          +box-shadow(rgba(0,0,0,0.5) 0 0 3px 1px inset)
-          +text-shadow(rgba(0,0,0,0.7) 0 1px 1px, rgba(0,0,0,0.4) 0 0 3px)
+          // +box-shadow(rgba(0,0,0,0.5) 0 0 3px 1px inset)
+          +text-shadow(none)
       ul
         li.profile
           a
@@ -65,7 +67,7 @@ body
             line-height: 50px
             text-align: center
             padding: 0 10px 0 5px
-            +gradient-button($blue)
+            +gradient-button($lightblue)
             &:active
               img
                 +box-shadow(#bfdcff -1px -1px 0, #7490b2 1px 1px 0)
@@ -76,12 +78,13 @@ body
             padding: 9px 10px
             text-indent: -9999px
             background: url('../images/70.png') no-repeat 10px 10px
+            +box-shadow($lightblue 0 0 0 1px inset)
             &:hover, &:focus
-              background-color: $skyblue
-              +box-shadow(rgba(0,0,0,0.3) 0 0 3px 1px inset)
+              background-color: lighten($lightblue, 15%)
+              +box-shadow($lightblue 0 0 0 1px inset,$lightblue 0 1px 3px 1px inset)
               +text-shadow(rgba(0,0,0,0.5) 0 1px 1px, rgba(0,0,0,0.2) 0 0 3px)
             &:active  
-              +box-shadow(rgba(0,0,0,0.5) 0 0 3px 1px inset)
+              +box-shadow($lightblue 0 0 0 1px inset,$lightblue 0 2px 5px 1px inset)
               +text-shadow(rgba(0,0,0,0.7) 0 1px 1px, rgba(0,0,0,0.4) 0 0 3px)
         li.confirm
           a
@@ -89,3 +92,28 @@ body
         li.house
           a
             background: url('../images/203.png') no-repeat 8px 11px
+
+    #beta
+      float: left
+      margin-top: 1.9em
+      padding: 0 0 0 2em
+      text-transform: lowercase
+      font-size: .9em
+      a
+        display: block
+        padding: 0 1em
+        line-height: 2
+        font-size: .9em
+        +gradient-button(transparentize($lightblue, .8))
+        +text-shadow(none)
+        +border-radius(3px)
+        &:link, &:visited
+          text-decoration: none
+          color: #555
+        &:hover, &:focus
+        &:active
+          +text-shadow(none)
+          
+
+          
+
