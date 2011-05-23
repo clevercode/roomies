@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
                   :type => type,
                   :points => points
     )
-    flash[:reward] = "Hey look, you just got a reward for #{t(type, :scope => :rewards)}!"
+    # flash[:reward] = "Hey look, you just got a reward for #{t(type, :scope => :rewards)}!"
   end
 
   private
