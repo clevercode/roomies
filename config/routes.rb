@@ -1,6 +1,6 @@
 Roomies::Application.routes.draw do
 
-  root :to => 'home#index'
+  root :to => 'pages#home'
 
   devise_for :users
   devise_scope :user do
@@ -40,5 +40,8 @@ Roomies::Application.routes.draw do
   match '/assignments/:id/confirm'      => 'assignments#confirm'
   match '/assignments/:id/reject'       => 'assignments#reject'
   match '/payment/callback/'            => 'payments#handle', :via => :post
+  match '/about'                        => 'pages#about'
+  match '/privacy'                      => 'pages#privacy'
+  match '/service'                      => 'pages#service'
 
 end
