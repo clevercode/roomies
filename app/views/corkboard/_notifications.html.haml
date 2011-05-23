@@ -1,5 +1,3 @@
-- if current_user.invitation_limit and current_user.invitation_limit > 0
-  = link_to "Beta Invites (#{current_user.invitation_limit})", new_user_invitation_path
 - unless current_user.name?
   .notifications
     %p= link_to t('.change_password_and_name'), edit_user_path(current_user), :class => 'ajax'
