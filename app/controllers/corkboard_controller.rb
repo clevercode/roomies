@@ -22,5 +22,9 @@ class CorkboardController < ApplicationController
       @all_next_days_assignments = @all.where(due_date: Date.tomorrow.tomorrow.to_s)
       
     end
+
+    # if current_user.sign_in_count == 1
+    #   flash[:notice] = "Welcome to Roomies buddy, let's get started."
+    # end
   end
 end
