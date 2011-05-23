@@ -10,6 +10,14 @@ module ApplicationHelper
     end
   end
 
+  def random_image
+    image_files = %w( .jpg .gif .png )
+    files = Dir.entries(
+      "#{RAILS_ROOT}/public/images/support" 
+    ).delete_if { |x| !image_files.index(x[-4,4]) }
+    files[rand(files.length)]
+  end
+
   private
   def roomies_list 
     @roomies = User.where(:house_id => current_user.house_id)
