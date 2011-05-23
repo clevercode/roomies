@@ -5,17 +5,22 @@ class ApplicationController < ActionController::Base
   # preventing modals from loading entire pages
   layout proc { |controller| controller.request.xhr? ? false : 'application' }
 
+  protected
+
   def set_locale
-    logger.debug "set_locale is passed options: #{params[:locale]}\n"
-    # if params[:locale] is nil then I18n.default_locale will be used
-    if user_signed_in?
-      I18n.locale = current_user.locale || "en"
+    I18n.locale = infer_locale
+  end
+
+  def infer_locale
+    if params[:locale].present?
+      params[:locale]
+    elsif user_signed_in?
+      current_user.locale
     else
-      I18n.locale = "en"
+      I18n.default_locale
     end
   end
 
-  protected
   def after_sign_in_path_for(user)
     logger.debug "called from after_sign_in_path"
     unless self.controller_name == "invitations"
