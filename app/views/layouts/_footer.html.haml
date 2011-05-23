@@ -1,10 +1,10 @@
 %p &copy; #{Date.today.year} cleverCode LLC. #{t :all_rights_reserved}
 %p#links
-  =link_to t(:about_us), '#'
+  =link_to t(:about_us), about_url
   |
-  =link_to t(:privacy_policy), '#'
+  =link_to t(:privacy_policy), privacy_url
   |
-  =link_to t(:terms_of_service), '#'
+  =link_to t(:terms_of_service), service_url
   |  
   =link_to t(:support_page), support_index_url
   - if user_signed_in?
