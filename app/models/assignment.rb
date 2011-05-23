@@ -36,7 +36,7 @@ class Assignment
   belongs_to :validator, :class_name => "User"
 
   validates :purpose, :presence => true
-  # validates :assignee_ids, :presence => true
+  validates :assignee_ids, :presence => true
   
   before_save do
     if self.cost.blank?
