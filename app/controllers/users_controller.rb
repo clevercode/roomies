@@ -4,12 +4,13 @@ class UsersController < ApplicationController
   respond_to :html, :json
 
   def index
-    @users = User.all
-    if signed_in?
-      @user = current_user
-      @roomies = User.where(:house_id => @user.house_id)
-    end
-    respond_with(@users)
+    # @users = User.all
+    # if signed_in?
+    #   @user = current_user
+    #   @roomies = User.where(:house_id => @user.house_id)
+    # end
+    # respond_with(@users)
+    redirect_to root_url
   end
 
   def show
