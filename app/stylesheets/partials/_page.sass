@@ -72,14 +72,14 @@ input:invalid, textarea:invalid
 body
   overflow: hidden
   background: url('../images/clouds.png') 200px 0px repeat-x
-  &.registrations, &.sessions, &.assignments
+  &.registrations, &.sessions, &.assignments, &.pages
     #main
       h1
         font-size: 30px
         text-align: right
         margin-bottom: 10px
         padding-bottom: 5px
-        border-bottom: 1px dashed $darkblue
+        // border-bottom: 1px dashed $darkblue
       form
         margin-bottom: 20px
   #clouds
@@ -160,6 +160,7 @@ body
 @import pages/corkboard
 @import pages/support
 @import pages/assignments
+@import pages/content
 @import modals
 
 footer
