@@ -16,17 +16,17 @@
       +column(4, true)
 
     ul
-      +background-image(linear-gradient(#d9eaff, #f2f8ff))
-      +box-shadow(#7490b3 0 0 0 1px inset)
+      +background-image(linear-gradient($lightblue, $blue))
+      +box-shadow(darken($blue,10%) 0 0 0 1px inset)
       li
         +clearfix
         font-size: 16px
         overflow: hidden
         padding: 5px 10px
         color: $font-color
-        border: 1px solid #7490b3
+        border: 1px solid darken(desaturate($blue, 10%),10%) 
         border-top: none 
-        +background-image(linear-gradient(#d9eaff, #f2f8ff))
+        +background-image(linear-gradient(lighten($lightblue, 7%), lighten($lightblue,12%)))
         +box-shadow(#fff 1px 1px 0 inset, #fff -1px -1px 0 inset)
         &.completed, &[data-completed=true]
           opacity: 0.55
