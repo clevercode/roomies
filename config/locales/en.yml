@@ -123,8 +123,8 @@ en:
     #   password: 'No special characters, please.'
   
   # home
-  home:
-    index:
+  pages:
+    home:
       living: "living"
       together: "together"
       made: "made"
@@ -238,10 +238,13 @@ en:
     
 
   hello: 'Hello world'
-  auth_success: 'Authentication successful.'
-  auth_fail: 'Authentication failed.'
-  auth_destroy: 'Successfully destroyed authentication.'
-  welcome: 'Welcome.'
+  authentications:
+    auth_success: 'Authentication successful.'
+    auth_fail: 'Authentication failed.'
+    auth_destroy: 'Successfully destroyed authentication.'
+    signed_in: "You're already signed in."
+    welcome: 'Welcome.'
+    missing_email: "Twitter doesn't provide us with an email address to contact you."
   formtastic:
     placeholders:
       user:
