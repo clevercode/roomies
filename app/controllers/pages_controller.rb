@@ -1,6 +1,11 @@
 class PagesController < ApplicationController
   
   respond_to :html, :json
+
+  def home
+    @title = ""
+    if user_signed_in? then redirect_to corkboard_index_url end
+  end
   
   def about
     @title = "About us"
