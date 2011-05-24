@@ -116,15 +116,9 @@
 #achievements
   #badges  
     padding: 15px
-    #image
-      padding: 0
+    img
       float: left
-      width: 95px
-      height: 95px
-      margin: 15px
-      border-radius: 100px
-      background: #212933
-      border: 10px solid #fff
+      margin: .5em 1em
       &.faded
         opacity: 0.3
 
@@ -149,15 +143,14 @@
       // border: 1px solid #e5f1ff
       +background-image(linear-gradient(#4a1e10, #632816))
       +border-radius(2px)
+      .bar
+        top: 1px
+        left: 1px
+        height: 28px
+        z-index: 10
+        border: none
+        +background-image(linear-gradient(lighten($red, 5%), darken($red, 20%)))
+        // +box-shadow(lighten($red, 30%) 1px 1px 0 inset, lighten($red, 30%) -1px -1px 0 inset)
+        +border-radius(2px)
+        +box-shadow(rgba(255,255,255,.4) 0 0 1px inset)
 
-    .bar
-      top: 6px
-      left: 1px
-      width: 77%
-      height: 28px
-      z-index: 10
-      border: none
-      +background-image(linear-gradient(lighten($red, 5%), darken($red, 20%)))
-      // +box-shadow(lighten($red, 30%) 1px 1px 0 inset, lighten($red, 30%) -1px -1px 0 inset)
-      +border-radius(2px)
-      +box-shadow(rgba(255,255,255,.4) 0 0 1px inset)
