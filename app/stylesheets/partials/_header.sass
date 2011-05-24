@@ -25,59 +25,42 @@ body
       background: rgba(0,0,0,0.6)
     nav
       float: right
+      margin-right: .5em
       a
         display: block
-        font-size: 16px
-        margin-top: 15px
-        padding: 7px 13px
+        font-size: 1em
+        margin-top: 1em
+        padding: .5em .75em
         font-weight: bold
+        font-weight: 600
         background: white
-        color: lighten($font-color, 10%)
-        +text-shadow(none)
+        color: white
+        +text-shadow(rgba(0,0,0,.5) 0 -1px 1px)
         +border-radius(3px)
         text-decoration: none
-        // +box-shadow(rgba(0,0,0,0.2) 0 0 3px 1px inset)
-        +gradient-button(lighten($lightblue, 25%))
-        +text-shadow(none)
+        +gradient-button($lightblue)
         &:hover, &:focus
-          color: $font-color
-          // +background-image(linear-gradient(lighten($lightblue, 10%),lighten($lightblue, 5%)))
-          // +box-shadow(rgba(0,0,0,0.3) 0 0 3px 1px inset)
-          +text-shadow(none)
+          color: white
         &:active  
-          // +box-shadow(rgba(0,0,0,0.5) 0 0 3px 1px inset)
-          +text-shadow(none)
+          +text-shadow(rgba(0,0,0,.5) 0 1px 1px)
       ul
-        li.profile
-          a
-            padding: 0
-          img
-            margin: 8px 0 0
-            +box-shadow(#bfdcff 1px 1px 0, #7490b2 -1px -1px 0)
         li
           float: left
-          font-size: 24px
-          min-width: 50px
-          min-height: 50px
-          margin: 0 15px 0 0
+          margin-left: .5em
           a
-            width: 100%
-            color: #fff
-            height: 50px
-            line-height: 50px
+            height: 25px
+            line-height: 26px
             text-align: center
-            padding: 0 10px 0 5px
-            +gradient-button($lightblue)
             &:active
               img
                 +box-shadow(#bfdcff -1px -1px 0, #7490b2 1px 1px 0)
         li.notification
           a
-            width: 27px
-            height: 32px
+            width: 24px
+            height: 24px
             padding: 9px 10px
             text-indent: -9999px
-            background: url('../images/70.png') no-repeat 10px 10px
+            background: url('../images/70.png') no-repeat center center
             +box-shadow($lightblue 0 0 0 1px inset)
             &:hover, &:focus
               background-color: lighten($lightblue, 15%)
@@ -92,6 +75,7 @@ body
         li.house
           a
             background: url('../images/203.png') no-repeat 8px 11px
+        li.profile
 
     #beta
       float: left
