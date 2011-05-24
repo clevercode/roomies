@@ -1,4 +1,4 @@
-%h1 new house invitation
+%h1= t(:new, scope: [:house_invitations])
 - if @house_invitation.errors.any?
   #error_explanation
     %h2

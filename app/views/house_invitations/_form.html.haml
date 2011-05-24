@@ -1,4 +1,4 @@
 = simple_form_for(@house_invitation) do |f|
   = f.input :house_inviter_id, :label => false, :input_html => { :type => 'hidden', :value => current_user.id }
   = f.input :email
-  = f.button :submit, :class => 'green'
+  = f.submit t(:creation, scope: [:house_invitations]), :class => 'green'

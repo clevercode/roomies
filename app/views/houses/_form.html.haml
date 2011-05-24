@@ -6,4 +6,4 @@
         %li= msg
 = simple_form_for @house do |f|
   = f.input :name, autofocus: true
-  = f.submit 'submit', :class => 'green'
+  = f.submit t(:submit, scope: [:houses]), :class => 'green'
