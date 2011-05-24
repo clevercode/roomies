@@ -45,17 +45,24 @@ if $('#flash > div').length > 0
   top    = $('#flash > div:eq(0)').offset().top
   height = $('#flash > div:eq(0)').outerHeight()
   $('#flash > div:eq(1)').css({top:top+height+20})
+
+calculateCenter = (container, element) ->  
+  l = (container.outerWidth()/2) - (element.outerWidth()/2)
+  t = ($(window).height()/2) - (element.outerHeight()/2)
+  t = 0 if t < 0
   
-hideModal = (event) ->
-  $darknessification.hide 'fast'
-  $modal.hide 'fast'
+  center = { left: l + 'px', top: t + 'px' }
+  return center
+
+showLoader = ->
+  $darknessification.fadeIn _fadeSpeed
+  center = calculateCenter($('html'), $loader)
+  $loader.css({left: center.left, top: center.top}).show 'fast'
 
 
 # =========================================
 # ========== HEADER NOTIFICATION ==========
 # =========================================
-
-$('nav li.notification a').bind 'click', -> return false
 
 $('nav li.notification a').bind 'mouseover', ->
   $this = $(this)
