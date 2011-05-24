@@ -69,6 +69,12 @@ input:invalid, textarea:invalid
   to
     background-position: -1680px
 
+@-moz-keyframes moveClouds
+  from
+    background-position: 0px
+  to
+    background-position: -1680px
+
 body
   overflow: hidden
   background: url('../images/clouds.png') 200px 0px repeat-x
@@ -90,7 +96,8 @@ body
     opacity: 0.4
     height: 160px
     position: absolute
-    -webkit-animation: moveCloud 300s linear infinite
+    -moz-animation: moveClouds 300s linear infinite
+    -webkit-animation: moveClouds 300s linear infinite
     background: url('../images/clouds.png') top left repeat-x
 
 @import forms
