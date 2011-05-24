@@ -18,11 +18,12 @@ class UsersController < ApplicationController
     if @user.house
       @tasks = @user.house.assignments.where(assignee_ids: [@user.id], type: "task", completed_at: nil)
       @expenses = @user.house.assignments.where(assignee_ids: [@user.id], type: "expense", completed_at: nil)
-      @next_achievement = Achievement::TYPES.select do |k,v|
-        if v[:value] > @user.points
-          k
-        end
-      end
+
+      @achievements = Achievement::TYPES
+      @next_achievement = Achievement::TYPES.select { |k,v| v[:value] > @user.points }
+      @next_achievement_name = @next_achievement.keys.first.to_s.titleize
+      @next_level = @next_achievement.values.first[:value]
+      @percentage = (@user.points / @next_level.to_f) * 100
     end
     respond_with(@user)
   end

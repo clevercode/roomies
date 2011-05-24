@@ -58,9 +58,8 @@
   #badges.content
     - if @user.achievements.count == 0
       %p Aww, you haven't achieved anything. Work harder.
-      -# %p Your next achievemet will be #{@next_achievement}
+      %p Maybe you'll be worthy and earn you first achievement, <strong>#{@next_achievement_name}</strong>
     - else
-      -# %p Your next achievemet will be #{@next_achievement}
       - @user.achievements.each do |a|
         = image_tag "#{a.type[:badge]}", title: a.name.to_s.humanize
 
@@ -107,7 +106,8 @@
         %table.battle
           %tr
             %th= t :name, :scope => :profile
-            %th= t :progress, :scope => :profile
+            %th
+              = t(:progress, scope: [:profile]) 
             %th.level= t :points, :scope => :profile 
           - roomies_list.all.map do |roomie|
             %tr
@@ -121,8 +121,9 @@
               %td.progress_bar
                 .bars
                   .bar_bg
-                    .bar{ style: "width: #{roomie.points}px" }
-              %td.level #{roomie.points}
+                    .bar{ style: "width: #{@percentage}%" }
+                    %strong #{@next_achievement_name}
+              %td.level #{roomie.points}/#{@next_level}
     - else
       .content
         %p You don't have roomies to battle with yet. Quick! Remedy this at once.
