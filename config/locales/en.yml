@@ -215,6 +215,7 @@ en:
     points: "points"
     hi_there: "Hi there"
     new_roomie: "new roomie"
+    no_name_roomie: "nameless roomie"
 
   house_invitations:
     creation: "invite to your house"
