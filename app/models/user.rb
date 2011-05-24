@@ -117,6 +117,10 @@ class User
     else
       image_src = "http://www.gravatar.com/avatar/#{hash}?s=130"
     end
+
+    if image_src.empty?
+      image_src = "/images/profile_default.png"
+    end
   end
   
   def house_invitation
@@ -155,6 +159,10 @@ class User
         self.achievements.create(:name => n)
       end
     end
+  end
+
+  def next_achievement
+    Achievement::TYPES.select { |k,v| v[:value] > self.points }
   end
 
   def check_payment
