@@ -262,15 +262,58 @@ $('#upcoming_filters #assignee_filters li').live 'click', ->
     generateDetailLists()
     
 $('.check').live 'click', ->
-  $this      = $(this)
-  id         = $this.data('assignment_id')
+  $this       = $(this)
+  id          = $this.data('assignment_id')
   $assignment = $this.parent('ul').parent('li')
+  showLoader()
+  
+  if $assignment.hasClass('task')
+    type = 'task'
+  else
+    type = 'expense'
   
   $.ajax
     type: 'post',
     url: "/assignments/#{id}/complete",
     success: (data) ->
-      $assignment.removeClass().addClass('completed').find('.type').removeClass().addClass('check')
+      $loader.fadeOut 'fast'
+      $darknessification.fadeOut 'fast'
+      $assignment
+        .removeClass()
+        .attr('data-type',type)
+        .addClass('completed')
+        .find('.type')
+          .removeClass()
+          .addClass('check')
+        .siblings('.edit')
+          .hide 'fast'
+  return false
+
+$('li[data-completed=true] .undo, .list .undo').live 'click', ->
+  $this       = $(this)
+  id          = $this.data('assignment_id')
+  $assignment = $this.parent('ul').parent('li')
+  type        = $assignment.data('type')
+  showLoader()
+  
+  $.ajax
+    type: 'post',
+    url: "/assignments/#{id}/undo_complete",
+    success: (data) ->
+      $loader.fadeOut 'fast'
+      $darknessification.fadeOut 'fast'
+      $assignment
+        .attr('data-completed','')
+        .removeClass()
+        .addClass('assignment')
+        .find('.check')
+          .removeClass()
+          .addClass('type')
+          .attr('title',type)
+        .find('.undo')
+          .removeClass()
+          .addClass('type')
+          .attr('title',type)
   return false
 
 $('#assignment_filters').bind 'click', (event) ->
