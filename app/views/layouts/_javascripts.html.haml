@@ -14,15 +14,12 @@
   !window.jQuery && document.write(unescape('%3Cscript src="/javascripts/jquery.min.js"%3E%3C/script%3E'))
   
 -# Including the coffeescript compiled to JS
-= javascript_include_tag  'underscore.min', 
-                          'jquery-ui.min',
+= javascript_include_tag  'jquery-ui.min',
                           'rails', 
                           'application', 
                           'plugins', 
-                          'jquery.noisy.min', 
-                          'naked_password-0.2.3.min', 
                           'date', 
-                          'autocomplete-rails', 
+                          'autocomplete-rails'
 
 -# Fix any <img> or .png_bg bg-images. Also, please read goo.gl/mZiyb
 /[if lt IE 7 ]
