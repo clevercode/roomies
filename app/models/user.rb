@@ -148,6 +148,7 @@ class User
       has = self.achievements.map(&:name)
       has = has.map(&:to_sym)
 
+      new = oughts - has
       # iterating over the array of new achievements to create them on the user
       new.each do |n|
         a = Achievement::TYPES[n]
