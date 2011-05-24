@@ -18,7 +18,7 @@
             border-bottom: 1px solid #3a4859
           td  
             line-height: 2.5
-            padding: .25em 0
+            padding: .25em 0 0
 
           td.percentage, td.level, th.level
             width: 90px
@@ -118,6 +118,11 @@
           +background-image(linear-gradient($lightblue, $blue))
           +box-shadow(rgba(255,255,255,.7) 0 2px 5px inset, black 0 0 2px 0 inset, darken($blue,5%) 0 -5px 5px inset)
           +border-radius(7px)
+          &:hover, &:focus
+            +background-image(linear-gradient($lightblue, darken($blue, 5%)))
+          &:active
+            +background-image(linear-gradient(darken($blue, 5%), $lightblue))
+            +box-shadow(black 0 0 2px 0 inset)
       h1
         font-size: 24px
 
