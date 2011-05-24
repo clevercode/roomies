@@ -35,9 +35,7 @@
     - else
       %p#house
         - if signed_in? && current_user == @user
-          = t :youre_homeless, :scope => :profile
           = link_to t(:build_house, :scope => :profile), new_house_path, :class => 'ajax'
-          ?
         - else
           = t(:homeless_roomie, :scope => :profile)
 

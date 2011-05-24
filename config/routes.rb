@@ -15,6 +15,7 @@ Roomies::Application.routes.draw do
   resources :assignments do
     member do
       post :complete
+      post :undo_complete
     end
   end
   resources :categories

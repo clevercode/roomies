@@ -11,6 +11,7 @@ $body              = $('body')
 $main              = $('#main')
 $footer            = $('footer')
 $modal             = $('#modal')
+$loader            = $('#loader')
 $darknessification = $('#darknessification')
 $ajaxed            = $modal.children('#ajaxed')
 
@@ -44,17 +45,24 @@ if $('#flash > div').length > 0
   top    = $('#flash > div:eq(0)').offset().top
   height = $('#flash > div:eq(0)').outerHeight()
   $('#flash > div:eq(1)').css({top:top+height+20})
+
+calculateCenter = (container, element) ->  
+  l = (container.outerWidth()/2) - (element.outerWidth()/2)
+  t = ($(window).height()/2) - (element.outerHeight()/2)
+  t = 0 if t < 0
   
-hideModal = (event) ->
-  $darknessification.hide 'fast'
-  $modal.hide 'fast'
+  center = { left: l + 'px', top: t + 'px' }
+  return center
+
+showLoader = ->
+  $darknessification.fadeIn _fadeSpeed
+  center = calculateCenter($('html'), $loader)
+  $loader.css({left: center.left, top: center.top}).show 'fast'
 
 
 # =========================================
 # ========== HEADER NOTIFICATION ==========
 # =========================================
-
-$('nav li.notification a').bind 'click', -> return false
 
 $('nav li.notification a').bind 'mouseover', ->
   $this = $(this)
@@ -67,26 +75,32 @@ $('nav li.notification a').bind 'mouseover', ->
   $pastDueLabel.css({left:l,top:t}).slideDown('fast').fadeIn()
 
 $('nav li.notification a').bind 'mouseout', ->
-  $('.notification_title').fadeOut(-> $(this).remove())
+  $('.notification_title').fadeOut -> $(this).remove()
 
 
 # =========================================
 # ================= MODAL =================
 # =========================================
 
+hideModal = (event) ->
+  $darknessification.hide 'fast'
+  $modal.hide 'fast'
+
+generateModal = (url) ->
+  showLoader()
+  $ajaxed.empty().load url, ->
+    $loader.fadeOut 'fast'
+    $('<span>x</span>').appendTo '#modal h1'
+    superDate()
+    center = calculateCenter($('html'), $modal)
+    $darknessification.fadeIn _fadeSpeed
+    $modal.css({left: center.left, top: center.top}).fadeIn _fadeSpeed
+      
+  return false
+
 # // Listens for a click on any anchor with a class of ajax.
 # // Knabs the anchor's href and ajaxes it in to the modal.
-$('a.ajax').live 'click', ->
-  $ajaxed.empty().load($(this).attr('href'), ->
-    $('<span>x</span>').appendTo('#modal h1')
-    superDate()
-    modal_left = ($('html').outerWidth()/2) - ($modal.outerWidth()/2)
-    modal_top = ($(window).height()/2) - ($modal.outerHeight()/2)
-    modal_top = 0 if modal_top < 0
-    $darknessification.fadeIn _fadeSpeed
-    $modal.css({left: modal_left, top: modal_top}).fadeIn _fadeSpeed
-  )
-  return false
+$('a.ajax').live 'click', -> generateModal($(this).attr('href'))
 
 # // Listens for a click on the overlay when the modal or detail list is up.
 $darknessification.live 'click', ->
@@ -107,33 +121,47 @@ $('#modal h1 span').live 'click', ->
 # =============== CORKBOARD ===============
 # =========================================
 
-$('.assignment[data-completed=true]').removeClass('assignment')
+$('.assignment[data-completed=true]')
+  .removeClass('assignment')
+  .find('.type')
+  .removeClass()
+  .addClass('check')
 
 # // Handles mouseenter and mouseleave for the corkboard lists.
 $('.list .assignment').live 'mouseenter', ->
   $(this)
     .find('li:eq(2)').animate {paddingRight:'0px'}, 'fast', ->
       $(this).prev().stop(true).show 'fast'
-    .siblings('.type').removeClass('type').addClass('check')
+    .siblings('li:eq(0)').removeClass().addClass('check')
 
 $('.list .assignment').live 'mouseleave', ->
   $(this)
     .find('li:eq(1)').fadeOut 'fast', ->
       $(this).hide().next().stop(true).animate {paddingRight:'25px'}, 'fast'
-    .siblings('.check').removeClass('check').addClass('type')
+    .siblings('li:eq(0)').removeClass().addClass('type')
+
+$('.list li[data-completed=true], .list .completed').live 'mouseenter', ->
+  $(this)
+    .children('ul')
+      .children('li:eq(0)')
+        .removeClass()
+        .addClass('undo')
+        .attr('title','mark as incomplete')
+
+$('.list li[data-completed=true], .list .completed').live 'mouseleave', ->
+  $(this)
+    .children('ul')
+      .children('li:eq(0)')
+        .removeClass()
+        .addClass('check')
+        .attr('title','completed')
+      .next()
+        .hide 'fast'
 
 # // Edit assignment on edit icon click.
 $('.edit').live 'click', ->
   id = $(this).data("assignment_id")
-  $ajaxed.load "/assignments/#{id}/edit", ->
-    $('<span>x</span>').appendTo('#modal h1')
-    superDate()
-    modal_left = ($('html').outerWidth()/2) - ($modal.outerWidth()/2)
-    modal_top = ($(window).height()/2) - ($modal.outerHeight()/2)
-    modal_top = 0 if modal_top < 0
-    $darknessification.fadeIn _fadeSpeed
-    $modal.css({left: modal_left, top: modal_top}).fadeIn _fadeSpeed
-  return false
+  generateModal("/assignments/#{id}/edit")
   
 # // Listens for a click on the calendar view option links.
 $('.header_bar a').bind 'click', ->
@@ -234,15 +262,58 @@ $('#upcoming_filters #assignee_filters li').live 'click', ->
     generateDetailLists()
     
 $('.check').live 'click', ->
-  $this      = $(this)
-  id         = $this.data('assignment_id')
+  $this       = $(this)
+  id          = $this.data('assignment_id')
   $assignment = $this.parent('ul').parent('li')
+  showLoader()
+  
+  if $assignment.hasClass('task')
+    type = 'task'
+  else
+    type = 'expense'
   
   $.ajax
     type: 'post',
     url: "/assignments/#{id}/complete",
     success: (data) ->
-      $assignment.removeClass().addClass('completed').find('.type').removeClass().addClass('check')
+      $loader.fadeOut 'fast'
+      $darknessification.fadeOut 'fast'
+      $assignment
+        .removeClass()
+        .attr('data-type',type)
+        .addClass('completed')
+        .find('.type')
+          .removeClass()
+          .addClass('check')
+        .siblings('.edit')
+          .hide 'fast'
+  return false
+
+$('li[data-completed=true] .undo, .list .undo').live 'click', ->
+  $this       = $(this)
+  id          = $this.data('assignment_id')
+  $assignment = $this.parent('ul').parent('li')
+  type        = $assignment.data('type')
+  showLoader()
+  
+  $.ajax
+    type: 'post',
+    url: "/assignments/#{id}/undo_complete",
+    success: (data) ->
+      $loader.fadeOut 'fast'
+      $darknessification.fadeOut 'fast'
+      $assignment
+        .attr('data-completed','')
+        .removeClass()
+        .addClass('assignment')
+        .find('.check')
+          .removeClass()
+          .addClass('type')
+          .attr('title',type)
+        .find('.undo')
+          .removeClass()
+          .addClass('type')
+          .attr('title',type)
   return false
 
 $('#assignment_filters').bind 'click', (event) ->
@@ -257,7 +328,9 @@ max_list_height = 0
 $('.semantic_shmantic').each ->
   $this = $(this)
   max_list_height = $this.height() if $this.height() > max_list_height
-  $this.css('height',max_list_height)
+  
+$('.semantic_shmantic').each ->
+  $(this).css('height',max_list_height)
 
 # // Listens for a click on the body and closes the detailed list of
 # // assignments that's what it should be doing.

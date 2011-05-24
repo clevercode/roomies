@@ -113,6 +113,17 @@ class AssignmentsController < ApplicationController
     end
   end
 
+  def undo_complete
+    @assignment = Assignment.find(params[:id])
+    unless @assignment.completed_at.nil?
+      @assignment.completed_at = nil
+      @assignment.completor_id = nil
+      if @assignment.save
+        respond_with @assignment, location: corkboard_index_url
+      end
+    end
+  end
+
   def day
     day = Date.parse(params[:day])
     all = current_user.house.assignments.where(due_date: day, completed_at: nil)
