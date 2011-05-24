@@ -60,7 +60,9 @@
   #badges.content
     - if @user.achievements.count == 0
       %p Aww, you haven't achieved anything. Work harder.
+      -# %p Your next achievemet will be #{@next_achievement}
     - else
+      -# %p Your next achievemet will be #{@next_achievement}
       - @user.achievements.each do |a|
         = image_tag "#{a.type[:badge]}", title: a.name.to_s.humanize
 
