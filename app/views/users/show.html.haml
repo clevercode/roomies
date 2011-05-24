@@ -58,8 +58,11 @@
     %h1= t :achievements, :scope => :profile
     -# %p= link_to t(:more_achievements, :scope => :profile), achievements_url
   #badges.content
-    - @user.achievements.each do |a|
-      = image_tag "#{a.type[:badge]}", title: a.name.to_s.humanize
+    - if @user.achievements.count == 0
+      %p Aww, you haven't achieved anything. Work harder.
+    - else
+      - @user.achievements.each do |a|
+        = image_tag "#{a.type[:badge]}", title: a.name.to_s.humanize
 
 - if current_user
   -# #progress
