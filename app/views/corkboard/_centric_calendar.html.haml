@@ -9,10 +9,10 @@
     .day{:class => current_day, :data => {:number => i}}
       %p.day_name= l(date, :format => :short_day)
       %p.day_number= date.day
-      - unless assignments.where(:due_date => date.to_s).count <= 0
+      - unless assignments.where(:due_date => date.to_s).count <= 0 and assignments.where(completed_at: nil)
         .todo
-          - tasks = assignments.where(due_date: date.to_s).and(type: "task")
-          - expenses = assignments.where(due_date: date.to_s).and(type: "expense")
+          - tasks = assignments.where(due_date: date.to_s).and(type: "task").and(completed_at: nil)
+          - expenses = assignments.where(due_date: date.to_s).and(type: "expense").and(completed_at: nil)
           - unless tasks.count == 0
             - if all
               =link_to tasks.count, "/assignments/day/#{date}.json?type=task&all=true", :class => "tasks"
