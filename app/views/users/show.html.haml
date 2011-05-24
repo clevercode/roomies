@@ -29,9 +29,9 @@
       #house
         .current_house #{@user.house.name}
         - if signed_in? && current_user == @user
-          = link_to 'change house name', edit_house_path(@user.house), :class => 'ajax'
-          = link_to 'add roomies to your house', new_house_invitation_path, :class => 'ajax'
-          = link_to 'move out', homeless_url(:id => @user.id, :house_id => @user.house)
+          = link_to t('.change_house_name'), edit_house_path(@user.house), :class => 'ajax'
+          = link_to t('.add_roomies'), new_house_invitation_path, :class => 'ajax'
+          = link_to t('.move_out'), homeless_url(:id => @user.id, :house_id => @user.house), :confirm => t('.confirm_house_deletion')
     - else
       %p#house
         - if signed_in? && current_user == @user

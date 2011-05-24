@@ -215,11 +215,22 @@ en:
     points: "points"
     hi_there: "Hi there"
     new_roomie: "new roomie"
+
+  house_invitations:
+    creation: "invite to your house"
+    new: "Add roomies"
+
+  houses:
+    edit: "Change house name"
+    submit: "Save"
   
   users:
     show:
       you_have: "You have"
       this_roomie_has: "This roomie has"
+      change_house_name: "Change house name"
+      add_roomies: "Add roomies"
+      confirm_house_deletion: "Are you sure you want to become homeless and live a life of despair and alcoholism under bridges?"
 
   # rewards
   rewards:
