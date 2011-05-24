@@ -121,33 +121,47 @@ $('#modal h1 span').live 'click', ->
 # =============== CORKBOARD ===============
 # =========================================
 
-$('.assignment[data-completed=true]').removeClass('assignment')
+$('.assignment[data-completed=true]')
+  .removeClass('assignment')
+  .find('.type')
+  .removeClass()
+  .addClass('check')
 
 # // Handles mouseenter and mouseleave for the corkboard lists.
 $('.list .assignment').live 'mouseenter', ->
   $(this)
     .find('li:eq(2)').animate {paddingRight:'0px'}, 'fast', ->
       $(this).prev().stop(true).show 'fast'
-    .siblings('.type').removeClass('type').addClass('check')
+    .siblings('li:eq(0)').removeClass().addClass('check')
 
 $('.list .assignment').live 'mouseleave', ->
   $(this)
     .find('li:eq(1)').fadeOut 'fast', ->
       $(this).hide().next().stop(true).animate {paddingRight:'25px'}, 'fast'
-    .siblings('.check').removeClass('check').addClass('type')
+    .siblings('li:eq(0)').removeClass().addClass('type')
+
+$('.list li[data-completed=true], .list .completed').live 'mouseenter', ->
+  $(this)
+    .children('ul')
+      .children('li:eq(0)')
+        .removeClass()
+        .addClass('undo')
+        .attr('title','mark as incomplete')
+
+$('.list li[data-completed=true], .list .completed').live 'mouseleave', ->
+  $(this)
+    .children('ul')
+      .children('li:eq(0)')
+        .removeClass()
+        .addClass('check')
+        .attr('title','completed')
+      .next()
+        .hide 'fast'
 
 # // Edit assignment on edit icon click.
 $('.edit').live 'click', ->
   id = $(this).data("assignment_id")
-  $ajaxed.load "/assignments/#{id}/edit", ->
-    $('<span>x</span>').appendTo('#modal h1')
-    superDate()
-    modal_left = ($('html').outerWidth()/2) - ($modal.outerWidth()/2)
-    modal_top = ($(window).height()/2) - ($modal.outerHeight()/2)
-    modal_top = 0 if modal_top < 0
-    $darknessification.fadeIn _fadeSpeed
-    $modal.css({left: modal_left, top: modal_top}).fadeIn _fadeSpeed
-  return false
+  generateModal("/assignments/#{id}/edit")
   
 # // Listens for a click on the calendar view option links.
 $('.header_bar a').bind 'click', ->
