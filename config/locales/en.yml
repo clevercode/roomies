@@ -159,10 +159,10 @@ en:
     notifications:
       build_house?: "build a house?"
       youre_homeless: "Oh no! It seems you're homeless! Want to "
-      change_password_and_name: "Hi there! If you'd like to change your password or possibly tell us your name, go ahead and click here."
+      change_password_and_name: "Hi there! If you'd like to tell us your name, go ahead and click here. Otherwise, go ahead and start having fun!"
       house_invitation: "You received a house invitation from "
-      move_in_invite_accept: "Click here to accept the invitation and start using Roomies make living together easier."
-      move_in_invite_refuse: "Go ahead and click here if you despise the inviter's very existance and would never live with them."
+      move_in_invite_accept: "accept the invitation"
+      move_in_invite_refuse: "reject the invitation and spit in their face."
       house_move_warning: "Warning: Clicking the link above will remove you from the house you currently belong to and let you join the new one."
     upcoming:
       no_assignments: "So far so good..."
