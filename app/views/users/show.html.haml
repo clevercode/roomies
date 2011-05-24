@@ -58,12 +58,8 @@
     %h1= t :achievements, :scope => :profile
     %p= link_to t(:more_achievements, :scope => :profile), achievements_url
   #badges.content
-    #image
-    #image
-    #image
-    #image.faded
-    #image.faded
-    #image.faded
+  - @user.achievements.each do |a|
+    = image_tag "#{a.type[:badge]}"
 
 - if current_user
   #progress
