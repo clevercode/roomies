@@ -328,7 +328,9 @@ max_list_height = 0
 $('.semantic_shmantic').each ->
   $this = $(this)
   max_list_height = $this.height() if $this.height() > max_list_height
-  $this.css('height',max_list_height)
+  
+$('.semantic_shmantic').each ->
+  $(this).css('height',max_list_height)
 
 # // Listens for a click on the body and closes the detailed list of
 # // assignments that's what it should be doing.
