@@ -75,26 +75,32 @@ $('nav li.notification a').bind 'mouseover', ->
   $pastDueLabel.css({left:l,top:t}).slideDown('fast').fadeIn()
 
 $('nav li.notification a').bind 'mouseout', ->
-  $('.notification_title').fadeOut(-> $(this).remove())
+  $('.notification_title').fadeOut -> $(this).remove()
 
 
 # =========================================
 # ================= MODAL =================
 # =========================================
 
+hideModal = (event) ->
+  $darknessification.hide 'fast'
+  $modal.hide 'fast'
+
+generateModal = (url) ->
+  showLoader()
+  $ajaxed.empty().load url, ->
+    $loader.fadeOut 'fast'
+    $('<span>x</span>').appendTo '#modal h1'
+    superDate()
+    center = calculateCenter($('html'), $modal)
+    $darknessification.fadeIn _fadeSpeed
+    $modal.css({left: center.left, top: center.top}).fadeIn _fadeSpeed
+      
+  return false
+
 # // Listens for a click on any anchor with a class of ajax.
 # // Knabs the anchor's href and ajaxes it in to the modal.
-$('a.ajax').live 'click', ->
-  $ajaxed.empty().load($(this).attr('href'), ->
-    $('<span>x</span>').appendTo('#modal h1')
-    superDate()
-    modal_left = ($('html').outerWidth()/2) - ($modal.outerWidth()/2)
-    modal_top = ($(window).height()/2) - ($modal.outerHeight()/2)
-    modal_top = 0 if modal_top < 0
-    $darknessification.fadeIn _fadeSpeed
-    $modal.css({left: modal_left, top: modal_top}).fadeIn _fadeSpeed
-  )
-  return false
+$('a.ajax').live 'click', -> generateModal($(this).attr('href'))
 
 # // Listens for a click on the overlay when the modal or detail list is up.
 $darknessification.live 'click', ->
