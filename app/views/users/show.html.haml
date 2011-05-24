@@ -38,7 +38,7 @@
           = link_to t(:build_house, :scope => :profile), new_house_path, :class => 'ajax'
         - else
           = t(:homeless_roomie, :scope => :profile)
-
+    %p#roommates
     %p#tasks_expenses
       %span
       - if @tasks
@@ -121,9 +121,12 @@
               %td.progress_bar
                 .bars
                   .bar_bg
-                    .bar{ style: "width: #{@percentage}%" }
-                    %strong #{@next_achievement_name}
-              %td.level #{roomie.points}/#{@next_level}
+                    - next_achievement_name = roomie.next_achievement.keys.first.to_s.titleize
+                    - next_level = roomie.next_achievement.values.first[:value]
+                    - percentage = (roomie.points / next_level.to_f) * 100
+                    .bar{ style: "width: #{percentage}%" }
+                    %strong #{next_achievement_name}
+              %td.level #{roomie.points}/#{next_level}
     - else
       .content
         %p You don't have roomies to battle with yet. Quick! Remedy this at once.
