@@ -19,10 +19,10 @@
         %h1= t(:new_roomie, :scope => :profile)
       -else
         %h1  #{@user.name}
-    - if signed_in? && current_user == @user
-      %p you have #{pluralize(@user.points, t(:point))}
-    - else
-      %p #{(current_user == @user) ? t('.you_have') : t('.this_roomie_has')} #{pluralize(@user.points, t(:point))}
+    -# - if signed_in? && current_user == @user
+    -#   %p you have #{pluralize(@user.points, t(:point))}
+    -# - else
+    -#   %p #{(current_user == @user) ? t('.you_have') : t('.this_roomie_has')} #{pluralize(@user.points, t(:point))}
   #hud
 
     - if @user.house
@@ -56,56 +56,56 @@
 #achievements
   .header_bar
     %h1= t :achievements, :scope => :profile
-    %p= link_to t(:more_achievements, :scope => :profile), achievements_url
+    -# %p= link_to t(:more_achievements, :scope => :profile), achievements_url
   #badges.content
-  - @user.achievements.each do |a|
-    = image_tag "#{a.type[:badge]}"
+    - @user.achievements.each do |a|
+      = image_tag "#{a.type[:badge]}", title: a.name.to_s.humanize
 
 - if current_user
-  #progress
-    .header_bar
-      %h1= t(:progress, :scope => :profile)
-    .content
-      %table
-        %tr
-          %td awesomeness
-          %td.progress_bar
-            .bars
-              .bar
-              .bar_bg
-          %td.percentage 77%
-        %tr
-          %td reliability
-          %td.progress_bar
-            .bars
-              .bar
-              .bar_bg
-          %td.percentage 77%
-        %tr
-          %td helpfulness
-          %td.progress_bar
-            .bars
-              .bar
-              .bar_bg
-          %td.percentage 77%
-        %tr
-          %td cooking master
-          %td.progress_bar
-            .bars
-              .bar
-              .bar_bg
-          %td.percentage 77%
+  -# #progress
+  -#   .header_bar
+  -#     %h1= t(:progress, :scope => :profile)
+  -#   .content
+  -#     %table
+  -#       %tr
+  -#         %td awesomeness
+  -#         %td.progress_bar
+  -#           .bars
+  -#             .bar
+  -#             .bar_bg
+  -#         %td.percentage 77%
+  -#       %tr
+  -#         %td reliability
+  -#         %td.progress_bar
+  -#           .bars
+  -#             .bar
+  -#             .bar_bg
+  -#         %td.percentage 77%
+  -#       %tr
+  -#         %td helpfulness
+  -#         %td.progress_bar
+  -#           .bars
+  -#             .bar
+  -#             .bar_bg
+  -#         %td.percentage 77%
+  -#       %tr
+  -#         %td cooking master
+  -#         %td.progress_bar
+  -#           .bars
+  -#             .bar
+  -#             .bar_bg
+  -#         %td.percentage 77%
 
   #batte
     .header_bar
       %h1= t :roomie_battle, :scope => :profile 
     - if roomies_list
       .content
-        %table
+        %table.battle
           %tr
             %th= t :name, :scope => :profile
-            %th= t :progress, :scope => :profile             
-            %th.level= t :next_level, :scope => :profile 
+            %th= t :progress, :scope => :profile
+            %th.level= t :points, :scope => :profile 
           - roomies_list.all.map do |roomie|
             %tr
               %td
@@ -117,9 +117,9 @@
                   = t :no_name_roomie, :scope => :profile 
               %td.progress_bar
                 .bars
-                  .bar
                   .bar_bg
-              %td.level 4
+                    .bar{ style: "width: #{@user.points}px" }
+              %td.level #{@user.points}
     - else
       .content
         %p You don't have roomies to battle with yet. Quick! Remedy this at once.
