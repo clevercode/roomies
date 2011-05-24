@@ -11,6 +11,7 @@ $body              = $('body')
 $main              = $('#main')
 $footer            = $('footer')
 $modal             = $('#modal')
+$loader            = $('#loader')
 $darknessification = $('#darknessification')
 $ajaxed            = $modal.children('#ajaxed')
 
