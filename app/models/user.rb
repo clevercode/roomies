@@ -130,12 +130,31 @@ class User
   
 
   def check_for_achievements
-  #   if self.points > 50
-  #     self.achievements.create(name: "Megatop Roomie")
-  #     if self.points < stuff && self.points > stuff
-  #       Achievement.create(user_id: self.id, )
-  #     end
-  #   end
+    # retrieving the achievements the user ought to have in an array
+    oughts = []
+
+    Achievement::TYPES.each_pair do |key, values|
+      if values[:value] <= self.points
+        oughts << key
+      end
+    end
+
+    # only checking what achievements the user has if he oughts
+    # to have any new ones
+    if oughts.length > 0
+      # retrieving the achievements the user already has
+      has = []
+      # if the user has achievements, let's make sure we only add new ones
+      has = self.achievements.map(&:name)
+      has = has.map(&:to_sym)
+
+      new = oughts - has
+      # iterating over the array of new achievements to create them on the user
+      new.each do |n|
+        a = Achievement::TYPES[n]
+        self.achievements.create(:name => n)
+      end
+    end
   end
 
   def check_payment
