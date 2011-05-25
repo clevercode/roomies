@@ -10,7 +10,7 @@
 
 body, select, input, textarea
   color: $font-color
-  text-shadow: 1px 1px 0 #d9eaff
+  // text-shadow: 1px 1px 0 #d9eaff
   // Set your base font here, to apply evenly
   font-family: $base-font-family
 
@@ -85,11 +85,27 @@ body
         text-align: right
         margin-bottom: 10px
         padding-bottom: 5px
+        // float: right
+        clear: right
         // border-bottom: 1px dashed $darkblue
       h2
         font-size: 1.4em
+        clear: right
       form
         // margin-bottom: 20px
+
+      h2
+        // text-align: right
+        font-size: 1.7em
+        font-weight: bold
+        font-weight: 500
+
+      p
+        float: right
+        margin: 0 0 1em
+
+      ol, ul
+        clear: both
   #clouds
     width: 100%
     z-index: -10
@@ -111,7 +127,7 @@ body
 #main
   overflow: hidden
   padding: 60px 0 20px
-  
+
   .header_bar, .content .list h2
     padding: 0
     color: #52471e

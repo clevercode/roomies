@@ -1,15 +1,15 @@
 #signup
   = simple_form_for(@user, :as => :user, :url => registration_path(:user)) do |f|
-    = f.input :email, :label => false, :input_html => { :placeholder => t(:email_example) }
+    = f.input :email, :as => :email, :label => false, :input_html => { :placeholder => t(:email_example) }
     #password_junk
       = f.input :password, :label => false, :required => false, :input_html => { :placeholder => t('.type_your_password') }
     = f.submit t(:sign_up), :class => 'green'
   %p.other_auths
     = t(:or_sign_up_with)
-    =link_to 'twitter,', '/auth/twitter'
-    =link_to 'facebook, ', '/auth/facebook'
+    = link_to 'twitter,', '/auth/twitter'
+    = link_to 'facebook, ', '/auth/facebook'
     or
-    =link_to 'google', '/auth/google'
+    = link_to 'google', '/auth/google'
   %p.generate
     or
     = link_to t('.generate_one'), 'generate'
