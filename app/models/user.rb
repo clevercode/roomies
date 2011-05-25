@@ -10,16 +10,16 @@ class User
   before_create :set_invitation_limit
 
   # Fields
-  field :name, :type => String
-  field :points, :type => Integer
-  field :locale, :type => String, :default => "en"
-  field :calendar, :type => String, :default => "centric"
-  field :secret, :type => String
+  field :name, type: String
+  field :points, type: Integer, default: 0
+  field :locale, type: String, default: "en"
+  field :calendar, type: String, default: "centric"
+  field :secret, type: String
 
   # Associations
   belongs_to :house # => User has a house_id
-  has_many :authentications, :dependent => :delete
-  has_many :assignments, :foreign_key => 'assignee_ids'
+  has_many :authentications, dependent: :delete
+  has_many :assignments, foreign_key: 'assignee_ids'
   has_many :rewards
   has_many :achievements
 
@@ -28,12 +28,12 @@ class User
           :rememberable, :trackable, :validatable, :invitable
 
   validates :email, 
-            :presence => true,
-            :uniqueness => { :case_sensitive => false }
+            presence: true,
+            uniqueness: { case_sensitive: false }
 
   validates_presence_of :invitation_token, 
-                        :on => :create, 
-                        :message => "misssing, signing up for now."
+                        on: :create, 
+                        message: "misssing, signing up for now."
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :email, :password, :remember_me, :locale, :calendar
