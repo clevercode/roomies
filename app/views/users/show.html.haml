@@ -101,7 +101,7 @@
   #batte
     .header_bar
       %h1= t :roomie_battle, :scope => :profile 
-    - if roomies_list
+    - if !@user.house.nil? && roomies_list
       .content
         %table.battle
           %tr
@@ -114,7 +114,7 @@
               %td
                 - if (roomie == current_user)
                   %strong #{t(:you, :scope => :profile)}
-                - elsif roomie.name
+                - elsif roomieomie.name
                   = link_to roomie.name, roomie
                 - else
                   = t :no_name_roomie, :scope => :profile 
