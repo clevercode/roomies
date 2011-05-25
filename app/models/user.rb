@@ -117,10 +117,6 @@ class User
     else
       image_src = "http://www.gravatar.com/avatar/#{hash}?s=130"
     end
-
-    if image_src.empty?
-      image_src = "/images/profile_default.png"
-    end
   end
   
   def house_invitation
