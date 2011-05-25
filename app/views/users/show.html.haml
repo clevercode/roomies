@@ -114,7 +114,7 @@
               %td
                 - if (roomie == current_user)
                   %strong #{t(:you, :scope => :profile)}
-                - elsif roomieomie.name
+                - elsif roomie.name
                   = link_to roomie.name, roomie
                 - else
                   = t :no_name_roomie, :scope => :profile 
