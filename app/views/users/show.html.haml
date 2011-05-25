@@ -123,7 +123,8 @@
                   .bar_bg
                     - next_achievement_name = roomie.next_achievement.keys.first.to_s.titleize
                     - next_level = roomie.next_achievement.values.first[:value]
-                    - percentage = (roomie.points / next_level.to_f) * 100
+                    -# removing 0.25 for styling because I'm a hack
+                    - percentage = (((roomie.points) / (next_level.to_f)) * 100) - 0.25
                     .bar{ style: "width: #{percentage}%" }
                     %strong #{next_achievement_name}
               %td.level #{roomie.points}/#{next_level}
