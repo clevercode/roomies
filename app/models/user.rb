@@ -162,7 +162,7 @@ class User
   end
 
   def next_achievement
-    Achievement::TYPES.select { |k,v| v[:value] > self.points }
+    Achievement::TYPES.select { |k,v| v[:value] >= self.points }
   end
 
   def check_payment
