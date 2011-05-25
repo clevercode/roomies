@@ -171,9 +171,11 @@
         border: none
         +background-image(linear-gradient(lighten($red, 5%), darken($red, 20%)))
         // +box-shadow(lighten($red, 30%) 1px 1px 0 inset, lighten($red, 30%) -1px -1px 0 inset)
-        +border-radius(2px)
+        +border-left-radius(2px)
+        +border-right-radius(none)
         +box-shadow(rgba(255,255,255,.4) 0 0 1px inset)
       strong
+        z-index: 11
         position: absolute
         top: 0
         right: .75em
