@@ -2,13 +2,12 @@ class AssignmentsController < ApplicationController
  
   before_filter :authenticate_user!
   respond_to :html, :json
-  autocomplete :category, :category_name
 
   def index
     unless current_user.house.blank?
-      @assignments = current_user.house.assignments
-      @due           = @assignments.due
-      @completed     = @assignments.completed
+      @assignments = current_user.assignments
+      @due         = @assignments.due
+      @completed   = @assignments.completed
       respond_with @assignments
     end
     
@@ -31,7 +30,7 @@ class AssignmentsController < ApplicationController
  
   def create
     unless current_user.house.nil?
-
+      
       house = current_user.house
       assignment = house.assignments.build(params[:assignment])
       assignment.commissioner = current_user
