@@ -54,7 +54,7 @@ body
             &:active
               img
                 +box-shadow(#bfdcff -1px -1px 0, #7490b2 1px 1px 0)
-        li.notification
+        li.notification, li.profile
           a
             width: 24px
             height: 24px
@@ -76,7 +76,14 @@ body
           a
             background: url('../images/203.png') no-repeat 8px 11px
         li.profile
-
+          a
+            width: auto
+            background: none
+            text-indent: 0
+            color: black
+            +text-shadow(none)
+            &:hover, &:focus
+              +text-shadow(none)
     #beta
       float: left
       margin-top: 1.9em

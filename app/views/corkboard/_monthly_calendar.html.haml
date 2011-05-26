@@ -11,8 +11,10 @@
     - (0..weekday_number).map do |i|
       - date = Date.today - weekday_number + i.days 
       - unless date == Date.today
-        .day.past
+        .day.past{ class: "#{(date.day == 1) ? "month_start" : ""}" }
           %p.day_name= l(date, :format => :short_day)
+          - if date.day == 1
+            %p.month_name= date.strftime("%b")
           %p.day_number= date.day
           - unless assignments.where(:due_date => date.to_s).count == 0 and assignments.where(completed_at: nil)
             .todo
@@ -35,8 +37,10 @@
     - current_day = (date == Date.today) ? 'current_day' : nil
     - if (date.wday != 0 && date.cweek == Date.today.cweek) || (Date.today.wday == 0 && date.wday != 0 && date.cweek == Date.tomorrow.cweek)
       - current_week = 'current_week'
-    .day{ :class => "#{current_day} #{current_week}", :data => {:number => i}}
+    .day{ class: "#{current_day} #{current_week} #{(date.day == 1) ? "month_start" : ""}", :data => {:number => i}}
       %p.day_name= l(date, :format => :short_day)
+      - if date.day == 1
+        %p.month_name= date.strftime("%b")
       %p.day_number= date.day
       - unless assignments.where(:due_date => date.to_s).count <= 0 and assignments.where(completed_at: nil)
         .todo
@@ -53,3 +57,4 @@
             - else
               =link_to expenses.count, "/assignments/day/#{date}.json?type=expense", :class => "expenses"
           -# =link_to '2', '#', :class => "expenses"
+          

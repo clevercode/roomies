@@ -5,6 +5,9 @@
     = f.association :assignees, collection: roomies_list
   #picker
   = f.input   :due_date, placeholder: "Type (e.g. 'next friday') or select a date above.", input_html: { class: 'superdate', value: ((@assignment.due_date.blank?) ? '' : l(@assignment.due_date.to_date)) }, required: true
+  -# .label.boolean.optional
+  -#   = label_tag "repeating", "Will this repeat in the future?"
+  -#   = check_box_tag "repeating", "yes", false, :value => "yes"
   -# .littler_guys
   -#   = f.input :frequency, :collection => %w{Daily Weekly Monthly}, :prompt => "Choose a frequency"
   -#   = f.input :duration, placeholder: 'Choose a number'

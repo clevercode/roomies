@@ -38,7 +38,7 @@
           = link_to t(:build_house, :scope => :profile), new_house_path, :class => 'ajax'
         - else
           = t(:homeless_roomie, :scope => :profile)
-
+    %p#roommates
     %p#tasks_expenses
       %span
       - if @tasks
@@ -58,9 +58,8 @@
   #badges.content
     - if @user.achievements.count == 0
       %p Aww, you haven't achieved anything. Work harder.
-      -# %p Your next achievemet will be #{@next_achievement}
+      %p Maybe you'll be worthy and earn you first achievement, <strong>#{@user.next_achievement.keys.first.to_s.titleize}</strong>.
     - else
-      -# %p Your next achievemet will be #{@next_achievement}
       - @user.achievements.each do |a|
         = image_tag "#{a.type[:badge]}", title: a.name.to_s.humanize
 
@@ -102,12 +101,13 @@
   #batte
     .header_bar
       %h1= t :roomie_battle, :scope => :profile 
-    - if roomies_list
+    - if !@user.house.nil? && roomies_list
       .content
         %table.battle
           %tr
             %th= t :name, :scope => :profile
-            %th= t :progress, :scope => :profile
+            %th
+              = t(:progress, scope: [:profile]) 
             %th.level= t :points, :scope => :profile 
           - roomies_list.all.map do |roomie|
             %tr
@@ -121,8 +121,13 @@
               %td.progress_bar
                 .bars
                   .bar_bg
-                    .bar{ style: "width: #{roomie.points}px" }
-              %td.level #{roomie.points}
+                    - next_achievement_name = roomie.next_achievement.keys.first.to_s.titleize
+                    - next_level = roomie.next_achievement.values.first[:value]
+                    -# removing 0.25 for styling because I'm a hack
+                    - percentage = (((roomie.points) / (next_level.to_f)) * 100) - 0.25
+                    .bar{ style: "width: #{percentage}%" }
+                    %strong #{next_achievement_name}
+              %td.level #{roomie.points}/#{next_level}
     - else
       .content
         %p You don't have roomies to battle with yet. Quick! Remedy this at once.

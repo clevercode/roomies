@@ -71,6 +71,8 @@ en:
     passwords:
       send_instructions: 'You will receive an email with instructions about how to reset your password in a few minutes.'
       updated: 'Your password was changed successfully. You are now signed in.'
+      instructions: "Since we don't have access to your password for security reasons, we will send you an email with a link to reset it. Please enter the email address you originally signed in with below."
+      almost_done: "Almost done, now you just have to enter a new password and we will sign you in to your account."
       new:
         enter_email: "e.g. myemail@domain.com"
     invitations:
@@ -78,6 +80,9 @@ en:
       invitation_token_invalid: 'The invitation token provided is not valid!'
       updated: 'Your password was set successfully. You are now signed in.'
       no_invitations_remaining: "No invitations remaining. Patience, we'll give you some more soon."
+      set_my_password: "Set My Password"
+      send_beta_invite: "Send a Roomies beta invite"
+      instructions: "Send an invitation to the Roomies beta to a friend so he can share with you the joys of riding on unicorns and smoking clouds with monkeys in three-piece suits."
     confirmations:
       send_instructions: 'You will receive an email with instructions about how to confirm your account in a few minutes.'
       confirmed: 'Your account was successfully confirmed. You are now signed in.'
@@ -203,7 +208,7 @@ en:
     no_tasks: "No tasks"
     no_expenses: "No expenses"
     name: "Name"
-    progress: "Progress"
+    progress: "Progress to next achievement"
     next_level: "Next level"
     more_achievements: "More achievements"
     achievements: "Achievements"
@@ -215,6 +220,7 @@ en:
     points: "points"
     hi_there: "Hi there"
     new_roomie: "new roomie"
+    no_name_roomie: "nameless roomie"
 
   house_invitations:
     creation: "invite to your house"

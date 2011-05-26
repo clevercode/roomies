@@ -6,7 +6,7 @@
   - (0..number_of_days).map do |i|
     - date = Date.today + i.days
     - current_day = (date == Date.today) ? 'current_day' : nil
-    .day{:class => current_day, :data => {:number => i}}
+    .day{ class: "#{current_day} #{(date.day == 1) ? "month_start" : ""}" , data: {:number => i}}
       %p.day_name= l(date, :format => :short_day)
       %p.day_number= date.day
       - unless assignments.where(:due_date => date.to_s).count <= 0 and assignments.where(completed_at: nil)

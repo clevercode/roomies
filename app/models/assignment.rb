@@ -25,7 +25,7 @@ class Assignment
   scope :due, where(completed_at: nil).and(:due_date.gte => Date.today).asc(:due_date)
   scope :past_due, where(completed_at: nil).and(:due_date.lt => Date.today ).asc(:due_date)
   scope :completed, where(:completed_at.ne => nil).desc(:completed_at)
-  scope :house, ->(house) { where(:house_id => house.id) }
+  scope :house, ->(house) { where(house_id: house.id) }
 
   has_and_belongs_to_many :assignees, :class_name => "User"
 
@@ -39,7 +39,7 @@ class Assignment
   validates  :purpose,        presence: true
   validates  :assignee_ids,   presence: true
   validates  :assignee_names, presence: true
-  
+
   before_save do
     if self.cost.blank?
       self.type = "task"

@@ -48,6 +48,9 @@ Roomies::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
+  # allow javascript caching
+  config.perform_caching = true
+
   # ActionMailer Config
   config.action_mailer.default_url_options = { :host => 'dev.roomiesapp.com' }
   # Setup for production - deliveries, no errors raised
