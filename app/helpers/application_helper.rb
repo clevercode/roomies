@@ -20,7 +20,7 @@ module ApplicationHelper
 
   private
   def roomies_list 
-    @roomies = User.where(:house_id => current_user.house_id)
+    @roomies = User.where(house_id: current_user.house_id)
   end
 
 end

@@ -1,14 +1,9 @@
-%h2 Send invitation to Roomies Beta to a friend,
-
-= form_for resource, :as => resource_name, :url => invitation_path(resource_name) do |f|
-  = devise_error_messages!
-
-  %p
-    = f.label :email
-    %br
-    =f.text_field :email, :placeholder => t(:email_example)
-
-  %p= f.submit "Send an invitation", :class => "green"
+- @main_class = "pages"
+%h1= t(:send_beta_invite, scope: [:devise, :invitations])
+%p= t(:instructions, scope: [:devise, :invitations])
+= simple_form_for resource, :as => resource_name, :url => invitation_path(resource_name) do |f|
+  = f.input :email, label: false, placeholder: t(:email_example)
+  = f.submit "Send an invitation", :class => "green"
 %br
 -# = link_to "Home", after_sign_in_path_for(resource_name)
 %br

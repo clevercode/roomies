@@ -101,7 +101,7 @@
   #batte
     .header_bar
       %h1= t :roomie_battle, :scope => :profile 
-    - if roomies_list
+    - if !@user.house.nil? && roomies_list
       .content
         %table.battle
           %tr
