@@ -1,13 +1,13 @@
 #main
   #flash
-    .notice, .alert, .notifications, .reward, .error
+    .notice, .alert, .notifications, .error
       width: 940px
       z-index: 100
       position: fixed
       overflow: hidden
       text-align: center
       margin: 0 20px 1em 0
-      +background-image(linear-gradient(transparentize($blue,.4),transparentize($lightblue, .2)))
+      +background-image(linear-gradient(lighten($blue,10%),lighten($lightblue, 5%)))
       +box-shadow(rgba(0,0,0,.2) 0 1px 5px 1px, rgba(255,255,255,.5) 0 0 15px inset, #d9eaff 0 0 0 1px inset)
       p
         width: 898px
@@ -34,7 +34,7 @@
       p
         color: darken($red,50%)
         +text-shadow(lighten($red,20%) 1px 1px 0)
-        +background-image(linear-gradient(transparentize($red,.4),transparentize(darken($red, 10%), .4)))
+        +background-image(linear-gradient(lighten($red, 10%), darken($red, 10%)))
         a
           color: darken($red,40%)
           +text-shadow(lighten($red,20%) 1px 1px 0)
@@ -42,8 +42,3 @@
             color: darken($red,25%)
           &:active
             color: darken($red,70%)
-    .reward
-      p
-        color: darken($green,50%)
-        +text-shadow(lighten($green,10%) 1px 1px 0)
-        +background-image(linear-gradient(transparentize($green,.4),transparentize(darken($green, 10%), .4)))
