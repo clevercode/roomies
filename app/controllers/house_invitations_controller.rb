@@ -23,6 +23,7 @@ class HouseInvitationsController < ApplicationController
 
     unless house_invitee.house == current_user.house
       if @house_invitation.save
+        reward(:house_invitation)
         flash[:notice] = t('.house_invitation_sent')
       end
       respond_with @house_invitation, location: current_user
