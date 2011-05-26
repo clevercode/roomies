@@ -11,8 +11,11 @@ class Reward
     :random => { :points => 0 },
     :sign_in => { :points => 1 },
     :assignment => { :points => 2 },
+    :assignment_confirmation => { :points => 1 },
     :completion => { :points => 3 },
-    :validation => { :points => 1 }
+    :uncompletion => { :points => -3 },
+    :validation => { :points => 1 },
+    :house_invitation => { :points => 1 }
   }
 
   before_save do
