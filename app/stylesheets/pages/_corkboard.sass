@@ -133,7 +133,9 @@
       &.current_day
         .day_name
           opacity: 1
-      &:hover .day_name
+      &.month_start
+        +background-image(linear-gradient(rgba(255,255,255,.75), transparentize($lightblue,.6)))
+      &:hover .day_name, &:hover .month_name
         opacity: 1
       &:hover
         +background-image(linear-gradient(rgba(255,255,255,.55), transparentize(lighten($lightblue, 0%), .01)))
@@ -155,6 +157,17 @@
         text-align: center
         text-shadow: 1px 1px 0px #fff
         margin-top: .35em
+      .month_name
+        top: 7px
+        right: 8px
+        font-size: 13px
+        font-weight: bold
+        font-weight: 600
+        min-height: 12px
+        line-height: 12px
+        text-align: right
+        text-transform: uppercase
+        position: absolute
       .todo
         padding: 0
         a

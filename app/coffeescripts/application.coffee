@@ -92,9 +92,13 @@ generateModal = (url) ->
     $loader.fadeOut 'fast'
     $('<span>x</span>').appendTo '#modal h1'
     superDate()
+    autocompleteSetup()
     center = calculateCenter($('html'), $modal)
     $darknessification.fadeIn _fadeSpeed
     $modal.css({left: center.left, top: center.top}).fadeIn _fadeSpeed
+    
+    if $ajaxed.children('form.assignment').length > 0
+      $modal.css('width','600px')
       
   return false
 
@@ -120,48 +124,6 @@ $('#modal h1 span').live 'click', ->
 # =========================================
 # =============== CORKBOARD ===============
 # =========================================
-
-$('.assignment[data-completed=true]')
-  .removeClass('assignment')
-  .find('.type')
-  .removeClass()
-  .addClass('check')
-
-# // Handles mouseenter and mouseleave for the corkboard lists.
-$('.list .assignment').live 'mouseenter', ->
-  $(this)
-    .find('li:eq(2)').animate {paddingRight:'0px'}, 'fast', ->
-      $(this).prev().stop(true).show 'fast'
-    .siblings('li:eq(0)').removeClass().addClass('check')
-
-$('.list .assignment').live 'mouseleave', ->
-  $(this)
-    .find('li:eq(1)').fadeOut 'fast', ->
-      $(this).hide().next().stop(true).animate {paddingRight:'25px'}, 'fast'
-    .siblings('li:eq(0)').removeClass().addClass('type')
-
-$('.list li[data-completed=true], .list .completed').live 'mouseenter', ->
-  $(this)
-    .children('ul')
-      .children('li:eq(0)')
-        .removeClass()
-        .addClass('undo')
-        .attr('title','mark as incomplete')
-
-$('.list li[data-completed=true], .list .completed').live 'mouseleave', ->
-  $(this)
-    .children('ul')
-      .children('li:eq(0)')
-        .removeClass()
-        .addClass('check')
-        .attr('title','completed')
-      .next()
-        .hide 'fast'
-
-# // Edit assignment on edit icon click.
-$('.edit').live 'click', ->
-  id = $(this).data("assignment_id")
-  generateModal("/assignments/#{id}/edit")
   
 # // Listens for a click on the calendar view option links.
 $('.header_bar a').bind 'click', ->
@@ -186,7 +148,47 @@ $('.header_bar a').bind 'click', ->
     else $('.corkboard_view.all').children('.calendar, .centric').hide()
   
   return false
-  
+
+setListHeights = ->
+  max_list_height = 0
+  $('.semantic_shmantic').each ->
+    $this = $(this)
+    $this.css('height','auto')
+    max_list_height = $this.height() if $this.height() > max_list_height
+
+  $('.semantic_shmantic').each ->
+    $(this).css('height',max_list_height)
+
+# // Listens for a click on the assignee filters and changes the UI accordingly.
+$('#upcoming_filters #assignee_filters li').live 'click', ->
+  unless $(this).hasClass('active')
+    $(this).siblings().andSelf().toggleClass('active')
+    $('.corkboard_view').toggleClass('current')
+    generateDetailLists()
+    setListHeights()
+
+$('#assignment_filters').bind 'click', (event) ->
+  $this = $(event.target)
+  unless $this.hasClass('active')
+    $this.addClass('active').siblings().removeClass('active')
+    $('.corkboard_view.current .assignment').slideDown 'fast'
+    $(".corkboard_view.current .#{$this.data('filter')}").slideUp 'fast', ->
+      stickyFooter()
+
+setListHeights()
+
+# // Listens for a click on the body and closes the detailed list of
+# // assignments that's what it should be doing.
+$body.bind 'click', (event) ->
+  $clicky = $(event.target)
+  if $clicky.parent('.todo').length < 1 && !$clicky.hasClass('detail_day_view')
+    if $('.detail_day_view').length > 0
+      $('.detail_day_view').hide 'fast'
+
+# =========================================
+# =============== CALENDARS ===============
+# =========================================
+
 # // Listens for a click, hover, and leave event on the anchors in the calendar.
 # // Pops up with a list of the corresponding assignments for that day.
 $('.todo a').live 'click',      -> return false
@@ -254,13 +256,54 @@ generateDetailLists = ->
 
 generateDetailLists()
 
-# // Listens for a click on the assignee filters and changes the UI accordingly.
-$('#upcoming_filters #assignee_filters li').live 'click', ->
-  unless $(this).hasClass('active')
-    $(this).siblings().andSelf().toggleClass('active')
-    $('.corkboard_view').toggleClass('current')
-    generateDetailLists()
-    
+
+# =========================================
+# =========== ASSIGNMENT LISTS ============
+# =========================================
+
+$('.assignment[data-completed=true]')
+  .removeClass('assignment')
+  .find('.type')
+  .removeClass()
+  .addClass('check')
+
+# // Handles mouseenter and mouseleave for the corkboard lists.
+$('.list .assignment').live 'mouseenter', ->
+  $(this)
+    .find('li:eq(2)').animate {paddingRight:'0px'}, 'fast', ->
+      $(this).prev().stop(true).show 'fast'
+    .siblings('li:eq(0)').removeClass().addClass('check')
+
+$('.list .assignment').live 'mouseleave', ->
+  $(this)
+    .find('li:eq(1)').fadeOut 'fast', ->
+      $(this).hide().next().stop(true).animate {paddingRight:'25px'}, 'fast'
+    .siblings('li:eq(0)').removeClass().addClass('type')
+
+$('.list li[data-completed=true], .list .completed').live 'mouseenter', ->
+  $(this)
+    .children('ul')
+      .children('li:eq(0)')
+        .removeClass()
+        .addClass('undo')
+        .attr('title','mark as incomplete')
+
+$('.list li[data-completed=true], .list .completed').live 'mouseleave', ->
+  $(this)
+    .children('ul')
+      .children('li:eq(0)')
+        .removeClass()
+        .addClass('check')
+        .attr('title','completed')
+      .next()
+        .hide 'fast'
+
+# // Edit assignment on edit icon click.
+$('.edit').live 'click', ->
+  id = $(this).data("assignment_id")
+  generateModal("/assignments/#{id}/edit")
+
+# // Mark as completed on check icon click.
 $('.check').live 'click', ->
   $this       = $(this)
   id          = $this.data('assignment_id')
@@ -289,6 +332,7 @@ $('.check').live 'click', ->
           .hide 'fast'
   return false
 
+# // Mark as incomplete on x icon click.
 $('li[data-completed=true] .undo, .list .undo').live 'click', ->
   $this       = $(this)
   id          = $this.data('assignment_id')
@@ -316,34 +360,63 @@ $('li[data-completed=true] .undo, .list .undo').live 'click', ->
           .attr('title',type)
   return false
 
-$('#assignment_filters').bind 'click', (event) ->
-  $this = $(event.target)
-  unless $this.hasClass('active')
-    $this.addClass('active').siblings().removeClass('active')
-    $('.corkboard_view.current .assignment').slideDown 'fast'
-    $(".corkboard_view.current .#{$this.data('filter')}").slideUp 'fast', ->
-      stickyFooter()
-
-max_list_height = 0
-$('.semantic_shmantic').each ->
-  $this = $(this)
-  max_list_height = $this.height() if $this.height() > max_list_height
-  
-$('.semantic_shmantic').each ->
-  $(this).css('height',max_list_height)
-
-# // Listens for a click on the body and closes the detailed list of
-# // assignments that's what it should be doing.
-$body.bind 'click', (event) ->
-  $clicky = $(event.target)
-  if $clicky.parent('.todo').length < 1 && !$clicky.hasClass('detail_day_view')
-    if $('.detail_day_view').length > 0
-      $('.detail_day_view').hide 'fast'
-
 
 # =========================================
 # ========== NEW ASSIGNMENT JAZZ ==========
 # =========================================
+
+selectRoomies = (name) ->
+  $('#assignment_assignee_ids option').each ->
+    $this = $(this)
+    if $this.text() == name
+      $this.attr('selected',true)
+
+split = (val) ->
+  return val.split( /,\s*/ )
+
+extractLast = (term) ->
+  return split( term ).pop()
+
+do autocompleteSetup = ->
+  assignee_names = []
+  $assignees = $('#assignment_assignee_ids')
+  $assignees.parent('div').hide()
+  
+  $assignees.children('option').each ->
+    assignee_names.push($(this).text())
+
+  $( "#assignment_assignee_names" )
+    # // don't navigate away from the field on tab when selecting an item
+    .live 'keydown', (event) ->
+      if event.keyCode == $.ui.keyCode.TAB && $(this).data('autocomplete').menu.active
+        event.preventDefault()
+    .autocomplete {
+      delay: 100,
+      minLength: 0,
+      source: (request, response) ->
+        # // delegate back to autocomplete, but extract the last term
+        response($.ui.autocomplete.filter(assignee_names, extractLast(request.term)))
+      ,
+      focus: ->
+        # // prevent value inserted on focus
+        return false
+      ,
+      select: (event, ui) ->
+        terms = split( this.value )
+        # // remove the current input
+        terms.pop()
+        # // add the selected item
+        terms.push( ui.item.value )
+        # // add placeholder to get the comma-and-space at the end
+        terms.push( "" )
+        this.value = terms.join( ", " )
+        return false
+    }
+
+$( "#assignment_assignee_names" ).live 'keyup', ->  
+  $('#assignment_assignee_ids option').attr('selected',false)
+  names = split( $(this).val() )
+  selectRoomies name for name in names
 
 do superDate = ->
   $picker    = $("#picker")
@@ -378,12 +451,9 @@ do superDate = ->
       date = dateText.toString('MMMM d, yyyy')
       $superdate.val(date)
   )
-  
-  stickyFooter()
 
-# $('#assignment_due_date').live 'keyup', (event) ->
-#   unless megadate == "unknown"
-#     $('#picker').datepicker('setDate', saved_date)
+  $('.ui-datepicker-today a').click()
+  stickyFooter()
 
 
 # =========================================
@@ -422,7 +492,8 @@ $('.generate').bind 'click', ->
   modal_left = ($('html').outerWidth()/2) - ($modal.outerWidth()/2)
   $modal.css({left: modal_left}).show()
   
-  $('p.button a').live 'click', ->
-    $('#user_new').submit()
-    return false
+  return false
+  
+$('p.button a').live 'click', ->
+  $('#user_new').submit()
   return false

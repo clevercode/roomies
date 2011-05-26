@@ -90,17 +90,29 @@
           +box-shadow(rgba(0,0,0,0.2) 1px 1px 1px 0px)
     form
       margin-right: 10px
+      &.assignment
+        width: 533px
       .input
         padding: 0 0 0 1px
         input
           margin-right: 0
-      .string
+      .string, .select, .text
         width: 100%
       .boolean
         margin: 5px 0 0 5px
         &input
           margin-left: none
-
+      .text textarea
+        height: 100px
+      .little_guys
+        float: left
+        width: 260px
+        overflow: hidden
+        padding-right: 10px
+      .littler_guys
+        .input.string, .input.select
+          width: 30%
+          float: left
     .add_roomie
       display: none
       margin: 10px 0 20px
