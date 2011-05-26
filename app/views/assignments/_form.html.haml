@@ -1,15 +1,15 @@
 = simple_form_for @assignment do |f|
-  = f.input :purpose, 
-            :placeholder => "What is this for?",
-            :autofocus => true
+  = f.input :purpose,
+            placeholder: "What is this for?",
+            autofocus: true
 
   .assignees
-    = f.association :assignees, :collection => roomies_list, :as => :check_boxes 
+    = f.association :assignees, collection: roomies_list, as: :check_boxes, required: false 
   #picker
   = f.input :due_date,
-            :placeholder => "Type (e.g. 'next friday') or select a date above.", 
-            :input_html => { :class => 'superdate', :value => ((@assignment.due_date.blank?) ? '' : l(@assignment.due_date.to_date)) }
-  = f.input :cost, :placeholder => "Enter the cost if there is one."
+            placeholder: "Type (e.g. 'next friday') or select a date above.", 
+            input_html: { class: 'superdate', value: ((@assignment.due_date.blank?) ? '' : l(@assignment.due_date.to_date)) }
+  = f.input :cost, placeholder: "Enter the cost if there is one."
 
   -# .label.boolean.optional
   -#   = label_tag "repeating", "Will this repeat in the future?"
@@ -21,6 +21,6 @@
 
   -# = f.input :category, :collection => Category.all, :prompt => "Choose a category"
 
-  = f.button :submit, 
-              :disable_with => "Please wait...", 
-              :class => "green"
+  = f.button  :submit, 
+              disable_with: "Please wait...", 
+              class: "green"
