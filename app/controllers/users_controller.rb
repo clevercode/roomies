@@ -37,6 +37,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    params[:user][:email].downcase!
     @user = User.new(params[:user])
     if @user.save
       respond_with(@user)
@@ -50,6 +51,7 @@ class UsersController < ApplicationController
     
     # @user.locale = params[:user][:locale]
     # @user.save
+    params[:user][:email].downcase!
 
     if @user.update_attributes(params[:user])
 
@@ -87,7 +89,7 @@ class UsersController < ApplicationController
     end
   end
   
-  def reject_house_invitations
+  def reject_house_invitation
     HouseInvitation.find(params[:id]).destroy
     redirect_to root_url, notice: t('.house_join_declined')
   end

@@ -38,8 +38,8 @@ Roomies::Application.routes.draw do
   match '/past_due_assignments'         => 'assignments#past_due_assignments'
   match '/assignments/:id/confirm'      => 'assignments#confirm'
   match '/assignments/:id/reject'       => 'assignments#reject'
-  match '/house_invitations/:id/accept' => 'users#accept_house_invitations'
-  match '/house_invitations/:id/reject' => 'users#reject_house_invitations'
+  match '/house_invitations/:id/accept' => 'users#accept_house_invitation'
+  match '/house_invitations/:id/reject' => 'users#reject_house_invitation'
   match '/payment/callback/'            => 'payments#handle', :via => :post
   match '/about'                        => 'pages#about'
   match '/privacy'                      => 'pages#privacy'

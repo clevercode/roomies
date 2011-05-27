@@ -71,7 +71,7 @@ class AssignmentsController < ApplicationController
         if !assignment.assignees.include?(current_user) && assignment.assignees.length >= 1
           recipients = []
           assignment.assignees.each do |user|
-            recipients << user.email.to_s
+            recipients << user.email.to_s.downcase!
           end
           UserMailer.assignment_created(assignment, recipients, "#{corkboard_index_url}/?assignment=#{assignment.id}").deliver
           reward(type: :assignments_create_lazy)
@@ -82,7 +82,7 @@ class AssignmentsController < ApplicationController
           recipients = []
           assignment.assignees.each do |user|
             unless user == current_user
-              recipients << user.email.to_s
+              recipients << user.email.to_s.downcase!
             end
           end
           UserMailer.assignment_created(assignment, recipients, "#{corkboard_index_url}/?assignment=#{assignment.id}").deliver
