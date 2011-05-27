@@ -369,14 +369,10 @@ $('#repeating').live 'change', ->
   $('.littler_guys').toggle()
 
 selectRoomies = (name) ->
-  console.log 'looping'
   $('#assignment_assignee_ids option').each ->
     $this = $(this)
     if $this.text() == name
-      console.log 'found one!'
-      console.log $this.attr('selected')
       $this.attr('selected',true)
-      console.log $this.attr('selected')
 
 split = (val) ->
   return val.split( /,\s*/ )
