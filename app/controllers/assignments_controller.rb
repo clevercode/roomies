@@ -34,6 +34,15 @@ class AssignmentsController < ApplicationController
       house = current_user.house
       assignment = house.assignments.build(params[:assignment])
       assignment.commissioner = current_user
+
+      # making sure the cost doesn't letters
+      # if params[:assignment][:cost]
+      #   cost = params[:assignment][:cost].to_f
+      #   if cost.class == Float
+      #     assignment.cost = cost
+      #   end
+      # end
+
       
       unless assignment.duration.blank?
         if assignment.duration.is_a? Integer
@@ -107,7 +116,6 @@ class AssignmentsController < ApplicationController
     if @assignment.update_attributes(params[:assignment])
       flash[:notice] = t(:updated, scope: [:assignments, :update])
     end
-
     respond_with @assignment, location: corkboard_index_url
   end
  
@@ -125,7 +133,7 @@ class AssignmentsController < ApplicationController
       @assignment.completed_at = DateTime.now
       @assignment.completor_id = current_user.id
       if @assignment.save
-        reward(nil,3)
+        reward(:completion)
         flash[:notice] = t(:completed, scope: [:assignments, :complete])
       end
       respond_with @assignment, location: corkboard_index_url
@@ -139,6 +147,7 @@ class AssignmentsController < ApplicationController
     @assignment = Assignment.find(params[:id])
     unless @assignment.completed_at.nil?
       @assignment.completed_at = nil
+      reward(:uncompletion, @assignment.completor)
       @assignment.completor_id = nil
       if @assignment.save
         respond_with @assignment, location: corkboard_index_url
@@ -188,6 +197,7 @@ class AssignmentsController < ApplicationController
     @assignment.validated_at = Time.now
     @assignment.validator    = current_user
     if @assignment.save
+      reward(:validation)
       flash[:notice] = t(:confirmed, scope: [:assignments, :confirm])
     end
 
