@@ -19,15 +19,15 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(user)
     logger.debug "called from after_sign_in_path"
     unless self.controller_name == "invitations"
-      reward(:sign_in)
+      reward(type: :sign_in)
     end
     corkboard_index_url
   end
   
   def reward(options = {})
-    options[:user] ||= current_user 
-    options[:type] ||= (self.controller_name + "_" + self.action_name).to_sym
-    options[:points] ||= 0
+    user = options[:user] ||= current_user 
+    type = options[:type] ||= (self.controller_name + "_" + self.action_name).to_sym
+    points = options[:points] ||= nil
     user.rewards.create( 
                   :type => options[:type],
                   :user => options[:user],
