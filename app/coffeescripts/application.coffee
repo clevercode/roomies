@@ -41,10 +41,10 @@ setTimeout( ->
     stickyFooter()
 , 5000)
 
-if $('#flash > div').length > 0
-  top    = $('#flash > div:eq(0)').offset().top
-  height = $('#flash > div:eq(0)').outerHeight()
-  $('#flash > div:eq(1)').css({top:top+height+20})
+# // if $('#flash > div').length > 0
+# //   top    = $('#flash > div:eq(0)').offset().top
+# //   height = $('#flash > div:eq(0)').outerHeight()
+# //   $('#flash > div:eq(1)').css({top:top+height+20})
 
 calculateCenter = (container, element) ->  
   l = (container.outerWidth()/2) - (element.outerWidth()/2)
