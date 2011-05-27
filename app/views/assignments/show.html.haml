@@ -21,9 +21,6 @@
     Due date: 
     %strong #{ @assignment.due_date ? l(@assignment.due_date.to_date, :format => :long) : nil}
 
-  %p 
-    Frequency : 
-    %strong #{@assignment.try(:frequency)}
 - if @assignment.respond_to?("completed_at")
   %p
     Completion date:

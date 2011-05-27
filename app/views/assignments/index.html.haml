@@ -26,7 +26,6 @@
       %th Due date
       %th Cost
       %th Assignee(s)
-      %th Frequency
  
     - @due.each do |assignment|
       %tr
@@ -34,7 +33,6 @@
         %td= assignment.try(:due_date).try(:to_date) || 'none'
         %td= assignment.cost || 'none'
         %td none
-        %td= assignment.frequency || 'not repeating'
         %td= button_to 'complete', :action => :complete, :id => assignment.id
 
   %hr
@@ -48,7 +46,6 @@
       %th Date completed
       %th Cost
       %th Assignee(s)
-      %th Frequency
    
     - @completed.each do |assignment|
       %tr
@@ -56,7 +53,6 @@
         %td= l(assignment.completed_at.to_date) || 'none'
         %td= assignment.cost || 'none'
         %td none
-        %td= assignment.frequency || 'no repeat'
 
   %hr
 
