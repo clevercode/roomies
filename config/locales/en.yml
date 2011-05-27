@@ -187,6 +187,7 @@ en:
       self_assigned_no_roomies: "You assigned this to yourself, nice job."
       roomies_assigned: "Look at you, creating assignment for other people. How about you give a hand too?"
       everyone_assigned: "Sharing the workload, good thinking."
+      invalid_duration: "Sorry, We need a real number to make a repeating assignment."
     update:
       updated: "Your assignment was successfully updated."
     destroy:
