@@ -24,12 +24,14 @@ class ApplicationController < ActionController::Base
     corkboard_index_url
   end
   
-  def reward(type, user = current_user, points = nil)
-    type ||= (self.controller_name + "_" + self.action_name).to_sym
+  def reward(options = {})
+    options[:user] ||= current_user 
+    options[:type] ||= (self.controller_name + "_" + self.action_name).to_sym
+    options[:points] ||= 0
     user.rewards.create( 
-                  :type => type,
-                  :user => user,
-                  :points => points
+                  :type => options[:type],
+                  :user => options[:user],
+                  :points => options[:points]
     )
     # flash[:reward] = "Hey look, you just got a reward for #{t(type, :scope => :rewards)}!"
   end
