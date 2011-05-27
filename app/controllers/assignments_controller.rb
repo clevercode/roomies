@@ -75,7 +75,7 @@ class AssignmentsController < ApplicationController
             recipients << user.email.to_s
           end
           UserMailer.assignment_created(assignment, recipients, "#{corkboard_index_url}/?assignment=#{assignment.id}").deliver
-          reward(nil, 2)
+          reward(nil, current_user, 2)
           flash[:notice] = t(:roomies_assigned, scope: [:assignments, :create])
 
         # assignment includes current_user & other assignees
@@ -87,12 +87,12 @@ class AssignmentsController < ApplicationController
             end
           end
           UserMailer.assignment_created(assignment, recipients, "#{corkboard_index_url}/?assignment=#{assignment.id}").deliver
-          reward(nil, 2)
+          reward(nil, current_user, 2)
           flash[:notice] = t(:everyone_assigned, scope: [:assignments, :create])
 
         # only assignee is current_user
         elsif assignment.assignees.include?(current_user) && assignment.assignees.length == 1
-          reward(nil, 2)
+          reward(nil, current_user, 2)
           if current_user.house.users.count > 1
             flash[:notice] = t(:self_assigned,scope: [:assignments, :create])
           else
