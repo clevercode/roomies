@@ -11,11 +11,14 @@ class Reward
     :random => { :points => 0 },
     :sign_in => { :points => 1 },
     :assignment => { :points => 2 },
-    :assignment_confirmation => { :points => 1 },
-    :completion => { :points => 3 },
-    :uncompletion => { :points => -3 },
-    :validation => { :points => 1 },
-    :house_invitation => { :points => 1 }
+    :assignments_create_lazy => { :points => 1 },
+    :assignments_create_lonely => { :points => 2 },
+    :assignments_create_sharing => { :points => 3 },
+    :assignments_complete => { :points => 3 },
+    :assignments_undo_complete => { :points => -3 },
+    :assignments_confirm => { :points => 1 },
+    :assignments_reject => { :points => -3 },
+    :house_invitation_create => { :points => 1 }
   }
 
   before_save do
