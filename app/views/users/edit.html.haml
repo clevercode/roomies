@@ -1,9 +1,28 @@
+- @main_class = "edit_profile"
 %h1 edit profile information
 #avatar
   %p= image_tag(@user.gravatar)
-  %p 
+  -# %p 
     Your avatar is handled by:
     = link_to 'gravatar.com', 'http://gravatar.com/'
+  #oauth
+    - if @auths
+      - unless @auths.empty?
+        %p= t('.existing_auths')
+        #authentications
+          - for authentication in @auths
+            %ul#authentication
+              -# %li= image_tag "authbuttons/#{authentication.provider}_16.png", size: "16x16", alt: authentication.provider, title: "#{authentication.provider} - #{authentication.uid}"
+              %li.provider{ title: "#{authentication.provider} - #{authentication.uid}" } #{authentication.provider.titleize}
+              %li= link_to "X", authentication, confirm: t('.remove_auth_confirmation'), method: :delete, class: "remove", title: t('.remove_auth')
+    - else
+    #new_authentications
+      %p= t('.add_auths')
+      %ul
+        %li= link_to image_tag( 'authbuttons/twitter_32.png', size: "32x32", alt: "Twitter"), '/auth/twitter'
+        %li= link_to image_tag( 'authbuttons/facebook_32.png', size: "32x32", alt: "Facebook"), '/auth/facebook'
+        %li= link_to image_tag( 'authbuttons/google_32.png', size: "32x32", alt: "Google"), '/auth/google'
+
 = render 'users/form' 
 #cancel
   -# Unhappy? #{link_to "Cancel my account", registration_path(@user), :confirm => "Are you sure?", :method => :delete }
