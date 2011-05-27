@@ -1,11 +1,13 @@
 form.simple_form
-  width: 438px
+  // width: 438px
   float: right
+
   .input
-    float: left
+    float: right
+    margin-right: 0
     padding: 0 0 0 1px
     label
-      width: 400px
+      // width: 400px
       display: block
       margin: 0 0 5px
       abbr
@@ -17,7 +19,7 @@ form.simple_form
       font-family: Helvetica, Arial, sans-serif
       color: $input-color
       padding: 10px 5px 0
-      margin: 0 10px 10px 0
+      margin: 0 0 10px 0
       +background-image(linear-gradient(lighten($blue, 15%), lighten($blue, 20%)))
       +box-shadow(transparentize(black, .4) 0 1px 1px 0 inset)
       +border-radius(3px)
@@ -27,6 +29,8 @@ form.simple_form
     .boolean  
       float: right
       width: auto
+      height: 1.65em
+      line-height: 1.65
       border: none
       outline: none
       margin: 0 0 0 10px
@@ -48,7 +52,7 @@ form.simple_form
     line-height: 1.8
     font-weight: bold
     +border-radius(5px)
-    margin: 1em -10px 0 0
+    margin: 1em 0 0 0
     padding: 8px 20px 5px
     text-transform: lowercase
     +gradient-button($blue)
