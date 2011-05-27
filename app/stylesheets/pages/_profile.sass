@@ -185,3 +185,61 @@
         font-weight: 400
         color: white
         +text-shadow(rgba(0,0,0,.4) 0 -1px 0)
+
+#avatar
+  overflow: hidden
+  padding: 10px 0 5px
+  p
+    float: left
+    clear: right
+    font-size: 16px
+    margin-right: 1em
+    a
+      float: left
+      display: block
+    img
+      border: 10px solid #fff
+      +box-shadow(rgba(0,0,0,0.2) 1px 1px 1px 0px)
+  #oauth
+    float: left
+
+    #authentications
+      float: left
+      clear: left
+      display: block
+      overflow: hidden
+      margin-bottom: .5em
+      #authentication
+        background: white
+        +border-radius(3px)
+        display: block
+        float: left
+        clear: left
+        width: auto
+        padding: .1em .5em
+        margin: .2em 0
+        li
+          display: inline-block
+          line-height: 1.8
+          font-size: .9em
+          font-weight: bold
+          font-weight: 500
+          &.provider
+          &:last-child
+            padding-left: .5em
+            margin-left: .5em
+            border-left: 1px solid #ddd
+          img
+            vertical-align: middle
+          a
+            display: inline-block
+            height: 100%
+            padding: 0 .25em
+    #new_authentications
+      display: block
+      float: left
+      clear: left
+      ul
+        clear: left
+        li
+          display: inline
