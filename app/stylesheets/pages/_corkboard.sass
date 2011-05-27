@@ -134,7 +134,8 @@
         .day_name
           opacity: 1
       &.month_start
-        +background-image(linear-gradient(rgba(255,255,255,.75), transparentize($lightblue,.6)))
+        border-left: 3px solid transparentize(darken(desaturate($blue,20%),20%),.5)
+        margin-left: -3px
       &:hover .day_name, &:hover .month_name
         opacity: 1
       &:hover
@@ -191,6 +192,9 @@
 
   .centric
     .day
+      &:first-child
+        +background-image(linear-gradient(rgba(0,0,50,.15), rgba(0,0,0,0)))
+        +box-shadow(transparentize(darken($blue, 40%), 0.5) 1px 3px 10px 1px inset, transparentize(darken($blue, 40%), 0.5) -1px 3px 10px 1px inset)
       &:nth-child(14n)
         width: 69px
         +box-shadow(#9eafc5 0 1px 0 inset)
@@ -206,7 +210,7 @@
       height: 80px
       &.current_day
         +background-image(linear-gradient(rgba(0,0,50,.15), rgba(0,0,0,0)))
-        +box-shadow(transparentize(darken($blue, 40%), 0.5) 1px 5px 15px 1px inset, transparentize(darken($blue, 40%), 0.5) -1px 5px 15px 1px inset)
+        +box-shadow(transparentize(darken($blue, 40%), 0.5) 1px 5px 10px 1px inset, transparentize(darken($blue, 40%), 0.5) -1px 5px 15px 1px inset)
         .day_name
           opacity: 1
       &.current_week
