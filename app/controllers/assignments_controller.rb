@@ -35,6 +35,29 @@ class AssignmentsController < ApplicationController
       assignment = house.assignments.build(params[:assignment])
       assignment.commissioner = current_user
       
+      unless assignment.duration.blank?
+        if assignment.duration.is_a? Integer
+          assignment.duration_stop = assignment.duration_stop.to_date
+          
+          date = assignment.due_date
+          params[:assignment][:duration] = ''
+          while date < assignment.duration_stop do
+            if assignment.duration_length == 'Days'
+              date = date + assignment.duration.days
+            elsif assignment.duration_length == 'Weeks'
+              date = date + assignment.duration.weeks
+            else
+              date = date + assignment.duration.months
+            end
+            params[:assignment][:due_date] = date
+            Assignment.create(params[:assignment])
+          end
+        else
+          flash[:error] = t(:invalid_duration, scope: [:assignments, :create])
+          respond_with assignment, location: corkboard_index_url and return
+        end
+      end
+      
       if assignment.save
         # assignment doesn't include current_user & other assignees
         if !assignment.assignees.include?(current_user) && assignment.assignees.length >= 1
