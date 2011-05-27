@@ -18,7 +18,7 @@ class AuthenticationsController < ApplicationController
       # User is logged in      
       current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
       flash[:notice] = t(:auth_success, scope: [:authentications])
-      redirect_to authentications_url
+      redirect_to current_user
 
     elsif omniauth['provider'] != 'twitter' && omniauth['provider'] != 'linked_in' && user = create_new_omniauth_user(omniauth)
       user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
@@ -47,7 +47,7 @@ class AuthenticationsController < ApplicationController
     @authentication = current_user.authentications.find(params[:id])
     @authentication.destroy
     flash[:notice] = t(:auth_destroy, scope: [:authentications])
-    redirect_to authentications_url
+    redirect_to current_user
   end
 
   def create_new_omniauth_user(omniauth)
@@ -70,6 +70,6 @@ class AuthenticationsController < ApplicationController
 
   def failure
     flash[:error] = t(:auth_error, scope: [:authentications])
-    redirect_to root_path
+    redirect_to root_url
   end
 end
