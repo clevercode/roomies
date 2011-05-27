@@ -30,4 +30,6 @@
         - else
           = link_to t(:add_assignment), new_assignment_path, id: 'easy_button', class: 'ajax'
   - else
-    = link_to t(:sign_in), user_session_path, class: 'ajax'
+    %ul
+      %li.action
+        = link_to t(:sign_in), user_session_path, class: 'ajax'
