@@ -365,11 +365,18 @@ $('li[data-completed=true] .undo, .list .undo').live 'click', ->
 # ========== NEW ASSIGNMENT JAZZ ==========
 # =========================================
 
+$('#repeating').live 'change', ->
+  $('.littler_guys').toggle()
+
 selectRoomies = (name) ->
+  console.log 'looping'
   $('#assignment_assignee_ids option').each ->
     $this = $(this)
     if $this.text() == name
+      console.log 'found one!'
+      console.log $this.attr('selected')
       $this.attr('selected',true)
+      console.log $this.attr('selected')
 
 split = (val) ->
   return val.split( /,\s*/ )
@@ -413,7 +420,12 @@ do autocompleteSetup = ->
         return false
     }
 
-$( "#assignment_assignee_names" ).live 'keyup', ->  
+$( "#assignment_assignee_names" ).live 'keyup', ->
+  $('#assignment_assignee_ids option').attr('selected',false)
+  names = split( $(this).val() )
+  selectRoomies name for name in names
+
+$( "#assignment_assignee_names" ).live 'focusout', ->
   $('#assignment_assignee_ids option').attr('selected',false)
   names = split( $(this).val() )
   selectRoomies name for name in names
@@ -442,6 +454,9 @@ do superDate = ->
       $(this).val(date)
       $picker.datepicker('setDate', date)
 
+  $('.superdate').live 'focus', ->
+    $superdate = $(this)
+
   $picker.datepicker(
     dateFormat: 'MM d, yy',
     beforeShow: (dateText, inst) ->
@@ -453,6 +468,7 @@ do superDate = ->
   )
 
   $('.ui-datepicker-today a').click()
+  $superdate = $('.superdate:eq(0)')
   stickyFooter()
 
 
