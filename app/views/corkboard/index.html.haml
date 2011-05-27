@@ -15,7 +15,7 @@
     .upcoming_lists.content
       = render :partial => "upcoming", :locals => { :day_of_the_week => t(".today"), :assignments => @my_todays_assignments }
       = render :partial => "upcoming", :locals => { :day_of_the_week => t(".tomorrow"), :assignments => @my_tomorrows_assignments }
-      = render :partial => "upcoming", :locals => { :day_of_the_week => l(Date.today + 2, :format => :day), :assignments => @my_next_days_assignments }
+      = render :partial => "upcoming", :locals => { :day_of_the_week => l(Date.current + 2, :format => :day), :assignments => @my_next_days_assignments }
 
     = render :partial => "header_bar"
     = render :partial => "centric_calendar", :locals => { :assignments => @my, :all => false }
@@ -25,7 +25,7 @@
     .upcoming_lists.content
       = render :partial => "upcoming", :locals => { :day_of_the_week => t(".today"), :assignments => @all_todays_assignments }
       = render :partial => "upcoming", :locals => { :day_of_the_week => t(".tomorrow"), :assignments => @all_tomorrows_assignments }
-      = render :partial => "upcoming", :locals => { :day_of_the_week => l(Date.today + 2, :format => :day), :assignments => @all_next_days_assignments }
+      = render :partial => "upcoming", :locals => { :day_of_the_week => l(Date.current + 2, :format => :day), :assignments => @all_next_days_assignments }
 
     = render :partial => "header_bar"
     = render :partial => "centric_calendar", :locals => { :assignments => @all, :all => true }
