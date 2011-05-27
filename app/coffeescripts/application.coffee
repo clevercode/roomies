@@ -35,11 +35,11 @@ $('#flash').live 'click', ->
   $('#flash').hide 'fast', ->
     stickyFooter()
 
-# // Hides the flash notice after 20 seconds if the user hasn't clicked on it yet.
+# // Hides the flash notice after 5 seconds if the user hasn't clicked on it yet.
 setTimeout( ->
-  $('#flash').hide 'fast', ->
+  $('#flash .notice').parent().hide 'fast', ->
     stickyFooter()
-, 10000)
+, 5000)
 
 if $('#flash > div').length > 0
   top    = $('#flash > div:eq(0)').offset().top
