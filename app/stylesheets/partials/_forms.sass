@@ -39,38 +39,22 @@ form.simple_form
       width: 100%
       margin: 0 0 10px 0
   input[type=submit]
-    clear: both
+    color: #fff
     float: right
-    color: white
+    clear: both
     border: none
     outline: none
     font-size: 1.1em
-    text-transform: lowercase
-    margin-bottom: 1em
-    padding: 8px 20px 5px
+    line-height: 1.8
     font-weight: bold
-    +border-radius(10px)
+    +border-radius(5px)
+    margin: 1em -10px 0 0
+    padding: 8px 20px 5px
+    text-transform: lowercase
+    +gradient-button($blue)
     +text-shadow(rgba(0,0,0,.5) 0 -1px 1px)
-    +background-image(linear-gradient($lightblue, $blue))
-    +box-shadow(darken(saturate($blue, 10%), 20%) 0 0 5px inset, transparentize(white, .2) 0 2px 7px inset, darken($blue, 30%) 0 1px 2px) 
-    &:hover, &:focus
-      +background-image(linear-gradient(darken(saturate($lightblue, 5%), 5%), darken(saturate($blue, 5%), 5%)))
-    &:active
-      +text-shadow(rgba(0,0,0,0.5) 0 2px 5px, darken($blue,10%) 1px 1px 0)
-      +background-image(linear-gradient(darken(saturate($blue, 5%), 5%), (darken(saturate($lightblue, 5%), 5%))))
-      +box-shadow(rgba(0,0,0,.7) 0 1px 5px inset, rgba(0,0,0,.5) 0 -1px 2px inset)
-
     &.green
-      color: #fff
-      +background-image(linear-gradient($lightgreen, $green))
-      +text-shadow(rgba(0,0,0,.5) 0 -1px 1px, rgba(0,0,0,.2) 0 1px 1px)
-      +box-shadow(darken(saturate($green, 10%), 20%) 0 0 5px inset, transparentize(white, .2) 0 2px 7px inset, darken($green, 30%) 0 1px 2px) 
-      &:hover, &:focus
-        +background-image(linear-gradient(darken(saturate($lightgreen, 5%), 5%), darken(saturate($green, 5%), 5%)))
-      &:active  
-        +text-shadow(rgba(0,0,0,0.5) 0 1px 3px, darken($green,10%) 1px 1px 0)
-        +background-image(linear-gradient(darken(saturate($green, 5%), 5%), (darken(saturate($lightgreen, 5%), 5%))))
-        +box-shadow(rgba(0,0,0,.7) 0 1px 5px inset, rgba(0,0,0,.5) 0 -1px 2px inset)
+      +gradient-button($lightgreen)
 
 form.simple_form.user
   div.boolean

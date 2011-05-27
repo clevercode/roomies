@@ -98,10 +98,13 @@
           margin-right: 0
       .string, .select, .text
         width: 100%
-      .boolean
-        margin: 5px 0 0 5px
-        &input
-          margin-left: none
+      .boolean  
+        margin-bottom: 20px
+        label
+          float: right
+          display: block
+          margin: 5px 0 0 5px
+        input
       .text textarea
         height: 100px
       .little_guys
@@ -110,9 +113,28 @@
         overflow: hidden
         padding-right: 10px
       .littler_guys
-        .input.string, .input.select
-          width: 30%
+        clear: both
+        display: none
+        overflow: hidden
+        .select
+          clear: none
+          margin-left: 10px
+        .input
+          width: auto
           float: left
+          label
+            width: auto
+            float: left
+            display: block
+            line-height: 2
+            margin-right: 10px
+          input
+            width: 75px
+            &#assignment_duration_stop
+              width: 150px
+          select
+            width: 100px
+            margin: 5px 10px 0 0
     .add_roomie
       display: none
       margin: 10px 0 20px
