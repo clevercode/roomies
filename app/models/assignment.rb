@@ -4,9 +4,9 @@ class Assignment
 
   field :purpose,         :type => String
   field :due_date,        :type => Date
-  field :frequency,       :type => Integer
   field :duration,        :type => Integer
   field :duration_length, :type => String
+  field :duration_stop,   :type => Date
   field :cost,            :type => Float  
   field :refused_at,      :type => DateTime
   field :completed_at,    :type => DateTime
@@ -37,8 +37,6 @@ class Assignment
   belongs_to :category
 
   validates  :purpose,        presence: true
-  validates  :assignee_ids,   presence: true
-  validates  :assignee_names, presence: true
 
   before_save do
     if self.cost.blank?
