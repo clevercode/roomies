@@ -1,6 +1,7 @@
 #main.profile
   #achievements, #progress, #battle
     +column(12, true)
+    margin-bottom: 1em
 
   div
     .content
@@ -133,14 +134,18 @@
       margin-top: .5em
       text-align: center
 
-#achievements
-  #badges  
-    padding: 15px
-    img
-      float: left
-      margin: .5em 1em
-      &.faded
-        opacity: 0.3
+  #achievements
+    #badges  
+      padding: 1em 1.5em
+      img
+        float: left
+        margin: .5em 1em
+        &.faded
+          opacity: 0.3
+
+  #battle
+    .content
+      padding: 1em 1.5em
 
 
 .progress_bar,
