@@ -268,7 +268,7 @@ en:
     assignments_create_lonely: "creating a lonely assignment"
     assignments_create_lazy: "creating an assignment for other roomies"
     assignments_create_sharing: "sharing an assignment with other roomies"
-    house_invitation_create: "inviting a roomie to his house"
+    house_invitations_create: "inviting a roomie to his house"
 
   achievements:
     index:
