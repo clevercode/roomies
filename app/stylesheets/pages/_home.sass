@@ -1,7 +1,7 @@
 #main.home
   margin-top: 1em
   .mantra
-    +column(6)
+    +column(5)
     +push(1)
     padding: 0
     font-weight: 600
@@ -10,24 +10,24 @@
       margin: 0
       float: none
     p:first-child
-      font-size: 145px
-      line-height: 115px
+      font-size: 124px
+      line-height: 85px
       letter-spacing: 2px
-      margin-top: 20px
+      margin-top: 24px
     p:nth-child(2)
-      font-size: 92px
+      font-size: 79px
       line-height: 109px
       letter-spacing: 2px
     p:nth-child(3)
-      font-size: 131px
-      line-height: 80px
+      font-size: 112px
+      line-height: 54px
       letter-spacing: 2px
   #screencast
     padding: 10px
     margin: .5em 0 2.5em
-    +column(6, true)
+    float: right
     +box-shadow(rgba(0,0,0,.2) 0 1px 2px, rgba(255,255,255,.5) 0 0 15px inset)
-    +background-image(linear-gradient(transparentize($blue,.4), transparentize($lightblue, .2)))
+    +background-image(linear-gradient(darken($blue, 3%), transparentize($lightblue, 0)))
     iframe
       display: block
       margin: 0 auto

@@ -10,13 +10,13 @@
     - if signed_in? && current_user == @user
       - if @user.name.blank?
         %h1
-          = t(:hi_there, :scope => :profile)
-          =  t(:new_roomie, :scope => :profile)
+          = t('.hi_there')
+          =  t('.new_roomie')
       -else
-        %h1 #{t(:hi_there, :scope => :profile)}, #{@user.name}
+        %h1 #{t('.hi_there')}, #{@user.name}
     - else
       - if @user.name.blank?
-        %h1= t(:new_roomie, :scope => :profile)
+        %h1= t('.new_roomie')
       -else
         %h1  #{@user.name}
     -# - if signed_in? && current_user == @user
@@ -35,30 +35,56 @@
     - else
       %p#house
         - if signed_in? && current_user == @user
-          = link_to t(:build_house, :scope => :profile), new_house_path, :class => 'ajax'
+          = link_to t(:build_house), new_house_path, :class => 'ajax'
         - else
-          = t(:homeless_roomie, :scope => :profile)
+          = t('.homeless_roomie')
     %p#roommates
+      - if @user.house
+        - if @user.house.users
+          -# = @user.house.users.map { |u| link_to u.name, u unless u == @user }.join(', ').html_safe
+          = @user.house.users.collect{ |u| if u == @user then t(:you) else u.name || t(:no_name_roomie) end }.to_sentence
+          live here.
+          -# - @user.house.users.each do |u|
+          -#   - unless u == @user
+          -#     - unless u == @user.last
+          -#       = succeed "," do
+          -#         - if u.name 
+          -#           = link_to u.name, u 
+          -#         - else 
+          -#           = link_to t(:no_name_roomie), u
+          -#     - else
+          -#       - if u.name 
+          -#          = link_to u.name, u 
+          -#       - else 
+          -#         = link_to t(:no_name_roomie), u
+
+        - else
+          = t('.lonely')
     %p#tasks_expenses
       %span
       - if @tasks
-        %span= pluralize(@tasks.count, t(:task, :scope => :profile))
+        %span= pluralize(@tasks.count, t(:task))
       - else
-        %span= t(:no_tasks, :scope => :profile)
+        %span= t('.no_tasks')
       %span
       - if @tasks
-        %span= pluralize(@expenses.count, t(:expense, :scope => :profile))
+        %span= pluralize(@expenses.count, t(:expense))
       - else
-        %span= t(:no_expenses, :scope => :profile)
-  %p.edit_profile= link_to t(:edit_profile, :scope => :profile), edit_user_path(@user), :class => 'ajax' if current_user
+        %span= t('.no_expenses')
+  %p.edit_profile= link_to t('.edit_profile'), edit_user_path(@user), :class => 'ajax' if current_user
 #achievements
   .header_bar
-    %h1= t :achievements, :scope => :profile
-    -# %p= link_to t(:more_achievements, :scope => :profile), achievements_url
+    %h1= t('.achievements')
+    -# %p= link_to t('.more_achievements'), achievements_url
   #badges.content
     - if @user.achievements.count == 0
-      %p Aww, you haven't achieved anything. Work harder.
-      %p Maybe you'll be worthy and earn you first achievement, <strong>#{@user.next_achievement.keys.first.to_s.titleize}</strong>.
+      - if current_user
+        %p= t(:no_achievements, scope: [:achievements, :index])
+        %p
+          = t(:next_achievement, scope: [:achievements, :index])
+          %strong #{@user.next_achievement.keys.first.to_s.titleize}
+      - else
+        %p= t(:has_no_achievements, scope: [:achievements, :index])
     - else
       - @user.achievements.each do |a|
         = image_tag "#{a.type[:badge]}", title: a.name.to_s.humanize
@@ -98,26 +124,26 @@
   -#             .bar_bg
   -#         %td.percentage 77%
 
-  #batte
+  #battle
     .header_bar
-      %h1= t :roomie_battle, :scope => :profile 
+      %h1= t('.roomie_battle')
     - if !@user.house.nil? && roomies_list
       .content
         %table.battle
           %tr
-            %th= t :name, :scope => :profile
+            %th= t :name
             %th
-              = t(:progress, scope: [:profile]) 
-            %th.level= t :points, :scope => :profile 
+              = t('.progress') 
+            %th.level= t :points
           - roomies_list.all.map do |roomie|
             %tr
               %td
                 - if (roomie == current_user)
-                  %strong #{t(:you, :scope => :profile)}
+                  %strong #{t(:you)}
                 - elsif roomie.name
                   = link_to roomie.name, roomie
                 - else
-                  = t :no_name_roomie, :scope => :profile 
+                  = t(:no_name_roomie) 
               %td.progress_bar
                 .bars
                   .bar_bg
@@ -130,4 +156,4 @@
               %td.level #{roomie.points}/#{next_level}
     - else
       .content
-        %p You don't have roomies to battle with yet. Quick! Remedy this at once.
+        %p= t('.no_roomies_to_battle')

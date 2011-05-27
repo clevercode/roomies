@@ -3,7 +3,6 @@
 
 en:
   # forms & actions
-  welcome: "Thanks for signing up, welcome to Roomies!"
   email_example: "example@domain.com"
   name: "Your name"
   sign_in: "Sign In"
@@ -28,7 +27,22 @@ en:
   back_to_assignments: "Back to Assignments"
   back_to_corkboard: "Back to Corkboard"
 
-  point: "point"
+  achievements: "Achievements"
+  task: "Task"
+  expense: "Expense"
+  tasks: "Tasks"
+  expenses: "Expenses"
+  rewards: "Rewards"
+  house: "House"
+  build_house: "Build a house"
+  roomie: "Roomie"
+  point: "Point"
+  points: "Points"
+  name: "Name"
+  you: "You"
+  your: "Your"
+  their: "Their"
+  no_name_roomie: "a nameless roomie"
 
   # footer
   all_rights_reserved: "All Rights Reserved."
@@ -204,25 +218,7 @@ en:
   
   # profile
   profile:
-    youre_homeless: "Oh no! It seems you're homeless! Want to "
-    build_house: "build a house"
-    homeless_roomie: "That roomie is homeless."
-    no_tasks: "No tasks"
-    no_expenses: "No expenses"
-    name: "Name"
-    progress: "Progress to next achievement"
-    next_level: "Next level"
-    more_achievements: "More achievements"
-    achievements: "Achievements"
-    roomie_battle: "Roomie Battle"
-    you: "You"
-    task: "Task"
-    expense: "Expense"
-    edit_profile: "Edit profile"
-    points: "points"
-    hi_there: "Hi there"
-    new_roomie: "new roomie"
-    no_name_roomie: "nameless roomie"
+
 
   house_invitations:
     creation: "invite to your house"
@@ -233,19 +229,52 @@ en:
     submit: "Save"
   
   users:
+    index:
+    edit:
+      existing_auths: "You can sign in to this account using: "
+      add_auths: "Add other sign in services: "
+      remove_auth: "Remove this sign in service from your account"
+      remove_auth_confirmation: "Are you sure you want to remove this authentication method?"
     show:
+      build_house: "build a house"
+      hi_there: "Hi there"
+      no_tasks: "No tasks"
+      no_expenses: "No expenses"
+      edit_profile: "Edit profile"
       you_have: "You have"
       this_roomie_has: "This roomie has"
       change_house_name: "Change house name"
       add_roomies: "Add roomies"
       confirm_house_deletion: "Are you sure you want to become homeless and live a life of despair and alcoholism under bridges?"
+      no_roomies_to_battle: "You don't have roomies to battle with yet. Quick! Remedy this at once."
+      youre_homeless: "Oh no! It seems you're homeless! Want to "
+      homeless_roomie: "That roomie is homeless."
+      progress: "Progress to next achievement"
+      next_level: "Next level"
+      more_achievements: "More achievements"
+      achievements: "Achievements"
+      roomie_battle: "Roomie Battle"
+      new_roomie: "new roomie"
+      lonely: "No roomies."
 
   # rewards
   rewards:
     sign_in: "signing in"
+    sessions_create: "signing in"
     assignments_create: "creating an assignment"
     assignments_complete: "completing an assignment"
+    assignments_confirm: "having confirmed an assignment's completion"
+    assignments_undo_complete: "having denied an achievement's completion"
+    assignments_create_lonely: "creating a lonely assignment"
+    assignments_create_lazy: "creating an assignment for other roomies"
+    assignments_create_sharing: "sharing an assignment with other roomies"
+    house_invitation_create: "inviting a roomie to his house"
 
+  achievements:
+    index:
+      no_achievements: "Aww, you haven't achieved anything. Work harder."
+      next_achievement: "Maybe you'll be worthy and earn you first achievement, "
+      has_no_achievements: "This Roomie has no achievements yet."
   support:
     create:
       sent: "Your support message was successfully sent. We'll get back to you as soon we're done watching that monkey in a three-piece suit smoking a cigar. Classy fella."
@@ -262,7 +291,7 @@ en:
     auth_fail: 'Authentication failed.'
     auth_destroy: 'Successfully destroyed authentication.'
     signed_in: "You're already signed in."
-    welcome: 'Welcome.'
+    welcome: "Thanks for signing up, welcome to Roomies!"
     missing_email: "Twitter doesn't provide us with an email address to contact you."
   formtastic:
     placeholders:

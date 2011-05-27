@@ -14,11 +14,11 @@ class AccountsController < ApplicationController
           user.apply_omniauth(session[:omniauth])
 
           if user.save
-            user.authentications.create!(:provider => session[:omniauth]['provider'], :uid => session[:omniauth]['uid'])
+            user.authentications.create!(provider: session[:omniauth]['provider'], uid: session[:omniauth]['uid'])
             session[:omniauth] = nil
             # Create a new User through omniauth
             # Register the new user + create new authentication
-            flash[:notice] = t(:welcome)
+            flash[:notice] = t(:welcome, scope: [:authentications])
             sign_in_and_redirect(:user, user)
           
           else
@@ -28,9 +28,9 @@ class AccountsController < ApplicationController
 
         # but if we do have a match, let's just add this as an authentication
         else
-          user.authentications.create!(:provider => session[:omniauth]['provider'], :uid => session[:omniauth]['uid'])
+          user.authentications.create!(provider: session[:omniauth]['provider'], uid: session[:omniauth]['uid'])
           session[:omniauth] = nil
-          flash[:notice] = t(:auth_success)
+          flash[:notice] = t(:auth_success, scope: [:authentications])
           sign_in_and_redirect(:user, user)
         end
         

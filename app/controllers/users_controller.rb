@@ -29,6 +29,10 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    if current_user
+      @auths = current_user.authentications
+    end
+
     respond_with(@user)
   end
 

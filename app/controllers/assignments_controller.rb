@@ -35,7 +35,7 @@ class AssignmentsController < ApplicationController
       assignment = house.assignments.build(params[:assignment])
       assignment.commissioner = current_user
 
-      # making sure the cost doesn't letters
+      # making sure the cost doesn't have letters
       # if params[:assignment][:cost]
       #   cost = params[:assignment][:cost].to_f
       #   if cost.class == Float
@@ -43,7 +43,6 @@ class AssignmentsController < ApplicationController
       #   end
       # end
 
-      
       unless assignment.duration.blank?
         if assignment.duration.is_a? Integer
           assignment.duration_stop = assignment.duration_stop.to_date
@@ -68,14 +67,14 @@ class AssignmentsController < ApplicationController
       end
       
       if assignment.save
-        # assignment doesn't include current_user & other assignees
+        # assignment doesn't include current_user but at least one other assignee
         if !assignment.assignees.include?(current_user) && assignment.assignees.length >= 1
           recipients = []
           assignment.assignees.each do |user|
             recipients << user.email.to_s
           end
           UserMailer.assignment_created(assignment, recipients, "#{corkboard_index_url}/?assignment=#{assignment.id}").deliver
-          reward(nil, current_user, 2)
+          reward(type: :assignments_create_lazy)
           flash[:notice] = t(:roomies_assigned, scope: [:assignments, :create])
 
         # assignment includes current_user & other assignees
@@ -87,12 +86,12 @@ class AssignmentsController < ApplicationController
             end
           end
           UserMailer.assignment_created(assignment, recipients, "#{corkboard_index_url}/?assignment=#{assignment.id}").deliver
-          reward(nil, current_user, 2)
+          reward(type: :assignments_create_sharing)
           flash[:notice] = t(:everyone_assigned, scope: [:assignments, :create])
 
         # only assignee is current_user
         elsif assignment.assignees.include?(current_user) && assignment.assignees.length == 1
-          reward(nil, current_user, 2)
+          reward(type: :assignments_create_lonely)
           if current_user.house.users.count > 1
             flash[:notice] = t(:self_assigned,scope: [:assignments, :create])
           else
@@ -133,7 +132,7 @@ class AssignmentsController < ApplicationController
       @assignment.completed_at = DateTime.now
       @assignment.completor_id = current_user.id
       if @assignment.save
-        reward(:completion)
+        reward(user: @assignment.completor)
         flash[:notice] = t(:completed, scope: [:assignments, :complete])
       end
       respond_with @assignment, location: corkboard_index_url
@@ -147,7 +146,7 @@ class AssignmentsController < ApplicationController
     @assignment = Assignment.find(params[:id])
     unless @assignment.completed_at.nil?
       @assignment.completed_at = nil
-      reward(:uncompletion, @assignment.completor)
+      reward(user: @assignment.completor)
       @assignment.completor_id = nil
       if @assignment.save
         respond_with @assignment, location: corkboard_index_url
@@ -197,7 +196,7 @@ class AssignmentsController < ApplicationController
     @assignment.validated_at = Time.now
     @assignment.validator    = current_user
     if @assignment.save
-      reward(:validation)
+      reward
       flash[:notice] = t(:confirmed, scope: [:assignments, :confirm])
     end
 
@@ -209,6 +208,7 @@ class AssignmentsController < ApplicationController
     @assignment.completor = nil
     @assignment.completed_at = nil
     if @assignment.save
+      reward(user: @assignment.completor)
       flash[:notice] = t(:rejected, scope: [:assignments, :reject])
     end
     respond_with @assignment, location: corkboard_index_url
