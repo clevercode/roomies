@@ -233,6 +233,12 @@ en:
     submit: "Save"
   
   users:
+    index:
+    edit:
+      existing_auths: "You can sign in to this account using: "
+      add_auths: "Add other sign in services: "
+      remove_auth: "Remove this sign in service from your account"
+      remove_auth_confirmation: "Are you sure you want to remove this authentication method?"
     show:
       you_have: "You have"
       this_roomie_has: "This roomie has"
@@ -243,8 +249,15 @@ en:
   # rewards
   rewards:
     sign_in: "signing in"
+    sessions_create: "signing in"
     assignments_create: "creating an assignment"
     assignments_complete: "completing an assignment"
+    assignments_confirm: "having confirmed an assignment's completion"
+    assignments_undo_complete: "having denied an achievement's completion"
+    assignments_create_lonely: "creating a lonely assignment"
+    assignments_create_lazy: "creating an assignment for other roomies"
+    assignments_create_sharing: "sharing an assignment with other roomies"
+    house_invitation_create: "inviting a roomie to his house"
 
   support:
     create:
