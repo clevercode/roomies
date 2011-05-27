@@ -26,67 +26,67 @@ body
     nav
       float: right
       margin-right: .5em
-      a
-        display: block
-        font-size: 1em
-        margin-top: 1em
-        padding: .5em .75em
-        font-weight: bold
-        font-weight: 600
-        background: white
-        color: white
-        +text-shadow(rgba(0,0,0,.5) 0 -1px 1px)
-        +border-radius(3px)
-        text-decoration: none
-        +gradient-button($lightblue)
-        &:hover, &:focus
-          color: white
-        &:active  
-          +text-shadow(rgba(0,0,0,.5) 0 1px 1px)
+
       ul
         li
           float: left
           margin-left: .5em
           a
-            height: 25px
+            display: block
+            height: 26px
             line-height: 26px
+            font-size: 1em
+            margin-top: 1.1em
+            padding: .5em .75em
+            font-weight: bold
+            font-weight: 600
+            text-decoration: none
             text-align: center
-            &:active
-              img
-                +box-shadow(#bfdcff -1px -1px 0, #7490b2 1px 1px 0)
-        li.notification, li.profile
+            background: white
+            color: white
+            +text-shadow(rgba(0,0,0,.5) 0 -1px 1px)
+            +border-radius(3px)
+
+        li.action
           a
-            width: 24px
+            +gradient-button($lightblue)
+            &:hover, &:focus
+              color: white
+            &:active  
+              +text-shadow(rgba(0,0,0,.5) 0 1px 1px)
+
+        li.notification, li.link
+          a
             height: 24px
             padding: 9px 10px
-            text-indent: -9999px
-            background: url('../images/70.png') no-repeat center center
             +box-shadow($lightblue 0 0 0 1px inset)
             &:hover, &:focus
               background-color: lighten($lightblue, 15%)
               +box-shadow($lightblue 0 0 0 1px inset,$lightblue 0 1px 3px 1px inset)
-              +text-shadow(rgba(0,0,0,0.5) 0 1px 1px, rgba(0,0,0,0.2) 0 0 3px)
             &:active  
               +box-shadow($lightblue 0 0 0 1px inset,$lightblue 0 2px 5px 1px inset)
               +text-shadow(rgba(0,0,0,0.7) 0 1px 1px, rgba(0,0,0,0.4) 0 0 3px)
+        li.notification
+          a
+            width: 24px
+            text-indent: -9999px
+            background: url('../images/70.png') no-repeat center center
+            &:hover, &:focus
+              +text-shadow(rgba(0,0,0,0.5) 0 1px 1px, rgba(0,0,0,0.2) 0 0 3px)
+          
         li.confirm
           a
             background: url('../images/58_24px.png') no-repeat center center
         li.house
           a
             background: url('../images/203.png') no-repeat 8px 11px
-        li.profile
+        li.link
           a
-            width: auto
-            background: none
-            text-indent: 0
             color: black
             +text-shadow(none)
-            &:hover, &:focus
-              +text-shadow(none)
     #beta
       float: left
-      margin-top: 1.9em
+      margin-top: 2em
       padding: 0 0 0 2em
       text-transform: lowercase
       font-size: .9em
