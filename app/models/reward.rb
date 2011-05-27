@@ -18,7 +18,7 @@ class Reward
     :assignments_undo_complete => { :points => -3 },
     :assignments_confirm => { :points => 1 },
     :assignments_reject => { :points => -3 },
-    :house_invitation_create => { :points => 1 }
+    :house_invitations_create => { :points => 1 }
   }
 
   before_save do
