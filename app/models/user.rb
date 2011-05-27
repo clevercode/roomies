@@ -31,9 +31,9 @@ class User
             presence: true,
             uniqueness: { case_sensitive: false }
 
-  validates_presence_of :invitation_token, 
-                        on: :create, 
-                        message: "misssing, signing up for now."
+  # validates_presence_of :invitation_token, 
+  #                       on: :create, 
+  #                       message: "misssing, signing up for now."
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :email, :password, :remember_me, :locale, :calendar
