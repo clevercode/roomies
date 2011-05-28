@@ -28,8 +28,8 @@ en:
   back_to_corkboard: "Back to Corkboard"
 
   achievements: "Achievements"
-  task: "Task"
-  expense: "Expense"
+  task: "Incomplete Task"
+  expense: "Incomplete Expense"
   tasks: "Tasks"
   expenses: "Expenses"
   rewards: "Rewards"
