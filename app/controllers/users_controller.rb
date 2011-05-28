@@ -79,7 +79,7 @@ class UsersController < ApplicationController
   def accept_house_invitation
     house_invitation = HouseInvitation.find(params[:id])
     house_inviter = User.find(house_invitation.house_inviter_id)
-    current_user.house = house_inviter.house
+    current_user.house = house_inviter.house unless current_user.nil? or house_inviter.nil?
     
     if current_user.save
       house_invitation.destroy
