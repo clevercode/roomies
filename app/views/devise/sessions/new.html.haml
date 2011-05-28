@@ -1,17 +1,18 @@
 - @main_class = "pages"
-%h1 Sign In
-= simple_form_for :user, url: session_path(:user) do |f|
-  = f.input :email, label: false, placeholder: t(:email)
-  = f.input :password, label: false, placeholder: t(:password)
-  - if devise_mapping.rememberable?
-    = f.input :remember_me, as: :boolean
-  = f.submit t(:lets_go)
+#muffin_man
+  %h1 Sign In
+  = simple_form_for :user, url: session_path(:user) do |f|
+    = f.input :email, label: false, placeholder: t(:email)
+    = f.input :password, label: false, placeholder: t(:password)
+    - if devise_mapping.rememberable?
+      = f.input :remember_me, as: :boolean
+    = f.submit t(:lets_go)
 
-%p.auths 
-  = t :or_sign_in_with
-  =link_to 'twitter,', '/auth/twitter'
-  =link_to 'facebook,', '/auth/facebook'
-  = t :or
-  =link_to 'google', '/auth/google'
+  %p.auths 
+    = t :or_sign_in_with
+    =link_to 'twitter,', '/auth/twitter'
+    =link_to 'facebook,', '/auth/facebook'
+    = t :or
+    =link_to 'google', '/auth/google'
 
-= render partial: "devise/shared/links"
+  = render partial: "devise/shared/links"
