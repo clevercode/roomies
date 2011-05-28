@@ -18,8 +18,8 @@ class HouseInvitationsController < ApplicationController
   end
 
   def create
-    @house_invitation.email.downcase!
     @house_invitation = HouseInvitation.new(params[:house_invitation])
+    @house_invitation.email.downcase!
     house_invitee = User.where(:email => @house_invitation.email).first || User.new
 
     unless house_invitee.house == current_user.house
