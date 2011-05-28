@@ -52,11 +52,7 @@ Roomies::Application.configure do
   config.perform_caching = true
 
   # ActionMailer Config
-  if ["http://roomiesapp.com/"].include?(root_url)
-    config.action_mailer.default_url_options = { :host => 'roomiesapp.com' }
-  else
-    config.action_mailer.default_url_options = { :host => 'dev.roomiesapp.com' }
-  end
+  config.action_mailer.default_url_options = { :host => 'dev.roomiesapp.com' }
   # Setup for production - deliveries, no errors raised
   # config.action_mailer.delivery_method   = :postmark
   # config.action_mailer.postmark_settings = { :api_key => "b8bae627-4ecf-4713-9335-08fd1aa7b84f" }
