@@ -33,3 +33,5 @@
 - unless @assignment.completed_at
   %hr
   = button_to "complete this assignment", :action => :complete, :id => @assignment.id
+  %hr
+  = link_to 'edit assignment', edit_assignment_path, class: 'ajax view_detail'
