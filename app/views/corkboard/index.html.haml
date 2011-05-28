@@ -1,6 +1,6 @@
 - @main_class = 'corkboard'
+= render :partial => 'notifications'
 - if current_user.house
-  = render :partial => 'notifications'
 
   #upcoming_filters
     %ul#assignee_filters
@@ -32,6 +32,3 @@
     = render :partial => "monthly_calendar", :locals => { :assignments => @all, :all => true }
 
   %ul.detail_day_view
-
-- else
-  = render :partial => 'notifications'
