@@ -6,6 +6,7 @@ class Support < ActionMailer::Base
   
   def submit_request(params)
     @request = params[:request]
+    @request[:email].downcase!
     mail(:to       => 'roomies@clevercode.net',
          :reply_to => @request[:email],
          :subject  => "Roomies support: " + truncate(@request[:message], :length => 25, :omission => ' (...)'),

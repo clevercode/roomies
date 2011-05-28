@@ -11,7 +11,7 @@ $body              = $('body')
 $main              = $('#main')
 $footer            = $('footer')
 $modal             = $('#modal')
-$loader            = $('#loader')
+$loader            = $('.loader')
 $darknessification = $('#darknessification')
 $ajaxed            = $modal.children('#ajaxed')
 
@@ -309,6 +309,10 @@ $('.check').live 'click', ->
   id          = $this.data('assignment_id')
   $assignment = $this.parent('ul').parent('li')
   showLoader()
+  
+  $assignment.children('ul').children('li:eq(0), li:eq(1)').hide 'fast'
+  left = $assignment.children('ul').children('li:eq(0)').offset().left
+  console.log left
   
   if $assignment.hasClass('task')
     type = 'task'

@@ -2,12 +2,14 @@ class UserMailer < ActionMailer::Base
   default :from => "notifications@roomiesapp.com"
   
   def welcome_email(params)
+    params[:email].downcase!
     mail(:to      => params[:email],
          :subject => "Welcome to Roomies!"
     )
   end
 
   def house_invitation_email(params)
+    params[:email].downcase!
     @invite = params[:_id]
     mail(:to      => params[:email],
          :subject => "You have a new house invitation from a friend at Roomies!"
