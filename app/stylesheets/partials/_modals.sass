@@ -129,27 +129,23 @@
       margin: 10px 0 20px
     table.assignments
       width: 100%
+      background: none
       tr
         width: 440px
         font-size: 16px
+        background: none
         line-height: 25px
         margin-right: 0px
         color: $font-color
-        +border-radius(5px)
-        +background-image(linear-gradient(#d9eaff, #f2f8ff))
-        +background-image(linear-gradient(saturate(lighten($blue, 18%), 40%), saturate(lighten($blue, 23%), 20%)))
-        +box-shadow(transparentize(white, .5) 0 1px 0 inset, transparentize($blue, .2) 0 0 0 1px inset )
       th, td
-        +column(2)
         padding: 7px 0
         text-align: center
         vertical-align: middle
+        background-color: white
+        border: 2px solid $lightblue
         form
           width: auto
-      td:first-child
-        text-align: left
-      th:nth-child(3n), td:nth-child(3n)
-        +column(1)
+          margin-right: 0
       td
         a
           margin: 0 5px
