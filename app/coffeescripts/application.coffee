@@ -27,8 +27,10 @@ stickyFooter = ->
 
 stickyFooter()
 
-$(window).live 'resize', ->
+$(window).bind 'resize', ->
   stickyFooter()
+  center = calculateCenter($('html'), $modal)
+  $modal.css({left: center.left, top: center.top})
 
 # // Hides the flash notice if it's visible.
 $('#flash').live 'click', ->
