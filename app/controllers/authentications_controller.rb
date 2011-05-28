@@ -52,7 +52,7 @@ class AuthenticationsController < ApplicationController
 
   def create_new_omniauth_user(omniauth)
     if not omniauth['user_info']['email'].blank?
-      omniauth['user_info']['email'].downcase!
+      omniauth['user_info']['email']
       user = User.where(email: omniauth['user_info']['email']).first
     end
 
