@@ -28,8 +28,8 @@ en:
   back_to_corkboard: "Back to Corkboard"
 
   achievements: "Achievements"
-  task: "Task"
-  expense: "Expense"
+  task: "Incomplete Task"
+  expense: "Incomplete Expense"
   tasks: "Tasks"
   expenses: "Expenses"
   rewards: "Rewards"
@@ -181,8 +181,8 @@ en:
       youre_homeless: "Oh no! It seems you're homeless! Want to build a house? Click here."
       change_password_and_name: "Hi there! If you'd like to tell us your name, go ahead and click here. Otherwise, go ahead and start having fun!"
       house_invitation: "You received a house invitation from "
-      move_in_invite_accept: "accept the invitation"
-      move_in_invite_refuse: "reject the invitation and spit in their face."
+      move_in_invite_accept: "Accept the invitation"
+      move_in_invite_refuse: "Reject the invitation and spit in their face."
       house_move_warning: "Warning: Clicking the link above will remove you from the house you currently belong to and let you join the new one."
     upcoming:
       no_assignments: "So far so good..."
@@ -208,7 +208,7 @@ en:
     destroy:
       destroyed: "Your assignment was successfully destroyed"
     complete:
-      completed: "Nice job, you completed an assignments!"
+      completed: "Nice job, you completed an assignment!"
       already_completed: "This assignment was already completed, nice try ;-)"
     confirm:
       confirmed: "Assignment successfully confirmed."
@@ -268,7 +268,7 @@ en:
     assignments_create_lonely: "creating a lonely assignment"
     assignments_create_lazy: "creating an assignment for other roomies"
     assignments_create_sharing: "sharing an assignment with other roomies"
-    house_invitation_create: "inviting a roomie to his house"
+    house_invitations_create: "inviting a roomie to his house"
 
   achievements:
     index:

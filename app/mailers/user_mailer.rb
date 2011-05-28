@@ -8,8 +8,10 @@ class UserMailer < ActionMailer::Base
   end
 
   def house_invitation_email(params)
-    mail(:to      => params[:email],
-         :subject => "You have a new house invitation from a friend at Roomies!"
+    @recipient_email = params[:email]
+    @inviter = User.find(params[:house_inviter_id])
+    mail(:to      => @recipient_email,
+         :subject => "You have a new house invitation from #{(@inviter.name.blank?) ? @inviter.email : @inviter.name} at Roomies!"
     )
   end
 

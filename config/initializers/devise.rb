@@ -162,4 +162,5 @@ Devise.setup do |config|
   #   end
   #   manager.default_strategies(:scope => :user).unshift :twitter_oauth
   # end
+  config.case_insensitive_keys = [:email]
 end

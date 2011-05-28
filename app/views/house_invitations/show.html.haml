@@ -2,8 +2,8 @@
   = t(:house_invitation, scope: [:corkboard, :notifications])
   %strong #{User.find(current_user.house_invitation.house_inviter_id).name}!
 %p.invitation
-  = link_to t(:move_in_invite_accept, scope: [:corkboard, :notifications]), '/accept_house_invitation'
+  = link_to t(:move_in_invite_accept, scope: [:corkboard, :notifications]), "house_invitations/#{@house_invitation.id}/accept"
 %p.invitation
-  = link_to t(:move_in_invite_refuse, scope: [:corkboard, :notifications]), '/reject_house_invitations', id: 'reject'
+  = link_to t(:move_in_invite_refuse, scope: [:corkboard, :notifications]), "house_invitations/#{@house_invitation.id}/reject", id: 'reject'
 - unless current_user.house.nil?
   %p.invitation.warning= t(:house_move_warning, scope: [:corkboard, :notifications])

@@ -3,7 +3,7 @@
 - unless @past_due.blank?
   %h1 past due assignments
    
-  %table
+  %table.assignments
     %tr
       %th Purpose
       %th Due date
@@ -20,7 +20,7 @@
 - unless @due.blank?
   %h1 assignments
  
-  %table
+  %table.assignments
     %tr
       %th Purpose
       %th Due date
@@ -40,7 +40,7 @@
 - unless @completed.blank?
   %h1 completed assignments
    
-  %table
+  %table.assignments
     %tr
       %th Purpose
       %th Date completed

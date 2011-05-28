@@ -11,7 +11,7 @@ $body              = $('body')
 $main              = $('#main')
 $footer            = $('footer')
 $modal             = $('#modal')
-$loader            = $('#loader')
+$loader            = $('.loader')
 $darknessification = $('#darknessification')
 $ajaxed            = $modal.children('#ajaxed')
 
@@ -29,6 +29,8 @@ stickyFooter()
 
 $(window).bind 'resize', ->
   stickyFooter()
+  center = calculateCenter($('html'), $modal)
+  $modal.css({left: center.left, top: center.top})
 
 # // Hides the flash notice if it's visible.
 $('#flash').live 'click', ->
@@ -40,11 +42,6 @@ setTimeout( ->
   $('#flash .notice').parent().hide 'fast', ->
     stickyFooter()
 , 5000)
-
-if $('#flash > div').length > 0
-  top    = $('#flash > div:eq(0)').offset().top
-  height = $('#flash > div:eq(0)').outerHeight()
-  $('#flash > div:eq(1)').css({top:top+height+20})
 
 calculateCenter = (container, element) ->  
   l = (container.outerWidth()/2) - (element.outerWidth()/2)
@@ -64,7 +61,7 @@ showLoader = ->
 # ========== HEADER NOTIFICATION ==========
 # =========================================
 
-$('nav li.notification a').bind 'mouseover', ->
+$('nav li.notification a').live 'mouseover', ->
   $this = $(this)
   $pastDueLabel = $("<span class='notification_title'>#{$this.text()}</span>")
   $pastDueLabel.hide().appendTo('header')
@@ -74,7 +71,7 @@ $('nav li.notification a').bind 'mouseover', ->
   
   $pastDueLabel.css({left:l,top:t}).slideDown('fast').fadeIn()
 
-$('nav li.notification a').bind 'mouseout', ->
+$('nav li.notification a').live 'mouseout', ->
   $('.notification_title').fadeOut -> $(this).remove()
 
 
@@ -111,7 +108,7 @@ $darknessification.live 'click', ->
   hideModal()
   
 # // Watches for an escape keypress and hides the modal, overlay, and detail list.
-$(window).bind 'keyup', (event) ->
+$(window).live 'keyup', (event) ->
   if event.keyCode == 27
     $('.detail_day_view').hide 'fast'
     hideModal()
@@ -126,7 +123,7 @@ $('#modal h1 span').live 'click', ->
 # =========================================
   
 # // Listens for a click on the calendar view option links.
-$('.header_bar a').bind 'click', ->
+$('.header_bar a').live 'click', ->
   unless $(this).hasClass('active')
     $header_bar = $(this).parent().parent().siblings('.header_bar')
     $('.header_bar.monthly, .header_bar.upcoming').hide()
@@ -167,19 +164,19 @@ $('#upcoming_filters #assignee_filters li').live 'click', ->
     generateDetailLists()
     setListHeights()
 
-$('#assignment_filters').bind 'click', (event) ->
-  $this = $(event.target)
-  unless $this.hasClass('active')
-    $this.addClass('active').siblings().removeClass('active')
-    $('.corkboard_view.current .assignment').slideDown 'fast'
-    $(".corkboard_view.current .#{$this.data('filter')}").slideUp 'fast', ->
-      stickyFooter()
+# // $('#assignment_filters').live 'click', (event) ->
+# //   $this = $(event.target)
+# //   unless $this.hasClass('active')
+# //     $this.addClass('active').siblings().removeClass('active')
+# //     $('.corkboard_view.current .assignment').slideDown 'fast'
+# //     $(".corkboard_view.current .#{$this.data('filter')}").slideUp 'fast', ->
+# //       stickyFooter()
 
 setListHeights()
 
 # // Listens for a click on the body and closes the detailed list of
 # // assignments that's what it should be doing.
-$body.bind 'click', (event) ->
+$body.live 'click', (event) ->
   $clicky = $(event.target)
   if $clicky.parent('.todo').length < 1 && !$clicky.hasClass('detail_day_view')
     if $('.detail_day_view').length > 0
@@ -269,10 +266,11 @@ $('.assignment[data-completed=true]')
 
 # // Handles mouseenter and mouseleave for the corkboard lists.
 $('.list .assignment').live 'mouseenter', ->
-  $(this)
-    .find('li:eq(2)').animate {paddingRight:'0px'}, 'fast', ->
-      $(this).prev().stop(true).show 'fast'
-    .siblings('li:eq(0)').removeClass().addClass('check')
+  unless $(this).hasClass('working_on_it')
+    $(this)
+      .find('li:eq(2)').animate {paddingRight:'0px'}, 'fast', ->
+        $(this).prev().stop(true).show 'fast'
+      .siblings('li:eq(0)').removeClass().addClass('check')
 
 $('.list .assignment').live 'mouseleave', ->
   $(this)
@@ -308,7 +306,12 @@ $('.check').live 'click', ->
   $this       = $(this)
   id          = $this.data('assignment_id')
   $assignment = $this.parent('ul').parent('li')
-  showLoader()
+  
+  $assignment.addClass('working_on_it').children('ul').children('li:eq(0), li:eq(1)').hide 'fast'
+  $assignmentType = $assignment.children('ul').children('li:eq(0)')
+  left = ($assignmentType.offset().left + $assignmentType.width() - 34)
+  top   = ($assignmentType.offset().top + 2)
+  $assignmentLoader = $("<div class='loader loading' />").appendTo('#main').css({top:top,left:left}).show 'fast'
   
   if $assignment.hasClass('task')
     type = 'task'
@@ -319,8 +322,7 @@ $('.check').live 'click', ->
     type: 'post',
     url: "/assignments/#{id}/complete",
     success: (data) ->
-      $loader.fadeOut 'fast'
-      $darknessification.fadeOut 'fast'
+      $assignmentLoader.hide('fast', -> $(this).remove())
       $assignment
         .removeClass()
         .attr('data-type',type)
@@ -328,8 +330,7 @@ $('.check').live 'click', ->
         .find('.type')
           .removeClass()
           .addClass('check')
-        .siblings('.edit')
-          .hide 'fast'
+          .show('fast')
   return false
 
 # // Mark as incomplete on x icon click.
@@ -338,13 +339,18 @@ $('li[data-completed=true] .undo, .list .undo').live 'click', ->
   id          = $this.data('assignment_id')
   $assignment = $this.parent('ul').parent('li')
   type        = $assignment.data('type')
-  showLoader()
+  
+  $assignment.addClass('working_on_it').children('ul').children('li:eq(0), li:eq(1)').hide 'fast'
+  $assignmentType = $assignment.children('ul').children('li:eq(0)')
+  left = ($assignmentType.offset().left + $assignmentType.width() - 34)
+  top   = ($assignmentType.offset().top + 2)
+  $assignmentLoader = $("<div class='loader loading' />").appendTo('#main').css({top:top,left:left}).show 'fast'
   
   $.ajax
     type: 'post',
     url: "/assignments/#{id}/undo_complete",
     success: (data) ->
-      $loader.fadeOut 'fast'
+      $assignmentLoader.hide('fast', -> $(this).remove())
       $darknessification.fadeOut 'fast'
       $assignment
         .attr('data-completed','')
@@ -354,6 +360,7 @@ $('li[data-completed=true] .undo, .list .undo').live 'click', ->
           .removeClass()
           .addClass('type')
           .attr('title',type)
+          .show('fast')
         .find('.undo')
           .removeClass()
           .addClass('type')
@@ -369,14 +376,10 @@ $('#repeating').live 'change', ->
   $('.littler_guys').toggle()
 
 selectRoomies = (name) ->
-  console.log 'looping'
   $('#assignment_assignee_ids option').each ->
     $this = $(this)
     if $this.text() == name
-      console.log 'found one!'
-      console.log $this.attr('selected')
       $this.attr('selected',true)
-      console.log $this.attr('selected')
 
 split = (val) ->
   return val.split( /,\s*/ )
@@ -477,7 +480,7 @@ do superDate = ->
 # =========================================
 
 signup_ready = false
-$('.home #user_new #user_submit').bind 'click', ->
+$('.home #user_new #user_submit').live 'click', ->
   $('.home #user_new .input:eq(0)').fadeOut( -> 
     $('.home #password_junk').fadeIn()
     signup_ready = true
@@ -487,7 +490,7 @@ $('.home #user_new #user_submit').bind 'click', ->
   )
   return false unless signup_ready
   
-$('.generate').bind 'click', ->
+$('.generate').live 'click', ->
   characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz"
   random_string = ''
   for i in [1..32]

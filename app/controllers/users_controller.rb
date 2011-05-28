@@ -37,6 +37,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    params[:user][:email]
     @user = User.new(params[:user])
     if @user.save
       respond_with(@user)
@@ -50,6 +51,7 @@ class UsersController < ApplicationController
     
     # @user.locale = params[:user][:locale]
     # @user.save
+    params[:user][:email]
 
     if @user.update_attributes(params[:user])
 
@@ -75,24 +77,21 @@ class UsersController < ApplicationController
   end
 
   def accept_house_invitation
-    house_invitation = HouseInvitation.where(:email => current_user.email).first
+    house_invitation = HouseInvitation.find(params[:id])
     house_inviter = User.find(house_invitation.house_inviter_id)
-    current_user.house = house_inviter.house
+    current_user.house = house_inviter.house unless current_user.nil? or house_inviter.nil?
     
     if current_user.save
-      HouseInvitation.where(:email => current_user.email).destroy
-      flash[:notice] = t('.house_joined')
-      redirect_to current_user
+      house_invitation.destroy
+      redirect_to current_user, notice: t('.house_joined')
     else
-      flash[:notice] = t('.house_join_fail')
-      redirect_to root_url
+      redirect_to root_url, notice: t('.house_join_fail')
     end
   end
   
-  def reject_house_invitations
-    HouseInvitation.where(:email => current_user.email).destroy
-    flash[:notice] = t('.house_join_declined')
-    redirect_to root_url
+  def reject_house_invitation
+    HouseInvitation.find(params[:id]).destroy
+    redirect_to root_url, notice: t('.house_join_declined')
   end
 
 end
