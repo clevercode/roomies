@@ -37,7 +37,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    params[:user][:email].downcase!
+    params[:user][:email]
     @user = User.new(params[:user])
     if @user.save
       respond_with(@user)
@@ -51,7 +51,7 @@ class UsersController < ApplicationController
     
     # @user.locale = params[:user][:locale]
     # @user.save
-    params[:user][:email].downcase!
+    params[:user][:email]
 
     if @user.update_attributes(params[:user])
 

@@ -3,7 +3,6 @@ class AccountsController < ApplicationController
   def email
     if session[:omniauth]
       if params[:email]
-        params[:email].downcase!
         # let's check if we already have a user with this email first
         user = User.where(email: params[:email]).first
 
