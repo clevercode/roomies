@@ -13,6 +13,8 @@ GEM
     actionmailer (3.0.7)
       actionpack (= 3.0.7)
       mail (~> 2.2.15)
+    actionmailer-with-request (0.3.0)
+      rails (>= 3)
     actionpack (3.0.7)
       activemodel (= 3.0.7)
       activesupport (= 3.0.7)
@@ -247,6 +249,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actionmailer-with-request
   barista (~> 1.0)
   barista_growl!
   bson_ext (>= 1.2.4)
