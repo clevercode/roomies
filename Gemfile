@@ -42,4 +42,5 @@ group :development, :test do
   gem 'barista_growl', :git => 'http://github.com/TrevorBurnham/barista_growl.git'
   gem 'ruby-debug19'
   gem 'jasmine'
+  gem 'mailcatcher'
 end
