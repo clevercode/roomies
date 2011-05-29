@@ -8,6 +8,10 @@
 %nav
   - if user_signed_in?
     %ul
+      - rewards = current_user.rewards.where(past_reward: false)
+      - unless rewards.count == 0
+        %li.notification.rewards
+          = link_to "#{rewards.count} rewards", rewards_path, class: 'ajax'
       - invite = current_user.house_invitation
       - unless invite.nil?
         %li.notification.house

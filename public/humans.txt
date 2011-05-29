@@ -3,41 +3,33 @@
 
 
 /* TEAM */
-  <your title>: <your name>
-  Site: 
-  Twitter: 
-  Location: 
+  Back-end developer, copywriter: Olivier Lacan
+  Front-end developer, interface designer: Zachary Nicoll
+  Consulting: Andrew Smith
+  Achievement badge design: Christina Durbin, Tyler Koeller 
+  Site: Roomies
+  Company: cleverCode LLC (http://clevercode.net)
+  Twitter: roomiesapp
+  Location: Winter Park, Florida
 
 /* THANKS */
   Names (& URL): 
+  - Andrew Smith (http://envylabs.com) : Rails, Ruby, MongoDB, moral support
+  - Rick Osborne (http://rickosborne.org): database design, unit testing, server-side knowledge
+  - Gus Hernandez: UI/UX, swagger
+  - Edward Almeida: project management, support, dance moves
+  - Marianne Sheldon: project management, support, smile
+  - Brandon Brown (http://bybrandonbrown.com) : project management, support, design feedback, wüder cooler discussions
+  - Michael Smotherman (http://codeinfused.com): yayQueryness, hate of CoffeeScript
+  - Ryan Bates (http://railscasts.com): pure brilliance, knowledge, productivity, inspiration
+  - Chris Eppstein (http://compass-style.org): twitter advice & general awesomness
+  - Michael Hartl (http://http://railstutorial.org/): solid Rails basic knowledge and best practices
+  - Gregg Pollack (http://envylabs.com): work experience, CodeSchool
+  - Paul Irish (http://paulirish.com): 24/7 badassery
+  - Anthony Colangelo (http://acolangelo.com), Tyler Matthews (http://tmatthewsdev.com), Alicia Brooks (http://aliciaj.com): being the best Full Sail teammates one could have ever dreamed of.
+  - Jack Rebney: everything
 
 /* SITE */
   Standards: HTML5, CSS3
-  Components: Modernizr, jQuery
-  Software:
-  
-
-                                    
-                               -o/-                       
-                               +oo//-                     
-                              :ooo+//:                    
-                             -ooooo///-                   
-                             /oooooo//:                   
-                            :ooooooo+//-                  
-                           -+oooooooo///-                 
-           -://////////////+oooooooooo++////////////::    
-            :+ooooooooooooooooooooooooooooooooooooo+:::-  
-              -/+ooooooooooooooooooooooooooooooo+/::////:-
-                -:+oooooooooooooooooooooooooooo/::///////:-
-                  --/+ooooooooooooooooooooo+::://////:-   
-                     -:+ooooooooooooooooo+:://////:--     
-                       /ooooooooooooooooo+//////:-        
-                      -ooooooooooooooooooo////-           
-                      /ooooooooo+oooooooooo//:            
-                     :ooooooo+/::/+oooooooo+//-           
-                    -oooooo/::///////+oooooo///-          
-                    /ooo+::://////:---:/+oooo//:          
-                   -o+/::///////:-      -:/+o+//-         
-                   :-:///////:-            -:/://         
-                     -////:-                 --//:        
-                       --                       -:        
+  Components: Modernizr, jQuery 1.5.1, Haml 3.1.1, Sass 3.1.1, Compass 0.11.1, Mongoid 2.0.2, HTML5 Boilerplate, Blueprint, Simple Form
+  Software: Ruby on Rails 3.0.7, MongoDB 1.8.1

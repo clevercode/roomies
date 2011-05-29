@@ -1,13 +1,22 @@
 %h1 Hi there!
 
-%h2 Someone invited you to join their house on Roomies!
-%p= link_to t(:move_in_invite_accept, scope: [:corkboard, :invitations]), "#{house_invitations_url}/#{@invite}/accept"
-%p= link_to t(:move_in_invite_refuse, scope: [:corkboard, :invitations]), "#{house_invitations_url}/#{@invite}/reject"
+%h2 
+  %strong #{(@inviter.name.blank?) ? @inviter.email : @inviter.name} 
+  invited you to join their house on Roomies!
+
 %p 
-  If you already have an account, you can simply sign in and accept the invitation.
+  If you already have an account, you can:
+%p
+  = link_to t(:move_in_invite_accept, scope: [:corkboard, :notifications]), "#{house_invitations_url}/#{@invite}/accept"
+%p or
+%p
+  = link_to t(:move_in_invite_refuse, scope: [:corkboard, :notifications]), "#{house_invitations_url}/#{@invite}/reject"
 %p 
-  If you're a bit of newbie, head over to #{new_user_registration_url} and signup, if you like.
-  As soon as you're logged in, you will see a notification staring you in the face, asking you to accept or reject the invitation.
+  If you're a bit of a newbie, head over 
+  = link_to 'here', new_user_registration_url(@invite)
+  and signup, if you like.
+  %br 
+    As soon as you're logged in, you will see a cute little house icon on the top right, you can accept the invitation there.
 
 %p Have a great day!
 %p

@@ -1,5 +1,6 @@
 class Achievement
   include Mongoid::Document
+  include Mongoid::Timestamps::Created
 
   # Fields
   field :name, type: String
@@ -20,7 +21,22 @@ class Achievement
 
   attr_accessible :name, :value, :badge, :category
   
+  before_save do
+    begin
+
+    if self.value.blank? && !self.name.blank?
+      self.value = self.type[:value]
+      self.badge = self.type[:badge]
+      self.category = self.type[:category]
+    end
+
+    rescue(NoMethodError)
+      raise("This type of achievement - [#{self.name}] - doesn't exist. Check the Achievement model.")
+
+    end
+  end
+
   def type
-    TYPES.select { |k,v| k == self.name.to_sym }.values.first
+    TYPES[self.name.to_sym]
   end
 end

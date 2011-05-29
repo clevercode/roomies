@@ -14,6 +14,7 @@ $modal             = $('#modal')
 $loader            = $('.loader')
 $darknessification = $('#darknessification')
 $ajaxed            = $modal.children('#ajaxed')
+$ajaxed_again      = $modal.children('#ajaxed_again')
 
 # =========================================
 # =========== Functions & Stuff ===========
@@ -29,8 +30,7 @@ stickyFooter()
 
 $(window).bind 'resize', ->
   stickyFooter()
-  center = calculateCenter($('html'), $modal)
-  $modal.css({left: center.left, top: center.top})
+  centerModal()
 
 # // Hides the flash notice if it's visible.
 $('#flash').live 'click', ->
@@ -83,25 +83,64 @@ hideModal = (event) ->
   $darknessification.hide 'fast'
   $modal.hide 'fast'
 
-generateModal = (url) ->
+centerModal = (animate = false) ->
+  center = calculateCenter($('html'), $modal)
+  if animate
+    $modal.animate({left: center.left, top: center.top})
+  else
+    $modal.css({left: center.left, top: center.top})
+
+generateModal = (anchor, inline = false) ->
   showLoader()
-  $ajaxed.empty().load url, ->
-    $loader.fadeOut 'fast'
-    $('<span>x</span>').appendTo '#modal h1'
-    superDate()
-    autocompleteSetup()
-    center = calculateCenter($('html'), $modal)
-    $darknessification.fadeIn _fadeSpeed
-    $modal.css({left: center.left, top: center.top}).fadeIn _fadeSpeed
+  unless inline
+    $ajaxed_again.hide()
+    $ajaxed.show()
+  $.ajax
+    url: anchor.attr('href'),
+    success: (data) ->
+      if inline
+        $ajaxed.hide 'fast', ->
+          $ajaxed_again.empty()
+          $(data).appendTo $ajaxed_again
+          $ajaxed_again.show 'fast'
+          $("<span class='go_back'>back</span>").appendTo '#modal #ajaxed_again h1'
+      else
+        $ajaxed.empty()
+        $(data).appendTo $ajaxed
+        
+      $loader.fadeOut 'fast'
+      $('#modal #ajaxed h1 span').remove()
+      $('<span>x</span>').appendTo '#modal h1'
+      unless inline
+        superDate()
+        autocompleteSetup()
+        $darknessification.fadeIn _fadeSpeed
+      $modal.fadeIn _fadeSpeed
+      centerModal()
     
-    if $ajaxed.children('form.assignment').length > 0
-      $modal.css('width','600px')
+      if $ajaxed.children('form.assignment').length > 0 || $ajaxed_again.children('form.assignment').length > 0
+        $modal.css('width','600px')
+        centerModal()
+      
+      if anchor.parent('li').hasClass('rewards')
+        anchor.parent('li').remove()
+        $.ajax
+          type: 'post',
+          url: "/rewards/view_all"
+      
+      setTimeout( ->
+        centerModal(true)
+      ,400)
       
   return false
 
 # // Listens for a click on any anchor with a class of ajax.
 # // Knabs the anchor's href and ajaxes it in to the modal.
-$('a.ajax').live 'click', -> generateModal($(this).attr('href'))
+$('a.ajax').live 'click', ->
+  if $(this).hasClass('view_detail')
+    generateModal($(this), true)
+  else
+    generateModal($(this))
 
 # // Listens for a click on the overlay when the modal or detail list is up.
 $darknessification.live 'click', ->
@@ -115,7 +154,12 @@ $(window).live 'keyup', (event) ->
 
 # // Watches for a click on the 'x' and hides the modal and overlay.
 $('#modal h1 span').live 'click', ->
-  hideModal()
+  if $(this).hasClass('go_back')
+    $ajaxed_again.hide 'fast', ->
+      $ajaxed.show 'fast', ->
+        centerModal(true)
+  else
+    hideModal()
 
 
 # =========================================
@@ -374,6 +418,7 @@ $('li[data-completed=true] .undo, .list .undo').live 'click', ->
 
 $('#repeating').live 'change', ->
   $('.littler_guys').toggle()
+  $('.littler_guys').find('#assignment_duration').attr('value','')
 
 selectRoomies = (name) ->
   $('#assignment_assignee_ids option').each ->
@@ -450,6 +495,7 @@ do superDate = ->
       $picker.datepicker('setDate', date)
 
   $superdate.live 'focusout', ->
+    $superdate = $(this)
     val = $(this).val()
     if val?
       date = Date.parse( val )
@@ -457,8 +503,14 @@ do superDate = ->
       $(this).val(date)
       $picker.datepicker('setDate', date)
 
-  $('.superdate').live 'focus', ->
+  $('.superdate').live 'focusin', ->
     $superdate = $(this)
+    val = $(this).val()
+    if val?
+      date = Date.parse( val )
+      date = date.toString('MMMM d, yyyy') if date
+      $(this).val(date)
+      $picker.datepicker('setDate', date)
 
   $picker.datepicker(
     dateFormat: 'MM d, yy',

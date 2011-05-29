@@ -1,23 +1,9 @@
-%h1 Listing achievements
-
-%table
-  %tr
-    %th Name
-    %th Value
-    %th Badge
-    %th
-    %th
-    %th
-
-  - @achievements.each do |achievement|
-    %tr
-      %td= achievement.name
-      %td= achievement.value
-      %td= achievement.badge
-      %td= link_to 'Show', achievement
-      %td= link_to 'Edit', edit_achievement_path(achievement)
-      %td= link_to 'Destroy', achievement, :confirm => 'Are you sure?', :method => :delete
-
-%br
-
-= link_to 'New Achievement', new_achievement_path
+%h1= t('.achievements')
+%ul
+- @achievements.each do |achievement|
+  %li
+    = link_to achievement.name, achievement
+  %li 
+    =achievement.value
+    -
+    =achievement.badge
