@@ -1,7 +1,8 @@
 - @main_class = "pages"
-%h1 Forgot your password?
-%p= t(:instructions, scope: [:devise, :passwords])
-= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-  = f.input :email, label: false, placeholder: t('.enter_email')
-  = f.submit "Send me reset password instructions"
-= render partial: "devise/shared/links"
+#muffin_man
+  %h1 Forgot your password?
+  %p= t(:instructions, scope: [:devise, :passwords])
+  = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+    = f.input :email, label: false, placeholder: t('.enter_email')
+    = f.submit "Send me reset password instructions"
+  = render partial: "devise/shared/links"

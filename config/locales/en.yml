@@ -28,8 +28,8 @@ en:
   back_to_corkboard: "Back to Corkboard"
 
   achievements: "Achievements"
-  task: "Task"
-  expense: "Expense"
+  task: "Incomplete Task"
+  expense: "Incomplete Expense"
   tasks: "Tasks"
   expenses: "Expenses"
   rewards: "Rewards"
@@ -208,7 +208,7 @@ en:
     destroy:
       destroyed: "Your assignment was successfully destroyed"
     complete:
-      completed: "Nice job, you completed an assignments!"
+      completed: "Nice job, you completed an assignment!"
       already_completed: "This assignment was already completed, nice try ;-)"
     confirm:
       confirmed: "Assignment successfully confirmed."
