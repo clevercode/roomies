@@ -412,6 +412,7 @@ $('li[data-completed=true] .undo, .list .undo').live 'click', ->
 
 $('#repeating').live 'change', ->
   $('.littler_guys').toggle()
+  $('.littler_guys').find('#assignment_duration').attr('value','')
 
 selectRoomies = (name) ->
   $('#assignment_assignee_ids option').each ->
@@ -488,6 +489,7 @@ do superDate = ->
       $picker.datepicker('setDate', date)
 
   $superdate.live 'focusout', ->
+    $superdate = $(this)
     val = $(this).val()
     if val?
       date = Date.parse( val )
@@ -495,8 +497,14 @@ do superDate = ->
       $(this).val(date)
       $picker.datepicker('setDate', date)
 
-  $('.superdate').live 'focus', ->
+  $('.superdate').live 'focusin', ->
     $superdate = $(this)
+    val = $(this).val()
+    if val?
+      date = Date.parse( val )
+      date = date.toString('MMMM d, yyyy') if date
+      $(this).val(date)
+      $picker.datepicker('setDate', date)
 
   $picker.datepicker(
     dateFormat: 'MM d, yy',
