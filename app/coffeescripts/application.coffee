@@ -90,13 +90,13 @@ centerModal = (animate = false) ->
   else
     $modal.css({left: center.left, top: center.top})
 
-generateModal = (url, inline = false) ->
+generateModal = (anchor, inline = false) ->
   showLoader()
   unless inline
     $ajaxed_again.hide()
     $ajaxed.show()
   $.ajax
-    url: url,
+    url: anchor.attr('href'),
     success: (data) ->
       if inline
         $ajaxed.hide 'fast', ->
@@ -122,6 +122,12 @@ generateModal = (url, inline = false) ->
         $modal.css('width','600px')
         centerModal()
       
+      if anchor.parent('li').hasClass('rewards')
+        anchor.parent('li').remove()
+        $.ajax
+          type: 'post',
+          url: "/rewards/view_all"
+      
       setTimeout( ->
         centerModal(true)
       ,400)
@@ -132,9 +138,9 @@ generateModal = (url, inline = false) ->
 # // Knabs the anchor's href and ajaxes it in to the modal.
 $('a.ajax').live 'click', ->
   if $(this).hasClass('view_detail')
-    generateModal($(this).attr('href'), true)
+    generateModal($(this), true)
   else
-    generateModal($(this).attr('href'))
+    generateModal($(this))
 
 # // Listens for a click on the overlay when the modal or detail list is up.
 $darknessification.live 'click', ->

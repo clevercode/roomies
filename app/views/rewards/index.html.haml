@@ -1,10 +1,11 @@
 - @main_class = 'rewards'
 
 - unless @rewards.empty?
+  %h2 Rewards
   %p #{current_user.name} has <strong>#{@total}</strong> points so far.
-  %h2 Rewards:
+  %hr
   %ul
     - @rewards.each do |reward|
       %li
-        \- #{l(reward.created_at)}: #{reward.user.name} got #{reward.points} points
-        = link_to " for #{t(reward.type, :scope => :rewards)}", reward 
+        = "You received #{reward.points} points for"
+        = t(reward.type, :scope => :rewards)

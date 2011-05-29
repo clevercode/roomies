@@ -44,5 +44,6 @@ Roomies::Application.routes.draw do
   match '/about'                        => 'pages#about'
   match '/privacy'                      => 'pages#privacy'
   match '/service'                      => 'pages#service'
+  match '/rewards/view_all'             => 'rewards#past_rewardarize'
 
 end
