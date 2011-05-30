@@ -7,6 +7,14 @@ class Category
   # Associations
   has_many :assignables
 
+  TYPES = {
+    :general => { :points => 2 },
+    :kitchen => { :points => 3},
+    :groceries => { :points => 4 },
+    :garden => { :points => 5 },
+    :bills => { :points => 6 }
+  }
+
   def category_name
     category.name if category
   end
