@@ -43,7 +43,7 @@ class User
   ###
   
   def apply_omniauth(omniauth)
-    omniauth['user_info']['email'].downcase!
+    omniauth['user_info']['email']
     self.email = omniauth['user_info']['email'] if email.blank?
     # Check if email is already into the database => user exists
     apply_trusted_services(omniauth) if self.new_record?
