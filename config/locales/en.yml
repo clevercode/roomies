@@ -52,7 +52,7 @@ en:
   support_page: "Support"
 
   # general
-  add_assignment: "Add Assignment"
+  add_assignment: "Add an Assignment"
   build_house: "Build a House"
   profile_updated: "Your profile was successfully updated. Now go do useful stuff ;-)"
   address_used: "Sorry but this email address is already used by another user. If this doesn't make any sense, shoot us a line so we investigate."
