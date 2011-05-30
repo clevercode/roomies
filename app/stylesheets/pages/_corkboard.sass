@@ -1,4 +1,38 @@
 #main.corkboard
+
+  #guidance
+    width: 720px
+    margin: 0 auto
+    position: relative
+    h1
+      font:
+        size: 2em
+        weight: bold
+        weight: 500
+      margin: 0 0 .5em 0
+    p
+      font:
+        size: 1.2em
+      a
+        font:
+          weight: bold
+          weight: 500
+      &.screencast
+        display: inline-block
+        margin: 1em auto
+        padding: 10px
+        +box-shadow(rgba(0,0,0,.2) 0 1px 2px, rgba(255,255,255,.5) 0 0 15px inset)
+        +background-image(linear-gradient(darken($blue, 3%), transparentize($lightblue, 0)))
+    .pointer
+      display: block
+      width: 134px
+      height: 124px
+      background: url("../images/icons/pointer.png") no-repeat center center
+      position: absolute
+      top: -80px
+      right: -50px
+            
+
   .header_bar, .corkboard_view
     display: none
     &.current

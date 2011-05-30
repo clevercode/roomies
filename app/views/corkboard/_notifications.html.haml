@@ -1,8 +1,16 @@
-- unless current_user.name?
-  #flash
-    .notifications
-      %p= link_to t('.add_name'), edit_user_path(current_user), :class => 'ajax'
+-# - unless current_user.name?
+-#   #flash
+-#     .notifications
+-#       %p= link_to t('.add_name'), edit_user_path(current_user), :class => 'ajax'
 - if !current_user.house_invitation && !current_user.house  
-  #flash
-    .notifications
-      %p= link_to t('.youre_homeless'), new_house_path, :class => 'ajax'
+  -# #flash
+  -#   .notifications
+  -#     %p= link_to t('.youre_homeless'), new_house_path, :class => 'ajax'
+  #guidance
+    %h1 Hi there, wondering how to get started?
+    %p 
+      Alright, so you made it inside Roomies, wasn't too hard? We're going to try to keep it that way. Since Roomies is all about doing productive stuff with roommates, the first thing you will have to do is
+      = link_to 'build a house.', new_house_path, :class => 'ajax'
+    %p.screencast
+      <iframe src="http://player.vimeo.com/video/24410290?title=0&amp;byline=0&amp;portrait=0" width="520" height="290" frameborder="0"></iframe>
+    .pointer
