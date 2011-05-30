@@ -70,33 +70,52 @@ body
           a
             width: 24px
             text-indent: -9999px
-            background: url('../images/70.png') no-repeat center center
+            background-repeat: no-repeat
+            background-position: center center
             &:hover, &:focus
               +text-shadow(rgba(0,0,0,0.5) 0 1px 1px, rgba(0,0,0,0.2) 0 0 3px)
-          
+        li.past_due
+          a
+            background-image: url('../images/icons/past_due.png')
+            &:active
+              background-image: url('../images/icons/past_due_active.png')
         li.confirm
           a
-            background: url('../images/58_24px.png') no-repeat center center
+            background-image: url('../images/58_24px.png')        
         li.house
           a
-            background: url('../images/74.png') no-repeat center center
+            background-image: url('../images/icons/invitation.png')
         li.rewards
           a
-            background: url('../images/206.png') no-repeat center center
+            background-image: url('../images/icons/reward.png')
+            &:hover
+              background-image: url('../images/icons/reward_hover.png')
+            &:active
+              background-image: url('../images/icons/reward_active.png')
+
         li.link
           a
             color: black
             +text-shadow(none)
+        li.corkboard
+          a
+            background: url('../images/icons/corkboard.png') no-repeat .7em center
+            padding-left: 2.5em
+
+        li.profile
+          a
+            background: url('../images/icons/profile.png') no-repeat .7em center
+            padding-left: 2.5em
     #beta
       float: left
-      margin-top: 2em
-      padding: 0 0 0 2em
+      margin-top: 1.7em
+      padding: 0 0 0 1em
       text-transform: lowercase
       font-size: .9em
       a
         display: block
         padding: 0 1em
-        line-height: 2
+        line-height: 2.5
         font-size: .9em
         +gradient-button(transparentize($lightblue, .8))
         +text-shadow(none)
