@@ -259,6 +259,11 @@ en:
 
   # rewards
   rewards:
+    index:
+      you_have: "You have"
+      points_so_far: "points so far."
+      you_received: "You received"
+      points_for: "points for"
     sign_in: "signing in"
     sessions_create: "signing in"
     assignments_create: "creating an assignment"

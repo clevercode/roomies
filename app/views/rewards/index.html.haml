@@ -1,11 +1,16 @@
 - @main_class = 'rewards'
 
 - unless @rewards.empty?
-  %h2 Rewards
-  %p #{current_user.name} has <strong>#{@total}</strong> points so far.
+  %h2= t('.rewards')
+  %p 
+    = t('.you_have') 
+    %strong= @total
+    = t('.points_so_far')
   %hr
   %ul
     - @rewards.each do |reward|
       %li
-        = "You received #{reward.points} points for"
+        = t('.you_received') 
+        = reward.points 
+        = t('.points_for') 
         = t(reward.type, :scope => :rewards)
