@@ -6,7 +6,7 @@ class User
   require 'open-uri'
   require 'json'
   
-  # after_create :send_welcome_email
+  after_create :send_welcome_email
   before_create :set_invitation_limit
 
   # Fields
