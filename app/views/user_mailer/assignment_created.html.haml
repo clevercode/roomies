@@ -1,5 +1,5 @@
-One of your roomies gave you stuff to do.
-Find out about it here:
-= @url
+#{(@commissioner.name.blank?) ? @commissioner.email : @commissioner.name} assigned something to you.
+Find out more about it
+= link_to 'here.', @url
 
 = render :partial => 'footer'
