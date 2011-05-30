@@ -1,5 +1,5 @@
 - @main_class = "pages"
-#muffin_man
+%section
   %h1 Sign In
   = simple_form_for :user, url: session_path(:user) do |f|
     = f.input :email, label: false, placeholder: t(:email)
