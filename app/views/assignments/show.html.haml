@@ -1,6 +1,6 @@
 - @main_class = 'assignments'
 
-%h1 Assignment
+%h1 #{@assignment.type == "task" ? t(:task) : t(:expense)}
 %p= @assignment.purpose
 %hr
   %p Assignees:
@@ -19,7 +19,7 @@
     Due date: 
     %strong #{@assignment.due_date}
 
-- if @assignment.respond_to?("completed_at")
+- if @assignment.completed_at
   %p
     Completion date:
     %strong #{@assignment.completed_at.to_date}

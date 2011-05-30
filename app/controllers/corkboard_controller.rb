@@ -7,7 +7,7 @@ class CorkboardController < ApplicationController
       @all = nil
     else
       @all = current_user.house.assignments
-      @my  = current_user.assignments
+      @my  = current_user.house.assignments.where(:assignee_ids.in => [current_user.id])
             
       @my_tasks                  = @my.where(type: "task")
       @my_expenses               = @my.where(type: "expense")
