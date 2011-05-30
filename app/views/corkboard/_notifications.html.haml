@@ -1,8 +1,8 @@
 - unless current_user.name?
   #flash
     .notifications
-      %p= link_to t('.change_password_and_name'), edit_user_path(current_user), :class => 'ajax'
-- unless current_user.house
+      %p= link_to t('.add_name'), edit_user_path(current_user), :class => 'ajax'
+- if !current_user.house_invitation && !current_user.house  
   #flash
     .notifications
       %p= link_to t('.youre_homeless'), new_house_path, :class => 'ajax'

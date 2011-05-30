@@ -179,7 +179,7 @@ en:
     notifications:
       build_house?: "build a house?"
       youre_homeless: "Oh no! It seems you're homeless! Want to build a house? Click here."
-      change_password_and_name: "Hi there! If you'd like to tell us your name, go ahead and click here. Otherwise, go ahead and start having fun!"
+      add_name: "Hi there! If you'd like to tell us your name, go ahead and click here. Otherwise, go ahead and start having fun!"
       house_invitation: "You received a house invitation from "
       move_in_invite_accept: "Accept the invitation"
       move_in_invite_refuse: "Reject the invitation and spit in their face."
