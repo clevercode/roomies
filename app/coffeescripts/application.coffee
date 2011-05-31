@@ -342,8 +342,10 @@ $('.list li[data-completed=true], .list .completed').live 'mouseleave', ->
 
 # // Edit assignment on edit icon click.
 $('.edit').live 'click', ->
-  id = $(this).data("assignment_id")
-  generateModal("/assignments/#{id}/edit")
+  $this = $(this)
+  id = $this.data("assignment_id")
+  $this.attr('href',"/assignments/#{id}/edit")
+  generateModal($this)
 
 # // Mark as completed on check icon click.
 $('.check').live 'click', ->
