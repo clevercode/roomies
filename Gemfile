@@ -34,7 +34,6 @@ gem 'actionmailer-with-request'
 # and rake tasks are available in development mode:
 group :development, :test do
   gem 'rspec-rails'
-  gem 'rspec'
   gem 'database_cleaner'
   gem 'mongoid-rspec'
   gem 'factory_girl_rails'
