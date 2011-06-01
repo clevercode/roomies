@@ -176,13 +176,13 @@ $('.header_bar a').live 'click', ->
     if $header_bar.hasClass('upcoming')
       $('.header_bar.upcoming').show()
       $('.calendar').hide 'fast', ->
-        $('.centric').show 'fast'
-        stickyFooter()
+        $('.centric').show 'fast', ->
+          stickyFooter()
     else
       $('.header_bar.monthly').show()
       $('.centric').hide 'fast', ->
-        $('.calendar').show 'fast'
-        stickyFooter()
+        $('.calendar').show 'fast', ->
+          stickyFooter()
         
     if   $('.corkboard_view.current').hasClass('all')
     then $('.corkboard_view.my').children('.calendar, .centric').hide()
