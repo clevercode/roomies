@@ -21,6 +21,12 @@ module ApplicationHelper
   private
   def roomies_list 
     @roomies = User.where(house_id: current_user.house_id)
+    @roomies.each do |roomie|
+      if roomie.name.blank?
+        roomie.name = roomie.email
+        roomie.save
+      end
+    end
   end
 
 end
