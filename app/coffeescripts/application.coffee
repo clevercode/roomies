@@ -357,7 +357,7 @@ $('.check').live 'click', ->
   $assignmentType = $assignment.children('ul').children('li:eq(0)')
   left = ($assignmentType.offset().left + $assignmentType.width() - 34)
   top   = ($assignmentType.offset().top + 2)
-  $assignmentLoader = $("<div class='loader loading' />").appendTo('#main').css({top:top,left:left}).show 'fast'
+  $assignmentLoader = $("<div class='loader loading' />").appendTo('#main').css({top:top,left:left,opacity:0.4}).show 'fast'
   
   if $assignment.hasClass('task')
     type = 'task'
@@ -390,7 +390,7 @@ $('li[data-completed=true] .undo, .list .undo').live 'click', ->
   $assignmentType = $assignment.children('ul').children('li:eq(0)')
   left = ($assignmentType.offset().left + $assignmentType.width() - 34)
   top   = ($assignmentType.offset().top + 2)
-  $assignmentLoader = $("<div class='loader loading' />").appendTo('#main').css({top:top,left:left}).show 'fast'
+  $assignmentLoader = $("<div class='loader loading' />").appendTo('#main').css({top:top,left:left,opacity:0.4}).show 'fast'
   
   $.ajax
     type: 'post',
