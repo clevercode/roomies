@@ -44,7 +44,7 @@ class AssignmentsController < ApplicationController
       # end
 
       unless assignment.duration.blank?
-        if assignment.duration.is_a? Integer
+        if assignment.duration.is_a?(Integer)
           assignment.duration_stop = assignment.duration_stop.to_date
           
           date = assignment.due_date
