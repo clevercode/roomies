@@ -176,13 +176,13 @@ $('.header_bar a').live 'click', ->
     if $header_bar.hasClass('upcoming')
       $('.header_bar.upcoming').show()
       $('.calendar').hide 'fast', ->
-        $('.centric').show 'fast'
-        stickyFooter()
+        $('.centric').show 'fast', ->
+          stickyFooter()
     else
       $('.header_bar.monthly').show()
       $('.centric').hide 'fast', ->
-        $('.calendar').show 'fast'
-        stickyFooter()
+        $('.calendar').show 'fast', ->
+          stickyFooter()
         
     if   $('.corkboard_view.current').hasClass('all')
     then $('.corkboard_view.my').children('.calendar, .centric').hide()
@@ -342,8 +342,10 @@ $('.list li[data-completed=true], .list .completed').live 'mouseleave', ->
 
 # // Edit assignment on edit icon click.
 $('.edit').live 'click', ->
-  id = $(this).data("assignment_id")
-  generateModal("/assignments/#{id}/edit")
+  $this = $(this)
+  id = $this.data("assignment_id")
+  $this.attr('href',"/assignments/#{id}/edit")
+  generateModal($this)
 
 # // Mark as completed on check icon click.
 $('.check').live 'click', ->
@@ -355,7 +357,7 @@ $('.check').live 'click', ->
   $assignmentType = $assignment.children('ul').children('li:eq(0)')
   left = ($assignmentType.offset().left + $assignmentType.width() - 34)
   top   = ($assignmentType.offset().top + 2)
-  $assignmentLoader = $("<div class='loader loading' />").appendTo('#main').css({top:top,left:left}).show 'fast'
+  $assignmentLoader = $("<div class='loader loading' />").appendTo('#main').css({top:top,left:left,opacity:0.4}).show 'fast'
   
   if $assignment.hasClass('task')
     type = 'task'
@@ -388,7 +390,7 @@ $('li[data-completed=true] .undo, .list .undo').live 'click', ->
   $assignmentType = $assignment.children('ul').children('li:eq(0)')
   left = ($assignmentType.offset().left + $assignmentType.width() - 34)
   top   = ($assignmentType.offset().top + 2)
-  $assignmentLoader = $("<div class='loader loading' />").appendTo('#main').css({top:top,left:left}).show 'fast'
+  $assignmentLoader = $("<div class='loader loading' />").appendTo('#main').css({top:top,left:left,opacity:0.4}).show 'fast'
   
   $.ajax
     type: 'post',

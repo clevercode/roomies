@@ -260,6 +260,7 @@ en:
   # rewards
   rewards:
     index:
+      rewards: "Rewards"
       you_have: "You have"
       points_so_far: "points so far."
       you_received: "You received"

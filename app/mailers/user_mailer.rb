@@ -9,7 +9,8 @@ class UserMailer < ActionMailer::Base
 
   def house_invitation_email(params)
     @recipient_email = params[:email]
-    @inviter = User.find(params[:house_inviter_id])
+    @inviter         = User.find(params[:house_inviter_id])
+    @invite          = params[:_id]
     mail(:to      => @recipient_email,
          :subject => "You have a new Roomies house invitation from #{(@inviter.name.blank?) ? @inviter.email : @inviter.name}"
     )

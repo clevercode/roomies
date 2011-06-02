@@ -1,16 +1,55 @@
 = simple_form_for @assignment do |f|
   .little_guys
-    = f.input :purpose, placeholder: 'What is this for?', autofocus: true, as: :text, label: 'Description'
-    = f.input :assignee_names, required: true, label: 'Assignees', placeholder: 'Type Roomie\'s name here', input_html: {value: ''}
-    = f.association :assignees, collection: roomies_list
+    = f.input :purpose, 
+              placeholder: 'What is this for?', 
+              autofocus: true, 
+              as: :text, 
+              label: 'Description',
+              input_html: { tabindex: 1 }
+
+    = f.input :assignee_names, 
+              required: true, 
+              label: 'Assignees', 
+              placeholder: 'Type Roomie\'s name here', 
+              input_html: { value: '', tabindex: 2 }
+
+    = f.association :assignees, 
+                    collection: roomies_list
   #picker
-  = f.input   :due_date, placeholder: "Type (e.g. 'next friday') or select a date above.", input_html: { class: 'superdate', value: ((@assignment.due_date.blank?) ? '' : l(@assignment.due_date.to_date)) }, required: true
+  = f.input :due_date, 
+            placeholder: "Type (e.g. 'next friday') or select a date above.", 
+            input_html: { class: 'superdate', tabindex: 3, value: ((@assignment.due_date.blank?) ? '' : l(@assignment.due_date.to_date)) }, 
+            required: true
+
   .label.boolean.optional
     = label_tag "repeating", "Will this repeat in the future?"
-    = check_box_tag "repeating", "yes", false, :value => "yes"
+
+    = check_box_tag "repeating", 
+                    "yes", 
+                    false, 
+                    value: "yes",
+                    tabindex: 4
+
   .littler_guys
-    = f.input :duration, label: 'Repeat every: ', placeholder: '1'
-    = f.input :duration_length, label: false, :collection => %w{Days Weeks Months}, :prompt => false
-    = f.input :duration_stop, label: 'until', input_html: { class: 'superdate', value: ((@assignment.duration_stop.blank?) ? '' : l(@assignment.duration_stop.to_date)) }
-  = f.input   :cost, :placeholder => "Enter the cost if there is one."
-  = f.button  :submit, disable_with: "Please wait...", class: "green"
+    = f.input :duration, 
+              label: 'Repeat every: ', 
+              input_html: { tabindex: 5 }
+
+    = f.input :duration_length, 
+              label: false, 
+              collection: %w{Days Weeks Months}, 
+              prompt: false,
+              input_html: { tabindex: 6 }
+
+    = f.input :duration_stop, 
+              label: 'until', 
+              input_html: { class: 'superdate', tabindex: 7, value: ((@assignment.duration_stop.blank?) ? '' : l(@assignment.duration_stop.to_date)) }
+
+  = f.input :cost, 
+            placeholder: "Enter the cost if there is one.",
+            input_html: { tabindex: 8 }
+
+  = f.button  :submit, 
+              disable_with: "Please wait...", 
+              class: "green", 
+              tabindex: 9
