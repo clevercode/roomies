@@ -44,25 +44,26 @@ class AssignmentsController < ApplicationController
       # end
 
       unless assignment.duration.blank?
-        if assignment.duration.is_a?(Integer)
+        duration = assignment.duration.to_i
+        if duration > 0
           assignment.duration_stop = assignment.duration_stop.to_date
           
           date = assignment.due_date
-          params[:assignment][:duration] = ''
           while date < assignment.duration_stop do
-            if assignment.duration_length == 'Days'
-              date = date + assignment.duration.days
-            elsif assignment.duration_length == 'Weeks'
-              date = date + assignment.duration.weeks
+            date = date + case assignment.duration_length
+            when 'Days'
+              duration.days
+            when 'Weeks'
+              duration.weeks
+            when 'Months'
+              duration.months
             else
-              date = date + assignment.duration.months
+              0
             end
-            params[:assignment][:due_date] = date
-            Assignment.create(params[:assignment])
+            new_assignment = assignment.dup
+            new_assignment.due_date = date
+            new_assignment.save
           end
-        else
-          flash[:error] = t(:invalid_duration, scope: [:assignments, :create])
-          respond_with assignment, location: corkboard_index_url and return
         end
       end
       
