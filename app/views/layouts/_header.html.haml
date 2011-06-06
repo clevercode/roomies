@@ -8,6 +8,10 @@
 %nav
   - if user_signed_in?
     %ul
+      - rewards = current_user.rewards.where(past_reward: false)
+      - unless rewards.count == 0
+        %li.notification.rewards
+          = link_to "#{rewards.count} rewards", rewards_path, class: 'ajax'
       - invite = current_user.house_invitation
       - unless invite.nil?
         %li.notification.house
@@ -18,11 +22,11 @@
           = link_to "#{confirms.count} confirmations", '/confirmations', class: 'ajax'
       - pasts = current_user.assignments.past_due
       - unless pasts.blank?
-        %li.notification
+        %li.notification.past_due
           = link_to "#{pasts.count} past due", '/past_due_assignments', class: 'ajax'
-      %li.link
+      %li.link.corkboard
         = link_to "Corkboard", root_url
-      %li.link
+      %li.link.profile
         = link_to "Profile", current_user
       %li.action
         - if current_user.house.nil?

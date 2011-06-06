@@ -44,19 +44,6 @@
           -# = @user.house.users.map { |u| link_to u.name, u unless u == @user }.join(', ').html_safe
           = @user.house.users.collect{ |u| if u == @user then t(:you) else u.name || t(:no_name_roomie) end }.to_sentence
           live here.
-          -# - @user.house.users.each do |u|
-          -#   - unless u == @user
-          -#     - unless u == @user.last
-          -#       = succeed "," do
-          -#         - if u.name 
-          -#           = link_to u.name, u 
-          -#         - else 
-          -#           = link_to t(:no_name_roomie), u
-          -#     - else
-          -#       - if u.name 
-          -#          = link_to u.name, u 
-          -#       - else 
-          -#         = link_to t(:no_name_roomie), u
 
         - else
           = t('.lonely')
@@ -88,41 +75,6 @@
     - else
       - @user.achievements.each do |a|
         = image_tag "#{a.type[:badge]}", title: a.name.to_s.humanize
-
-- if current_user
-  -# #progress
-  -#   .header_bar
-  -#     %h1= t(:progress, :scope => :profile)
-  -#   .content
-  -#     %table
-  -#       %tr
-  -#         %td awesomeness
-  -#         %td.progress_bar
-  -#           .bars
-  -#             .bar
-  -#             .bar_bg
-  -#         %td.percentage 77%
-  -#       %tr
-  -#         %td reliability
-  -#         %td.progress_bar
-  -#           .bars
-  -#             .bar
-  -#             .bar_bg
-  -#         %td.percentage 77%
-  -#       %tr
-  -#         %td helpfulness
-  -#         %td.progress_bar
-  -#           .bars
-  -#             .bar
-  -#             .bar_bg
-  -#         %td.percentage 77%
-  -#       %tr
-  -#         %td cooking master
-  -#         %td.progress_bar
-  -#           .bars
-  -#             .bar
-  -#             .bar_bg
-  -#         %td.percentage 77%
 
   #battle
     .header_bar

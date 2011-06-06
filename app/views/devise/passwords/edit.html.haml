@@ -1,7 +1,9 @@
-%h2 Change your password
-%p= t(:almost_done, scope: [:devise, :passwords]) 
-= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
-  = f.input :reset_password_token, :as => :hidden
-  = f.input :password, :placeholder => "Enter your new password"
-  = f.submit "Change password"
-= render :partial => "devise/shared/links"
+- @main_class = "pages"
+%section
+  %h1 Change your password
+  %p= t(:almost_done, scope: [:devise, :passwords]) 
+  = simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
+    = f.input :reset_password_token, :as => :hidden
+    = f.input :password, :placeholder => "Enter your new password"
+    = f.submit "Change password"
+  = render :partial => "devise/shared/links"

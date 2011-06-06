@@ -6,7 +6,7 @@ class User
   require 'open-uri'
   require 'json'
   
-  # after_create :send_welcome_email
+  after_create :send_welcome_email
   before_create :set_invitation_limit
 
   # Fields
@@ -43,6 +43,7 @@ class User
   ###
   
   def apply_omniauth(omniauth)
+    omniauth['user_info']['email']
     self.email = omniauth['user_info']['email'] if email.blank?
     # Check if email is already into the database => user exists
     apply_trusted_services(omniauth) if self.new_record?

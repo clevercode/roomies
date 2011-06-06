@@ -1,11 +1,13 @@
 form.simple_form
-  width: 438px
+  // width: 438px
   float: right
+
   .input
-    float: left
+    float: right
+    margin-right: 0
     padding: 0 0 0 1px
     label
-      width: 400px
+      // width: 400px
       display: block
       margin: 0 0 5px
       abbr
@@ -17,7 +19,7 @@ form.simple_form
       font-family: Helvetica, Arial, sans-serif
       color: $input-color
       padding: 10px 5px 0
-      margin: 0 10px 10px 0
+      margin: 0 0 10px 0
       +background-image(linear-gradient(lighten($blue, 15%), lighten($blue, 20%)))
       +box-shadow(transparentize(black, .4) 0 1px 1px 0 inset)
       +border-radius(3px)
@@ -27,6 +29,8 @@ form.simple_form
     .boolean  
       float: right
       width: auto
+      height: 1.65em
+      line-height: 1.65
       border: none
       outline: none
       margin: 0 0 0 10px
@@ -38,7 +42,7 @@ form.simple_form
     select
       width: 100%
       margin: 0 0 10px 0
-  input[type=submit]
+  input[type=submit], button
     color: #fff
     float: right
     clear: both
@@ -47,14 +51,25 @@ form.simple_form
     font-size: 1.1em
     line-height: 1.8
     font-weight: bold
+    font-weight: 600
     +border-radius(5px)
-    margin: 1em -10px 0 0
+    margin: 1em 0 0 0
     padding: 8px 20px 5px
     text-transform: lowercase
     +gradient-button($blue)
     +text-shadow(rgba(0,0,0,.5) 0 -1px 1px)
     &.green
-      +gradient-button($lightgreen)
+      // +gradient-button($lightgreen)
+      color: #fff
+      +background-image(linear-gradient($lightgreen, $green))
+      +text-shadow(rgba(0,0,0,.7) 0 -1px 1px)
+      +box-shadow(darken(saturate($green, 10%), 20%) 0 0 5px inset, transparentize(white, .2) 0 2px 7px inset, darken($green, 30%) 0 1px 2px) 
+      &:hover, &:focus
+        +background-image(linear-gradient(darken(saturate($lightgreen, 5%), 5%), darken(saturate($green, 5%), 5%)))
+      &:active  
+        +text-shadow(rgba(0,0,0,0.5) 0 1px 3px, darken($green,10%) 1px 1px 0)
+        +background-image(linear-gradient(darken(saturate($green, 5%), 5%), (darken(saturate($lightgreen, 5%), 5%))))
+        +box-shadow(rgba(0,0,0,.7) 0 1px 5px inset, rgba(0,0,0,.5) 0 -1px 2px inset)
 
 form.simple_form.user
   div.boolean

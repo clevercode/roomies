@@ -2,8 +2,9 @@ class Reward
   include Mongoid::Document
   include Mongoid::Timestamps::Created
 
-  field :type, :type => Symbol, :default => :random
-  field :points, :type => Integer, :default => 1
+  field :type,        :type => Symbol,  :default => :random
+  field :points,      :type => Integer, :default => 1
+  field :past_reward, :type => Boolean, :default => false
 
   belongs_to :user
 
@@ -18,7 +19,7 @@ class Reward
     :assignments_undo_complete => { :points => -3 },
     :assignments_confirm => { :points => 1 },
     :assignments_reject => { :points => -3 },
-    :house_invitation_create => { :points => 1 }
+    :house_invitations_create => { :points => 1 }
   }
 
   before_save do

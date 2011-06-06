@@ -3,7 +3,7 @@
 - unless @past_due.blank?
   %h1 past due assignments
    
-  %table
+  %table.assignments
     %tr
       %th Purpose
       %th Due date
@@ -11,7 +11,7 @@
    
     - @past_due.each do |assignment|
       %tr
-        %td= link_to assignment.purpose, assignment
+        %td= link_to assignment.purpose, assignment, class: 'ajax view_detail'
         %td= assignment.due_date.to_date || 'none'
         %td= button_to 'complete', :action => :complete, :id => assignment.id
 
@@ -20,7 +20,7 @@
 - unless @due.blank?
   %h1 assignments
  
-  %table
+  %table.assignments
     %tr
       %th Purpose
       %th Due date
@@ -29,7 +29,7 @@
  
     - @due.each do |assignment|
       %tr
-        %td= link_to assignment.purpose, assignment
+        %td= link_to assignment.purpose, assignment, class: 'ajax view_detail'
         %td= assignment.try(:due_date).try(:to_date) || 'none'
         %td= assignment.cost || 'none'
         %td none
@@ -40,7 +40,7 @@
 - unless @completed.blank?
   %h1 completed assignments
    
-  %table
+  %table.assignments
     %tr
       %th Purpose
       %th Date completed
@@ -49,7 +49,7 @@
    
     - @completed.each do |assignment|
       %tr
-        %td= link_to assignment.purpose, assignment
+        %td= link_to assignment.purpose, assignment, class: 'ajax view_detail'
         %td= l(assignment.completed_at.to_date) || 'none'
         %td= assignment.cost || 'none'
         %td none
@@ -65,7 +65,7 @@
       %th Confirm?
     - @confirmations.each do |assignment|
       %tr
-        %td= assignment.purpose
+        %td= link_to assignment.purpose, assignment, class: 'ajax view_detail'
         %td= assignment.completor || 'ghost'
         %td
           = link_to image_tag('58.png'), "/assignments/#{assignment.id}/confirm"

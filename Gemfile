@@ -23,6 +23,7 @@ gem 'haml-rails'
 gem 'hoptoad_notifier'
 gem 'dalli'
 gem 'rake', '0.8.7'
+gem 'actionmailer-with-request'
 
 # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
 # gem 'ruby-debug'
@@ -32,13 +33,12 @@ gem 'rake', '0.8.7'
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 group :development, :test do
-  gem 'heroku'
   gem 'rspec-rails'
-  gem 'rspec'
   gem 'database_cleaner'
   gem 'mongoid-rspec'
   gem 'factory_girl_rails'
   gem 'barista_growl', :git => 'http://github.com/TrevorBurnham/barista_growl.git'
   gem 'ruby-debug19'
   gem 'jasmine'
+  gem 'mailcatcher'
 end

@@ -78,7 +78,7 @@ input:invalid, textarea:invalid
 body
   overflow: hidden
   background: url('../images/clouds.png') 200px 0px repeat-x
-  &.registrations, &.sessions, &.assignments, &.pages, &.invitations, &.passwords
+  &.registrations, &.sessions, &.assignments, &.pages, &.invitations, &.passwords, &.accounts
     #main, #main.pages
       h1
         font-size: 1.7em
@@ -157,8 +157,9 @@ body
       margin-right: 20px
   
   p.auths
-    clear: left
-    margin-top: 1em
+    clear: both
+    text-align: left
+    margin: 1em 0
     padding-top: 1em
     // border-top: 1px dashed $blue
     a
@@ -194,7 +195,7 @@ body
     position: fixed
     background: #000
   
-  #loader
+  .loader
     width: 34px
     height: 18px
     z-index: 107

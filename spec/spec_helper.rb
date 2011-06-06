@@ -26,6 +26,7 @@ RSpec.configure do |config|
   # config.use_transactional_fixtures = true
 
   # Other things
+  config.include Devise::TestHelpers, :type => :controller
 
   # Clean up the database
   require 'database_cleaner'

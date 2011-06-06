@@ -1,4 +1,38 @@
 #main.corkboard
+
+  #guidance
+    width: 720px
+    margin: 0 auto 3em
+    position: relative
+    h1
+      font:
+        size: 2em
+        weight: bold
+        weight: 500
+      margin: 0 0 .5em 0
+    p
+      font:
+        size: 1.2em
+      a
+        font:
+          weight: bold
+          weight: 500
+      &.screencast
+        display: inline-block
+        margin: 1em auto
+        padding: 10px
+        +box-shadow(rgba(0,0,0,.2) 0 1px 2px, rgba(255,255,255,.5) 0 0 15px inset)
+        +background-image(linear-gradient(darken($blue, 3%), transparentize($lightblue, 0)))
+    .pointer
+      display: block
+      width: 134px
+      height: 124px
+      background: url("../images/icons/pointer.png") no-repeat center center
+      position: absolute
+      top: -80px
+      right: -75px
+            
+
   .header_bar, .corkboard_view
     display: none
     &.current
@@ -61,13 +95,17 @@
               height: 25px
               float: right
               cursor: pointer
-              background: url('../images/58.png') 7px 5px no-repeat
+              background-repeat: no-repeat
+              background-image: url('../images/icons/check.png')
+              background-position: 7px 5px
             &.edit
               display: none
-              background: url('../images/139.png') 0 4px no-repeat
+              background-image: url('../images/icons/edit.png')
+              background-position: 0 4px
             &.undo
               width: 16px
-              background: url('../images/46.png') 0 4px no-repeat
+              background-image: url('../images/46.png')
+              background-position: 0 4px
 
   #specials.content
     .list
@@ -134,7 +172,7 @@
         .day_name
           opacity: 1
       &.month_start
-        border-left: 3px solid transparentize(darken(desaturate($blue,20%),20%),.5)
+        border-left: 3px dashed transparentize(darken($blue,70%),.5)
         margin-left: -3px
       &:hover .day_name, &:hover .month_name
         opacity: 1

@@ -13,6 +13,6 @@ environment = Compass::AppIntegration::Rails.env
 # relative_assets = true
 
 # respect the native sass nesting
-output_style = :nested
+output_style = (environment == :production) ? :compressed : :expanded
 # get rid of those annoying line comments that make CSSEdit hell
-line_comments = true
+line_comments = (environment == :production) ? false : true

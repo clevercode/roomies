@@ -1,30 +1,29 @@
 - @main_class = 'assignments'
 
-%h1 Assignment
-%h2
-  Type: 
-  %strong #{@assignment.type}
-
+%h1 #{@assignment.type == "task" ? t(:task) : t(:expense)}
 %p= @assignment.purpose
 %hr
-  %p Assignees: 
+  %p Assignees:
   %ul
     - @assignment.try(:assignees).map do |a| 
       %li
         = link_to "- " + a.name.to_s, a
-
-  %p 
+  %hr
+        
+- if @assignment.respond_to?("cost")
+  %p
     Cost: 
-    %strong #{number_to_currency(@assignment.try(:cost))}
+    %strong #{number_to_currency(@assignment.cost)}
 
   %p 
     Due date: 
-    %strong #{ @assignment.due_date ? l(@assignment.due_date.to_date, :format => :long) : nil}
+    %strong #{@assignment.due_date}
 
-- if @assignment.respond_to?("completed_at")
+- if @assignment.completed_at
   %p
     Completion date:
-    %strong #{@assignment.try(:completed_at)}i
+    %strong #{@assignment.completed_at.to_date}
+    
 - unless @assignment.completor.blank?
   %p
     Completed by:
@@ -33,3 +32,5 @@
 - unless @assignment.completed_at
   %hr
   = button_to "complete this assignment", :action => :complete, :id => @assignment.id
+  %hr
+  = link_to 'edit assignment', edit_assignment_path, class: 'ajax'

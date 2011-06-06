@@ -1,8 +1,34 @@
-- unless current_user.name?
-  #flash
-    .notifications
-      %p= link_to t('.change_password_and_name'), edit_user_path(current_user), :class => 'ajax'
-- unless current_user.house
-  #flash
-    .notice
-      %p= link_to t('.youre_homeless'), new_house_path, :class => 'ajax'
+-# - unless current_user.name?
+-#   #flash
+-#     .notifications
+-#       %p= link_to t('.add_name'), edit_user_path(current_user), :class => 'ajax'
+- if !current_user.house_invitation && !current_user.house  
+  -# #flash
+  -#   .notifications
+  -#     %p= link_to t('.youre_homeless'), new_house_path, :class => 'ajax'
+  #guidance
+    %h1 Hi there, wondering how to get started?
+    %p 
+      Alright, so you made it inside Roomies, wasn't too hard? We're going to try to keep it that way. Since Roomies is all about doing productive stuff with roommates, the first thing you will have to do is
+      = link_to 'build a house.', new_house_path, :class => 'ajax'
+    %p.screencast
+      <iframe src="http://player.vimeo.com/video/24410290?title=0&amp;byline=0&amp;portrait=0" width="520" height="290" frameborder="0"></iframe>
+    .pointer
+
+- if current_user.house && current_user.house.users.count <= 1 && current_user.house.assignments.blank?
+  #guidance
+    %h1 Let's create an assignment!
+    %p Nice job with the house building. <strong>"#{current_user.house.name}"</strong>, huh? Why not...
+    %p 
+      Let's do something with that house of yours, 
+      = link_to 'create your first assignment.', new_assignment_path, :class => 'ajax'
+    %p.screencast
+      <iframe src="http://player.vimeo.com/video/24413290?title=0&amp;byline=0&amp;portrait=0" width="520" height="290" frameborder="0"></iframe>
+    .pointer
+
+- if current_user.house && current_user.house.users.count <= 1 && !current_user.house.assignments.blank?
+  #guidance
+    %h1 Feeling lonely much?
+    %p 
+      Now that you know how to create assignments, you might want to teach one of your roommates. After all, the whole point of Roomies is to share the effort between you and your roommates, so let's
+      = link_to 'invite a roomie to your new house.', new_house_invitation_path, :class => 'ajax'

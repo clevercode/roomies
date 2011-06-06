@@ -8,8 +8,11 @@ class UserMailer < ActionMailer::Base
   end
 
   def house_invitation_email(params)
-    mail(:to      => params[:email],
-         :subject => "You have a new house invitation from a friend at Roomies!"
+    @recipient_email = params[:email]
+    @inviter         = User.find(params[:house_inviter_id])
+    @invite          = params[:_id]
+    mail(:to      => @recipient_email,
+         :subject => "You have a new Roomies house invitation from #{(@inviter.name.blank?) ? @inviter.email : @inviter.name}"
     )
   end
 
@@ -27,9 +30,10 @@ class UserMailer < ActionMailer::Base
     @assignment = assignment
     @url = url
     @recipients = recipients
+    @commissioner = @assignment.commissioner
     mail(
       :to => @recipients,
-      :subject => "Stuff to do from a Roomie"
+      :subject => "Stuff to do from #{(@commissioner.name.blank?) ? @commissioner.email : @commissioner.name} on Roomies"
     )
   end
 end

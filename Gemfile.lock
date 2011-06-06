@@ -13,6 +13,8 @@ GEM
     actionmailer (3.0.7)
       actionpack (= 3.0.7)
       mail (~> 2.2.15)
+    actionmailer-with-request (0.3.0)
+      rails (>= 3)
     actionpack (3.0.7)
       activemodel (= 3.0.7)
       activesupport (= 3.0.7)
@@ -56,7 +58,7 @@ GEM
       chunky_png (~> 1.1.1)
       fssm (>= 0.2.7)
       sass (>= 3.1.0.alpha.249)
-    configuration (1.2.0)
+    daemons (1.1.3)
     dalli (1.0.4)
     database_cleaner (0.6.7)
     devise (1.3.4)
@@ -69,6 +71,7 @@ GEM
     diff-lcs (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    eventmachine (0.12.10)
     factory_girl (1.3.3)
     factory_girl_rails (1.0.1)
       factory_girl (~> 1.3)
@@ -86,10 +89,6 @@ GEM
       activesupport (~> 3.0)
       haml (~> 3.0)
       railties (~> 3.0)
-    heroku (2.1.4)
-      launchy (>= 0.3.2)
-      rest-client (~> 1.6.1)
-      term-ansicolor (~> 1.0.5)
     hoptoad_notifier (2.4.9)
       activesupport
       builder
@@ -104,10 +103,8 @@ GEM
     jquery-rails (1.0.7)
       railties (~> 3.0)
       thor (~> 0.14)
+    json (1.5.1)
     json_pure (1.5.1)
-    launchy (0.4.0)
-      configuration (>= 0.0.5)
-      rake (>= 0.8.1)
     linecache19 (0.5.12)
       ruby_core_source (>= 0.1.4)
     mail (2.2.19)
@@ -115,6 +112,16 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    mailcatcher (0.2.4)
+      eventmachine
+      haml
+      i18n
+      json
+      mail
+      sinatra
+      skinny (>= 0.1.2)
+      sqlite3-ruby
+      thin
     mime-types (1.16)
     mongo (1.3.1)
       bson (>= 1.3.1)
@@ -203,11 +210,11 @@ GEM
       rspec-core (~> 2.6.0)
       rspec-expectations (~> 2.6.0)
       rspec-mocks (~> 2.6.0)
-    rspec-core (2.6.2)
+    rspec-core (2.6.3)
     rspec-expectations (2.6.0)
       diff-lcs (~> 1.1.2)
     rspec-mocks (2.6.0)
-    rspec-rails (2.6.0)
+    rspec-rails (2.6.1)
       actionpack (~> 3.0)
       activesupport (~> 3.0)
       railties (~> 3.0)
@@ -234,9 +241,22 @@ GEM
       json_pure
       rubyzip
     simple_form (1.4.0)
-    term-ansicolor (1.0.5)
+    sinatra (1.2.6)
+      rack (~> 1.1)
+      tilt (< 2.0, >= 1.2.2)
+    skinny (0.1.2)
+      eventmachine
+      thin
+    sqlite3 (1.3.3)
+    sqlite3-ruby (1.3.3)
+      sqlite3 (>= 1.3.3)
     therubyracer-heroku (0.8.1.pre3)
+    thin (1.2.11)
+      daemons (>= 1.0.9)
+      eventmachine (>= 0.12.6)
+      rack (>= 1.0.0)
     thor (0.14.6)
+    tilt (1.3.2)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.27)
@@ -247,6 +267,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actionmailer-with-request
   barista (~> 1.0)
   barista_growl!
   bson_ext (>= 1.2.4)
@@ -258,18 +279,17 @@ DEPENDENCIES
   factory_girl_rails
   haml (~> 3.1.0)
   haml-rails
-  heroku
   hoptoad_notifier
   html5-boilerplate
   jasmine
   jquery-rails
+  mailcatcher
   mongoid (>= 2.0.0)
   mongoid-rspec
   mongoid_rails_migrations (>= 0.0.2)
   omniauth
   rails (= 3.0.7)
   rake (= 0.8.7)
-  rspec
   rspec-rails
   ruby-debug19
   sass (~> 3.1.0)

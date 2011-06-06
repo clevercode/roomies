@@ -9,9 +9,9 @@
   
 
 =simple_form_for :request do |f|
-  = f.input :name
-  = f.input :email
-  = f.input :message, :as => 'text'
+  = f.input :name, label: false, placeholder: t(:name)
+  = f.input :email, label: false, placeholder: t(:email_example)
+  = f.input :message, :as => 'text', label: false, placeholder: "Let's hear it..."
   = f.submit 'submit', :class => 'green'
   
 %h2 We're sorry if you're having issues with Roomies.
