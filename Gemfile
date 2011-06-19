@@ -7,7 +7,7 @@ gem 'rails', '3.0.7'
 
 gem "sass", "~>3.1.0"
 gem "haml", "~> 3.1.0"
-gem "compass", "0.11"
+gem "compass", "~>0.11"
 gem 'html5-boilerplate'
 gem 'simple_form'
 gem 'devise', '>= 1.2.0'
