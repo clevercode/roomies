@@ -14,7 +14,6 @@ gem 'devise', '>= 1.2.0'
 gem 'devise_invitable', '~> 0.4.0'
 gem 'omniauth'
 gem 'barista', '~> 1.0'
-gem "therubyracer-heroku"
 gem 'mongoid', '>= 2.0.0'
 gem 'bson_ext', '>= 1.2.4'
 gem 'mongoid_rails_migrations', '>=0.0.2'
@@ -24,6 +23,10 @@ gem 'hoptoad_notifier'
 gem 'dalli'
 gem 'rake', '0.8.7'
 gem 'actionmailer-with-request'
+
+group :production do 
+  gem 'therubyracer-heroku'
+end
 
 # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
 # gem 'ruby-debug'
