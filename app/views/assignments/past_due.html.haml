@@ -16,6 +16,6 @@
         %td= assignment.cost || 'none'
         %td none
         %td= assignment.frequency || 'not repeating'
-        %td= button_to 'complete', :action => :complete, :id => assignment.id
+        %td= button_to 'complete', action: :complete, id: assignment.id, remote: true 
 - else
   %p Well well, look who's got all their t's crossed and stuff!
