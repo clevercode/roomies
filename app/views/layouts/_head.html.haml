@@ -19,12 +19,13 @@
   -# %link{ :href => "/apple-touch-icon.png", :rel => "apple-touch-icon" }/
   
   = render :partial => 'layouts/stylesheets'
+  = javascript_include_tag "application" 
 
   -# catching javascript errors with hoptoad
   = hoptoad_javascript_notifier
 
   -# All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects
-  = javascript_include_tag 'modernizr.min', 'http://use.typekit.com/urh2gpw.js'
+  = javascript_include_tag 'http://use.typekit.com/urh2gpw.js'
   
   :javascript
     try{Typekit.load();}catch(e){}
