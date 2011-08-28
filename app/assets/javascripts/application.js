@@ -7,8 +7,8 @@
 //= require modernizr.min
 //= require selectivizr.min
 //= require underscore.min
-//= require jquery-ui.min
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
 //= require date
 //= require_tree
