@@ -1,3 +1,9 @@
+@import compass
+@import _blueprint
+@import partials/awesome
+@import partials/colors
+
+
 #main.corkboard
 
   #guidance
@@ -27,7 +33,7 @@
       display: block
       width: 134px
       height: 124px
-      background: url("../images/icons/pointer.png") no-repeat center center
+      background: url(pointer.png) no-repeat center center
       position: absolute
       top: -80px
       right: -75px
@@ -96,15 +102,15 @@
               float: right
               cursor: pointer
               background-repeat: no-repeat
-              background-image: url('../images/icons/check.png')
+              background-image: url(check.png)
               background-position: 7px 5px
             &.edit
               display: none
-              background-image: url('../images/icons/edit.png')
+              background-image: url(edit.png)
               background-position: 0 4px
             &.undo
               width: 16px
-              background-image: url('../images/46.png')
+              background-image: url(46.png)
               background-position: 0 4px
 
   #specials.content

@@ -1,3 +1,7 @@
+@import compass
+@import _blueprint
+@import partials/colors
+
 #main.home
   margin-top: 1em
   .mantra
@@ -92,7 +96,7 @@
       margin-bottom: 10px
       margin-top: 0
       font-weight: bold
-      background: url('../images/cloud.png') no-repeat 0px 20px
+      background: url(cloud.png) no-repeat 0px 20px
     p
       font-size: 17px
       line-height: 1.5
@@ -105,9 +109,9 @@
       +column(4)
       h2
         text-indent: 65px
-        background: url('../images/pacman.png') no-repeat 0px 15px
+        background: url(pacman.png) no-repeat 0px 15px
     &.last
       +column(4, true)
       h2
-        background: url('../images/pig.png') no-repeat 0px 15px
+        background: url(pig.png) no-repeat 0px 15px
 

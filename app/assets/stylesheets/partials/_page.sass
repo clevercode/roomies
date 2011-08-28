@@ -44,7 +44,7 @@ strong, th
 small
   // Use font-size mixin to convert to percentage for YUI
   // http://developer.yahoo.com/yui/3/cssfonts/#fontsize
-  +font-size(11px)
+  font-size: 85%
   // approx 85% when base-font-size eq 13px
 
 // Add the 'required' attribute on your
@@ -63,21 +63,21 @@ input:invalid, textarea:invalid
 // Add your own custom styles below  
 //-----------------------------------
 
-@-webkit-keyframes moveClouds
-  from
-    background-position: 0px
-  to
-    background-position: -1680px
-
-@-moz-keyframes moveClouds
-  from
-    background-position: 0px
-  to
-    background-position: -1680px
+//@-webkit-keyframes moveClouds
+//  from
+//    background-position: 0px
+//  to
+//    background-position: -1680px
+//
+//@-moz-keyframes moveClouds
+//  from
+//    background-position: 0px
+//  to
+//    background-position: -1680px
 
 body
   overflow: hidden
-  background: url('../images/clouds.png') 200px 0px repeat-x
+  background: url(clouds.png) 200px 0px repeat-x
   &.registrations, &.sessions, &.assignments, &.pages, &.invitations, &.passwords, &.accounts
     #main, #main.pages
       h1
@@ -116,9 +116,9 @@ body
     opacity: 0.4
     height: 160px
     position: absolute
-    -moz-animation: moveClouds 300s linear infinite
-    -webkit-animation: moveClouds 300s linear infinite
-    background: url('../images/clouds.png') top left repeat-x
+    //-moz-animation: moveClouds 300s linear infinite
+    //   -webkit-animation: moveClouds 300s linear infinite
+    background: url(clouds.png) top left repeat-x
 
 @import forms
 @import header
@@ -201,7 +201,7 @@ body
     z-index: 107
     display: none
     position: absolute
-    background: url('../images/loader.gif') no-repeat
+    background: url(loader.gif) no-repeat
       
 @import pages/home
 @import pages/profile
@@ -216,7 +216,7 @@ footer
   width: 100%
   height: 150px
   overflow: hidden
-  background: url('../images/hills.png') bottom left repeat-x
+  background: url(hills.png) bottom left repeat-x
   +text-shadow(rgba(0,0,0,.4) 0 -1px 0)
   .container
     height: 140px
