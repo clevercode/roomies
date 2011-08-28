@@ -5,12 +5,11 @@
 // the compiled file.
 //
 //= require modernizr.min
-//= require selectivzr-min
+//= require selectivizr.min
 //= require underscore.min
 //= require jquery-ui.min
 //= require jquery
 //= require jquery_ujs
 //= require date
-//= require dd_belatedpng
-//= require 
-//= require_tree .
+//= require_tree
+//= require_self
