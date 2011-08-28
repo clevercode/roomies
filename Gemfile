@@ -1,13 +1,13 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0.rc6'
+gem 'rails', git: "https://github.com/rails/rails.git", branch: "3-1-stable"
 
 gem 'thin'
 
 gem 'rdiscount', "~> 1.6.8"               # markdown filter for views
 gem 'jquery-rails', "~> 1.0.13"
 gem 'simple_form', "~> 1.4.2"
-gem 'devise', "~> 1.4.2"
+gem 'devise', git: "https://github.com/plataformatec/devise.git", branch: "master"
 gem 'devise_invitable', '~> 0.5.4'
 gem 'omniauth', "~> 0.2.6"
 gem 'mongoid', "~> 2.1"
