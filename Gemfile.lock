@@ -334,7 +334,7 @@ DEPENDENCIES
   sass-rails (~> 3.1.0.rc6)
   simple_form (~> 1.4.2)
   spork
-  therubyracer-heroku
+  therubyracer-heroku (= 0.8.1.pre3)
   thin
   turn
   uglifier
