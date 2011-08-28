@@ -1,47 +1,54 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.7'
+gem 'rails', '3.1.0.rc5'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+gem 'thin'
 
-gem "sass", "~>3.1.0"
-gem "haml", "~> 3.1.0"
-gem "compass", "~>0.11"
-gem 'html5-boilerplate'
-gem 'simple_form'
-gem 'devise', '>= 1.2.0'
-gem 'devise_invitable', '~> 0.4.0'
-gem 'omniauth'
-gem 'barista', '~> 1.0'
-gem 'mongoid', '>= 2.0.0'
-gem 'bson_ext', '>= 1.2.4'
-gem 'mongoid_rails_migrations', '>=0.0.2'
-gem 'jquery-rails'
-gem 'haml-rails'
+gem 'rdiscount', "~> 1.6.8"               # markdown filter for views
+gem 'jquery-rails', "~> 1.0.13"
+gem 'simple_form', "~> 1.4.2"
+gem 'devise', "~> 1.4.2"
+gem 'devise_invitable', '~> 0.5.4'
+gem 'omniauth', "~> 0.2.6"
+gem 'mongoid', "~> 2.1"
+gem "bson_ext", "~> 1.3"
+gem 'mongoid_rails_migrations'
 gem 'hoptoad_notifier'
 gem 'dalli'
-gem 'rake', '0.8.7'
 gem 'actionmailer-with-request'
 
-group :production do 
-  gem 'therubyracer-heroku'
+group :assets do
+  gem 'sass-rails', "~> 3.1.0.rc5"
+  gem 'coffee-rails', "~> 3.1.0.rc5"
+  gem 'uglifier'
+  gem 'compass', :git => 'git://github.com/chriseppstein/compass.git', :branch => 'rails31'
 end
 
-# To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
-# gem 'ruby-debug'
-# gem 'ruby-debug19', :require => 'ruby-debug'
-
-# Bundle gems for the local environment. Make sure to
-# put test-only gems in this group so their generators
-# and rake tasks are available in development mode:
-group :development, :test do
-  gem 'rspec-rails'
-  gem 'database_cleaner'
+group :development do
+  gem "haml", ">= 3.1.2"
+  gem "haml-rails", ">= 0.3.4"
+  gem "rails-footnotes", ">= 3.7"
   gem 'mongoid-rspec'
-  gem 'factory_girl_rails'
-  gem 'barista_growl', :git => 'http://github.com/TrevorBurnham/barista_growl.git'
   gem 'ruby-debug19'
   gem 'jasmine'
   gem 'mailcatcher'
+end
+
+gem "rspec-rails", ">= 2.6.1", :group => [:development, :test]
+
+group :test do
+  gem "turn"                  # pretty printed test output
+  gem "database_cleaner", ">= 0.6.7"
+  gem "factory_girl_rails", ">= 1.1.rc1"
+  gem "launchy", ">= 0.4.0"
+  gem "guard"                 # modular filesystem event monitor utility written in Ruby
+  gem "spork"                 # allows to load the test environment once, speeds it up
+  gem "guard-rspec"
+  gem "guard-spork"
+  gem "rb-fsevent"
+  gem "growl"
+end
+
+group :production do 
+  gem 'therubyracer-heroku'
 end
