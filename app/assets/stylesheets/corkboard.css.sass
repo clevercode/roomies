@@ -1,8 +1,7 @@
 @import compass
-@import _blueprint
 @import partials/awesome
 @import partials/colors
-
+@import grid
 
 body.corkboard
 
@@ -48,12 +47,15 @@ body.corkboard
       &.active, &:active
         font-weight: bold
 
-  .list
-    +column(4)
-    padding: 0
-    float: left
-    &:last-child
-      +column(4, true)
+  .upcoming_lists
+    clear: both
+    +clearfix
+    .list
+      +column(4)
+      padding: 0
+      float: left
+      &:last-child
+        +column(4, true)
 
     ul
       +background-image(linear-gradient($lightblue, $blue))
@@ -119,7 +121,7 @@ body.corkboard
       &.last
         +column(3, true)
 
-      h2
+      .h2
         +background-image(linear-gradient(#ffd88f, #f7a231))
         +box-shadow(#fff2db 1px 1px 0 inset, #fff2db -1px -1px 0 inset)
       .purpose

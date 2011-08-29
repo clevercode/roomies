@@ -13,13 +13,7 @@ body, select, input, textarea
   // text-shadow: 1px 1px 0 #d9eaff
   // Set your base font here, to apply evenly
   font-family: $base-font-family
-
-//Headers (h1, h2, etc) have no default font-size or margin; define those yourself
-h1, h2, h3, h4, h5, h6
-  // Bold might not be the best choice if you are
-  // embedding a @font-face that's already bold
-  // font-weight: bold
-
+  
 hr
   border: none
   margin: 0
@@ -130,7 +124,7 @@ body
 
 #main
   overflow: hidden
-  padding: 5em 0 2em 10px
+  padding: 5em 0 2em 0
 
   .header_bar, .content .list h2
     padding: 0
@@ -145,10 +139,13 @@ body
     text-shadow: #fffdc2 0 1px 1px
     +background-image(linear-gradient(#f7eb8b, #f7d340))
     +box-shadow(#fffedb 1px 1px 0 inset, #fffedb -1px -1px 0 inset)
+    
   .header_bar  
     +column(12)
     h1
       float: left
+      font-size: 1em
+      line-height: 43px
     p
       float: right
       height: 43px
@@ -170,8 +167,8 @@ body
     list-style: none
 
   .content
-    +clearfix
-    +column(12)
+    //+clearfix
+    //+column(12)
     padding: 30px 0
 
   #error_explanation
@@ -203,11 +200,6 @@ body
     position: absolute
     background: url(loader.gif) no-repeat
       
-@import pages/home
-@import pages/profile
-@import pages/support
-@import pages/assignments
-@import pages/content
 @import modals
 
 footer
