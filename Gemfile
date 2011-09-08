@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', git: "https://github.com/rails/rails.git", branch: "3-1-stable"
+gem 'rails', "~> 3.1.0"
 
 gem 'thin'
 
@@ -13,15 +13,14 @@ gem 'omniauth', "~> 0.2.6"
 gem 'mongoid', "~> 2.1"
 gem "bson_ext", "~> 1.3"
 gem 'mongoid_rails_migrations'
-gem 'hoptoad_notifier'
-gem 'dalli'
 gem 'actionmailer-with-request'
+gem "airbrake"
 
 group :assets do
-  gem 'sass-rails', "~> 3.1.0.rc6"
-  gem 'coffee-rails', "~> 3.1.0.rc6"
+  gem 'sass-rails', "~> 3.1.0.rc7"
+  gem 'coffee-rails', "~> 3.1.0.rc7"
   gem 'uglifier'
-  gem 'compass', :git => 'git://github.com/chriseppstein/compass.git', :branch => 'rails31'
+  gem 'compass'
 end
 
 group :development do
@@ -30,7 +29,6 @@ group :development do
   gem "rails-footnotes", ">= 3.7"
   gem 'mongoid-rspec'
   gem 'ruby-debug19'
-  gem 'jasmine'
   gem 'mailcatcher'
 end
 
