@@ -20,7 +20,7 @@ group :assets do
   gem 'sass-rails', "~> 3.1.0.rc7"
   gem 'coffee-rails', "~> 3.1.0.rc7"
   gem 'uglifier'
-  gem 'compass'
+  gem 'compass',  "0.12.alpha.0"
 end
 
 group :development do
