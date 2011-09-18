@@ -150,8 +150,8 @@ generateModal = (anchor, inline = false) ->
       $('#modal #ajaxed h1 span').remove()
       $('<span>x</span>').appendTo '#modal h1'
       unless inline
-        superDate()
-        autocompleteSetup()
+        roomies.ui.superDate()
+        roomies.ui.autocompleteSetup()
         $darknessification.fadeIn _fadeSpeed
       $modal.fadeIn _fadeSpeed
       centerModal()

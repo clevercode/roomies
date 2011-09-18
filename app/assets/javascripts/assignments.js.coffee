@@ -18,7 +18,7 @@ split = (val) ->
 extractLast = (term) ->
   return split( term ).pop()
 
-do autocompleteSetup = ->
+do roomies.ui.autocompleteSetup = ->
   assignee_names = []
   $assignees = $('#assignment_assignee_ids')
   $assignees.parent('div').hide()
@@ -64,7 +64,7 @@ $( "#assignment_assignee_names" ).live 'focusout', ->
   names = split( $(this).val() )
   selectRoomies name for name in names
 
-do superDate = ->
+do roomies.ui.superDate = ->
   $picker    = $("#picker")
   $superdate = $('.superdate')
 
@@ -112,3 +112,4 @@ do superDate = ->
   $superdate = $('.superdate:eq(0)')
   window.roomies.ui.recalculateStickyFooter()
   return $superdate
+
