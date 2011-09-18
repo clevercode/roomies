@@ -42,6 +42,14 @@ group :development do
   gem 'ruby-debug19'
   gem 'mailcatcher'
   gem 'foreman'
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'guard-bundler'
+  gem 'guard-spork'
+  if RUBY_PLATFORM.downcase.include?("darwin")
+    gem 'rb-fsevent'
+    gem 'growl'
+  end
 end
 
 
@@ -52,12 +60,6 @@ group :test do
   gem "database_cleaner", ">= 0.6.7"
   gem "factory_girl_rails", "~> 1.2.0"
   gem "launchy", ">= 0.4.0"
-  gem "guard"                 # modular filesystem event monitor utility written in Ruby
-  gem "spork"                 # allows to load the test environment once, speeds it up
-  gem "guard-rspec"
-  gem "guard-spork"
-  gem "rb-fsevent"
-  gem "growl"
 end
 
 group :production do 
