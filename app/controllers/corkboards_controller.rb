@@ -1,7 +1,6 @@
-class CorkboardController < ApplicationController
-
+class CorkboardsController < ApplicationController
   before_filter :authenticate_user!
-  def index
+  def show
 
     if current_user.house.nil?
       @all = nil

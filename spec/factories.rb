@@ -1,9 +1,14 @@
-require 'factory_girl'
+FactoryGirl.define do 
 
-Factory.define :user do |u|
-  u.name 'Test User'
-  u.email 'user@test.com'
-  u.password 'please'
-  u.invitation_token 'faketoken'
+  sequence :email do |n|
+    "user#{n}@example.com" 
+  end
+
+  factory :user do
+    name 'Test User'
+    email 
+    password 'please'
+    invitation_token 'faketoken'
+  end
 end
 

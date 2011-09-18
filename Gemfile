@@ -41,10 +41,12 @@ group :development do
   gem "rails-footnotes", ">= 3.7"
   gem 'ruby-debug19'
   gem 'mailcatcher'
+  gem 'foreman'
 end
 
 
 group :test do
+  gem 'shoulda-matchers'
   gem 'mongoid-rspec'
   gem "turn"                  # pretty printed test output
   gem "database_cleaner", ">= 0.6.7"

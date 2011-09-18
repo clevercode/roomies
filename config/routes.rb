@@ -2,6 +2,7 @@ Roomies::Application.routes.draw do
 
   root :to => 'pages#home'
 
+  resource :corkboard, only: %w(show)
   devise_for :users
   devise_scope :user do
     get "sign_in", :to => "devise/sessions#new"
@@ -21,7 +22,6 @@ Roomies::Application.routes.draw do
   resources :categories
   resources :achievements
   resources :houses
-  resources :corkboard
   resources :user_mailer
   resources :house_invitations
   resources :rewards
