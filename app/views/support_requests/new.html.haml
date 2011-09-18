@@ -8,7 +8,7 @@
   %p message us!
   
 
-=simple_form_for :request do |f|
+=simple_form_for @support_request, :url => support_request_path do |f|
   = f.input :name, label: false, placeholder: t(:name)
   = f.input :email, label: false, placeholder: t(:email_example)
   = f.input :message, :as => 'text', label: false, placeholder: "Let's hear it..."
@@ -16,4 +16,4 @@
   
 %h2 We're sorry if you're having issues with Roomies.
 %p If it's any consolation, here's an entertaining picture to make it up to you &rarr;
-= image_tag "/images/support/#{random_image}", alt: "Silly picture", title: "Yeah we totally stole that from Reddit"
+= image_tag "support/#{random_image}", alt: "Silly picture", title: "Yeah we totally stole that from Reddit"

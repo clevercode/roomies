@@ -3,13 +3,13 @@
   =link_to 'cleverCode LLC.', 'http://clevercode.net'
   #{t :all_rights_reserved}
 %p#links
-  =link_to t(:about_us), about_url
+  =link_to t(:about_us), about_path
   |
-  =link_to t(:privacy_policy), privacy_url
+  =link_to t(:privacy_policy), privacy_path
   |
-  =link_to t(:terms_of_service), service_url
+  =link_to t(:terms_of_service), service_path
   |  
-  =link_to t(:support_page), support_index_url
+  =link_to t(:support_page), new_support_request_path
   - if user_signed_in?
     –
     =link_to t(:sign_out), destroy_user_session_path

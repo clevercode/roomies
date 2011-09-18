@@ -3,6 +3,8 @@ Roomies::Application.routes.draw do
   root :to => 'pages#home'
 
   resource :corkboard, only: %w(show)
+  resource :support_request, only: %w(new create)
+
   devise_for :users
   devise_scope :user do
     get "sign_in", :to => "devise/sessions#new"
@@ -11,7 +13,6 @@ Roomies::Application.routes.draw do
 
   resources :users
   resources :pages
-  resources :support
   resources :authentications
   resources :assignments do
     member do
@@ -31,7 +32,6 @@ Roomies::Application.routes.draw do
   match '/auth/facebook/setup'          => 'facebook#setup'
   match '/registrations'                => 'accounts#email'
   match '/user/:id/homeless/:house_id'  => 'houses#destroy_roomie', :as => :homeless
-  match '/support/index'                => 'support#submit_request'
   match '/assignments/day/:day'         => 'assignments#day'
   match '/beta_sign_up/:invite_token'   => 'users#new', :as => :beta_sign_up
   match '/confirmations'                => 'assignments#confirmations'

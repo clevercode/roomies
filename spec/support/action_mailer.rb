@@ -10,5 +10,6 @@ end
 
 RSpec.configure do |config|
   config.include ActionMailerHelpers
+  config.include Shoulda::Matchers::ActionMailer
 end
 

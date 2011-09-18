@@ -10,5 +10,11 @@ FactoryGirl.define do
     password 'please'
     invitation_token 'faketoken'
   end
+
+  factory :support_request do
+    name "John Appleseed"
+    email
+    message "Seems like theres a serious lack of apples"
+  end
 end
 
