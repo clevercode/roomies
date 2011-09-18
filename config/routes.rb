@@ -2,6 +2,7 @@ Roomies::Application.routes.draw do
 
   root :to => 'pages#home'
 
+  match '/me' => 'users#show', as: 'current_user'
   resource :corkboard, only: %w(show)
   resource :support_request, only: %w(new create)
 

@@ -27,7 +27,7 @@
       %li.link.corkboard
         = link_to "Corkboard", root_url
       %li.link.profile
-        = link_to "Profile", current_user
+        = link_to "Profile", current_user_path
       %li.action
         - if current_user.house.nil?
           = link_to t(:build_house), new_house_path, id: 'easy_button', class: 'ajax'
