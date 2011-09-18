@@ -110,4 +110,5 @@ do superDate = ->
 
   $('.ui-datepicker-today a').click()
   $superdate = $('.superdate:eq(0)')
-  stickyFooter()
+  window.roomies.ui.recalculateStickyFooter()
+  return $superdate

@@ -13,12 +13,12 @@ $('.header_bar a').live 'click', ->
       $('.header_bar.upcoming').show()
       $('.calendar').hide 'fast', ->
         $('.centric').show 'fast', ->
-          stickyFooter()
+          window.roomies.ui.recalculateStickyFooter()
     else
       $('.header_bar.monthly').show()
       $('.centric').hide 'fast', ->
         $('.calendar').show 'fast', ->
-          stickyFooter()
+          window.roomies.ui.recalculateStickyFooter()
         
     if   $('.corkboard_view.current').hasClass('all')
     then $('.corkboard_view.my').children('.calendar, .centric').hide()
@@ -50,13 +50,13 @@ $('#upcoming_filters #assignee_filters li').live 'click', ->
 # //     $this.addClass('active').siblings().removeClass('active')
 # //     $('.corkboard_view.current .assignment').slideDown 'fast'
 # //     $(".corkboard_view.current .#{$this.data('filter')}").slideUp 'fast', ->
-# //       stickyFooter()
+# //       window.roomies.ui.recalculateStickyFooter()
 
 setListHeights()
 
 # // Listens for a click on the body and closes the detailed list of
 # // assignments that's what it should be doing.
-$body.live 'click', (event) ->
+window.roomies.ui.$body.live 'click', (event) ->
   $clicky = $(event.target)
   if $clicky.parent('.todo').length < 1 && !$clicky.hasClass('detail_day_view')
     if $('.detail_day_view').length > 0

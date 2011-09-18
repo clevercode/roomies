@@ -11,5 +11,9 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require date
+//= require base
 //= require_tree
 //= require_self
+
+// Boot Script
+this.roomies.initialize();

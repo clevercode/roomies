@@ -1,3 +1,12 @@
+# App Namespace
+this.roomies =
+  init: []
+  ui: {}
+  utils: {}
+
+# Convienence variable
+roomies = this.roomies
+
 # =========================================
 # ================ Globals ================
 # =========================================
@@ -16,31 +25,60 @@ $darknessification = $('#darknessification')
 $ajaxed            = $modal.children('#ajaxed')
 $ajaxed_again      = $modal.children('#ajaxed_again')
 
+# NEW #
+roomies.$ = jQuery
+roomies.ui.$body = $body
+roomies.ui.$main = $main
+roomies.ui.$footer = $footer
+roomies.ui.$modal = $modal
+roomies.ui.$loader = $loader
+
+# =========================================
+# ============= Roomies Core ==============
+# =========================================
+
+roomies.initialize = ->
+  for initFunctionName in roomies.init
+    initFunction = roomies.utils.getNestedValueForObject(roomies, initFunctionName)
+    initFunction()
+
+
+roomies.utils.getNestedValueForObject = (obj, identifier) ->
+  parts = identifier.split('.')
+  return obj[identifier] if parts.length is 1
+  nestedValue = obj 
+  for part in parts
+    nestedValue = nestedValue[part]
+  return nestedValue
+
+
 # =========================================
 # =========== Functions & Stuff ===========
 # =========================================
   
 # // Handles the sticky footer
-stickyFooter = ->  
-  $footer.css({position:'static'})
-  if window.innerHeight > $body.height()
-    $footer.css({position:'fixed', bottom:0})
+roomies.ui.recalculateStickyFooter = ->
+  footer = roomies.ui.$footer
+  body = roomies.ui.$body
+  footer.css({position:'static'})
+  if window.innerHeight > body.height()
+    footer.css({position:'fixed', bottom:0})
 
-stickyFooter()
+roomies.init.push('ui.recalculateStickyFooter')
 
 $(window).bind 'resize', ->
-  stickyFooter()
+  roomies.ui.recalculateStickyFooter()
   centerModal()
 
 # // Hides the flash notice if it's visible.
 $('#flash').live 'click', ->
   $('#flash').hide 'fast', ->
-    stickyFooter()
+    roomies.ui.recalculateStickyFooter()
 
 # // Hides the flash notice after 5 seconds if the user hasn't clicked on it yet.
 setTimeout( ->
   $('#flash .notice').parent().hide 'fast', ->
-    stickyFooter()
+    roomies.ui.recalculateStickyFooter()
 , 5000)
 
 calculateCenter = (container, element) ->  
