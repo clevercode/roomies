@@ -9,6 +9,11 @@ FactoryGirl.define do
     email 
     password 'please'
     invitation_token 'faketoken'
+    house
+  end
+
+  factory :house do
+    name 'Our House'
   end
 
   factory :support_request do
