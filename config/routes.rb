@@ -35,8 +35,8 @@ Roomies::Application.routes.draw do
   match '/user/:id/homeless/:house_id'  => 'houses#destroy_roomie', :as => :homeless
   match '/assignments/day/:day'         => 'assignments#day'
   match '/beta_sign_up/:invite_token'   => 'users#new', :as => :beta_sign_up
-  match '/confirmations'                => 'assignments#confirmations'
-  match '/past_due_assignments'         => 'assignments#past_due_assignments'
+  match '/confirmations'                => 'assignments#confirmations', as: 'confirmations'
+  match '/past_due_assignments'         => 'assignments#past_due_assignments', as: 'past_due_assignments'
   match '/assignments/:id/confirm'      => 'assignments#confirm'
   match '/assignments/:id/reject'       => 'assignments#reject'
   match '/house_invitations/:id/accept' => 'users#accept_house_invitation'
