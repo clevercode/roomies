@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe User do
 
+  context 'attributes' do
+    it { should have_field(:time_zone).of_type(String) }
+  end
+
   context 'validations' do
     it { should_not validate_presence_of(:name) }
     it { should validate_presence_of(:email) }

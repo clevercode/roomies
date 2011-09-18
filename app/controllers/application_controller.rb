@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :prepare_sign_in, :set_locale
+  before_filter :prepare_sign_in, :set_locale, :set_time_zone
 
   # preventing modals from loading entire pages
   layout proc { |controller| controller.request.xhr? ? false : 'application' }
@@ -18,6 +18,14 @@ class ApplicationController < ActionController::Base
       current_user.locale
     else
       I18n.default_locale
+    end
+  end
+
+  def set_time_zone
+    if user_signed_in? and current_user.time_zone.present?
+      Time.zone = current_user.time_zone
+    else
+      Time.zone = Roomies::Application.config.time_zone
     end
   end
 
