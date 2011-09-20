@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
     unless self.controller_name == "invitations"
       reward(type: :sign_in)
     end
-    corkboard_index_url
+    corkboard_url
   end
   
   def reward(options = {})
