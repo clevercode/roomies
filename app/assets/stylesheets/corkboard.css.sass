@@ -4,6 +4,8 @@
 @import grid
 
 body.corkboards
+  div
+    margin-bottom: .5em
 
   #guidance
     width: 720px
@@ -161,6 +163,12 @@ body.corkboards
 
       #expense_filter
         +gradient-button($green)
+
+  .header_bar.monthly
+    display: none
+
+  .current_cal
+    padding-top: 0
 
   .centric, .calendar
     +column(12)

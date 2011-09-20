@@ -1,7 +1,10 @@
 # =========================================
 # =============== CORKBOARD ===============
 # =========================================
-  
+
+$(document).ready ->
+  $('.monthly').hide()  
+
 # // Listens for a click on the calendar view option links.
 $('.header_bar a').live 'click', ->
   unless $(this).hasClass('active')
