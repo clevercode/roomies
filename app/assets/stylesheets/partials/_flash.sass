@@ -1,0 +1,47 @@
+@import compass
+@import blueprint
+@import partials/colors
+
+#main
+  #flash
+    .notice, .alert, .notifications, .error
+      width: 940px
+      z-index: 100
+      overflow: hidden
+      text-align: center
+      margin: 0 20px 1em 0
+      +background-image(linear-gradient(lighten($blue,10%),lighten($lightblue, 5%)))
+      +box-shadow(rgba(0,0,0,.2) 0 1px 5px 1px, rgba(255,255,255,.5) 0 0 15px inset, #d9eaff 0 0 0 1px inset)
+      p
+        width: 898px
+        margin: 10px
+        padding: 10px
+        font-size: 16px
+        line-height: 25px
+        text-align: center
+        color: darken($blue,50%)
+        border: 1px solid #d9eaff
+        +text-shadow(lighten($blue,10%) 1px 1px 0)
+        +box-shadow(rgba(0,0,0,0.3) 0 1px 3px 1px inset)
+        +background-image(linear-gradient(transparentize($blue,.4),transparentize(darken($blue,10%), .4)))
+        a
+          font-weight: 600
+          color: darken($blue,50%)
+          +text-shadow(lighten($blue,10%) 1px 1px 0)
+          &:hover
+            color: darken($blue,40%)
+          &:active
+            color: darken($blue,70%)
+
+    .error, .alert
+      p
+        color: darken($red,50%)
+        +text-shadow(lighten($red,20%) 1px 1px 0)
+        +background-image(linear-gradient(lighten($red, 10%), darken($red, 10%)))
+        a
+          color: darken($red,40%)
+          +text-shadow(lighten($red,20%) 1px 1px 0)
+          &:hover
+            color: darken($red,25%)
+          &:active
+            color: darken($red,70%)

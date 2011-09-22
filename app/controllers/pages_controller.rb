@@ -3,7 +3,7 @@ class PagesController < ApplicationController
   respond_to :html, :json
 
   def home
-    if user_signed_in? then redirect_to corkboard_index_url end
+    redirect_to corkboard_url if user_signed_in?
   end
   
   def about
