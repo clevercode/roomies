@@ -1,11 +1,10 @@
+require 'digest/md5'
+require 'open-uri'
+
 class User 
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  require 'digest/md5'
-  require 'open-uri'
-  require 'json'
-  
   after_create :send_welcome_email
   before_create :set_invitation_limit
 
@@ -15,6 +14,7 @@ class User
   field :locale, type: String, default: "en"
   field :calendar, type: String, default: "centric"
   field :secret, type: String
+  field :time_zone, type: String
 
   # Associations
   belongs_to :house # => User has a house_id

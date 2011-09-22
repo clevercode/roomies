@@ -1,0 +1,30 @@
+// This file must be imported before loading html5-boilerplate
+@import colors
+@import awesome
+
+// left margin for ul an ol
+$list-left-margin: 2em
+
+html
+  background: $blue 
+  background-image: -webkit-gradient(radial, 50% 50%, 800, 50% 50%, 0, from($skyblue), to($sunblue))
+  background-image: -moz-radial-gradient(center 45deg, circle farthest-side, $sunblue 0%, $skyblue 100%)
+  // &.nighttime
+    background: $blue 
+    background: -moz-linear-gradient(top, #212933, #a6ceff)
+    background: -webkit-gradient(linear, left top, left bottom, from(#212933), to(#a6ceff))
+  // body
+    visibility: hidden
+
+// RESET
+ul
+  padding-left: 0
+  margin: 0
+  
+p
+  margin: 0
+
+h1, h2, h3, h4, h5, h6
+  font-size: 1em
+  margin: 0
+  padding: 0

@@ -14,7 +14,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = if params[:id]
+      User.find(params[:id])
+    else
+      current_user
+    end
     if @user.house
       @tasks = @user.house.assignments.where(assignee_ids: [@user.id], type: "task", completed_at: nil)
       @expenses = @user.house.assignments.where(assignee_ids: [@user.id], type: "expense", completed_at: nil)
@@ -79,13 +83,18 @@ class UsersController < ApplicationController
   def accept_house_invitation
     house_invitation = HouseInvitation.find(params[:id])
     house_inviter = User.find(house_invitation.house_inviter_id)
-    current_user.house = house_inviter.house unless current_user.nil? or house_inviter.nil?
     
-    if current_user.save
-      house_invitation.destroy
-      redirect_to current_user, notice: t('.house_joined')
+    # making sure we have a signed in user first
+    if user_signed_in?
+      current_user.house = house_inviter.house unless !user_signed_in? or house_inviter.nil?
+      if current_user.save
+        house_invitation.destroy
+        redirect_to current_user, notice: t('.house_joined')
+      else
+        redirect_to root_url, notice: t('.house_join_fail')
+      end
     else
-      redirect_to root_url, notice: t('.house_join_fail')
+      redirect_to new_user_registration_url
     end
   end
   
