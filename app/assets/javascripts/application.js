@@ -16,4 +16,4 @@
 //= require_self
 
 // Boot Script
-this.roomies.initialize();
+jQuery(this.roomies.initialize);
