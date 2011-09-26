@@ -74,7 +74,7 @@ class AssignmentsController < ApplicationController
           assignment.assignees.each do |user|
             recipients << user.email.to_s
           end
-          UserMailer.assignment_created(assignment, recipients, "#{corkboard_index_url}/?assignment=#{assignment.id}").deliver
+          UserMailer.assignment_created(assignment, recipients, "#{corkboard_url}/?assignment=#{assignment.id}").deliver
           reward(type: :assignments_create_lazy)
           flash[:notice] = t(:roomies_assigned, scope: [:assignments, :create])
 
@@ -86,7 +86,7 @@ class AssignmentsController < ApplicationController
               recipients << user.email.to_s
             end
           end
-          UserMailer.assignment_created(assignment, recipients, "#{corkboard_index_url}/?assignment=#{assignment.id}").deliver
+          UserMailer.assignment_created(assignment, recipients, "#{corkboard_url}/?assignment=#{assignment.id}").deliver
           reward(type: :assignments_create_sharing)
           flash[:notice] = t(:everyone_assigned, scope: [:assignments, :create])
 
@@ -104,7 +104,7 @@ class AssignmentsController < ApplicationController
           flash[:error] = t(:no_assignees, scope: [:assignments, :create])
         end
       end
-      respond_with assignment, location: corkboard_index_url
+      respond_with assignment, location: corkboard_url
     else
       redirect_to current_user, notice: t(:build_house_before, scope: [:assignments, :create])
     end
@@ -116,7 +116,7 @@ class AssignmentsController < ApplicationController
     if @assignment.update_attributes(params[:assignment])
       flash[:notice] = t(:updated, scope: [:assignments, :update])
     end
-    respond_with @assignment, location: corkboard_index_url
+    respond_with @assignment, location: corkboard_url
   end
  
   def destroy
@@ -136,10 +136,10 @@ class AssignmentsController < ApplicationController
         reward(user: @assignment.completor)
         flash[:notice] = t(:completed, scope: [:assignments, :complete])
       end
-      respond_with @assignment, location: corkboard_index_url
+      respond_with @assignment, location: corkboard_url
     else
       flash[:notice] = t(:already_completed, scope: [:assignments, :complete])
-      respond_with @assignment, location: corkboard_index_url
+      respond_with @assignment, location: corkboard_url
     end
   end
 
@@ -150,7 +150,7 @@ class AssignmentsController < ApplicationController
       reward(user: @assignment.completor)
       @assignment.completor_id = nil
       if @assignment.save
-        respond_with @assignment, location: corkboard_index_url
+        respond_with @assignment, location: corkboard_url
       end
     end
   end
@@ -201,7 +201,7 @@ class AssignmentsController < ApplicationController
       flash[:notice] = t(:confirmed, scope: [:assignments, :confirm])
     end
 
-    respond_with @assignment, location: corkboard_index_url
+    respond_with @assignment, location: corkboard_url
   end
 
   def reject
@@ -212,7 +212,7 @@ class AssignmentsController < ApplicationController
       reward(user: @assignment.completor)
       flash[:notice] = t(:rejected, scope: [:assignments, :reject])
     end
-    respond_with @assignment, location: corkboard_index_url
+    respond_with @assignment, location: corkboard_url
     
   end
  
