@@ -7,6 +7,7 @@ class User
 
   after_create :send_welcome_email
   before_create :set_invitation_limit
+  before_save :update_stripe
 
   # Fields
   field :name, type: String
@@ -15,13 +16,19 @@ class User
   field :calendar, type: String, default: "centric"
   field :secret, type: String
   field :time_zone, type: String
-
+  field :stripe_id, type: String
+  field :last_4_digits, type: String
+  attr_accessor :stripe_token # Secure card token
+  
   # Associations
   belongs_to :house # => User has a house_id
   has_many :authentications, dependent: :delete
   has_many :assignments, foreign_key: 'assignee_ids'
   has_many :rewards
   has_many :achievements
+
+  # Indexes
+  index :email, unique: true
 
   # Devise
   devise  :database_authenticatable, :registerable, :recoverable, 
@@ -36,7 +43,7 @@ class User
   #                       message: "misssing, signing up for now."
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :email, :password, :remember_me, :locale, :calendar
+  attr_accessible :name, :email, :password, :remember_me, :locale, :calendar, :stripe_token
 
   ###
   # user methods
@@ -162,13 +169,8 @@ class User
     Achievement::TYPES.select { |k,v| v[:value] >= self.points }
   end
 
-  def check_payment
-    if self.secret
-      url = "http://www.pintpay.com/api/1/subscriptions"
-      result = JSON.parse(
-        open("#{url}/#{self.secret}?api_key=#{ENV['PINTPAY_API_KEY']}&api_secret=#{ENV['PINTPAY_API_SECRET']}").read
-      )
-    end
+  def billing
+    Stripe::Customer.retrieve(stripe_id) if stripe_id
   end
 
   private
@@ -178,6 +180,25 @@ class User
 
   def set_invitation_limit
     self.invitation_limit = 3
+  end
+
+  def update_stripe
+    if stripe_token
+      if stripe_id.present?
+        stripe_customer = Stripe::Customer.retrieve(stripe_token)
+        stripe_customer.card = stripe_token
+        stripe_customer.save
+      else
+        stripe_customer = Stripe::Customer.create(
+          description: email,
+          card: stripe_token
+        )
+        self[:stripe_id] = stripe_customer.id
+      end
+      self.last_4_digits = stripe_customer.active_card.last4
+
+    else
+    end
   end
   
   protected

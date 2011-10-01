@@ -1,0 +1,49 @@
+#sponsor_house_view
+  %h1 Be a Hero and Sponsor Your House
+  %p Your house is currently unsponsored, which means nobody is paying to use Roomies.
+
+  %h2 Reasons to Sponsor:
+  %ul
+    %li Heh.
+    %li Needs.
+    %li Reasons.
+
+  .payment_details
+    %h2 Payment Details
+    - if current_user.last_4_digits.present?
+      %p.credit_card.selected XXXX-XXXX-XXXX-#{current_user.last_4_digits}
+      %p Use other card
+    - else
+      - # It is intentional that these inputs do not have `name` attributes
+      - # This prevents them from accidentally being sent to our server.
+      %form#credit_card_info
+        %p
+          %label Credit Card Number
+          %input(type='text' size='20' id='card_number')
+        %p
+          %label CVC
+          %input(type='text' size='4' id='card_cvc')
+        %p
+          %label Expiration Date (MM/YYYY)
+          %input(type='text' size='2' id='card_expiry_month')
+          ="/"
+          %input(type='text' size=4 id='card_expiry_year')
+        %p
+          %input(type='submit' value='Add card')
+
+  %a(class='cancel') Cancel
+  = form_for(:subscription, url: house_subscription_path, method: :post) do |form|
+    = hidden_field_tag 'stripe_token', ''
+    = hidden_field_tag 'sponsor', 'me'
+    = submit_tag('Sponsor')
+
+  %p.agreement
+    By submiting you acknowledge that $10 will be charged to
+    the above payment method today and once every month.
+
+= javascript_include_tag 'https://js.stripe.com/v1/'
+:javascript
+  Stripe.setPublishableKey('#{ENV['STRIPE_PUBLISHABLE_KEY']}');
+  var sponsor_house_view = new Roomies.SponsorHouseView('#sponsor_house_view')
+  roomies.ui.sponsor_house_view = sponsor_house_view
+    

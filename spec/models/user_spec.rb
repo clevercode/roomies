@@ -4,6 +4,24 @@ describe User do
 
   context 'attributes' do
     it { should have_field(:time_zone).of_type(String) }
+
+    # Stripe
+    it { should have_field(:stripe_id).of_type(String) }
+    it { should have_field(:last_4_digits).of_type(String) }
+    it "should have a non-persisted `stripe_token`" do
+      user = Factory(:user)
+      user.stripe_token = 'fake token'
+      user.stripe_token.should == 'fake token'
+      user.stub(:update_stripe)
+      user.save
+
+      User.find(user.id).stripe_token.should be_nil
+    end
+  end
+
+  context 'indexes' do
+    it { should have_index_for(:email).with_options(unique: true) }
+
   end
 
   context 'validations' do
