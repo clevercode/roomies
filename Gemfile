@@ -20,7 +20,6 @@ gem 'rdiscount', "~> 1.6.8"
 
 # Other
 gem 'simple_form', "~> 1.4.2"
-gem 'actionmailer-with-request'
 
 # Exception tracking
 gem "airbrake"
