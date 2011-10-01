@@ -23,6 +23,9 @@ class User
   has_many :rewards
   has_many :achievements
 
+  # Indexes
+  index :email, unique: true
+
   # Devise
   devise  :database_authenticatable, :registerable, :recoverable, 
           :rememberable, :trackable, :validatable, :invitable
