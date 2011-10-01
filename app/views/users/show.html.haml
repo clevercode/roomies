@@ -25,13 +25,19 @@
     -#   %p #{(current_user == @user) ? t('.you_have') : t('.this_roomie_has')} #{pluralize(@user.points, t(:point))}
   #hud
 
-    - if @user.house
+    - if @house
       #house
-        .current_house #{@user.house.name}
+        .current_house #{@house.name}
         - if signed_in? && current_user == @user
-          = link_to t('.change_house_name'), edit_house_path(@user.house), :class => 'ajax'
+          = link_to t('.change_house_name'), edit_house_path(@house), :class => 'ajax'
           = link_to t('.add_roomies'), new_house_invitation_path, :class => 'ajax'
-          = link_to t('.move_out'), homeless_url(:id => @user.id, :house_id => @user.house), :confirm => t('.confirm_house_deletion')
+          = link_to t('.move_out'), homeless_url(:id => @user.id, :house_id => @house), :confirm => t('.confirm_house_deletion')
+          - if @house.sponsored? && @house.sponsor == current_user
+            = link_to 'Cancel Sponsorship', house_subscription_path, method: :delete, remote: true
+          - elsif @house.sponsored?
+            = link_to "Sponsored by #{@house.sponsor}", '#'
+          - else
+            = link_to t('.sponsor'), new_house_subscription_path, class: 'ajax'
     - else
       %p#house
         - if signed_in? && current_user == @user

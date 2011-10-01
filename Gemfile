@@ -7,7 +7,7 @@ gem 'thin'
 
 # Mongo
 gem 'mongoid', "~> 2.1"
-gem "bson_ext", "~> 1.3"
+gem "bson_ext", "~> 1.4"
 gem 'mongoid_rails_migrations'
 
 # Authentication
@@ -24,6 +24,9 @@ gem 'actionmailer-with-request'
 
 # Exception tracking
 gem "airbrake"
+
+# Stripe API
+gem 'stripe'
 
 # Rails extensions
 gem 'jquery-rails', "~> 1.0.13"
@@ -46,6 +49,7 @@ group :development do
   gem 'guard-rspec'
   gem 'guard-bundler'
   gem 'guard-spork'
+  gem 'spork', '~> 0.9.0.rc9'
   if RUBY_PLATFORM.downcase.include?("darwin")
     gem 'rb-fsevent'
     gem 'growl'

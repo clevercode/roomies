@@ -23,7 +23,13 @@ Roomies::Application.routes.draw do
   end
   resources :categories
   resources :achievements
-  resources :houses
+
+  resource  :house do
+    resource :subscription
+  end
+
+  resources :houses 
+
   resources :user_mailer
   resources :house_invitations
   resources :rewards

@@ -19,7 +19,8 @@ class UsersController < ApplicationController
     else
       current_user
     end
-    if @user.house
+    @house = @user.house
+    if @house
       @tasks = @user.house.assignments.where(assignee_ids: [@user.id], type: "task", completed_at: nil)
       @expenses = @user.house.assignments.where(assignee_ids: [@user.id], type: "expense", completed_at: nil)
     end
