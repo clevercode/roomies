@@ -41,7 +41,7 @@ end
 
 group :development do
   gem "rails-footnotes", ">= 3.7"
-  gem 'ruby-debug19'
+  # gem 'ruby-debug19'
   gem 'mailcatcher'
   gem 'foreman'
   gem 'guard'
