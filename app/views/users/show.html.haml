@@ -37,7 +37,7 @@
           - elsif @house.sponsored?
             = link_to "Sponsored by #{@house.sponsor}", '#'
           - else
-            = link_to t('.sponsor'), new_house_subscription_path, class: 'ajax'
+            = link_to t('.sponsor'), new_house_subscription_path
     - else
       %p#house
         - if signed_in? && current_user == @user
