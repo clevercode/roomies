@@ -4,6 +4,7 @@ gem 'rails', "~> 3.1.0"
 
 # Web server
 gem 'thin'
+gem 'rack', '1.3.3'
 
 # Mongo
 gem 'mongoid', "~> 2.1"
