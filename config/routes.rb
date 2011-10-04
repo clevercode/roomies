@@ -3,6 +3,7 @@ Roomies::Application.routes.draw do
   root :to => 'pages#home'
 
   match '/me' => 'users#show', as: 'current_user'
+  match '/house' => 'houses#show', as: 'current_house'
   resource :corkboard, only: %w(show)
   resource :support_request, only: %w(new create)
 
@@ -23,7 +24,13 @@ Roomies::Application.routes.draw do
   end
   resources :categories
   resources :achievements
-  resources :houses
+
+  resource  :house do
+    resource :subscription
+  end
+
+  resources :houses 
+
   resources :user_mailer
   resources :house_invitations
   resources :rewards

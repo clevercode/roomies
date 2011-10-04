@@ -1,30 +1,19 @@
 require 'spec_helper'
 
 describe House do
-  before(:each) do
-    @attr = { 
-      :name => "House"
-    }
-  end
+  let(:house) { Factory(:house) }
   
-  it "should create a new house given valid attributes" do
-    house = House.new(@attr)
-    house.should be_valid
+  context 'validations' do
+    it { should validate_presence_of(:name) }
+    it { should_not validate_uniqueness_of(:name) }
   end
-  
-  it "should require a name to be created" do
-    house = House.new(@attr.merge(:name => ""))
-    house.should_not be_valid
+
+  describe '#sponsored?' do
+    it "should return true when there is a sponsor" do
+      user = Factory(:user)
+      house.sponsor = user
+      house.should be_sponsored
+    end
   end
-  
-  it "should accept duplicate names" do
-    House.create!(@attr)
-    house = House.new(@attr)
-    house.should be_valid
-  end
-  
-  it "should have access to any users who belong to it" do
-    house = House.new(@attr)
-    house.should respond_to(:users)
-  end
+
 end

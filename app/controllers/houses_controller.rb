@@ -8,7 +8,7 @@ class HousesController < ApplicationController
   end
 
   def show
-    @house = House.find(params[:id])
+    @house = current_user.house
     respond_with @house
   end
 

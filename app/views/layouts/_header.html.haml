@@ -3,8 +3,8 @@
     =link_to 'Roomies', root_path
   - else
     =link_to 'Roomies', corkboard_path
-- if user_signed_in? && current_user.invitation_limit and current_user.invitation_limit > 0
-  #beta= link_to "Beta Invites (#{current_user.invitation_limit})", new_user_invitation_path
+/ - if user_signed_in? && current_user.invitation_limit and current_user.invitation_limit > 0
+/  #beta= link_to "Beta Invites (#{current_user.invitation_limit})", new_user_invitation_path
 %nav
   - if user_signed_in?
     %ul
@@ -26,8 +26,10 @@
           = link_to "#{pasts.count} past due", past_due_assignments_path, class: 'ajax'
       %li.link.corkboard
         = link_to "Corkboard", corkboard_path
+      %li.link.my_house
+        = link_to "My House", current_house_path
       %li.link.profile
-        = link_to "Profile", current_user_path
+        = link_to "Me", current_user_path
       %li.action
         - if current_user.house.nil?
           = link_to t(:build_house), new_house_path, id: 'easy_button', class: 'ajax'

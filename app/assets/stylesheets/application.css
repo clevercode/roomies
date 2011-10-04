@@ -5,4 +5,5 @@
  *= require_self
  *= require grid
  *= require_tree . 
+ *= require jquery-ui-1.8.11.custom.css
 */

@@ -36,5 +36,6 @@ Roomies::Application.configure do
     :enable_starttls_auto => true  }
   # Do not compress assets
   config.assets.compress = false
+  config.assets.logger = nil
 end
 

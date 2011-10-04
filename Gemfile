@@ -7,7 +7,7 @@ gem 'thin'
 
 # Mongo
 gem 'mongoid', "~> 2.1"
-gem "bson_ext", "~> 1.3"
+gem "bson_ext", "~> 1.4"
 gem 'mongoid_rails_migrations'
 
 # Authentication
@@ -24,6 +24,9 @@ gem 'simple_form', "~> 1.4.2"
 # Exception tracking
 gem "airbrake"
 
+# Stripe API
+gem 'stripe'
+
 # Rails extensions
 gem 'jquery-rails', "~> 1.0.13"
 gem 'haml-rails', "~>0.3.4"
@@ -38,13 +41,14 @@ end
 
 group :development do
   gem "rails-footnotes", ">= 3.7"
-  gem 'ruby-debug19'
+  # gem 'ruby-debug19'
   gem 'mailcatcher'
   gem 'foreman'
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-bundler'
   gem 'guard-spork'
+  gem 'spork', '~> 0.9.0.rc9'
   if RUBY_PLATFORM.downcase.include?("darwin")
     gem 'rb-fsevent'
     gem 'growl'

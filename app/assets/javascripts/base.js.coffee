@@ -3,9 +3,12 @@ this.roomies =
   init: []
   ui: {}
   utils: {}
+# Classical Namespace
+this.Roomies = {}
 
-# Convienence variable
+# Convienence variables
 roomies = this.roomies
+Roomies = this.Roomies
 
 # =========================================
 # ============= Roomies Core ==============
@@ -123,6 +126,8 @@ jQuery ($) ->
   hideModal = (event) ->
     $darknessification.hide 'fast'
     $modal.hide 'fast'
+
+  roomies.ui.hideModal = hideModal
 
   centerModal = (animate = false) ->
     center = calculateCenter($('html'), $modal)
