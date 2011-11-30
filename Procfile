@@ -1,3 +1,1 @@
-web: bundle exec rails server thin -p $PORT
-mongodb: mongod
-mailcatcher: mailcatcher -fv
+web: bundle exec thin start -A rack -p $PORT
