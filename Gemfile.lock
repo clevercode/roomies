@@ -256,7 +256,6 @@ GEM
     stripe (1.5.17)
       rest-client
     term-ansicolor (1.0.6)
-    therubyracer-heroku (0.8.1.pre3)
     thin (1.2.11)
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
@@ -312,7 +311,6 @@ DEPENDENCIES
   simple_form (~> 1.4.2)
   spork (~> 0.9.0.rc9)
   stripe
-  therubyracer-heroku (= 0.8.1.pre3)
   thin
   turn
   uglifier

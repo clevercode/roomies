@@ -56,7 +56,6 @@ group :development do
   end
 end
 
-
 group :test do
   gem 'shoulda-matchers'
   gem 'mongoid-rspec'
@@ -66,6 +65,3 @@ group :test do
   gem "launchy", ">= 0.4.0"
 end
 
-group :production do 
-  gem 'therubyracer-heroku', '0.8.1.pre3'
-end
