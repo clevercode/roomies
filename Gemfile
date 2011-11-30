@@ -50,7 +50,7 @@ group :development do
   gem 'guard-bundler'
   gem 'guard-spork'
   gem 'spork', '~> 0.9.0.rc9'
-  if RUBY_PLATFORM.downcase.include?("darwin")
+  group :mac do
     gem 'rb-fsevent'
     gem 'growl'
   end
