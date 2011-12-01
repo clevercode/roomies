@@ -2,14 +2,13 @@ require File.expand_path('../boot', __FILE__)
 
 # we're using MongoDB, had to DeActiveRecord
 # require 'rails/all'
+require "rails"
 require "action_controller/railtie"
 require "action_mailer/railtie"
 require "active_resource/railtie"
-# require "rails/test_unit/railtie"
+require "sprockets/railtie"
 
-# If you have a Gemfile, require the gems listed there, including any gems
-# you've limited to :test, :development, or :production.
-# Bundler.require(:default, Rails.env) if defined?(Bundler)
+# Loads bundled gems for current environment + :assets when necessary
 Bundler.require *Rails.groups(:assets) if defined?(Bundler)
 
 module Roomies
