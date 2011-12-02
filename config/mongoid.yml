@@ -9,9 +9,7 @@ defaults: &defaults
 
 # set these environment variables on your prod server
 production:
-  # Dummy URI is necessary for rake assets:precompile on Heroku since
-  # environment variables are not available during the compiliation.
-  uri: <%= ENV['MONGOLAB_URI'] || 'scheme://user:pass@127.0.0.1/dbname' %>
+  uri: <%= ENV['MONGOLAB_URI'] %>
 
 development:
   host: localhost

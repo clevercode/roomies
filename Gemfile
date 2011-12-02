@@ -7,7 +7,7 @@ gem 'thin'
 gem 'rack', '1.3.3'
 
 # Mongo
-gem 'mongoid', "~> 2.1"
+gem 'mongoid', "< 2.3" # Can't upgrade to 2.3 until MongoLab or MongoHQ upgrade to MDB 2.0
 gem "bson_ext", "~> 1.4"
 gem 'mongoid_rails_migrations'
 
