@@ -1,0 +1,15 @@
+%h2 Forms
+= render_pattern 'input[type=text]' do
+  = text_field_tag unique_pattern_id
+
+= render_pattern 'input[type=submit]' do
+  = submit_tag 'Submit'
+
+%h2 Components
+= render_pattern '.signup-full-width', 'pages/signup'
+
+= render_pattern '.mantra' do
+  .mantra
+    %p living
+    %p together
+    %p easier

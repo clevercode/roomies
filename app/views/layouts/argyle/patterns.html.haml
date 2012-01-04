@@ -1,0 +1,13 @@
+!!! 5
+%html
+  %head
+    %title Roomies Reusable Patterns
+    = stylesheet_link_tag 'application', 'argyle'
+    = javascript_include_tag 'http://use.typekit.com/urh2gpw.js'
+  
+    :javascript
+      try{Typekit.load();}catch(e){}
+  %body
+    .argyle_header
+      %h1.girdle Roomies Patterns
+    .girdle= yield

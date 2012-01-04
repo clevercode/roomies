@@ -2,6 +2,10 @@ Roomies::Application.routes.draw do
 
   root :to => 'pages#home'
 
+  if Rails.env.development?
+    match '/patterns' => 'argyle/patterns#index'
+  end
+
   match '/me' => 'users#show', as: 'current_user'
   match '/house' => 'houses#show', as: 'current_house'
   resource :corkboard, only: %w(show)
