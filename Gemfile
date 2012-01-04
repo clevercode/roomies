@@ -41,7 +41,7 @@ group :assets do
 end
 
 group :development do
-  gem "rails-footnotes", ">= 3.7"
+  gem "rails-footnotes", ">= 3.7.5.rc4"
   # gem 'ruby-debug19'
   gem 'mailcatcher'
   gem 'foreman'
