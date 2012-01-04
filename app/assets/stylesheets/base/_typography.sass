@@ -1,0 +1,21 @@
+=meta-web-pro
+  font-family: ff-meta-web-pro-1, ff-meta-web-pro-2, sans-serif
+=deva-ideal
+  font-family: deva-ideal-1, deva-ideal-2, sans-serif
+
+body
+  color: $font-color
+  font-size: 15px
+  line-height: 150%
+  +deva-ideal
+
+h1, h2, h3, h4, h5, h6
+  +meta-web-pro
+  margin: 0
+
+
+a
+  color: $link-color
+  display: inline-block
+  &:hover, &:focus
+    color: $link-hover-color

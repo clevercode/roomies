@@ -1,0 +1,82 @@
+// variations
+.small
+  font-size: 0.6667em
+.big
+  font-size: 1.333em
+  
+.mantra
+  padding: 0.5em 0 1em
+  font-weight: 600
+
+  p
+    margin: 0
+    text-align: center
+    letter-spacing: 2px
+    +meta-web-pro
+
+  //living
+  p:first-child
+    font-size: 6.25em
+    line-height: 68.5%
+
+  //together
+  p:nth-child(2)
+    font-size: 3.95em
+    line-height: 138%
+
+  //easier
+  p:nth-child(3)
+    font-size: 5.625em
+    line-height: 48%
+
+.signup-full-width
+  clear: both
+  padding: 1.5em 1.5em 1em
+  margin-bottom: 2em
+  +box-shadow(fade-out(black,0.8) 0 1px 2px, fade-out(white, 0.5) 0 0 15px inset)
+  +background-image(linear-gradient(transparentize($blue,.4), transparentize($lightblue, .2)))
+
+  .email, .password
+    input
+      width: 590px
+      font-size: 2.8em
+      float: left
+
+  .password
+    display: none
+
+  p
+    display: inline-block
+    margin: 0 1em
+    clear: left
+
+  p.generate
+    display: none
+
+  .submit_with_pricing
+    float: right
+    width: 300px
+    text-align: center
+
+    p
+      margin: 0.5em
+
+  input[type=submit]
+    color: #fff
+    border: none
+    outline: none
+    padding: 0.25em 1em
+    font-size: 2em
+    font-weight: bold
+    text-transform: lowercase
+    +border-radius(0.5em)
+    +background-image(linear-gradient($lightgreen, $green))
+    text-shadow: 0 -1px 1px fade-out(black, 0.3)
+    +box-shadow(darken(saturate($green, 10%), 20%) 0 0 5px inset, transparentize(white, .2) 0 2px 7px inset, darken($green, 30%) 0 1px 2px) 
+    &:hover, &:focus
+      +background-image(linear-gradient(darken(saturate($lightgreen, 5%), 5%), darken(saturate($green, 5%), 5%)))
+    &:active  
+      text-shadow: fade-out(black,0.5) 0 1px 3px, darken($green,10%) 1px 1px 0
+      +background-image(linear-gradient(darken(saturate($green, 5%), 5%), (darken(saturate($lightgreen, 5%), 5%))))
+      +box-shadow(rgba(0,0,0,.7) 0 1px 5px inset, rgba(0,0,0,.5) 0 -1px 2px inset)
+

@@ -1,6 +1,6 @@
 - @main_class = 'home'
 
-.mantra
+.mantra.big
   %p= t('.living')
   %p= t('.together')
   %p= t('.easier')
@@ -10,17 +10,17 @@
 
 = render partial: "signup"
 
-.benefit
+.benefit#benefit-relax
   %h2= t '.relax'
   %p= t '.relax_copy'
   = link_to image_tag('screens/corkboard.png'), '#'
 
-.benefit.middle
+.benefit#benefit-play
   %h2= t '.play'
   %p= t '.play_copy'
   = link_to image_tag('screens/profile.png'), '#'
   
-.benefit.last
+.benefit#benefit-save
   %h2= t '.save'
   %p= t '.save_copy'
   = link_to image_tag('screens/calendar.png'), '#'

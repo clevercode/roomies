@@ -1,19 +1,24 @@
 !!! 5
 %html
   = render :partial => 'layouts/head'
-  %body{ :lang => 'en', :class => "#{controller.controller_name} #{signed_in? ? 'signed_in' : ''} bp"}
-    #clouds
-    #container
+  %body{ :lang => 'en', :class => "#{controller.controller_name} #{signed_in? ? 'signed_in' : ''}"}
+
+    #not-the-footer(role="bullshit")
       %header#header
-        = render :partial => 'layouts/header'
-      #main{ :role => 'main', :class => @main_class }
+        .girdle= render :partial => 'layouts/header'
+
+      #flashes
         = render :partial => 'layouts/flashes'
-        = yield
+
+      #main{ role: 'main', class: @main_class }
+        .girdle= yield
+
+        -# WTF!
         #modal
           #ajaxed
           #ajaxed_again
         #darknessification
         .loader
+
     %footer#footer
-      .container
-        = render :partial => 'layouts/footer'
+      .girdle= render partial: 'layouts/footer'

@@ -1,0 +1,59 @@
+@import 'bourbon'
+
+@import 'base'
+@import 'components'
+
+// Home Page
+
+.pages .home
+  .mantra
+    float: left
+    width: grid-width(5)
+    margin: 20px 
+
+  #screencast
+    padding: 10px
+    margin: .5em 0 2.5em
+    float: right
+    +box-shadow(fade-out(black, 0.8) 0 1px 2px, fade-out(white, 0.5) 0 0 15px inset)
+    +background-image(linear-gradient(shade($blue, 3%), transparentize($lightblue, 0)))
+
+    iframe
+      display: block
+      margin: 0 auto
+
+  .benefit
+    float: left
+    width: grid-width(4)
+    margin-right: $gw-gutter
+
+    h2
+      margin: 0
+      font-size: 4em
+      line-height: 140%
+      text-indent: 70px
+      text-transform: lowercase
+      font-weight: bold
+      background-repeat: no-repeat
+      background-position: 0px 20px
+    p
+      font-size: 1.1em
+      margin: 0
+
+    img
+      margin: 1em 0
+
+    &#benefit-relax
+      h2
+        background-image: image-url('cloud.png')
+    &#benefit-play
+      h2
+        background-image: image-url('pacman.png')
+    &#benefit-save
+      margin-right: 0
+      h2
+        background-image: image-url('pig.png')
+        
+
+
+

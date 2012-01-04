@@ -1,9 +1,10 @@
-#signup
+.signup-full-width
   = simple_form_for(@user, :as => :user, :url => registration_path(:user)) do |f|
     = f.input :email, :as => :email, :label => false, :input_html => { :placeholder => t(:email_example) }
-    #password_junk
-      = f.input :password, :label => false, :required => false, :input_html => { :placeholder => t('.type_your_password') }
-    = f.submit t(:sign_up), :class => 'green'
+    = f.input :password, :label => false, :required => false, :input_html => { :placeholder => t('.type_your_password') }
+    .submit_with_pricing
+      = f.submit t(:sign_up), :class => 'green'
+      %p= t '.free_for_30_days'
   %p.other_auths
     = t(:or_sign_up_with)
     = link_to 'twitter,', '/auth/twitter'
@@ -13,4 +14,3 @@
   %p.generate
     or
     = link_to t('.generate_one'), 'generate'
-  %p.pricing= t '.free_for_30_days'

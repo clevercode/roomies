@@ -41,11 +41,12 @@ roomies.utils.getNestedValueForObject = (obj, identifier) ->
   
 # // Handles the sticky footer
 roomies.ui.recalculateStickyFooter = ->
-  footer = $('footer')
-  body = $('body')
-  footer.css({position:'static'})
-  if window.innerHeight > body.height()
-    footer.css({position:'fixed', bottom:0})
+  # footer = $('footer')
+  # body = $('body')
+  # footer.css({position:'static'})
+  # if window.innerHeight > body.height()
+  #   footer.css({position:'fixed', bottom:0})
+  return undefined
 
 roomies.init.push('ui.recalculateStickyFooter')
 
