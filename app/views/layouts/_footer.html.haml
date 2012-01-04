@@ -1,7 +1,7 @@
 %p 
-  &copy; #{Date.today.year} 
-  =link_to 'cleverCode LLC.', 'http://clevercode.net'
-  #{t :all_rights_reserved}
+  &copy; #{Time.current.year} 
+  = link_to 'cleverCode LLC.', 'http://clevercode.net' 
+  = t(:all_rights_reserved)
 %p#links
   =link_to t(:about_us), about_path
   |
