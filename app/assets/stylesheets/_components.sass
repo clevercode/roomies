@@ -3,6 +3,14 @@
   font-size: 0.6667em
 .big
   font-size: 1.333em
+
+// or
+.v-split-or
+  clear: both
+  padding: 1em
+  font-size: 1.3em
+  text-align: center
+  font-style: italic
   
 .mantra
   padding: 0.5em 0 1em
@@ -29,12 +37,92 @@
     font-size: 5.625em
     line-height: 48%
 
-.signup-full-width
-  clear: both
-  padding: 1.5em 1.5em 1em
-  margin-bottom: 2em
+
+// @abstract Plain Box
+.plain-box
+  padding: 1.5em
   +box-shadow(fade-out(black,0.8) 0 1px 2px, fade-out(white, 0.5) 0 0 15px inset)
   +background-image(linear-gradient(transparentize($blue,.4), transparentize($lightblue, .2)))
+
+  h1
+    margin-bottom: 0.5em
+
+  &.faded
+    
+
+// Sign In Box
+.sign-in-box
+  @extend .plain-box
+  width: grid-width(4.5)
+  .email, .password
+    input
+      width: grid-width(4.4)
+  .input.boolean
+    float: left
+    margin: 1em 0
+  input[type=submit]
+    float: right
+    margin-top: 0.5em
+  .auths
+    clear: both
+    padding-top: 1em
+    a
+      text-decoration: none
+  .forgot_password
+    text-align: right
+    a
+      color: tint($link-color, 20%)
+
+// Sign In Box (base)
+.sign-up-box
+  @extend .plain-box
+  .password
+    display: none
+
+  .submit_with_pricing
+    text-align: center
+    padding-top: 0.5em
+    p
+      display: inline-block
+      margin: 0.5em
+  label
+    display: none
+
+  input[type=submit]
+    font-size: 2em
+    padding-left: 2em
+    padding-right: 2em
+
+  .other_auths, .generate
+    margin: 0 1em
+  .generate
+    display: none
+  .other_auths
+    color: tint($font-color, 10%)
+
+// Sign In Box (narrow variant) 
+.sign-up-box.half
+  width: 340px
+
+  .email,.password
+    input
+      width: 330px
+
+  input[type=submit]
+    font-size: 1em
+  .submit_with_pricing
+    clear: both
+
+  .other_auths
+    text-align: center
+
+
+// Sign In Box (wide variant) 
+.sign-up-box.full
+  @extend .plain-box
+  clear: both
+  padding-bottom: 1em 
+  margin-bottom: 2em
 
   .email, .password
     input
@@ -42,27 +130,14 @@
       font-size: 2.8em
       float: left
 
-  .password
-    display: none
-
-  p
-    display: inline-block
-    margin: 0 1em
-    clear: left
-
-  p.generate
-    display: none
-
   .submit_with_pricing
     float: right
     width: 300px
-    text-align: center
 
-    p
-      margin: 0.5em
+  h1
+    display: none
 
-  input[type=submit]
-    font-size: 2em
-    width: auto
-    padding-left: 2em
-    padding-right: 2em
+  p
+    clear: left
+
+

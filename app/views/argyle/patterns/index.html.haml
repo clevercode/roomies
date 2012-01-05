@@ -6,7 +6,12 @@
   = submit_tag 'Submit'
 
 %h2 Components
-= render_pattern '.signup-full-width', 'pages/signup'
+= render_pattern '.plain-box' do
+  .plain-box
+    I'm just a plain old box' Useful for holding your gizmos.
+= render_pattern '.sign-in-box', 'components/_sign_in'
+= render_pattern '.sign-up-box.full', 'components/_sign_up', locals: { style: 'full' }
+= render_pattern '.sign-up-box.half', 'components/_sign_up', locals: { style: 'half' }
 
 = render_pattern '.mantra' do
   .mantra

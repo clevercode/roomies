@@ -55,5 +55,14 @@
         background-image: image-url('pig.png')
         
 
+// Sign in page
+.sessions .sign-in-box
+  margin: 0 auto
+.sessions .sign-up-box
+  margin: 0 auto
+  +background-image(linear-gradient(transparentize(tint($blue,50%),.3), transparentize(tint($lightblue,50%), .3)))
 
+.sign-up-completion-box
+  @extend .plain-box
+  width: grid-width(4.5)
 

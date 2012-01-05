@@ -1,0 +1,17 @@
+%section.sign-up-box{class: (defined?(style) ? style : 'full')}
+  %h1= t('.title')
+  = simple_form_for(:user, :url => registration_path(:user)) do |f|
+    = f.input :email, :as => :email, :label => false, :input_html => { :placeholder => t(:email_example) }
+    = f.input :password, :label => false, :required => false, :input_html => { :placeholder => t('.type_your_password') }
+    .submit_with_pricing
+      = f.submit t(:sign_up), :class => 'green'
+      %p= t '.free_for_30_days'
+  %p.other_auths
+    = t('.sign_up_using')
+    = link_to 'twitter,', '/auth/twitter'
+    = link_to 'facebook, ', '/auth/facebook'
+    or
+    = link_to 'google', '/auth/google'
+  %p.generate
+    or
+    = link_to t('.generate_one'), 'generate'

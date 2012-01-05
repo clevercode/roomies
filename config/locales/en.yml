@@ -3,7 +3,7 @@
 
 en:
   # forms & actions
-  email_example: "example@domain.com"
+  email_example: "your_email@mailsite.com"
   name: "Your name"
   sign_in: "Sign In"
   lets_go: "Let's Go"
@@ -14,7 +14,7 @@ en:
   or_sign_in_with: "or sign in with"
   or_sign_up_with: "or sign up with"
   or: "or"
-  forgot_password: "Need a hand with that password?"
+  forgot_password: "Need help with your password?"
   email: "Email"
   password: "Password"
   house_updated: "Your house was updated successfully."
@@ -141,6 +141,18 @@ en:
     # hints:
     #   username: 'User name to sign in.'
     #   password: 'No special characters, please.'
+    #
+
+  # components
+  components:
+    sign_up:
+      title: 'Sign Up'
+      sign_up_using: 'Sign up using'
+      free_for_30_days: 'Free for 30 days, cheap after'
+    sign_in:
+      title: 'Sign In'
+      sign_in_using: 'Sign in using'
+
   
   # home
   pages:
@@ -159,7 +171,6 @@ en:
     signup:
       type_your_password: "choose your own password..."
       generate_one: "let us generate one for you"
-      free_for_30_days: "Free for 30 days, cheap after"
 
 
   # corkboard
