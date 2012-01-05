@@ -1,12 +1,15 @@
 module PatternsHelper
-  def render_pattern(selector,template=nil,&block)
+  def render_pattern(selector, template_name = nil, options = {}, &block)
     content_tag :div, :class => 'argyle_pattern' do
       content_tag :code, selector
       pattern = if block_given?
-        capture(&block)
-      else
-        render(template) if template 
-      end
+                  capture(&block)
+                elsif template_name
+                  options[:file] = template_name
+                  render(options)
+                else
+                  'pattern not given'
+                end
       out = ''
       out << content_tag(:code, selector, :class => 'argyle_selector')
       out << pattern
