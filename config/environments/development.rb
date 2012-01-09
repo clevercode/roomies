@@ -23,8 +23,7 @@ Roomies::Application.configure do
   config.action_dispatch.best_standards_support = :builtin
 
   # ActionMailer Config
-  # config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-  # A dummy setup for development - no deliveries, but logged
+  config.action_mailer.default_url_options = { host: 'roomies.dev' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
@@ -34,6 +33,7 @@ Roomies::Application.configure do
     :port                 => 1025,
     :authentication       => 'plain',
     :enable_starttls_auto => true  }
+
   # Do not compress assets
   config.assets.compress = false
   config.assets.logger = nil
