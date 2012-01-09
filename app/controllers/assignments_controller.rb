@@ -199,9 +199,11 @@ class AssignmentsController < ApplicationController
     if @assignment.save
       reward
       flash[:notice] = t(:confirmed, scope: [:assignments, :confirm])
+    else
+      flash[:notice] = t(:unable_to_confirm, scope: [:assignments, :confirm])
     end
-
-    respond_with @assignment, location: corkboard_url
+    
+    redirect_to corkboard_index_url
   end
 
   def reject

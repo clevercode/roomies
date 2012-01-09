@@ -60,6 +60,7 @@ group :development do
     gem 'rb-fsevent'
     gem 'growl'
   end
+  gem 'pry'
 end
 
 group :test do

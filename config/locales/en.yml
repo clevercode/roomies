@@ -57,6 +57,7 @@ en:
   profile_updated: "Your profile was successfully updated. Now go do useful stuff ;-)"
   address_used: "Sorry but this email address is already used by another user. If this doesn't make any sense, shoot us a line so we investigate."
   house_invitation_sent: "Your invitation was successfully sent."
+  already_roomie: "This person is already your roomie :-)"
   
   #errors
   oops: "Something went wrong. We can't promise we'll send you free stuff but if you want to come talk to us about it, we promise we'll help. :-)"
@@ -225,6 +226,7 @@ en:
       already_completed: "This assignment was already completed, nice try ;-)"
     confirm:
       confirmed: "Assignment successfully confirmed."
+      unable_to_confirm: "We screwed up, it seems your confirmation didn't go through. Can you try again?"
     reject:
       rejected: "Assignment successfully rejected."
 

@@ -1,10 +1,8 @@
 %h1
   - unless user_signed_in?
-    =link_to 'Roomies', root_path
+    = link_to 'Roomies', root_path, title: 'Roomies'
   - else
-    =link_to 'Roomies', corkboard_path
-/ - if user_signed_in? && current_user.invitation_limit and current_user.invitation_limit > 0
-/  #beta= link_to "Beta Invites (#{current_user.invitation_limit})", new_user_invitation_path
+    = link_to 'Roomies', corkboard_path, title: 'Your Corkboard'
 %nav
   - if user_signed_in?
     %ul

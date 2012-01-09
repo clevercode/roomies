@@ -19,9 +19,12 @@ class HouseInvitationsController < ApplicationController
 
   def create
     @house_invitation = HouseInvitation.new(params[:house_invitation])
-    @house_invitation.email
-    house_invitee = User.where(:email => @house_invitation.email).first || User.new
 
+    # finding the existing user matching the invitation email
+    # or create a new one from scratch with email
+    house_invitee = User.find_or_create_by(email: @house_invitation.email)
+
+    # only sending the invitation if the invitee isn't already a roomie
     unless house_invitee.house == current_user.house
       if @house_invitation.save
         reward
