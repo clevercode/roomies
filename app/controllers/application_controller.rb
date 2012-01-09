@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :prepare_sign_in, :set_locale, :set_time_zone
+  before_filter :set_locale, :set_time_zone
 
   # preventing modals from loading entire pages
   layout proc { |controller| controller.request.xhr? ? false : 'application' }
@@ -49,8 +49,4 @@ class ApplicationController < ActionController::Base
     # flash[:reward] = "Hey look, you just got a reward for #{t(type, :scope => :rewards)}!"
   end
 
-  private
-  def prepare_sign_in
-    @user = User.new
-  end
 end
