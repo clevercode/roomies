@@ -8,17 +8,17 @@ gem 'rails', '3.0.7'
 gem "sass", "~>3.1.0"
 gem "haml", "~> 3.1.0"
 gem "compass", "~>0.11"
-gem 'html5-boilerplate'
-gem 'simple_form'
+gem 'html5-boilerplate', '~> 0.3.3'
+gem 'simple_form', '~> 1.4.0'
 gem 'devise', '>= 1.2.0'
 gem 'devise_invitable', '~> 0.4.0'
-gem 'omniauth'
+gem 'omniauth', '~> 0.2.6'
 gem 'barista', '~> 1.0'
 gem 'mongoid', '>= 2.0.0'
 gem 'bson_ext', '>= 1.2.4'
 gem 'mongoid_rails_migrations', '>=0.0.2'
-gem 'jquery-rails'
-gem 'haml-rails'
+gem 'jquery-rails', '~> 1.0.7'
+gem 'haml-rails', '~> 0.3.4'
 gem 'hoptoad_notifier'
 gem 'dalli'
 gem 'rake', '0.8.7'
@@ -44,4 +44,5 @@ group :development, :test do
   gem 'ruby-debug19'
   gem 'jasmine'
   gem 'mailcatcher'
+  gem 'pry'
 end
