@@ -31,7 +31,12 @@ gem 'stripe'
 # Rails extensions
 gem 'jquery-rails', "~> 1.0.13"
 gem 'haml-rails', "~>0.3.4"
-gem "rspec-rails", "~> 2.6.1", :group => [:development, :test]
+
+group :development, :test do
+  gem 'rspec-rails', "~> 2.6.1"
+  gem 'jasmine'
+  gem 'jasminerice'
+end
 
 group :assets do
   gem 'sass-rails', "~> 3.1"
@@ -49,6 +54,7 @@ group :development do
   gem 'guard-rspec'
   gem 'guard-bundler'
   gem 'guard-spork'
+  gem 'guard-jasmine'
   gem 'spork', '~> 0.9.0.rc9'
   group :mac do
     gem 'rb-fsevent'

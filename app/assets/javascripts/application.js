@@ -4,16 +4,16 @@
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // the compiled file.
 //
-//= require modernizr.min
-//= require selectivizr.min
 //= require underscore.min
-//= require jquery
-//= require jquery-ui
-//= require jquery_ujs
-//= require date
-//= require base
-//= require_tree
+//= require jquery.min
+//= require hogan
+//
 //= require_self
+//= require utils/password_generator
+//= require sign_up
 
-// Boot Script
-jQuery(this.roomies.initialize);
+this.Roomies = {
+  utils: {}
+}
+this.roomies = {}
+

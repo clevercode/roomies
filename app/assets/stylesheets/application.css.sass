@@ -3,6 +3,31 @@
 @import 'base'
 @import 'components'
 
+code.password
+  background: fade-out(white, 0.45)
+  text-align: center
+  border: 1px solid fade-out(white, 0.25)
+  font-size: 1.2em
+  padding: 0.5em
+  display: block
+
+.modalPresenter
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  background-color: fade-out(black, 0.25)
+
+  section
+    @extend .plain-box
+    +background-image(linear-gradient(transparentize($blue,.2), transparentize($lightblue, .1)))
+    // FIXME: Should not be width dependent
+    width: 400px 
+    margin: 20px auto
+
+
+
 // Home Page
 
 .pages .home
