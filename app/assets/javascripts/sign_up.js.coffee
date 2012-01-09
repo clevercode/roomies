@@ -12,23 +12,26 @@ class SignUpView
 
   bindEvents: ->
     # ignore clicks from the submit button if form is incomplete
-    @$.on('click', 'input[type=submit]', $.proxy(@, 'onSubmitClick'))
+    @$.on('click', 'input[type=submit]', $.proxy(@, '_onSubmitClick'))
     # disable button when submitting
-    @$.on('submit', 'form', $.proxy(@, 'onFormSubmit'))
-    @$.on('click', '.generate a', $.proxy(@, 'onGenerateClick'))
+    @$.on('submit', 'form', $.proxy(@, '_onFormSubmit'))
+    @$.on('click', '.generate a', $.proxy(@, '_onGenerateClick'))
 
-  onSubmitClick: (event) ->
+  # @private
+  _onSubmitClick: (event) ->
     return if @isComplete()
+    event.preventDefault()
     switch this.missing[0]
       when 'email' then this.transitionToEmail()
       when 'password' then this.transitionToPassword()
       else
         throw new Error('Unknown missing field')
-    event.preventDefault()
 
-  onFormSubmit: (event) ->
+  # @private
+  _onFormSubmit: (event) ->
 
-  onGenerateClick: (event) ->
+  # @private
+  _onGenerateClick: (event) ->
     event.preventDefault()
     passwordInput = @$.find('input:password')
     @_oldPassword = passwordInput.val()
@@ -40,10 +43,10 @@ class SignUpView
       <p>Be sure to copy this down, because we will be storing it securely and will be unable to access it again.
       If you forget your password, you can always click on the "password help" link when signing in.</p>
     """, title: "Password Generated", affirm: "Okay, I've got it", reject: "Nevermind, I'll use my own password")
-    $(modal).on('modal:close', $.proxy(@, 'onModalClose'))
+    $(modal).on('modal:close', $.proxy(@, '_onModalClose'))
     roomies.openModal(modal)
 
-  onModalClose: (event) ->
+  _onModalClose: (event) ->
     switch event.action
       when Modal.REJECT, Modal.INTERRUPT
         @$.find('input:password').val(@_oldPassword)
@@ -53,10 +56,10 @@ class SignUpView
 
   isComplete: ->
     @missing = []
-    if @$.find('input[name="user[password]"]').val() == ''
-      @missing.push 'password'
     if @$.find('input[name="user[email]"]').val() == ''
       @missing.push 'email'
+    if @$.find('input[name="user[password]"]').val() == ''
+      @missing.push 'password'
     return @missing.length == 0
 
   transitionToEmail: ->
@@ -70,7 +73,8 @@ class SignUpView
 
 ModalPresenter =
   currentModal: null
-  presenterElement: $('<div class="modalPresenter"/>').hide()
+  presenterElement: $('<div class="modalPresenter"/>')
+
   openModal: (modal)->
     this.initializeModalPresenter()
     throw new Error("Cannot show another modal until the current modal is closed") if @currentModal
@@ -82,6 +86,7 @@ ModalPresenter =
     this.centerModal()
     $(@root).css('overflow','hidden')
     @currentModal = modal
+
   closeModal: ->
     # animate presenter element hiding
     @presenterElement.fadeOut =>
@@ -90,22 +95,30 @@ ModalPresenter =
       @presenterElement.empty()
       @currentModal = null
 
+  # Initializes the hidden container object. Only runs once
   initializeModalPresenter: ()->
     return true if @_modalPresenterInitialized
     throw new Error("ModalPresenter needs an @root property to function") unless @root
-    @presenterElement.on('click',$.proxy(@, 'onPresenterClick'))
-    jwerty.key('escape', $.proxy(@,'onKeyEscape'))
+    @presenterElement.hide()
+    @presenterElement.on('click',$.proxy(@, '_onPresenterClick'))
+    jwerty.key('escape', $.proxy(@,'_onKeyEscape'))
 
+    @_modalPresenterInitialized = true
+
+  # Centers the modal vertically and horizontally within the window
   centerModal: ->
     modal = @presenterElement.children()
     top = ((@presenterElement.height() - modal.outerHeight()) / 2) + @presenterElement.scrollTop() + 'px'
     left = ((@presenterElement.width() - modal.outerWidth()) / 2) + @presenterElement.scrollLeft() + 'px'
     modal.css(position: 'absolute', top: top, left: left)
 
-  onPresenterClick: (event)->
+  # @private 
+  _onPresenterClick: (event)->
     if @currentModal? && event.target == event.currentTarget
       @currentModal.resolveAndCloseWithAction(Modal.INTERRUPT)
-  onKeyEscape: (event)->
+
+  # @private
+  _onKeyEscape: (event)->
     if @currentModal
       @currentModal.resolveAndCloseWithAction(Modal.INTERRUPT)
 
