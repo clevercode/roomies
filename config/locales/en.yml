@@ -213,6 +213,7 @@ en:
       already_completed: "This assignment was already completed, nice try ;-)"
     confirm:
       confirmed: "Assignment successfully confirmed."
+      unable_to_confirm: "We screwed up, it seems your confirmation didn't go through. Can you try again?"
     reject:
       rejected: "Assignment successfully rejected."
 
