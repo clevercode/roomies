@@ -7,6 +7,7 @@ defaults: &defaults
   reconnect_time: 3
   use_object_ids: true
 
+
 # set these environment variables on your prod server
 production:
   uri: 'mongodb://clevercode:jfM2QzkGXkcp6i@flame.mongohq.com:27028/roomies'
@@ -14,6 +15,7 @@ production:
 development:
   host: localhost
   database: roomies_development
+  autocreate_indexes: true
 
 test:
   host: localhost

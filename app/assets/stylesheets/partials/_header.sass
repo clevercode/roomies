@@ -1,0 +1,137 @@
+@import compass
+@import blueprint
+@import partials/colors
+@import partials/awesome
+
+body
+  header
+    margin: 0
+    padding: 15px 30px
+    overflow: hidden
+    background: none
+    h1
+      float: left
+      font-size: 2em
+      a
+        width: 195px
+        height: 75px
+        display: block
+        text-indent: -9999px
+        background: url('logo.png') no-repeat
+    span.notification_title
+      color: #fff
+      display: block
+      font-size: 14px
+      font-weight: bold
+      padding: 5px 10px
+      position: absolute
+      +border-radius(5px)
+      +text-shadow(#000 0 -1px 0)
+      background: rgba(0,0,0,0.6)
+    nav
+      float: right
+      margin-right: .5em
+
+      ul
+        li
+          float: left
+          margin-left: .5em
+          a
+            display: block
+            height: 26px
+            line-height: 26px
+            font-size: 1em
+            margin-top: 1.1em
+            padding: .5em .75em
+            font-weight: bold
+            font-weight: 600
+            text-decoration: none
+            text-align: center
+            background: white
+            color: white
+            +text-shadow(rgba(0,0,0,.5) 0 -1px 1px)
+            +border-radius(3px)
+
+        li.action
+          a
+            +gradient-button($lightblue)
+            &:hover, &:focus
+              color: white
+            &:active  
+              +text-shadow(rgba(0,0,0,.5) 0 1px 1px)
+
+        li.notification, li.link
+          a
+            height: 24px
+            padding: 9px 10px
+            +box-shadow($lightblue 0 0 0 1px inset)
+            &:hover, &:focus
+              background-color: lighten($lightblue, 15%)
+              +box-shadow($lightblue 0 0 0 1px inset,$lightblue 0 1px 3px 1px inset)
+            &:active  
+              +box-shadow($lightblue 0 0 0 1px inset,$lightblue 0 2px 5px 1px inset)
+              +text-shadow(rgba(0,0,0,0.7) 0 1px 1px, rgba(0,0,0,0.4) 0 0 3px)
+        li.notification
+          a
+            width: 24px
+            text-indent: -9999px
+            background-repeat: no-repeat
+            background-position: center center
+            &:hover, &:focus
+              +text-shadow(rgba(0,0,0,0.5) 0 1px 1px, rgba(0,0,0,0.2) 0 0 3px)
+        li.past_due
+          a
+            background-image: url('icons/past_due.png')
+            &:active
+              background-image: url('icons/past_due_active.png')
+        li.confirm
+          a
+            background-image: url('58_24px.png')        
+        li.house
+          a
+            background-image: url('icons/invitation.png')
+        li.rewards
+          a
+            background-image: url('icons/reward.png')
+            &:hover
+              background-image: url('icons/reward_hover.png')
+            &:active
+              background-image: url('icons/reward_active.png')
+
+        li.link
+          a
+            color: black
+            +text-shadow(none)
+        li.corkboard
+          a
+            background: url('icons/corkboard.png') no-repeat .7em center
+            padding-left: 2.5em
+
+        li.profile
+          a
+            background: url('icons/profile.png') no-repeat .7em center
+            padding-left: 2.5em
+    #beta
+      float: left
+      margin-top: 1.7em
+      padding: 0 0 0 1em
+      text-transform: lowercase
+      font-size: .9em
+      a
+        display: block
+        padding: 0 1em
+        line-height: 2.5
+        font-size: .9em
+        +gradient-button(transparentize($lightblue, .8))
+        +text-shadow(none)
+        +border-radius(3px)
+        &:link, &:visited
+          text-decoration: none
+          color: #555
+        &:hover, &:focus
+        &:active
+          +text-shadow(none)
+          
+
+          
+

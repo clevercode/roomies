@@ -2,7 +2,7 @@
   - unless user_signed_in?
     =link_to 'Roomies', root_path
   - else
-    =link_to 'Roomies', '/corkboard'
+    =link_to 'Roomies', corkboard_path
 - if user_signed_in? && current_user.invitation_limit and current_user.invitation_limit > 0
   // #beta= link_to "Beta Invites (#{current_user.invitation_limit})", new_user_invitation_path
 %nav
@@ -19,15 +19,15 @@
       - confirms = current_user.assignments.where(commissioner_id: current_user.id).and(:completed_at.ne => nil).and(validator_id: nil).excludes(completor_id: current_user.id)
       - unless confirms.blank?
         %li.notification.confirm
-          = link_to "#{confirms.count} confirmations", '/confirmations', class: 'ajax'
+          = link_to "#{confirms.count} confirmations", confirmations_path, class: 'ajax'
       - pasts = current_user.assignments.past_due
       - unless pasts.blank?
         %li.notification.past_due
-          = link_to "#{pasts.count} past due", '/past_due_assignments', class: 'ajax'
+          = link_to "#{pasts.count} past due", past_due_assignments_path, class: 'ajax'
       %li.link.corkboard
-        = link_to "Corkboard", root_url
+        = link_to "Corkboard", corkboard_path
       %li.link.profile
-        = link_to "Profile", current_user
+        = link_to "Profile", current_user_path
       %li.action
         - if current_user.house.nil?
           = link_to t(:build_house), new_house_path, id: 'easy_button', class: 'ajax'

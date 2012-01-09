@@ -79,14 +79,18 @@ class UsersController < ApplicationController
   def accept_house_invitation
     house_invitation = HouseInvitation.find(params[:id])
     house_inviter = User.find(house_invitation.house_inviter_id)
-
-    current_user.house = house_inviter.house
     
-    if current_user.save
-      house_invitation.destroy
-      redirect_to current_user, notice: t('.house_joined')
+    # making sure we have a signed in user first
+    if user_signed_in?
+      current_user.house = house_inviter.house unless !user_signed_in? or house_inviter.nil?
+      if current_user.save
+        house_invitation.destroy
+        redirect_to current_user, notice: t('.house_joined')
+      else
+        redirect_to root_url, notice: t('.house_join_fail')
+      end
     else
-      redirect_to root_url, notice: t('.house_join_fail')
+      redirect_to new_user_registration_url
     end
   end
   
