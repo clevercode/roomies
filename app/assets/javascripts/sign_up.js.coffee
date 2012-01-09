@@ -37,9 +37,9 @@ class SignUpView
     # TODO: Remove template from javascript, localization
     modal = new Roomies.Modal(content: """
       <code class="password">#{password}</code>
-      <p>Be sure to write this down, because we will be storing it securely and will be unable to access it again.
+      <p>Be sure to copy this down, because we will be storing it securely and will be unable to access it again.
       If you forget your password, you can always click on the "password help" link when signing in.</p>
-    """, title: "Password Generated", affirm: "I've got it", reject: "Nevermind, I'll use my own password")
+    """, title: "Password Generated", affirm: "Okay, I've got it", reject: "Nevermind, I'll use my own password")
     $(modal).on('modal:close', $.proxy(@, 'onModalClose'))
     roomies.openModal(modal)
 
@@ -72,26 +72,29 @@ ModalPresenter =
   currentModal: null
   presenterElement: $('<div class="modalPresenter"/>').hide()
   openModal: (modal)->
-    throw new Error("ModalPresenter needs an @root property to function") unless @root
+    this.initializeModalPresenter()
     throw new Error("Cannot show another modal until the current modal is closed") if @currentModal
     modal.presenter = this
     modalDomFragment = modal.render()
     @presenterElement.append(modalDomFragment)
-    @presenterElement.on('click',$.proxy(@, 'onPresenterClick'))
     @presenterElement.appendTo(@root)
     @presenterElement.fadeIn()
     this.centerModal()
     $(@root).css('overflow','hidden')
     @currentModal = modal
-
   closeModal: ->
     # animate presenter element hiding
     @presenterElement.fadeOut =>
       $(@root).css('overflow','auto')
       @presenterElement.detach()
-      @presenterElement.off('click',$.proxy(@, 'onPresenterClick'))
       @presenterElement.empty()
       @currentModal = null
+
+  initializeModalPresenter: ()->
+    return true if @_modalPresenterInitialized
+    throw new Error("ModalPresenter needs an @root property to function") unless @root
+    @presenterElement.on('click',$.proxy(@, 'onPresenterClick'))
+    jwerty.key('escape', $.proxy(@,'onKeyEscape'))
 
   centerModal: ->
     modal = @presenterElement.children()
@@ -101,6 +104,9 @@ ModalPresenter =
 
   onPresenterClick: (event)->
     if @currentModal? && event.target == event.currentTarget
+      @currentModal.resolveAndCloseWithAction(Modal.INTERRUPT)
+  onKeyEscape: (event)->
+    if @currentModal
       @currentModal.resolveAndCloseWithAction(Modal.INTERRUPT)
 
 class Modal
@@ -134,6 +140,9 @@ class Modal
   constructor: (options)->
     @context = _.defaults(options, Modal.DEFAULT_OPTIONS)
 
+  # It's important to note that each call to Modal#render() will result in
+  # a brand new DOM fragment. We don't reuse the fragment so that there is no
+  # leak in DOM state, e.g. event handlers, modified classes
   render: ->
     @$ = $(this.renderTemplate())
     this.bindEvents(@$)
@@ -149,9 +158,11 @@ class Modal
     jq.on('click', '#modal-reject', $.proxy(@, '_onReject'))
 
   _onAffirm: (event)->
+    $(event.target).addClass('active')
     this.resolveAndCloseWithAction(Modal.AFFIRM)
 
   _onReject: (event)->
+    $(event.target).addClass('active')
     this.resolveAndCloseWithAction(Modal.REJECT)
 
   resolveAndCloseWithAction: (action)->

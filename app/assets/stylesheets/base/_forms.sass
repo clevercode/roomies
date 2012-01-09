@@ -1,3 +1,12 @@
+=gradient-button($color)
+  border: none
+  outline: none
+  +box-shadow(rgba(0,0,0,.1) 0 0 2px 2px inset, rgba(0,0,0,.2) 0 0 0 1px inset)
+  +background-image(linear-gradient(lighten(desaturate($color, 10%), 0%), darken(desaturate($color, 5%), 15%)))
+  &:hover
+    +background-image(linear-gradient(lighten(desaturate($color, 10%), 0%), darken(desaturate($color, 5%), 20%)))
+  &:active, &.active  
+    +background-image(linear-gradient(darken(desaturate($color, 15%), 20%), darken(desaturate($color, 10%), 5%)))
 
 input[type=text], input[type=email], input[type=password]
   margin: 0.25em 0
@@ -28,3 +37,9 @@ input[type=submit]
     text-shadow: fade-out(black,0.5) 0 1px 3px, darken($green,10%) 1px 1px 0
     +background-image(linear-gradient(darken(saturate($green, 5%), 5%), (darken(saturate($lightgreen, 5%), 5%))))
     +box-shadow(rgba(0,0,0,.7) 0 1px 5px inset, rgba(0,0,0,.5) 0 -1px 2px inset)
+
+button
+  font-size: 1em
+  padding: 0.25em 
+  +border-radius(0.2em)
+  +gradient-button($blue)

@@ -6,6 +6,7 @@
 //
 //= require underscore.min
 //= require jquery.min
+//= require jwerty
 //= require hogan
 //
 //= require_self

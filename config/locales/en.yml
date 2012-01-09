@@ -150,7 +150,7 @@ en:
       sign_up_using: 'Sign up using'
       free_for_30_days: 'Free for 30 days, cheap after'
       type_your_password: 'Type your password'
-      generate_one: 'generate one'
+      generate_one: 'let us generate one for you'
     sign_in:
       title: 'Sign In'
       sign_in_using: 'Sign in using'
