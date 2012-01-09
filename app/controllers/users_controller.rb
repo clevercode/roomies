@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  # before_filter :authenticate_user!
+  before_filter :authenticate_user!
 
   respond_to :html, :json
 
@@ -79,7 +79,8 @@ class UsersController < ApplicationController
   def accept_house_invitation
     house_invitation = HouseInvitation.find(params[:id])
     house_inviter = User.find(house_invitation.house_inviter_id)
-    current_user.house = house_inviter.house unless current_user.nil? or house_inviter.nil?
+
+    current_user.house = house_inviter.house
     
     if current_user.save
       house_invitation.destroy
