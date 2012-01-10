@@ -11,6 +11,7 @@
 //
 //= require_self
 //= require utils/password_generator
+//= require flashes_view
 //= require sign_up
 
 this.Roomies = {

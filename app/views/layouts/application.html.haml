@@ -8,17 +8,10 @@
         .girdle= render :partial => 'layouts/header'
 
       #flashes
-        = render :partial => 'layouts/flashes'
+        = render partial: 'layouts/flashes'
 
       #main{ role: 'main', class: @main_class }
         .girdle= yield
-
-        -# WTF!
-        #modal
-          #ajaxed
-          #ajaxed_again
-        #darknessification
-        .loader
 
     %footer#footer
       .girdle= render partial: 'layouts/footer'

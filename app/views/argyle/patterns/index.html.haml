@@ -8,6 +8,14 @@
 = render_pattern 'button' do
   = button_tag 'Simple Button'
 
+%h2 Flashes
+#flashes
+= render_pattern 'JS: roomies.flash.notice("Test Notice")' do
+  = button_to_function 'Test Notice', 'roomies.flash.notice("Test Notice")'
+
+= render_pattern 'JS: roomies.flash.alert("Test Alert")' do
+  = button_to_function 'Test Alert', 'roomies.flash.alert("Test Alert")'
+
 %h2 Components
 = render_pattern '.plain-box' do
   .plain-box
