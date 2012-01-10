@@ -33,7 +33,7 @@ gem 'jquery-rails', "~> 1.0.13"
 gem 'haml-rails', "~>0.3.4"
 
 group :development, :test do
-  gem 'rspec-rails', "~> 2.6.1"
+  gem 'rspec-rails', "~> 2.8.1"
   gem 'jasmine'
   gem 'jasminerice'
 end
@@ -66,7 +66,6 @@ end
 group :test do
   gem 'shoulda-matchers'
   gem 'mongoid-rspec'
-  gem "turn"                  # pretty printed test output
   gem "database_cleaner", ">= 0.6.7"
   gem "factory_girl_rails", "~> 1.2.0"
   gem "launchy", ">= 0.4.0"
