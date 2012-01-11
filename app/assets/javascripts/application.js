@@ -7,6 +7,7 @@
 // Application libraries
 //= require namespace
 //= require utils/password_generator
+//= require flash
 //= require flashes_view
 //= require sign_up
 //
