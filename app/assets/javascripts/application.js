@@ -1,21 +1,20 @@
-// This is a manifest file that'll be compiled into including all the files listed below.
-// Add new JavaScript/Coffee code in separate files in this directory and they'll automatically
-// be included in the compiled file accessible from http://example.com/assets/application.js
-// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// the compiled file.
-//
+// Vendor libaries
 //= require underscore.min
 //= require jquery.min
 //= require jwerty
 //= require hogan
 //
-//= require_self
+// Application libraries
+//= require namespace
 //= require utils/password_generator
 //= require flashes_view
 //= require sign_up
+//
+// This File
+//= require_self
 
-this.Roomies = {
-  utils: {}
-}
-this.roomies = {}
-
+Roomies = this.Roomies
+roomies = this.roomies
+jQuery(function($){
+  roomies.flash = new Roomies.FlashesView($('#flashes'));
+});

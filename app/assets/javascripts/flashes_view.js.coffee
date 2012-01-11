@@ -5,32 +5,47 @@ Flash =
       <p>{{text}}</p>
     </div> 
   """
+  DEFAULT_OPTIONS: 
+    text: 'Unkown Notice'
+    type: 'notice'
+
   # Returns a subclass of jQuery that includes flash-related methods
-  $: jQuery.sub()
+  $: do -> 
+    jq = jQuery.sub()
+    jq.fn.extend(
+      openIn: (parent, callback)->
+        this.css({opacity: 0})
+        this.prependTo(parent)
+        top = -this.outerHeight()
+        this.css({top: top, opacity: 1})
+        this.animate({top: 0}, Flash.ANIMATION_TIME, ->
+          callback() if callback?
+        )
 
-Flash.$.fn.extend
-  openIn: (parent, callback)->
-    this.css({opacity: 0})
-    this.prependTo(parent)
-    top = -this.outerHeight()
-    this.css({top: top, opacity: 1})
-    this.animate({top: 0}, Flash.ANIMATION_TIME, callback)
-
-  # NOTE: Calling `close` on a sticky flash will not restart the queue. Restart
-  # the queue manually with `roomies.flash.queueNextClose()`
-  close: (callback)->
-    newTop = -this.outerHeight()
-    this.animate({top: newTop }, Flash.ANIMATION_TIME, ->
-      $(this).detach()
-      callback() if callback?
+      # NOTE: Calling `close` on a sticky flash will not restart the queue. Restart
+      # the queue manually with `roomies.flash.queueNextClose()`
+      close: (callback)->
+        newTop = -this.outerHeight()
+        this.animate({top: newTop }, Flash.ANIMATION_TIME, ->
+          $(this).remove()
+          callback() if callback?
+        )
+      # Sticky flashes block the auto-clear queue. Requiring the user to click the
+      # flash element to make it close.
+      sticky: ->
+        this.addClass('sticky')
+        
+      isSticky: ->
+        this.hasClass('sticky')
     )
-  # Sticky flashes block the auto-clear queue. Requiring the user to click the
-  # flash element to make it close.
-  sticky: ->
-    this.addClass('sticky')
-    
-  isSticky: ->
-    this.hasClass('sticky')
+    return jq
+
+  make: (opts = {})->
+    context = _.defaults(opts, Flash.DEFAULT_OPTIONS)
+    Flash.$(Flash.TEMPLATE.render(context))
+
+
+
 
 
 class FlashesView
@@ -70,9 +85,10 @@ class FlashesView
     this.showFlash('notice', text)
 
   showFlash: (type, text)->
-    content = Flash.TEMPLATE.render(type: type, text: text)
-    Flash.$(content).openIn @$element, =>
+    flash = Flash.make(type: type, text: text)
+    flash.openIn @$element, =>
       this.resetNextClose()
 
-jQuery ($)->
-  @roomies.flash = new FlashesView($('#flashes'))
+# export to global
+@Roomies.Flash = Flash
+@Roomies.FlashesView = FlashesView
