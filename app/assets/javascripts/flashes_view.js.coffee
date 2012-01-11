@@ -17,7 +17,7 @@ class FlashesView
     this.resetNextClose()
     this._closeFlash(event.currentTarget)
 
-  queueNextClose: (wait = 3000)->
+  queueNextClose: (wait = 5000)->
     unless @queueTimer
       @queueTimer = setTimeout($.proxy(@, '_onQueueTimer'), wait)
 
