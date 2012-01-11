@@ -1,21 +1,50 @@
-roomies = @roomies
-FLASH_TEMPLATE = Hogan.compile """
-  <div class="flash_{{type}}">
-    <p>{{text}}</p>
-  </div> 
-"""
+Flash =
+  ANIMATION_TIME: 300
+  TEMPLATE: Hogan.compile """
+    <div class="flash_{{type}}">
+      <p>{{text}}</p>
+    </div> 
+  """
+  # Returns a subclass of jQuery that includes flash-related methods
+  $: jQuery.sub()
+
+Flash.$.fn.extend
+  openIn: (parent, callback)->
+    this.css({opacity: 0})
+    this.prependTo(parent)
+    top = -this.outerHeight()
+    this.css({top: top, opacity: 1})
+    this.animate({top: 0}, Flash.ANIMATION_TIME, callback)
+
+  # NOTE: Calling `close` on a sticky flash will not restart the queue. Restart
+  # the queue manually with `roomies.flash.queueNextClose()`
+  close: (callback)->
+    newTop = -this.outerHeight()
+    this.animate({top: newTop }, Flash.ANIMATION_TIME, ->
+      $(this).detach()
+      callback() if callback?
+    )
+  # Sticky flashes block the auto-clear queue. Requiring the user to click the
+  # flash element to make it close.
+  sticky: ->
+    this.addClass('sticky')
+    
+  isSticky: ->
+    this.hasClass('sticky')
+
+
 class FlashesView
-  constructor: (jq)->
-    @$ = jq
+  constructor: (element)->
+    @$element = $(element)
     this.bindEvents()
     this.queueNextClose()
 
   bindEvents: ->
-    @$.on('click', 'div', $.proxy(@, '_onFlashClick'))
+    @$element.on('click', 'div', $.proxy(@, '_onFlashClick'))
 
   _onFlashClick: (event)->
     this.resetNextClose()
-    this._closeFlash(event.currentTarget)
+    Flash.$(event.currentTarget).close()
 
   queueNextClose: (wait = 5000)->
     unless @queueTimer
@@ -29,19 +58,10 @@ class FlashesView
 
   _onQueueTimer: ->
     @queueTimer = null
-    flashes = @$.children()
-    if flashes.length != 0
-      nextFlash = flashes.last()
-      this._closeFlash(nextFlash)
-      this.queueNextClose()
-
-  # @private - Not sure about the API here
-  _closeFlash: (flashElem)->
-    $flashElem = $(flashElem)
-    newTop = -$flashElem.outerHeight()
-    $flashElem.animate({top: newTop }, ->
-      $(this).detach()
-    )
+    flashToHandle = Flash.$(@$element.children().last())
+    unless flashToHandle.isSticky()
+      flashToHandle.close =>
+        this.queueNextClose()
 
   alert: (text)->
     this.showFlash('alert', text)
@@ -50,19 +70,9 @@ class FlashesView
     this.showFlash('notice', text)
 
   showFlash: (type, text)->
-    $flashElem = $(FLASH_TEMPLATE.render(type: type, text: text))
-    # we have to inject it into the template to get the correct outerHeight
-    $flashElem.css({opacity: 0})
-    $flashElem.prependTo(@$)
-    top = -$flashElem.outerHeight()
-    $flashElem.css({top: top, opacity: 1})
-    $flashElem.animate({top: 0}, =>
+    content = Flash.TEMPLATE.render(type: type, text: text)
+    Flash.$(content).openIn @$element, =>
       this.resetNextClose()
-    )
-
-
-
-
 
 jQuery ($)->
-  roomies.flash = new FlashesView($('#flashes'))
+  @roomies.flash = new FlashesView($('#flashes'))

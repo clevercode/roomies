@@ -16,6 +16,9 @@
 = render_pattern 'JS: roomies.flash.alert("Test Alert")' do
   = button_to_function 'Test Alert', 'roomies.flash.alert("Test Alert")'
 
+= render_pattern 'JS: roomies.flash.alert("Test Sticky Alert").sticky()' do
+  = button_to_function 'Test Sticky Alert', 'roomies.flash.alert("Test Sticky Alert").sticky()'
+
 %h2 Components
 = render_pattern '.plain-box' do
   .plain-box
