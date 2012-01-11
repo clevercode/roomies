@@ -1,54 +1,24 @@
-Flash =
-  ANIMATION_TIME: 300
-  TEMPLATE: Hogan.compile """
-    <div class="flash_{{type}}">
-      <p>{{text}}</p>
-    </div> 
-  """
-  DEFAULT_OPTIONS: 
-    text: 'Unkown Notice'
-    type: 'notice'
+# import
+Flash = @Roomies.Flash
 
-  # Returns a subclass of jQuery that includes flash-related methods
-  $: do -> 
-    jq = jQuery.sub()
-    jq.fn.extend(
-      openIn: (parent, callback)->
-        this.css({opacity: 0})
-        this.prependTo(parent)
-        top = -this.outerHeight()
-        this.css({top: top, opacity: 1})
-        this.animate({top: 0}, Flash.ANIMATION_TIME, ->
-          callback() if callback?
-        )
-
-      # NOTE: Calling `close` on a sticky flash will not restart the queue. Restart
-      # the queue manually with `roomies.flash.queueNextClose()`
-      close: (callback)->
-        newTop = -this.outerHeight()
-        this.animate({top: newTop }, Flash.ANIMATION_TIME, ->
-          $(this).remove()
-          callback() if callback?
-        )
-      # Sticky flashes block the auto-clear queue. Requiring the user to click the
-      # flash element to make it close.
-      sticky: ->
-        this.addClass('sticky')
-        
-      isSticky: ->
-        this.hasClass('sticky')
-    )
-    return jq
-
-  make: (opts = {})->
-    context = _.defaults(opts, Flash.DEFAULT_OPTIONS)
-    Flash.$(Flash.TEMPLATE.render(context))
-
-
-
-
-
+# FlashesView should really be renamed FlashesController its repsponsible for
+# dispatatching new flash messages and clearing out expired messages
+#
+# @example Flashing the user
+#   flashes.alert('Alert message')
+#   flashes.notice('Notice message')
+#
+# If you need a flash to stick around, simply sticky it
+# @example
+#   flashes.alert('Sticky alert message').sticky()
+# 
+# @since 2.0.0
 class FlashesView
+
+  # Requires a parent element that the flash elements will insert into.
+  #
+  # @example
+  #   @roomies.flashes = new Roomies.FlashesView($('#flashes'))
   constructor: (element)->
     @$element = $(element)
     this.bindEvents()
@@ -61,10 +31,14 @@ class FlashesView
     this.resetNextClose()
     Flash.$(event.currentTarget).close()
 
+  # Sets a timer for the specified amount of time before clearing the oldest
+  # flash that is displayed
+  # @param wait - duration in milliseconds
   queueNextClose: (wait = 5000)->
     unless @queueTimer
       @queueTimer = setTimeout($.proxy(@, '_onQueueTimer'), wait)
 
+  # Cancels the current timer and starts a new one
   resetNextClose: ->
     if @queueTimer?
       clearTimeout(@queueTimer)
@@ -78,17 +52,23 @@ class FlashesView
       flashToHandle.close =>
         this.queueNextClose()
 
+  # Alert the user with an alert flash.
+  # @return (Roomies.Flash.$)
   alert: (text)->
     this.showFlash('alert', text)
 
+  # Notify the user with a notice flash.
+  # @return (Roomies.Flash.$)
   notice: (text)->
     this.showFlash('notice', text)
 
+  # Show the user a flash of any type. 
+  # @note You must style a `.flash_*type*` on your own.
+  # @return (Roomies.Flash.$)
   showFlash: (type, text)->
     flash = Flash.make(type: type, text: text)
     flash.openIn @$element, =>
       this.resetNextClose()
 
-# export to global
-@Roomies.Flash = Flash
+# export
 @Roomies.FlashesView = FlashesView
