@@ -8,7 +8,7 @@
 //= require namespace
 //= require utils/password_generator
 //= require flash
-//= require flashes_view
+//= require flashes_controller
 //= require sign_up
 //
 // This File
@@ -17,5 +17,5 @@
 Roomies = this.Roomies
 roomies = this.roomies
 jQuery(function($){
-  roomies.flash = new Roomies.FlashesView($('#flashes'));
+  roomies.flash = new Roomies.FlashesController($('#flashes'));
 });

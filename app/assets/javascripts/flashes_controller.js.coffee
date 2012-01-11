@@ -1,8 +1,8 @@
 # import
 Flash = @Roomies.Flash
 
-# FlashesView should really be renamed FlashesController its repsponsible for
-# dispatatching new flash messages and clearing out expired messages
+# FlashesController is an object repsponsible for dispatatching new flash
+# messages and clearing out expired messages
 #
 # @example Flashing the user
 #   flashes.alert('Alert message')
@@ -13,7 +13,7 @@ Flash = @Roomies.Flash
 #   flashes.alert('Sticky alert message').sticky()
 # 
 # @since 2.0.0
-class FlashesView
+class FlashesController
 
   # Requires a parent element that the flash elements will insert into.
   #
@@ -71,4 +71,4 @@ class FlashesView
       this.resetNextClose()
 
 # export
-@Roomies.FlashesView = FlashesView
+@Roomies.FlashesController = FlashesController

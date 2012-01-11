@@ -1,13 +1,13 @@
-describe 'FlashesView', ->
+describe 'FlashesController', ->
   beforeEach ->
-    @flashesView = new Roomies.FlashesView($('<div id="flashes"/>').appendTo('body'))
+    @flashes = new Roomies.FlashesController($('<div id="flashes"/>').appendTo('body'))
 
   afterEach ->
-    @flashesView.$element.remove()
+    @flashes.$element.remove()
 
   describe '#alert', ->
     beforeEach ->
-      @flash = @flashesView.alert('Alert Text')
+      @flash = @flashes.alert('Alert Text')
 
     it 'should be an instance of Flash.$', ->
       expect(@flash).toBeInstanceOf(Roomies.Flash.$)
@@ -21,7 +21,7 @@ describe 'FlashesView', ->
 
   describe '#notice', ->
     beforeEach ->
-      @flash = @flashesView.notice('Notice Text')
+      @flash = @flashes.notice('Notice Text')
 
     it 'should be an instance of Flash.$', ->
       expect(@flash).toBeInstanceOf(Roomies.Flash.$)
