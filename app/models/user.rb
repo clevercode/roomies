@@ -83,7 +83,7 @@ class User
     end  
 
     # Set a random password for omniauthenticated users
-    self.password, self.password_confirmation = String::RandomString(16)
+    self.password = self.password_confirmation = String::RandomString(16)
 
   end
 
