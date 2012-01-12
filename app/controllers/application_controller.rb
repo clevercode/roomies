@@ -36,6 +36,10 @@ class ApplicationController < ActionController::Base
     end
     corkboard_url
   end
+
+  def after_sign_out_path_for(user)
+    sign_in_path   
+  end
   
   def reward(options = {})
     user = options[:user] ||= current_user 

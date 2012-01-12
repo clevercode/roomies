@@ -65,10 +65,12 @@ group :development do
 end
 
 group :test do
+  gem 'capybara', '~> 1.1.2'
+  gem 'capybara-webkit', '~> 0.7.2'
   gem 'shoulda-matchers'
   gem 'mongoid-rspec'
   gem "database_cleaner", ">= 0.6.7"
-  gem "factory_girl_rails", "~> 1.2.0"
+  gem "factory_girl_rails", "~> 1.4.0"
   gem "launchy", ">= 0.4.0"
 end
 

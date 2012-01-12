@@ -11,10 +11,9 @@ Roomies::Application.routes.draw do
   resource :corkboard, only: %w(show)
   resource :support_request, only: %w(new create)
 
-  devise_for :users
-  devise_scope :user do
-    get "sign_in", :to => "devise/sessions#new"
-    get "sign_out", :to => "devise/sessions#destroy"
+  devise_for :users do
+    get '/sign_in', to: 'devise/sessions#new'
+    get '/sign_out', to: 'devise/sessions#destroy'
   end
 
   resources :users

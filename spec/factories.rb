@@ -7,8 +7,7 @@ FactoryGirl.define do
   factory :user do
     name 'Test User'
     email 
-    password 'please'
-    invitation_token 'faketoken'
+    password 'password123'
     house
   end
 

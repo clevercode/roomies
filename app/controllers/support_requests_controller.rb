@@ -1,3 +1,7 @@
+# TODO: Investigate why this is needed to pass tests.
+#       Perhaps it's being unloaded.
+require 'support_request'
+
 class SupportRequestsController < ApplicationController
 
   def new
