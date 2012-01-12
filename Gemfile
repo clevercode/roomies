@@ -12,8 +12,8 @@ gem "bson_ext", "~> 1.4"
 gem 'mongoid_rails_migrations'
 
 # Authentication
-gem 'devise', "~> 1.4.5"
-gem 'devise_invitable', '~> 0.5.4'
+gem 'devise', "~> 1.5.3"
+gem 'devise_invitable', '~> 0.6.1'
 gem 'omniauth', "~> 0.2.6"
 
 # Markdown
@@ -59,6 +59,7 @@ group :development do
   group :mac do
     gem 'rb-fsevent'
     gem 'growl'
+    gem 'ruby_gntp'
   end
   gem 'pry'
 end
