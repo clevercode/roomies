@@ -1,0 +1,78 @@
+nav
+  float: right
+  margin: 0.5em
+
+  ul
+    li
+      float: left
+      a
+        margin-left: 0.25em
+        display: block
+        line-height: 1.4
+        font-size: 1.1em
+        padding: .5em .75em
+        font-weight: 600
+        text-decoration: none
+        text-align: center
+        background: white
+        color: white
+        text-shadow: rgba(0,0,0,.5) 0 -1px 1px
+        +border-radius(3px)
+
+    li.action a
+      +gradient-button($lightblue)
+      &:hover, &:focus
+        color: white
+      &:active  
+        text-shadow: rgba(0,0,0,0.5) 0 1px 1px
+
+    li.notification, li.link
+      a
+        +box-shadow($lightblue 0 0 0 1px inset)
+        &:hover, &:focus
+          background-color: lighten($lightblue, 15%)
+          +box-shadow($lightblue 0 0 0 1px inset,$lightblue 0 1px 3px 1px inset)
+        &:active  
+          +box-shadow($lightblue 0 0 0 1px inset,$lightblue 0 2px 5px 1px inset)
+          text-shadow: fade-out(black, 0.6) 0 1px 1px
+    li.notification a
+      width: 24px
+      text-indent: -9999px
+      background-repeat: no-repeat
+      background-position: center center
+      &:hover, &:focus
+        text-shadow: rgba(0,0,0,0.5) 0 1px 1px, rgba(0,0,0,0.2) 0 0 3px
+
+    li.past_due a
+      background-image: image-url('icons/past_due.png')
+      &:active
+        background-image: image-url('icons/past_due_active.png')
+
+    li.confirm a
+      background-image: image-url('58_24px.png')        
+
+    li.house a
+      background-image: image-url('icons/invitation.png')
+
+    li.my_house a
+      background: image-url('203.png') no-repeat .7em center
+      padding-left: 2.5em
+
+    li.rewards a
+      background-image: image-url('icons/reward.png')
+      &:hover
+        background-image: image-url('icons/reward_hover.png')
+      &:active
+        background-image: image-url('icons/reward_active.png')
+
+    li.link a
+      color: black
+      text-shadow: none
+
+    li.corkboard a
+      background: image-url('icons/corkboard.png') no-repeat .7em center
+      padding-left: 2.5em
+
+    li.profile a
+      background: image-url('icons/profile.png') no-repeat .7em center
+      padding-left: 2.5em
