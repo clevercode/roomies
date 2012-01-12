@@ -6,7 +6,6 @@ class User
   include Mongoid::Timestamps
 
   after_create :send_welcome_email
-  before_create :set_invitation_limit
   before_save :update_stripe
 
   # Fields
@@ -32,15 +31,12 @@ class User
 
   # Devise
   devise  :database_authenticatable, :registerable, :recoverable, 
-          :rememberable, :trackable, :validatable, :invitable
+          :rememberable, :trackable, :validatable
 
   validates :email, 
             presence: true,
             uniqueness: { case_sensitive: false }
 
-  # validates_presence_of :invitation_token, 
-  #                       on: :create, 
-  #                       message: "misssing, signing up for now."
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :email, :password, :remember_me, :locale, :calendar, :stripe_token
@@ -178,9 +174,6 @@ class User
     UserMailer.welcome_email(self).deliver
   end
 
-  def set_invitation_limit
-    self.invitation_limit = 3
-  end
 
   def update_stripe
     if stripe_token

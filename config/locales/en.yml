@@ -62,9 +62,6 @@ en:
   #errors
   oops: "Something went wrong. We can't promise we'll send you free stuff but if you want to come talk to us about it, we promise we'll help. :-)"
 
-  #beta
-  beta_invite_sent: "We just sent a little note to your friend. They should receive it soon."
-  beta_invite_request_sent: "Thank you for signing up, we'll give you a shout out when beta is ready."
 
   errors:
     messages:
@@ -91,14 +88,6 @@ en:
       almost_done: "Almost done, now you just have to enter a new password and we will sign you in to your account."
       new:
         enter_email: "e.g. myemail@domain.com"
-    invitations:
-      send_instructions: 'An invitation email has been sent to %{email}.'
-      invitation_token_invalid: 'The invitation token provided is not valid!'
-      updated: 'Your password was set successfully. You are now signed in.'
-      no_invitations_remaining: "No invitations remaining. Patience, we'll give you some more soon."
-      set_my_password: "Set My Password"
-      send_beta_invite: "Send a Roomies beta invite"
-      instructions: "Send an invitation to the Roomies beta to a friend so he can share with you the joys of riding on unicorns and smoking clouds with monkeys in three-piece suits."
     confirmations:
       send_instructions: 'You will receive an email with instructions about how to confirm your account in a few minutes.'
       confirmed: 'Your account was successfully confirmed. You are now signed in.'
@@ -117,8 +106,6 @@ en:
         subject: 'Roomies reset password instructions'
       unlock_instructions:
         subject: 'Roomies unlock Instructions'
-      invitation_instructions:
-        subject: 'Roomies beta invite'
 
   simple_form:
     "yes": 'Yes'
@@ -300,12 +287,6 @@ en:
   support:
     create:
       sent: "Your support message was successfully sent. We'll get back to you as soon we're done watching that monkey in a three-piece suit smoking a cigar. Classy fella."
-
-  activerecord:
-    attributes:
-      user:
-        invite_token: "INNNNNNVITTTEE"
-    
 
   hello: 'Hello world'
   authentications:

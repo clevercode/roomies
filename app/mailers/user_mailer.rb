@@ -16,16 +16,6 @@ class UserMailer < ActionMailer::Base
     )
   end
 
-  def beta_invite(invite, url)
-    @invite = invite
-    @url = url
-    mail(
-      :to      => invite.recipient_email,
-      :subject => "Hey look, a Roomies beta invite!"
-    )
-    invite.update_attributes(sent_at: Time.now)
-  end
-
   def assignment_created(assignment, recipients, url)
     @assignment = assignment
     @url = url

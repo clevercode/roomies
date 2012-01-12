@@ -40,9 +40,6 @@ fr:
   add_assignment: "Ajouter un tâche"
   build_house: "Construire une Maison"
 
-  #beta
-  beta_invite_sent: "On vient d'envoyer une petite note à votre ami. Ca devrait leur parvenir très bientôt."
-  beta_invite_request_sent: "Sympa de vous être inscrit, on vous previendra dès que la beta sera prête."
 
   errors:
     messages:
@@ -67,11 +64,6 @@ fr:
       updated: "Votre mot de passe a été modifié avec succès. Vous êtes connecté."
       new:
         enter_email: "ex: monemail@domaine.com"
-    invitations:
-      send_instructions: "Un email d'invitation a été envoyé à %{email}."
-      invitation_token_invalid: "Le jeton d'invitation fourni n'est pas valide !"
-      updated: "Votre mot de passe a été enregistré avec succès. Vous êtes connecté."
-      no_invitations_remaining: "Vous n'avez plus d'invitations à envoyer. Un peu de patience, on vous en donnera d'autres bientôt."
     confirmations:
       send_instructions: "Vous allez recevoir un email avec des instructions vous indiquant comment confirmer votre compte dans quelques minutes."
       confirmed: "Votre compte a été confirmé avec succès. Vous êtes connecté."
@@ -90,8 +82,6 @@ fr:
         subject: "Roomies - remise à zéro de mot de passe"
       unlock_instructions:
         subject: "Roomies - déverouillage de compte"
-      invitation_instructions:
-        subject: "Roomies - invitation au beta test"
 
   simple_form:
     "yes": 'Oui'

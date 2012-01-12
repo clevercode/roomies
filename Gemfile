@@ -13,7 +13,6 @@ gem 'mongoid_rails_migrations'
 
 # Authentication
 gem 'devise', "~> 1.5.3"
-gem 'devise_invitable', '~> 0.6.1'
 gem 'omniauth', "~> 0.2.6"
 
 # Markdown

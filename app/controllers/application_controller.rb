@@ -30,10 +30,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(user)
-    logger.debug "called from after_sign_in_path"
-    unless self.controller_name == "invitations"
-      reward(type: :sign_in)
-    end
+    reward(type: :sign_in)
     corkboard_url
   end
 
