@@ -19,7 +19,7 @@ gem 'bson_ext', '>= 1.2.4'
 gem 'mongoid_rails_migrations', '>=0.0.2'
 gem 'jquery-rails', '~> 1.0.7'
 gem 'haml-rails', '~> 0.3.4'
-gem 'hoptoad_notifier'
+gem "airbrake", "~> 3.0.9"
 gem 'dalli'
 gem 'rake', '0.8.7'
 gem 'actionmailer-with-request'

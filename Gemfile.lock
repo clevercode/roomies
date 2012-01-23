@@ -39,6 +39,9 @@ GEM
       activesupport (= 3.0.7)
     activesupport (3.0.7)
     addressable (2.2.4)
+    airbrake (3.0.9)
+      activesupport
+      builder
     archive-tar-minitar (0.5.2)
     arel (2.0.10)
     barista (1.0.0)
@@ -90,9 +93,6 @@ GEM
       activesupport (~> 3.0)
       haml (~> 3.0)
       railties (~> 3.0)
-    hoptoad_notifier (2.4.9)
-      activesupport
-      builder
     html5-boilerplate (0.3.3)
       compass (>= 0.10.0)
     i18n (0.5.0)
@@ -280,6 +280,7 @@ PLATFORMS
 
 DEPENDENCIES
   actionmailer-with-request
+  airbrake (~> 3.0.9)
   barista (~> 1.0)
   barista_growl!
   bson_ext (>= 1.2.4)
@@ -291,7 +292,6 @@ DEPENDENCIES
   factory_girl_rails
   haml (~> 3.1.0)
   haml-rails (~> 0.3.4)
-  hoptoad_notifier
   html5-boilerplate (~> 0.3.3)
   jasmine
   jquery-rails (~> 1.0.7)
