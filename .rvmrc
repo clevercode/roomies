@@ -3,13 +3,8 @@
 # This is an RVM Project .rvmrc file, used to automatically load the ruby
 # development environment upon cd'ing into the directory
 
-# First we specify our desired <ruby>[@<gemset>], the @gemset name is optional.
-environment_id="ruby-1.9.2-p290@roomies"
-
-#
-# Uncomment following line if you want options to be set only for given project.
-#
-# PROJECT_JRUBY_OPTS=( --1.9 )
+# We specify our desired <ruby>[@<gemset>], the @gemset name is optional.
+environment_id="ruby-1.9.3-p0@roomies"
 
 #
 # First we attempt to load the desired environment directly from the environment
@@ -28,20 +23,9 @@ then
   fi
 else
   # If the environment file has not yet been created, use the RVM CLI to select.
-  if ! rvm --create use  "$environment_id"
+  if ! rvm --create  "$environment_id"
   then
     echo "Failed to create RVM environment '${environment_id}'."
-    exit 1
+    return 1
   fi
 fi
-
-#
-# If you use an RVM gemset file to install a list of gems (*.gems), you can have
-# it be automatically loaded. Uncomment the following and adjust the filename if
-# necessary.
-#
-# filename=".gems"
-# if [[ -s "$filename" ]] ; then
-#   rvm gemset import "$filename" | grep -v already | grep -v listed | grep -v complete | sed '/^$/d'
-# fi
-
