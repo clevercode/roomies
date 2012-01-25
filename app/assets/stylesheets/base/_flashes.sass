@@ -10,6 +10,8 @@
   font-size: 1.2em
   // TODO: Investigate why we have to reset the line height here
   line-height: 1.5
+  cursor: pointer
+
   p
     padding: 10px
     margin: 0
@@ -21,8 +23,10 @@
   top: 0
   left: 0
   right: 0
+
   .flash_notice
     @extend .flash_abstract
+
     p
       text-shadow: lighten($blue,10%) 1px 1px 0
       +background-image(linear-gradient(transparentize($blue,.4),transparentize(darken($blue,10%), .4)))
@@ -30,21 +34,28 @@
       font-weight: 600
       color: darken($blue, 50%)
       text-shadow: lighten($blue, 10%) 1px 1px 0
+
       &:hover, &:focus
         color: darken($blue, 40%)
+
       &:active
         color: darken($blue, 70%)
-  // TODO: PICK ONE!
+        
+  // TODO: Pick one and remove references to the other
   .flash_alert, .flash_error
     @extend .flash_abstract
+
     p
       color: darken($red,50%)
       text-shadow: lighten($red,20%) 1px 1px 0 
       +background-image(linear-gradient(lighten($red, 10%), darken($red, 10%)))
+
     a
       color: darken($red,40%)
       text-shadow: lighten($red,20%) 1px 1px 0 
+
       &:hover
         color: darken($red,25%)
+
       &:active
         color: darken($red,70%)

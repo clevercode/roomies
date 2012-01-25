@@ -1,0 +1,14 @@
+#= require modernizr
+
+Modernizr.load([{
+    load: '//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js',
+    complete: ->
+      unless @jQuery
+        Modernizr.load("<%= asset_path('jquery.min.js') %>")
+  },
+  {
+    load: "<%= asset_path('application.js') %>"
+    complete: ->
+      jQuery(@Roomies.boot)
+  }
+])

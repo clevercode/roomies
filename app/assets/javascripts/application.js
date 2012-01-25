@@ -1,6 +1,6 @@
 // Vendor libaries
 //= require underscore.min
-//= require jquery.min
+//= require jquery_ujs
 //= require jwerty
 //= require hogan
 //
@@ -14,8 +14,9 @@
 // This File
 //= require_self
 
-Roomies = this.Roomies
-roomies = this.roomies
-jQuery(function($){
+Roomies = this.Roomies;
+roomies = this.roomies;
+
+Roomies.boot = function() {
   roomies.flash = new Roomies.FlashesController($('#flashes'));
-});
+};
