@@ -27,17 +27,18 @@ bundle install --path vendor --binstubs
 cd ~/.pow && ln -s path/to/roomies roomies && cd -
 ```
 
-The app will run without Pow, however some things like TypeKit fonts, mailer
+### Notes
+
+- The app will run without Pow, however some things like TypeKit fonts, mailer
 links, and OAuth redirects will not work because they assume that the app is at
 http://roomies.dev
 
-Gem dependencies will be installed into vendor/ruby, this means we don't need
+- Gem dependencies will be installed into vendor/ruby, this means we don't need
 RVM gemsets.
 
-Gem binaries are linked into the bin/ directory. Use them in place of the system
+- Gem binaries are linked into the bin/ directory. Use them in place of the system
 gems. 
 
-**Example:**
 ``` sh
 bin/rake
 bin/mailcatcher
@@ -54,8 +55,10 @@ bin/foreman
 Simply run `bin/guard` 
 
 ### Requirements
+
 The JavaScript & Acceptance tests have special requirements
-- phantomjs - `brew install phantomjs`
-- qt - `brew install qt`
+
+- phantomjs `brew install phantomjs`
+- qt `brew install qt`
 
 
