@@ -4,6 +4,11 @@ FactoryGirl.define do
     "user#{n}@example.com" 
   end
 
+  sequence :uid do |n|
+    "uid#{n}"
+  end
+
+
   factory :user do
     name 'Test User'
     email 
@@ -13,6 +18,12 @@ FactoryGirl.define do
 
   factory :house do
     name 'Our House'
+  end
+
+  factory :authentication do
+    provider 'twitter'
+    uid
+    user
   end
 
   factory :support_request do

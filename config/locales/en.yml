@@ -288,13 +288,13 @@ en:
     create:
       sent: "Your support message was successfully sent. We'll get back to you as soon we're done watching that monkey in a three-piece suit smoking a cigar. Classy fella."
 
-  hello: 'Hello world'
   authentications:
     auth_success: 'Authentication successful.'
     auth_fail: 'Authentication failed.'
     auth_destroy: 'Successfully destroyed authentication.'
     signed_in: "You're already signed in."
     welcome: "Thanks for signing up, welcome to Roomies!"
+    welcome_back: Welcome back.
     missing_email: "Twitter doesn't provide us with an email address to contact you."
   formtastic:
     placeholders:

@@ -41,47 +41,13 @@ class User
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :email, :password, :remember_me, :locale, :calendar, :stripe_token
 
-  ###
-  # user methods
-  ###
-  
-  def apply_omniauth(omniauth)
-    omniauth['user_info']['email']
-    self.email = omniauth['user_info']['email'] if email.blank?
-    # Check if email is already into the database => user exists
-    apply_trusted_services(omniauth) if self.new_record?
+  def self.find_by_omniauth_email(omniauth)
+    email = omniauth['info']['email']
+    return if email.blank?
+
+    User.where(email: email).first
   end
-  
-  # Create a new user
-  def apply_trusted_services(omniauth)  
-    # Merge user_info && extra.user_info
-    user_info = omniauth['user_info']
 
-    if omniauth['extra'] && omniauth['extra']['user_hash']
-      user_info.merge!(omniauth['extra']['user_hash'])
-    end  
-
-    # try name or nickname
-    if self.name.blank?
-      self.name   = user_info['name'] unless user_info['name'].blank?
-      self.name ||= user_info['nickname'] unless user_info['nickname'].blank?
-      self.name ||= (user_info['first_name'] + " " + user_info['last_name']) unless \
-        user_info['first_name'].blank? || user_info['last_name'].blank?
-    end   
-
-    if self.email.blank?
-      self.email = user_info['email'] unless user_info['email'].blank?
-      # if user_info['email'].present?
-      #   self.email = user_info['email'] unless user_info['email'].blank?
-      # else
-      #   self.email = "#{Time.now.to_i}#{rand(777)}@roomieapp.com"
-      # end
-    end  
-
-    # Set a random password for omniauthenticated users
-    self.password = self.password_confirmation = String::RandomString(16)
-
-  end
 
   ###
   # Override methods
