@@ -1,10 +1,10 @@
 source 'http://rubygems.org'
 
-gem 'rails', "~> 3.1.1"
+gem 'rails', '~> 3.2.0'
+gem 'rack', '~> 1.4.1'
 
 # Web server
 gem 'thin'
-gem 'rack', '1.3.3'
 
 # Mongo
 gem 'mongoid', "~> 2.3"
@@ -13,7 +13,10 @@ gem 'mongoid_rails_migrations'
 
 # Authentication
 gem 'devise', "~> 1.5.3"
-gem 'omniauth', "~> 0.2.6"
+gem 'omniauth', "~> 1.0.2"
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-twitter'
 
 # Markdown
 gem 'rdiscount', "~> 1.6.8"
@@ -38,9 +41,9 @@ group :development, :test do
 end
 
 group :assets do
-  gem 'sass-rails', "~> 3.1"
-  gem 'coffee-rails', "~> 3.1"
-  gem 'uglifier'
+  gem 'sass-rails', '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
+  gem 'uglifier', '~> 1.0.3'
   gem 'bourbon'
 end
 
