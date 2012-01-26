@@ -1,25 +1,13 @@
-.bundle
-db/*.sqlite3
-log/*.log
-*.log
-tmp/**/*
-tmp/*
-doc/api
-doc/app
-*.swp
-*.~
 .DS_Store
 *.bex
+
+.sass-cache
+.powenv
 .rails_footnotes
 
-/public/stylesheets/handheld.css
-/public/stylesheets/style.css
-/.sass-cache/
+/.bundle
+/tmp/*
+/log/*.log
+/documentation
+/vendor/ruby
 
-/public/javascripts/application.js
-/log/test.log
-/doc/
-/documentation/
-/documentation/*
-
-/Final Project Summary – Read Me.txt
