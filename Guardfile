@@ -18,9 +18,9 @@ group 'acceptance-tests' do
   end
 end
 group 'unit-tests' do
-  guard 'rspec', :version => 2, :cli => '--drb', spec_paths: ['spec/models', 'spec/controllers'] do
+  guard 'rspec', :version => 2, :cli => '--drb', spec_paths: ['spec/models', 'spec/controllers', 'spec/routing'] do
     # Rails example
-    watch(%r{^spec/(models|controllers|requests|helpers)/.+_spec\.rb$})
+    watch(%r{^spec/(models|controllers|requests|helpers|routing)/.+_spec\.rb$})
     watch(%r{^app/(.+)\.rb$})                           { |m| "spec/#{m[1]}_spec.rb" }
     watch(%r{^lib/(.+)\.rb$})                           { |m| "spec/lib/#{m[1]}_spec.rb" }
     watch(%r{^spec/support/(.+)\.rb$})                  { "spec" }

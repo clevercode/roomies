@@ -11,14 +11,17 @@ Roomies::Application.routes.draw do
   resource :corkboard, only: %w(show)
   resource :support_request, only: %w(new create)
 
+  match '/auth/:provider/callback'      => 'authentications#create'
+  match '/auth/failure'                 => 'authentications#failure'
+
   devise_for :users do
     get '/sign_in', to: 'devise/sessions#new'
     get '/sign_out', to: 'devise/sessions#destroy'
   end
 
+
   resources :users
   resources :pages
-  resources :authentications
   resources :assignments do
     member do
       post :complete
@@ -38,9 +41,6 @@ Roomies::Application.routes.draw do
   resources :house_invitations
   resources :rewards
 
-  match '/auth/:provider/callback'      => 'authentications#create'
-  match '/auth/failure'                 => 'authentications#failure'
-  match '/auth/facebook/setup'          => 'facebook#setup'
   match '/registrations'                => 'accounts#email'
   match '/user/:id/homeless/:house_id'  => 'houses#destroy_roomie', :as => :homeless
   match '/assignments/day/:day'         => 'assignments#day'
