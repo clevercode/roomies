@@ -147,13 +147,34 @@ describe Authentication do
   
   describe '#user_created_today?' do
     let(:authentication) { Factory.build(:authentication) } 
+
     it 'should return true when user was created today' do
       authentication.user = Factory.create(:user, created_at: Time.now)
       authentication.user_created_today?.should be_true
     end
+
     it 'should return false when user was not created today' do
       authentication.user = Factory.create(:user, created_at: Time.now.yesterday)
       authentication.user_created_today?.should be_false
+    end
+  end
+
+  describe '#new_user?' do
+    let(:authentication) { Factory.build(:authentication) } 
+
+    it 'should return true when the user has never signed in' do
+      authentication.user.sign_in_count = 0
+      authentication.new_user?.should be_true
+    end
+
+    it 'should return true when the user has signed in once' do
+      authentication.user.sign_in_count = 1
+      authentication.new_user?.should be_true
+    end
+
+    it 'should return false when the user has signed in more than once' do
+      authentication.user.sign_in_count = 2
+      authentication.new_user?.should be_false
     end
   end
 end

@@ -54,6 +54,10 @@ class Authentication
       create_user_with_omniauth(omniauth)
   end
 
+  def new_user?
+    user.sign_in_count <= 1
+  end
+
   def user_created_today?
     user.created_at.today?
   end

@@ -4,7 +4,7 @@ describe AuthenticationsController do
   before do
     OmniAuth.config.test_mode = true
   end
-  let(:user){ Factory.create(:user, created_at: Time.now.yesterday) } 
+  let(:user){ Factory.create(:user, sign_in_count: 2) }
 
   describe 'GET #create' do
     context 'when signed in' do

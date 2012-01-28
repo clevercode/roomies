@@ -11,7 +11,7 @@ class AuthenticationsController < ApplicationController
     omniauth = request.env['omniauth.auth']
     authentication = Authentication.find_or_create_with_omniauth(omniauth)
 
-    if authentication.user_created_today?
+    if authentication.new_user?
       flash[:notice] = translate(:welcome, :scope => :authentications)
     else
       flash[:notice] = translate(:welcome_back, :scope => :authentications)
