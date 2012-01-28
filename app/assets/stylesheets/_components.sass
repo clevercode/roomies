@@ -55,6 +55,8 @@
   @extend .plain-box
   width: grid-width(4.5)
   .email, .password
+    label
+      +invisible
     input
       width: grid-width(4.4)
   .input.boolean
@@ -85,8 +87,10 @@
     p
       display: inline-block
       margin: 0.5em
-  label
-    display: none
+
+  .email, .password
+    label
+      +invisible
 
   input[type=submit]
     font-size: 2em
@@ -100,7 +104,7 @@
   .other_auths
     color: tint($font-color, 10%)
 
-// Sign In Box (narrow variant) 
+// Sign Up Box (narrow variant) 
 .sign-up-box.half
   width: 340px
 
@@ -117,7 +121,7 @@
     text-align: center
 
 
-// Sign In Box (wide variant) 
+// Sign Up Box (wide variant) 
 .sign-up-box.full
   @extend .plain-box
   clear: both

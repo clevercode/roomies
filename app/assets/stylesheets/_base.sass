@@ -11,6 +11,23 @@ $gw-gutter: 20px
 @import 'base/flashes'
 @import 'base/forms'
 
+=invisible
+  border: 0
+  padding: 0
+  height: 1px
+  width: 1px
+  overflow: hidden
+  position: absolute
+  // IE 6 & 7
+  clip: rect(1px 1px 1px 1px) 
+  // Everyone else
+  clip: rect(1px,1px,1px,1px)
+
+  body:hover &
+    a,input,button
+      display: none
+  
+
 
 // Styles suitable for all pages 
 html
