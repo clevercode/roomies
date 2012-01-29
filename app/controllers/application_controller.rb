@@ -40,14 +40,13 @@ class ApplicationController < ActionController::Base
   
   def reward(options = {})
     user = options[:user] ||= current_user 
-    type = options[:type] ||= (self.controller_name + "_" + self.action_name).to_sym
+    type = options[:type] ||= :"#{self.controller_name}_#{self.action_name}"
     points = options[:points] ||= nil
     user.rewards.create( 
                   :type => options[:type],
                   :user => options[:user],
                   :points => options[:points]
     )
-    # flash[:reward] = "Hey look, you just got a reward for #{t(type, :scope => :rewards)}!"
   end
 
 end
