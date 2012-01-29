@@ -46,4 +46,9 @@ class Assignment
     end
   end
 
+  def due_today?; due_date == Date.current end
+  def due_tomorrow?; due_date == Date.current + 1 end
+  def due_in?(duration); due_date == Date.current + duration end
+
+
 end

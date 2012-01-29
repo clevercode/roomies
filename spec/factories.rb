@@ -26,6 +26,10 @@ FactoryGirl.define do
     user
   end
 
+  factory :assignment do
+    purpose 'To be or not to be'
+  end
+
   factory :support_request do
     name "John Appleseed"
     email

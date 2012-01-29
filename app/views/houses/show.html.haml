@@ -1,6 +1,7 @@
-%h1= @house.name
-%ul
-  - @house.users.each do |user|
-    %li
-      = user.name
-      = user.assignments.count
+- if @house
+  %h1= @house.name
+  %ul
+    - @house.users.each do |user|
+      %li
+        = user.name
+        = user.assignments.count

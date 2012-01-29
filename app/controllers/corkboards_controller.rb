@@ -1,29 +1,59 @@
 class CorkboardsController < ApplicationController
   before_filter :authenticate_user!
-  def show
+  before_filter :ensure_house!
 
-    if current_user.house.nil?
-      @all = nil
-    else
-      @all = current_user.house.assignments
-      @my  = current_user.house.assignments.where(:assignee_ids.in => [current_user.id])
-            
-      @my_tasks                  = @my.where(type: "task")
-      @my_expenses               = @my.where(type: "expense")
-      @my_todays_assignments     = @my.where(due_date: Date.current.to_s)
-      @my_tomorrows_assignments  = @my.where(due_date: Date.tomorrow.to_s)
-      @my_next_days_assignments  = @my.where(due_date: Date.tomorrow.tomorrow.to_s)
-      
-      @all_tasks                 = @all.where(type: "task")
-      @all_expenses              = @all.where(type: "expense")
-      @all_todays_assignments    = @all.where(due_date: Date.current.to_s)
-      @all_tomorrows_assignments = @all.where(due_date: Date.tomorrow.to_s)
-      @all_next_days_assignments = @all.where(due_date: Date.tomorrow.tomorrow.to_s)
-      
+  # TODO: Move somewhere more appropriate
+  class AssignmentsPresenter
+
+    attr_reader :assignments
+
+    def initialize(assignments)
+      @assignments = assignments
     end
 
-    # if current_user.sign_in_count == 1
-    #   flash[:notice] = "Welcome to Roomies buddy, let's get started."
-    # end
+    def tasks
+      assignments.select{ |assignment| assignment.type == "task" }
+    end
+
+    def expenses
+      assignments.select{ |assignment| assignment.type == "expense" }
+    end
+
+    def due_today
+      assignments.select{ |assignment| assignment.due_today? }
+    end
+
+    def due_tomorrow
+      assignments.select{ |assignment| assignment.due_tomorrow? }
+    end
+
+    def due_in_two_days
+      assignments.select{ |assignment| assignment.due_in?(2.days) }
+    end
+
+    def forecast
+      { 
+        I18n.t(:today) => due_today, 
+        I18n.t(:tomorrow) => due_tomorrow, 
+        I18n.l(Date.current+2, :format => :day) => due_in_two_days
+      }
+    end
+
+  end
+
+  def show
+
+    @all = current_user.house.assignments
+    @my  = @all.select { |assignment| assignment.assigned_to? current_user } 
+          
+    @my_assignments = AssignmentsPresenter.new(@my)
+    @all_assignments = AssignmentsPresenter.new(@all)
+
+  end
+
+  private
+  
+  def ensure_house!
+    redirect_to house_url if current_user.house.nil?
   end
 end

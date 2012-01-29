@@ -1,34 +1,31 @@
 - @main_class = 'corkboard'
 = render :partial => 'notifications'
-- if current_user.house
 
-  #upcoming_filters
-    %ul#assignee_filters
-      %li.left.active{ :data => { :type => "my" } }= t '.my_assignments'
-      %li.right{ :data => { :type => "all" }}= t '.everyones_assignments'
-    -# %ul#assignment_filters
-    -#   %li.left.active{:data => {:filter => 'all'}}= t '.all'
-    -#   %li#task_filter{:data => {:filter => 'expense'}}= t '.tasks'
-    -#   %li.right#expense_filter{:data => {:filter => 'task'}}= t '.expenses'
+#upcoming_filters
+  %ul#assignee_filters
+    %li.left.active{ :data => { :type => "my" } }= t '.my_assignments'
+    %li.right{ :data => { :type => "all" }}= t '.everyones_assignments'
+  -# %ul#assignment_filters
+  -#   %li.left.active{:data => {:filter => 'all'}}= t '.all'
+  -#   %li#task_filter{:data => {:filter => 'expense'}}= t '.tasks'
+  -#   %li.right#expense_filter{:data => {:filter => 'task'}}= t '.expenses'
 
-  .corkboard_view.my.current
-    .upcoming_lists.content
-      = render :partial => "upcoming", :locals => { :day_of_the_week => t(".today"), :assignments => @my_todays_assignments }
-      = render :partial => "upcoming", :locals => { :day_of_the_week => t(".tomorrow"), :assignments => @my_tomorrows_assignments }
-      = render :partial => "upcoming", :locals => { :day_of_the_week => l(Date.current + 2, :format => :day), :assignments => @my_next_days_assignments }
+.corkboard_view.my.current
+  .upcoming_lists.content
+    - @my_assignments.forecast.each do |day, assignments|
+      = render "upcoming", day_of_the_week: day, assignments: assignments
 
-    = render :partial => "header_bar"
-    = render :partial => "centric_calendar", :locals => { :assignments => @my, :all => false }
-    = render :partial => "monthly_calendar", :locals => { :assignments => @my, :all => false }
-              
-  .corkboard_view.all
-    .upcoming_lists.content
-      = render :partial => "upcoming", :locals => { :day_of_the_week => t(".today"), :assignments => @all_todays_assignments }
-      = render :partial => "upcoming", :locals => { :day_of_the_week => t(".tomorrow"), :assignments => @all_tomorrows_assignments }
-      = render :partial => "upcoming", :locals => { :day_of_the_week => l(Date.current + 2, :format => :day), :assignments => @all_next_days_assignments }
+  = render "header_bar"
+  = render "centric_calendar", assignments: @my_assignments, all: true }
+  = render "monthly_calendar", assignments: @my_assignments, all: true }
+           
+.corkboard_view.all
+  .upcoming_lists.content
+    - @all_assignments.forecast.each do |day, assignments|
+      = render "upcoming", day_of_the_week: day, assignments: assignments
 
-    = render :partial => "header_bar"
-    = render :partial => "centric_calendar", :locals => { :assignments => @all, :all => true }
-    = render :partial => "monthly_calendar", :locals => { :assignments => @all, :all => true }
+  = render "header_bar"
+  = render "centric_calendar", assignments: @all_assignments, all: true }
+  = render "monthly_calendar", assignments: @all_assignments, all: true }
 
-  %ul.detail_day_view
+%ul.detail_day_view
