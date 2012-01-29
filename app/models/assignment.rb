@@ -22,14 +22,29 @@ class Assignment
   # achievement
   field :value,           :type => Integer
 
-  scope :due, where(completed_at: nil).and(:due_date.gte => Date.today).asc(:due_date)
-  scope :past_due, where(completed_at: nil).and(:due_date.lt => Date.today ).asc(:due_date)
-  scope :completed, where(:completed_at.ne => nil).desc(:completed_at)
-  scope :house, ->(house) { where(house_id: house.id) }
+  def self.due
+    uncompleted.where(:due_date.gte => Date.today).asc(:due_date)
+  end
+
+  def self.past_due
+    uncompleted.where(:due_date.lt => Date.today ).asc(:due_date)
+  end
+
+  def self.completed
+    where(:completed_at.ne => nil)
+  end
+
+  def self.uncompleted
+    where(:completed_at => nil)
+  end
+
+  def self.house(house)
+    where(house_id: house.id)
+  end
+
 
   has_and_belongs_to_many :assignees, :class_name => "User"
 
-  # has_and_belongs_to_many :assignees, :stored_as => :array, :class_name => "User"
   belongs_to :commissioner, class_name: "User"
   belongs_to :completor,    class_name: "User"
   belongs_to :validator,    class_name: "User"
