@@ -1,26 +1,17 @@
 .centric.content.current_cal
-  - # what weekday number is today? (Sun = 0, Mon = 1)?
-  - weekday_number = Date.today.wday()
-  - # how many days do we show after today
-  - number_of_days = 13
-  - (0..number_of_days).map do |i|
-    - date = Date.today + i.days
-    - current_day = (date == Date.today) ? 'current_day' : nil
-    .day{ class: "#{current_day} #{(date.day == 1) ? "month_start" : ""}" , data: {:number => i}}
+  - Date.current.upto(Date.current + 2.weeks) do |date|
+    .day{ class: [('current_day' if date.today?), ('month_start' if date.day == 1)] }
       %p.day_name= l(date, :format => :short_day)
       %p.day_number= date.day
-      - unless assignments.where(:due_date => date.to_s).count <= 0 and assignments.where(completed_at: nil)
+      - incomplete_assignments = assignments.due_on(date).select(&:incomplete?)
+      - unless incomplete_assignments.empty?
         .todo
-          - tasks = assignments.where(due_date: date.to_s).and(type: "task").and(completed_at: nil)
-          - expenses = assignments.where(due_date: date.to_s).and(type: "expense").and(completed_at: nil)
-          - unless tasks.count == 0
-            - if all
-              =link_to tasks.count, "/assignments/day/#{date}.json?type=task&all=true", :class => "tasks"
-            - else
-              =link_to tasks.count, "/assignments/day/#{date}.json?type=task", :class => "tasks"
-          - unless expenses.count == 0
-            - if all
-              =link_to expenses.count, "/assignments/day/#{date}.json?type=expense&all=true", :class => "expenses"
-            - else
-              =link_to expenses.count, "/assignments/day/#{date}.json?type=expense", :class => "expenses"
-          -# =link_to '2', '#', :class => "expenses tooltip", :title => "Yaaaaaaoooo"
+          - tasks, expenses = incomplete_assignments.partition(&:task?)
+          - if tasks.present?
+            = link_to tasks.count, 
+              assignments_path(date: date, type: 'task', all: all), 
+              class: 'tasks'
+          - if expenses.present?
+            = link_to expenses.count,
+              assignments_path(date: date, type: 'expense', all: all),
+              class: 'expenses'

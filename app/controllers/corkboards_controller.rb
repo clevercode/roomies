@@ -12,23 +12,27 @@ class CorkboardsController < ApplicationController
     end
 
     def tasks
-      assignments.select{ |assignment| assignment.type == "task" }
+      assignments.select(&:task?)
     end
 
     def expenses
-      assignments.select{ |assignment| assignment.type == "expense" }
+      assignments.select(&:expense?)
     end
 
     def due_today
-      assignments.select{ |assignment| assignment.due_today? }
+      assignments.select(&:due_today?)
     end
 
     def due_tomorrow
-      assignments.select{ |assignment| assignment.due_tomorrow? }
+      assignments.select(&:due_tomorrow?)
     end
 
     def due_in_two_days
       assignments.select{ |assignment| assignment.due_in?(2.days) }
+    end
+
+    def due_on(date)
+      assignments.select{ |assignment| assignment.due_date == date.to_date }
     end
 
     def forecast
@@ -39,12 +43,15 @@ class CorkboardsController < ApplicationController
       }
     end
 
+    # TODO: Remove when refactored monthly_calendar partial
+    delegate :where, to: :assignments
+
   end
 
   def show
 
     @all = current_user.house.assignments
-    @my  = @all.select { |assignment| assignment.assigned_to? current_user } 
+    @my  = current_user.assignments
           
     @my_assignments = AssignmentsPresenter.new(@my)
     @all_assignments = AssignmentsPresenter.new(@all)

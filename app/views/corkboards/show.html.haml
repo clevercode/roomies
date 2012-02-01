@@ -16,8 +16,8 @@
       = render "upcoming", day_of_the_week: day, assignments: assignments
 
   = render "header_bar"
-  = render "centric_calendar", assignments: @my_assignments, all: true }
-  = render "monthly_calendar", assignments: @my_assignments, all: true }
+  = render "centric_calendar", assignments: @my_assignments, all: true
+  = render "monthly_calendar", assignments: @my_assignments, all: true
            
 .corkboard_view.all
   .upcoming_lists.content
@@ -25,7 +25,7 @@
       = render "upcoming", day_of_the_week: day, assignments: assignments
 
   = render "header_bar"
-  = render "centric_calendar", assignments: @all_assignments, all: true }
-  = render "monthly_calendar", assignments: @all_assignments, all: true }
+  = render "centric_calendar", assignments: @all_assignments, all: true
+  = render "monthly_calendar", assignments: @all_assignments, all: true
 
 %ul.detail_day_view

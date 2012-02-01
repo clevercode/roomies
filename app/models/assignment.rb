@@ -64,6 +64,11 @@ class Assignment
   def due_today?; due_date == Date.current end
   def due_tomorrow?; due_date == Date.current + 1 end
   def due_in?(duration); due_date == Date.current + duration end
+  def due_on?(date); due_date == date end
 
+  def task?; type == 'task' end
+  def expense?; type == 'expense' end
+  
+  def incomplete?; completed_at.nil? end
 
 end

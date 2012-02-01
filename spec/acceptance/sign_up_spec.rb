@@ -11,7 +11,7 @@ feature 'Signing Up' do
       fill_in 'user[password]', with: 'password123'
       click_button 'Sign Up'
     end
-    current_path.should == corkboard_path
+    current_path.should == house_path
   end
 
   scenario 'A user generating a password', js: true do
@@ -23,7 +23,7 @@ feature 'Signing Up' do
     page.should have_content('Password Generated')
     click_button "Okay, I've got it"
     click_button 'Sign Up'
-    current_path.should == corkboard_path
+    current_path.should == house_path
   end
 
 end
