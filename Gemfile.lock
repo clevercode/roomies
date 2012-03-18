@@ -1,11 +1,3 @@
-GIT
-  remote: http://github.com/TrevorBurnham/barista_growl.git
-  revision: 4d52084c5e0fd0d040e2da2e8b65d8344ce36672
-  specs:
-    barista_growl (0.1.0)
-      barista
-      growl
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -86,7 +78,6 @@ GEM
       rack (>= 1.1.0, < 2)
     ffi (1.0.9)
     fssm (0.2.7)
-    growl (1.0.3)
     haml (3.1.2)
     haml-rails (0.3.4)
       actionpack (~> 3.0)
@@ -282,7 +273,6 @@ DEPENDENCIES
   actionmailer-with-request
   airbrake (~> 3.0.9)
   barista (~> 1.0)
-  barista_growl!
   bson_ext (>= 1.2.4)
   compass (~> 0.11)
   dalli

@@ -20,7 +20,7 @@ Roomies::Application.routes.draw do
   end
   resources :categories
   resources :achievements
-  resources :houses
+  resources :houses, except: [:index]
   resources :corkboard
   resources :user_mailer
   resources :house_invitations

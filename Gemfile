@@ -40,7 +40,6 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'mongoid-rspec'
   gem 'factory_girl_rails'
-  gem 'barista_growl', :git => 'http://github.com/TrevorBurnham/barista_growl.git'
   gem 'ruby-debug19'
   gem 'jasmine'
   gem 'mailcatcher'
