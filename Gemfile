@@ -48,7 +48,6 @@ group :assets do
 end
 
 group :development do
-  # gem 'ruby-debug19'
   gem 'mailcatcher'
   gem 'foreman'
   gem 'guard'
@@ -62,7 +61,7 @@ group :development do
     gem 'growl'
     gem 'ruby_gntp'
   end
-  gem 'pry'
+  gem 'pry-rails'
 end
 
 group :test do
