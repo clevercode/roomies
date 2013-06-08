@@ -1,0 +1,15 @@
+defaults: &defaults
+  adapter: postgresql
+  encoding: utf8
+  pool: 5
+  username: POSTGRES_USER
+  password: 
+  host: localhost
+
+development:
+  <<: *defaults
+  database: clevercode_roomies_development
+
+test:
+  <<: *defaults
+  database: clevercode_roomies_test
